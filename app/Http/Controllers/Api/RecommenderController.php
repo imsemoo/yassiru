@@ -76,27 +76,29 @@ class RecommenderController extends Controller
     public function dashboard(Request $request): JsonResponse
     {
         $user = $request->user();
+
+        // Admins always get an oversight view showing all candidates/recommendations,
+        // regardless of whether they have a legacy Recommender record in the table.
+        if ($user->role === 'admin') {
+            return response()->json([
+                'recommender' => [
+                    'id' => null,
+                    'type' => 'admin_oversight',
+                    'is_approved' => true,
+                    'candidates_count' => Candidate::count(),
+                    'successful_matches' => Recommendation::where('status', 'accepted')->count(),
+                ],
+                'candidates' => Candidate::with('city:id,name')->latest()->take(20)->get(),
+                'recommendations' => Recommendation::with([
+                    'maleCandidate:id,name,age,occupation',
+                    'femaleCandidate:id,name,age,occupation',
+                ])->latest()->take(10)->get(),
+            ]);
+        }
+
         $recommender = Recommender::where('user_id', $user->id)->first();
 
-        // Admins can access dashboard without being a recommender — show empty shell
         if (!$recommender) {
-            if ($user->role === 'admin') {
-                return response()->json([
-                    'recommender' => [
-                        'id' => null,
-                        'type' => 'admin_oversight',
-                        'is_approved' => true,
-                        'candidates_count' => Candidate::count(),
-                        'successful_matches' => 0,
-                    ],
-                    'candidates' => Candidate::with('city:id,name')->latest()->take(20)->get(),
-                    'recommendations' => Recommendation::with([
-                        'maleCandidate:id,name,age,occupation',
-                        'femaleCandidate:id,name,age,occupation',
-                    ])->latest()->take(10)->get(),
-                ]);
-            }
-
             return response()->json(['message' => 'لم يتم العثور على سجل معرّف'], 404);
         }
 

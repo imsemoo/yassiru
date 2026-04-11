@@ -23,6 +23,10 @@ class RegisterController extends Controller
 
         $user->assignRole('user');
 
+        // Refresh from DB so database defaults (role='user', is_verified=false,
+        // has_certificate=false) are reflected in the response instead of null.
+        $user->refresh()->load('city');
+
         $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([

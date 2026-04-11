@@ -200,17 +200,48 @@ const roleLabel = (r) => ({ admin: 'مدير', recommender: 'معرّف', user: 
 const roleBadgeClass = computed(() => ({
   admin: 'status-badge--danger',
   recommender: 'status-badge--info',
+  counselor: 'status-badge--success',
   user: 'status-badge--primary',
 })[auth.user?.role] || 'status-badge--muted')
 
-const quickLinks = computed(() => [
-  { to: '/courses', label: 'الدورات', icon: PhBookOpen, color: '#0d7377', bg: 'rgba(13,115,119,0.1)' },
-  { to: '/certificate', label: 'الشهادة', icon: PhCertificate, color: '#b8860b', bg: 'rgba(184,134,11,0.1)' },
-  { to: '/my-weddings', label: 'تسجيلات الأعراس', icon: PhHeart, color: '#c0392b', bg: 'rgba(192,57,43,0.1)' },
-  { to: '/circles', label: 'حلقات الصندوق', icon: PhHandCoins, color: '#1565c0', bg: 'rgba(21,101,192,0.1)' },
-  { to: '/counseling', label: 'الاستشارات', icon: PhChats, color: '#1b7a4a', bg: 'rgba(27,122,74,0.1)' },
-  ...(!auth.isRecommender ? [{ to: '/recommender', label: 'سجّل كمعرّف', icon: PhUsers, color: '#6b7280', bg: 'rgba(107,114,128,0.1)' }] : []),
-])
+const quickLinks = computed(() => {
+  // Admin: oversight links
+  if (auth.isAdmin) {
+    return [
+      { to: '/admin', label: 'لوحة الإدارة', icon: PhShieldCheck, color: '#c0392b', bg: 'rgba(192,57,43,0.1)' },
+      { to: '/admin/users', label: 'إدارة المستخدمين', icon: PhUsers, color: '#1565c0', bg: 'rgba(21,101,192,0.1)' },
+      { to: '/admin/recommenders', label: 'إدارة المعرّفين', icon: PhUsers, color: '#6a1b4d', bg: 'rgba(106,27,77,0.1)' },
+      { to: '/admin/reports', label: 'البلاغات', icon: PhShieldCheck, color: '#e67e22', bg: 'rgba(230,126,34,0.1)' },
+    ]
+  }
+
+  // Recommender: only recommender panel links
+  if (auth.isRecommender) {
+    return [
+      { to: '/recommender', label: 'لوحة المعرّف', icon: PhUsers, color: '#0d7377', bg: 'rgba(13,115,119,0.1)' },
+      { to: '/recommender/add-candidate', label: 'إضافة مرشح', icon: PhUsers, color: '#1565c0', bg: 'rgba(21,101,192,0.1)' },
+      { to: '/recommender/suggestions', label: 'الاقتراحات', icon: PhHeart, color: '#c0392b', bg: 'rgba(192,57,43,0.1)' },
+      { to: '/recommender/family-requests', label: 'طلبات العائلات', icon: PhChats, color: '#b8860b', bg: 'rgba(184,134,11,0.1)' },
+    ]
+  }
+
+  // Counselor: only counselor dashboard
+  if (auth.isCounselor) {
+    return [
+      { to: '/counselor', label: 'جلساتي', icon: PhChats, color: '#1b7a4a', bg: 'rgba(27,122,74,0.1)' },
+    ]
+  }
+
+  // Regular user (default): marriage-seeking features
+  return [
+    { to: '/courses', label: 'الدورات', icon: PhBookOpen, color: '#0d7377', bg: 'rgba(13,115,119,0.1)' },
+    { to: '/certificate', label: 'الشهادة', icon: PhCertificate, color: '#b8860b', bg: 'rgba(184,134,11,0.1)' },
+    { to: '/my-weddings', label: 'تسجيلات الأعراس', icon: PhHeart, color: '#c0392b', bg: 'rgba(192,57,43,0.1)' },
+    { to: '/circles', label: 'حلقات الصندوق', icon: PhHandCoins, color: '#1565c0', bg: 'rgba(21,101,192,0.1)' },
+    { to: '/counseling', label: 'الاستشارات', icon: PhChats, color: '#1b7a4a', bg: 'rgba(27,122,74,0.1)' },
+    { to: '/recommender/register', label: 'سجّل كمعرّف', icon: PhUsers, color: '#6b7280', bg: 'rgba(107,114,128,0.1)' },
+  ]
+})
 
 function resetForm() {
   form.name = auth.user?.name || ''

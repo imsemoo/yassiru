@@ -16,12 +16,43 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { PhHouse, PhBookOpen, PhHeart, PhHandCoins, PhCalculator, PhUserCircle } from '@phosphor-icons/vue'
+import { PhHouse, PhBookOpen, PhHeart, PhHandCoins, PhCalculator, PhUserCircle, PhUsers, PhChats, PhShieldCheck } from '@phosphor-icons/vue'
 
 const route = useRoute()
 const auth = useAuthStore()
 
 const navItems = computed(() => {
+  // Admin
+  if (auth.isAdmin) {
+    return [
+      { to: '/admin', label: 'الإدارة', icon: PhShieldCheck },
+      { to: '/admin/users', label: 'مستخدمون', icon: PhUsers },
+      { to: '/admin/weddings', label: 'أعراس', icon: PhHeart },
+      { to: '/admin/reports', label: 'بلاغات', icon: PhShieldCheck },
+      { to: '/profile', label: 'حسابي', icon: PhUserCircle },
+    ]
+  }
+
+  // Recommender
+  if (auth.isRecommender) {
+    return [
+      { to: '/recommender', label: 'لوحتي', icon: PhUsers },
+      { to: '/recommender/add-candidate', label: 'إضافة', icon: PhUsers },
+      { to: '/recommender/suggestions', label: 'اقتراحات', icon: PhHeart },
+      { to: '/recommender/family-requests', label: 'طلبات', icon: PhChats },
+      { to: '/profile', label: 'حسابي', icon: PhUserCircle },
+    ]
+  }
+
+  // Counselor
+  if (auth.isCounselor) {
+    return [
+      { to: '/counselor', label: 'جلساتي', icon: PhChats },
+      { to: '/profile', label: 'حسابي', icon: PhUserCircle },
+    ]
+  }
+
+  // Regular user (default)
   const items = [
     { to: '/', label: 'الرئيسية', icon: PhHouse },
     { to: '/courses', label: 'التأهيل', icon: PhBookOpen },

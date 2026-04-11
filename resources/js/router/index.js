@@ -1,8 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
+// Role constants
+const USER = 'user'
+const RECOMMENDER = 'recommender'
+const COUNSELOR = 'counselor'
+const ADMIN = 'admin'
+
 const routes = [
-  // Public
+  // Public (accessible to all)
   {
     path: '/',
     name: 'home',
@@ -43,7 +49,7 @@ const routes = [
     meta: { guest: true },
   },
 
-  // Payment
+  // Payment (any authenticated user)
   {
     path: '/payment/status/:uuid',
     name: 'paymentStatus',
@@ -56,116 +62,141 @@ const routes = [
     component: () => import('@/views/payment/PaymentCallbackPage.vue'),
   },
 
-  // Courses
+  // =============================================================
+  // USER-ONLY ROUTES (marriage-seeking features)
+  // =============================================================
   {
     path: '/courses',
     name: 'courses',
     component: () => import('@/views/course/CourseListPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/courses/:id',
     name: 'course',
     component: () => import('@/views/course/CoursePage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/courses/:courseId/lessons/:lessonId',
     name: 'lesson',
     component: () => import('@/views/course/LessonPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/courses/:courseId/quiz',
     name: 'quiz',
     component: () => import('@/views/course/QuizPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/certificate',
     name: 'certificate',
     component: () => import('@/views/course/CertificatePage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
 
-  // Fund
+  // Fund (user only)
   {
     path: '/fund',
     name: 'fund',
     component: () => import('@/views/fund/FundOverviewPage.vue'),
+    meta: { roles: [USER] }, // public-ish but steers non-users away
   },
   {
     path: '/circles',
     name: 'circles',
     component: () => import('@/views/fund/CircleListPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/circles/create',
     name: 'createCircle',
     component: () => import('@/views/fund/CreateCirclePage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
   {
     path: '/circles/:id/dashboard',
     name: 'circleDashboard',
     component: () => import('@/views/fund/CircleDashboard.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
 
-  // Recommender
-  {
-    path: '/recommender',
-    name: 'recommender',
-    component: () => import('@/views/recommender/RecommenderDashboard.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/recommender/add-candidate',
-    name: 'addCandidate',
-    component: () => import('@/views/recommender/AddCandidatePage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/recommender/suggestions',
-    name: 'suggestions',
-    component: () => import('@/views/recommender/SuggestionsPage.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/recommender/family-requests',
-    name: 'familyRequests',
-    component: () => import('@/views/recommender/FamilyRequestsPage.vue'),
-    meta: { requiresAuth: true },
-  },
-
-  // Weddings
+  // Weddings (user only)
   {
     path: '/weddings',
     name: 'weddings',
     component: () => import('@/views/wedding/WeddingListPage.vue'),
+    meta: { roles: [USER] }, // public-ish
   },
   {
     path: '/weddings/:id',
     name: 'weddingDetail',
     component: () => import('@/views/wedding/WeddingDetailPage.vue'),
+    meta: { roles: [USER] },
   },
   {
     path: '/my-weddings',
     name: 'myWeddings',
     component: () => import('@/views/wedding/MyWeddingsPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
 
-  // Counseling
+  // Counseling (user only — they book sessions as clients)
   {
     path: '/counseling',
     name: 'counseling',
     component: () => import('@/views/counseling/CounselingPage.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, roles: [USER] },
   },
 
-  // Profile
+  // =============================================================
+  // RECOMMENDER ROUTES (imams/teachers matching candidates)
+  // =============================================================
+  {
+    path: '/recommender',
+    name: 'recommender',
+    component: () => import('@/views/recommender/RecommenderDashboard.vue'),
+    meta: { requiresAuth: true, roles: [RECOMMENDER, ADMIN] },
+  },
+  {
+    path: '/recommender/register',
+    name: 'recommenderRegister',
+    component: () => import('@/views/recommender/RecommenderDashboard.vue'),
+    meta: { requiresAuth: true }, // any user can apply to become recommender
+  },
+  {
+    path: '/recommender/add-candidate',
+    name: 'addCandidate',
+    component: () => import('@/views/recommender/AddCandidatePage.vue'),
+    meta: { requiresAuth: true, roles: [RECOMMENDER, ADMIN] },
+  },
+  {
+    path: '/recommender/suggestions',
+    name: 'suggestions',
+    component: () => import('@/views/recommender/SuggestionsPage.vue'),
+    meta: { requiresAuth: true, roles: [RECOMMENDER, ADMIN] },
+  },
+  {
+    path: '/recommender/family-requests',
+    name: 'familyRequests',
+    component: () => import('@/views/recommender/FamilyRequestsPage.vue'),
+    meta: { requiresAuth: true, roles: [RECOMMENDER, ADMIN] },
+  },
+
+  // =============================================================
+  // COUNSELOR ROUTES (new)
+  // =============================================================
+  {
+    path: '/counselor',
+    name: 'counselorDashboard',
+    component: () => import('@/views/counselor/CounselorDashboard.vue'),
+    meta: { requiresAuth: true, roles: [COUNSELOR, ADMIN] },
+  },
+
+  // =============================================================
+  // PROFILE (all authenticated users)
+  // =============================================================
   {
     path: '/profile',
     name: 'profile',
@@ -173,42 +204,44 @@ const routes = [
     meta: { requiresAuth: true },
   },
 
-  // Admin
+  // =============================================================
+  // ADMIN ROUTES
+  // =============================================================
   {
     path: '/admin',
     name: 'admin',
     component: () => import('@/views/admin/AdminDashboard.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
   {
     path: '/admin/users',
     name: 'adminUsers',
     component: () => import('@/views/admin/ManageUsersPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
   {
     path: '/admin/recommenders',
     name: 'adminRecommenders',
     component: () => import('@/views/admin/ManageRecommendersPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
   {
     path: '/admin/reports',
     name: 'adminReports',
     component: () => import('@/views/admin/ReportsPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
   {
     path: '/admin/weddings',
     name: 'adminWeddings',
     component: () => import('@/views/admin/ManageWeddingsPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
   {
     path: '/admin/counseling',
     name: 'adminCounseling',
     component: () => import('@/views/admin/ManageCounselingPage.vue'),
-    meta: { requiresAuth: true, requiresAdmin: true },
+    meta: { requiresAuth: true, roles: [ADMIN] },
   },
 
   // 404
@@ -235,24 +268,28 @@ router.beforeEach(async (to) => {
     await auth.fetchUser()
   }
 
-  // Redirect to login if auth required
+  // Guest routes (login, register) — redirect away if already authenticated
+  if (to.meta.guest && auth.isAuthenticated) {
+    return { path: auth.defaultHome }
+  }
+
+  // Auth required
   if (to.meta.requiresAuth && !auth.isAuthenticated) {
     return { name: 'login', query: { redirect: to.fullPath } }
   }
 
-  // Redirect to home if already logged in
-  if (to.meta.guest && auth.isAuthenticated) {
-    return { name: 'home' }
+  // Role-based access control
+  if (to.meta.roles && auth.isAuthenticated) {
+    const allowed = to.meta.roles.includes(auth.role)
+    if (!allowed) {
+      // Redirect to role-appropriate home instead of showing 403
+      return { path: auth.defaultHome }
+    }
   }
 
-  // Admin required
-  if (to.meta.requiresAdmin && !auth.isAdmin) {
-    return { name: 'home' }
-  }
-
-  // Certificate required
-  if (to.meta.requiresCertificate && !auth.hasCertificate) {
-    return { name: 'courses' }
+  // Home page redirect for non-user roles (they should land on their own dashboard)
+  if (to.path === '/' && auth.isAuthenticated && !auth.isUser) {
+    return { path: auth.defaultHome }
   }
 })
 

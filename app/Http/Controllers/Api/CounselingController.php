@@ -62,6 +62,25 @@ class CounselingController extends Controller
         return response()->json($slots);
     }
 
+    /**
+     * List sessions assigned to the authenticated counselor.
+     * For now, counselors see all scheduled/upcoming sessions (as a booking pool).
+     * Future: add a counselor_id field and filter by it.
+     */
+    public function counselorSessions(Request $request): JsonResponse
+    {
+        $query = CounselingSession::with('user:id,name,email,phone')
+            ->orderBy('scheduled_at', 'asc');
+
+        if ($request->status) {
+            $query->where('status', $request->status);
+        } else {
+            $query->whereIn('status', ['scheduled', 'in_progress']);
+        }
+
+        return response()->json($query->paginate(20));
+    }
+
     // Admin
     public function adminIndex(Request $request): JsonResponse
     {

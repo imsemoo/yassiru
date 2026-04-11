@@ -15,6 +15,12 @@ class CertificateService
 {
     public function checkAndIssue(User $user): ?Certificate
     {
+        // Only regular users can earn certificates.
+        // Recommenders, counselors, and admins don't need them.
+        if ($user->role !== 'user') {
+            return null;
+        }
+
         $allCourses = Course::where('is_active', true)->pluck('id');
         $passedCourses = QuizAttempt::where('user_id', $user->id)
             ->where('passed', true)

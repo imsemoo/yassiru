@@ -23,49 +23,66 @@ class CourseController extends Controller
     public function index(Request $request): JsonResponse
     {
         $user = $request->user();
-        $courses = Cache::remember('courses:list', 86400, function () {
+
+        // Cache as plain array (not Eloquent Collection) to avoid serialization issues
+        $baseCourses = Cache::remember('courses:list:v2', 3600, function () {
             return Course::where('is_active', true)
                 ->with('lessons:id,course_id,title,duration_minutes,order_index')
                 ->orderBy('order_index')
-                ->get();
+                ->get()
+                ->map(fn ($course) => [
+                    'id' => $course->id,
+                    'title' => $course->title,
+                    'track' => $course->track,
+                    'description' => $course->description,
+                    'duration_hours' => $course->duration_hours,
+                    'lessons' => $course->lessons
+                        ->sortBy('order_index')
+                        ->values()
+                        ->map(fn ($l) => [
+                            'id' => $l->id,
+                            'course_id' => $l->course_id,
+                            'title' => $l->title,
+                            'duration_minutes' => $l->duration_minutes,
+                            'order_index' => $l->order_index,
+                        ])
+                        ->toArray(),
+                ])
+                ->toArray();
         });
 
-        $coursesData = $courses->map(function ($course) use ($user) {
-            $totalLessons = $course->lessons->count();
+        // Enrich with user-specific progress (not cached — per-user data)
+        $coursesData = collect($baseCourses)->map(function ($course) use ($user) {
+            $totalLessons = count($course['lessons']);
             $completedLessons = 0;
             $quizPassed = false;
 
             if ($user) {
+                $lessonIds = collect($course['lessons'])->pluck('id');
                 $completedLessons = CourseProgress::where('user_id', $user->id)
-                    ->whereIn('lesson_id', $course->lessons->pluck('id'))
+                    ->whereIn('lesson_id', $lessonIds)
                     ->where('completed', true)
                     ->count();
 
-                $quizPassed = $this->quizService->hasPassed($user, $course->id);
+                $quizPassed = $this->quizService->hasPassed($user, $course['id']);
             }
 
             $progress = $totalLessons > 0 ? round(($completedLessons / $totalLessons) * 100) : 0;
 
-            return [
-                'id' => $course->id,
-                'title' => $course->title,
-                'track' => $course->track,
-                'description' => $course->description,
-                'duration_hours' => $course->duration_hours,
+            return array_merge($course, [
                 'lessons_count' => $totalLessons,
                 'completed_lessons' => $completedLessons,
                 'progress' => $progress,
                 'quiz_passed' => $quizPassed,
-                'lessons' => $course->lessons->sortBy('order_index')->values(),
-            ];
+            ]);
         });
 
-        $totalLessons = $courses->sum(fn($c) => $c->lessons->count());
+        $totalLessons = $coursesData->sum('lessons_count');
         $totalCompleted = $coursesData->sum('completed_lessons');
         $overallProgress = $totalLessons > 0 ? round(($totalCompleted / $totalLessons) * 100) : 0;
 
         return response()->json([
-            'courses' => $coursesData,
+            'courses' => $coursesData->values(),
             'overall_progress' => $overallProgress,
             'has_certificate' => $user ? $user->has_certificate : false,
         ]);

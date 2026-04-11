@@ -154,10 +154,39 @@ const userInitial = computed(() => {
 
 const roleLabel = computed(() => {
   const role = auth.user?.role
-  return { admin: 'مدير', recommender: 'معرّف', user: 'عضو' }[role] || 'عضو'
+  return { admin: 'مدير', recommender: 'معرّف', counselor: 'مستشار', user: 'عضو' }[role] || 'عضو'
 })
 
 const navLinks = computed(() => {
+  // Admin sees their own dashboard + oversight
+  if (auth.isAdmin) {
+    return [
+      { to: '/admin', label: 'الإدارة', icon: PhShieldCheck },
+      { to: '/admin/users', label: 'المستخدمون', icon: PhUsers },
+      { to: '/admin/recommenders', label: 'المعرّفون', icon: PhUsers },
+      { to: '/admin/weddings', label: 'الأعراس', icon: PhHeart },
+      { to: '/admin/reports', label: 'البلاغات', icon: PhShieldCheck },
+    ]
+  }
+
+  // Recommender (imam/teacher) — only sees recommender features
+  if (auth.isRecommender) {
+    return [
+      { to: '/recommender', label: 'لوحتي', icon: PhUsers },
+      { to: '/recommender/add-candidate', label: 'إضافة مرشح', icon: PhUsers },
+      { to: '/recommender/suggestions', label: 'الاقتراحات', icon: PhHeart },
+      { to: '/recommender/family-requests', label: 'طلبات العائلات', icon: PhChats },
+    ]
+  }
+
+  // Counselor — only sees their sessions
+  if (auth.isCounselor) {
+    return [
+      { to: '/counselor', label: 'جلساتي', icon: PhChats },
+    ]
+  }
+
+  // Regular user (default) — sees marriage-seeking features
   const links = [
     { to: '/', label: 'الرئيسية', icon: PhHouse },
     { to: '/courses', label: 'التأهيل', icon: PhBookOpen },
@@ -168,12 +197,6 @@ const navLinks = computed(() => {
 
   if (auth.isAuthenticated) {
     links.push({ to: '/counseling', label: 'الاستشارات', icon: PhChats })
-  }
-  if (auth.isRecommender) {
-    links.push({ to: '/recommender', label: 'المعرّف', icon: PhUsers })
-  }
-  if (auth.isAdmin) {
-    links.push({ to: '/admin', label: 'الإدارة', icon: PhShieldCheck })
   }
 
   return links

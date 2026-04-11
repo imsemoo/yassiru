@@ -12,9 +12,33 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const isAuthenticated = computed(() => !!token.value)
-  const isRecommender = computed(() => user.value?.role === 'recommender')
-  const isAdmin = computed(() => user.value?.role === 'admin')
+
+  // Role checks (single source of truth)
+  const role = computed(() => user.value?.role || 'user')
+  const isUser = computed(() => role.value === 'user')
+  const isRecommender = computed(() => role.value === 'recommender')
+  const isCounselor = computed(() => role.value === 'counselor')
+  const isAdmin = computed(() => role.value === 'admin')
+
   const hasCertificate = computed(() => !!user.value?.has_certificate)
+
+  // Feature-based helpers (use these in components instead of raw role checks)
+  const canTakeCourses = computed(() => isUser.value)
+  const canEarnCertificate = computed(() => isUser.value)
+  const canJoinFund = computed(() => isUser.value && hasCertificate.value)
+  const canRegisterWedding = computed(() => isUser.value && hasCertificate.value)
+  const canBookCounseling = computed(() => isUser.value)
+  const canAccessRecommenderPanel = computed(() => isRecommender.value || isAdmin.value)
+  const canAccessCounselorPanel = computed(() => isCounselor.value || isAdmin.value)
+  const canAccessAdminPanel = computed(() => isAdmin.value)
+
+  // Default home route per role (used for redirects)
+  const defaultHome = computed(() => {
+    if (isAdmin.value) return '/admin'
+    if (isRecommender.value) return '/recommender'
+    if (isCounselor.value) return '/counselor'
+    return '/'
+  })
 
   function setAuth(userData, tokenValue) {
     user.value = userData
@@ -63,7 +87,19 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   return {
-    user, token, isAuthenticated, isRecommender, isAdmin, hasCertificate,
-    login, register, logout, fetchUser, clearAuth
+    user, token,
+    // Auth state
+    isAuthenticated,
+    // Roles
+    role, isUser, isRecommender, isCounselor, isAdmin,
+    // Certificate
+    hasCertificate,
+    // Feature permissions
+    canTakeCourses, canEarnCertificate, canJoinFund, canRegisterWedding,
+    canBookCounseling, canAccessRecommenderPanel, canAccessCounselorPanel, canAccessAdminPanel,
+    // Navigation
+    defaultHome,
+    // Actions
+    login, register, logout, fetchUser, clearAuth,
   }
 })

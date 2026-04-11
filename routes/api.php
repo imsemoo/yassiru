@@ -120,59 +120,76 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
         return response()->json(['count' => $request->user()->unreadNotifications()->count()]);
     });
 
-    // Courses
-    Route::get('/courses', [CourseController::class, 'index']);
-    Route::get('/courses/{course}', [CourseController::class, 'show']);
-    Route::get('/courses/{course}/lessons/{lesson}', [CourseController::class, 'lesson']);
-    Route::post('/courses/{course}/lessons/{lesson}/complete', [CourseController::class, 'completeLesson']);
-    Route::post('/courses/{course}/lessons/{lesson}/progress', [CourseController::class, 'updateProgress']);
-    Route::get('/courses/{course}/quiz', [CourseController::class, 'quiz']);
-    Route::post('/courses/{course}/quiz', [CourseController::class, 'submitQuiz'])->middleware('throttle:quiz');
-    Route::get('/certificate', [CourseController::class, 'certificate']);
-    Route::get('/certificate/pdf', [CourseController::class, 'certificatePdf']);
+    // ========================================================
+    // USER-ONLY ROUTES (marriage-seeking features)
+    // ========================================================
+    Route::middleware('role:user|admin')->group(function () {
+        // Courses
+        Route::get('/courses', [CourseController::class, 'index']);
+        Route::get('/courses/{course}', [CourseController::class, 'show']);
+        Route::get('/courses/{course}/lessons/{lesson}', [CourseController::class, 'lesson']);
+        Route::post('/courses/{course}/lessons/{lesson}/complete', [CourseController::class, 'completeLesson']);
+        Route::post('/courses/{course}/lessons/{lesson}/progress', [CourseController::class, 'updateProgress']);
+        Route::get('/courses/{course}/quiz', [CourseController::class, 'quiz']);
+        Route::post('/courses/{course}/quiz', [CourseController::class, 'submitQuiz'])->middleware('throttle:quiz');
+        Route::get('/certificate', [CourseController::class, 'certificate']);
+        Route::get('/certificate/pdf', [CourseController::class, 'certificatePdf']);
 
-    // Recommender system
+        // Fund circles
+        Route::prefix('circles')->group(function () {
+            Route::get('/', [FundController::class, 'index']);
+            Route::post('/', [FundController::class, 'store'])->middleware('throttle:circle-create');
+            Route::get('/{circle}', [FundController::class, 'show']);
+            Route::post('/{circle}/join', [FundController::class, 'join']);
+            Route::get('/{circle}/dashboard', [FundController::class, 'dashboard']);
+            Route::post('/{circle}/contribute', [FundController::class, 'contribute']);
+            Route::get('/{circle}/contract', [FundController::class, 'getContract']);
+            Route::post('/{circle}/contract/sign', [FundController::class, 'signContract']);
+            Route::post('/{circle}/guarantor', [FundController::class, 'addGuarantor']);
+            Route::post('/guarantors/{guarantor}/confirm', [FundController::class, 'confirmGuarantor']);
+            Route::post('/{circle}/guarantee-fee', [FundController::class, 'payGuaranteeFee']);
+        });
+
+        // Wedding registration
+        Route::post('/weddings/{wedding}/register', [WeddingController::class, 'register']);
+        Route::get('/my-weddings', [WeddingController::class, 'myRegistrations']);
+        Route::delete('/wedding-registrations/{registration}', [WeddingController::class, 'cancelRegistration']);
+        Route::post('/wedding-registrations/{registration}/pay', [WeddingController::class, 'pay']);
+
+        // Counseling (booking as client)
+        Route::prefix('counseling')->group(function () {
+            Route::get('/', [CounselingController::class, 'index']);
+            Route::post('/', [CounselingController::class, 'store']);
+            Route::get('/slots', [CounselingController::class, 'availableSlots']);
+            Route::put('/{session}/cancel', [CounselingController::class, 'cancel']);
+        });
+    });
+
+    // ========================================================
+    // RECOMMENDER-ONLY ROUTES
+    // ========================================================
     Route::prefix('recommender')->group(function () {
+        // Register is open to any authenticated user (apply to become recommender)
         Route::post('/register', [RecommenderController::class, 'register']);
-        Route::get('/dashboard', [RecommenderController::class, 'dashboard']);
-        Route::post('/candidates', [RecommenderController::class, 'addCandidate']);
-        Route::put('/candidates/{candidate}', [RecommenderController::class, 'updateCandidate']);
-        Route::get('/suggestions', [RecommenderController::class, 'suggestions'])->middleware('throttle:suggestions');
-        Route::post('/recommend', [RecommenderController::class, 'recommend']);
-        Route::get('/family-requests', [RecommenderController::class, 'familyRequests']);
-        Route::put('/family-requests/{familyRequest}', [RecommenderController::class, 'respondToFamilyRequest']);
+
+        // Rest requires recommender role
+        Route::middleware('role:recommender|admin')->group(function () {
+            Route::get('/dashboard', [RecommenderController::class, 'dashboard']);
+            Route::post('/candidates', [RecommenderController::class, 'addCandidate']);
+            Route::put('/candidates/{candidate}', [RecommenderController::class, 'updateCandidate']);
+            Route::get('/suggestions', [RecommenderController::class, 'suggestions'])->middleware('throttle:suggestions');
+            Route::post('/recommend', [RecommenderController::class, 'recommend']);
+            Route::get('/family-requests', [RecommenderController::class, 'familyRequests']);
+            Route::put('/family-requests/{familyRequest}', [RecommenderController::class, 'respondToFamilyRequest']);
+        });
     });
 
-    // Fund circles
-    Route::prefix('circles')->group(function () {
-        Route::get('/', [FundController::class, 'index']);
-        Route::post('/', [FundController::class, 'store'])->middleware('throttle:circle-create');
-        Route::get('/{circle}', [FundController::class, 'show']);
-        Route::post('/{circle}/join', [FundController::class, 'join']);
-        Route::get('/{circle}/dashboard', [FundController::class, 'dashboard']);
-        Route::post('/{circle}/contribute', [FundController::class, 'contribute']);
-        // Contract
-        Route::get('/{circle}/contract', [FundController::class, 'getContract']);
-        Route::post('/{circle}/contract/sign', [FundController::class, 'signContract']);
-        // Guarantor
-        Route::post('/{circle}/guarantor', [FundController::class, 'addGuarantor']);
-        Route::post('/guarantors/{guarantor}/confirm', [FundController::class, 'confirmGuarantor']);
-        // Guarantee fee
-        Route::post('/{circle}/guarantee-fee', [FundController::class, 'payGuaranteeFee']);
-    });
-
-    // Weddings
-    Route::post('/weddings/{wedding}/register', [WeddingController::class, 'register']);
-    Route::get('/my-weddings', [WeddingController::class, 'myRegistrations']);
-    Route::delete('/wedding-registrations/{registration}', [WeddingController::class, 'cancelRegistration']);
-    Route::post('/wedding-registrations/{registration}/pay', [WeddingController::class, 'pay']);
-
-    // Counseling
-    Route::prefix('counseling')->group(function () {
-        Route::get('/', [CounselingController::class, 'index']);
-        Route::post('/', [CounselingController::class, 'store']);
-        Route::get('/slots', [CounselingController::class, 'availableSlots']);
-        Route::put('/{session}/cancel', [CounselingController::class, 'cancel']);
+    // ========================================================
+    // COUNSELOR-ONLY ROUTES
+    // ========================================================
+    Route::middleware('role:counselor|admin')->prefix('counselor')->group(function () {
+        Route::get('/sessions', [CounselingController::class, 'counselorSessions']);
+        Route::put('/sessions/{session}/complete', [CounselingController::class, 'complete']);
     });
 
     // Community

@@ -23,7 +23,10 @@ class FundController extends Controller
 
     public function index(Request $request): JsonResponse
     {
+        $userId = $request->user()->id;
+
         $query = FundCircle::with('city:id,name')
+            ->withCount('members')
             ->whereIn('status', ['forming', 'active']);
 
         if ($request->city_id) {
@@ -31,6 +34,17 @@ class FundController extends Controller
         }
 
         $circles = $query->latest()->paginate(12);
+
+        // Tag each circle with whether the current user is already a member
+        $memberCircleIds = CircleMember::where('user_id', $userId)
+            ->pluck('circle_id')
+            ->flip();
+
+        $circles->getCollection()->transform(function ($circle) use ($memberCircleIds) {
+            $circle->is_member = $memberCircleIds->has($circle->id);
+            $circle->is_full = $circle->members_count >= $circle->max_members;
+            return $circle;
+        });
 
         return response()->json($circles);
     }

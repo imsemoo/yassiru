@@ -74,6 +74,16 @@
         </div>
       </div>
 
+      <!-- Flash messages -->
+      <div v-if="successMsg" class="dash-alert dash-alert--success">
+        <PhCheckCircle :size="20" weight="fill" class="dash-alert__icon" />
+        <div class="dash-alert__content">{{ successMsg }}</div>
+      </div>
+      <div v-if="errorMsg" class="dash-alert dash-alert--danger">
+        <PhWarningCircle :size="20" weight="fill" class="dash-alert__icon" />
+        <div class="dash-alert__content">{{ errorMsg }}</div>
+      </div>
+
       <div v-if="loading" class="loading-state">
         <div class="spinner-border"></div>
         <p class="loading-state__text">جاري تحميل الحلقات...</p>
@@ -142,8 +152,28 @@
               <PhEye :size="14" />
               التفاصيل
             </router-link>
+
+            <!-- Already a member -->
+            <span
+              v-if="circle.is_member"
+              class="btn-action btn-action--outline btn-action--sm member-badge"
+            >
+              <PhCheckCircle :size="14" weight="fill" />
+              عضو بالفعل
+            </span>
+
+            <!-- Full circle (forming only) -->
+            <span
+              v-else-if="circle.status === 'forming' && circle.is_full"
+              class="btn-action btn-action--outline btn-action--sm full-badge"
+            >
+              <PhUsers :size="14" />
+              مكتملة
+            </span>
+
+            <!-- Can join -->
             <button
-              v-if="circle.status === 'forming'"
+              v-else-if="circle.status === 'forming'"
               class="btn-action btn-action--primary btn-action--sm"
               :disabled="joining === circle.id"
               @click="joinCircle(circle)"
@@ -176,7 +206,7 @@ import axios from 'axios'
 import {
   PhCirclesThree, PhPlusCircle, PhPlayCircle, PhClock, PhUsers,
   PhMagnifyingGlass, PhMapPin, PhCircle, PhCurrencyCircleDollar,
-  PhEye, PhUserPlus,
+  PhEye, PhUserPlus, PhCheckCircle, PhWarningCircle,
 } from '@phosphor-icons/vue'
 
 const { get, post, loading } = useApi()
@@ -186,6 +216,8 @@ const cityFilter = ref('')
 const statusFilter = ref('')
 const search = ref('')
 const joining = ref(null)
+const successMsg = ref('')
+const errorMsg = ref('')
 
 function formatNumber(num) {
   return new Intl.NumberFormat('ar-EG').format(num)
@@ -203,20 +235,34 @@ const activeCircles = computed(() => circles.value.filter(c => c.status === 'act
 const formingCircles = computed(() => circles.value.filter(c => c.status === 'forming').length)
 const totalMembers = computed(() => circles.value.reduce((sum, c) => sum + (c.max_members || 0), 0))
 
+function clearMessages() {
+  successMsg.value = ''
+  errorMsg.value = ''
+}
+
 async function loadCircles() {
+  clearMessages()
   try {
     const url = cityFilter.value ? `/api/circles?city_id=${cityFilter.value}` : '/api/circles'
     const result = await get(url)
     circles.value = result.data || result
-  } catch { /* handled */ }
+  } catch (e) {
+    errorMsg.value = e.response?.data?.message || 'تعذر تحميل الحلقات'
+  }
 }
 
 async function joinCircle(circle) {
+  clearMessages()
   joining.value = circle.id
   try {
-    await post(`/api/circles/${circle.id}/join`)
+    const result = await post(`/api/circles/${circle.id}/join`)
+    successMsg.value = result?.message || 'تم الانضمام للحلقة بنجاح'
+    setTimeout(() => (successMsg.value = ''), 6000)
     await loadCircles()
-  } catch { /* handled */ }
+  } catch (e) {
+    errorMsg.value = e.response?.data?.message || 'تعذر الانضمام للحلقة'
+    setTimeout(() => (errorMsg.value = ''), 6000)
+  }
   joining.value = null
 }
 
@@ -236,6 +282,22 @@ onMounted(async () => {
   gap: 1.25rem;
 
   @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+.member-badge {
+  background: rgba(27, 122, 74, 0.08);
+  color: #1b7a4a;
+  border-color: rgba(27, 122, 74, 0.3);
+  cursor: default;
+  pointer-events: none;
+}
+
+.full-badge {
+  background: rgba(136, 136, 160, 0.08);
+  color: #8888a0;
+  border-color: rgba(136, 136, 160, 0.3);
+  cursor: default;
+  pointer-events: none;
 }
 
 .circle-card {

@@ -19,7 +19,8 @@ class AdminSeeder extends Seeder
                 'gender' => 'male',
                 'role' => 'admin',
                 'email_verified_at' => now(),
-                'has_certificate' => true,
+                // Admins don't need certificates — they're oversight, not students.
+                'has_certificate' => false,
             ]
         );
 

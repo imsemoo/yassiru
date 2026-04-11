@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Candidate;
+use App\Models\Certificate;
 use App\Models\CircleMember;
 use App\Models\City;
 use App\Models\CommunityPost;
@@ -484,6 +485,20 @@ class RealisticDataSeeder extends Seeder
                         ]
                     );
                 }
+            }
+
+            // Ensure a Certificate record exists for users flagged as certified.
+            // Without this, has_certificate=true on the user row but the
+            // /api/certificate endpoint returns 404 because the certificates
+            // table has no matching row.
+            if ($user->has_certificate) {
+                Certificate::firstOrCreate(
+                    ['user_id' => $user->id],
+                    [
+                        'certificate_number' => 'YSR-' . strtoupper(substr(md5($user->id . now()), 0, 8)),
+                        'issued_at' => now()->subDays(rand(1, 90)),
+                    ]
+                );
             }
         }
     }

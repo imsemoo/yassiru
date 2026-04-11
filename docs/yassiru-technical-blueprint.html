@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — الخطة التقنية الشاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9f6;--surface:#fff;--surface2:#f3efe8;--teal:#0d7377;--teal-light:#e0f2f1;--gold:#b8860b;--gold-light:#fdf5e6;--t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#e0d8cc;--code-bg:#1e1e2e;--code-text:#cdd6f4;--k:#89b4fa;--s:#a6e3a1;--t:#f9e2af;--c:#6c7086;--n:#fab387;--p:#f38ba8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);line-height:1.85}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.section{padding:50px 0 0}
+.stag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.section h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-bottom:6px}
+.sdesc{color:var(--t2);font-size:13px;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px}
+.card h3{font-size:16px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card p{color:var(--t2);font-size:13px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.code-block{background:var(--code-bg);border-radius:10px;padding:16px;margin:10px 0;overflow-x:auto;direction:ltr;text-align:left}
+.code-block pre{font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.65;color:var(--code-text);white-space:pre;margin:0}
+.code-block .filename{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--c);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #313244}
+.db-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11.5px;direction:ltr;text-align:left}
+.db-table th{background:var(--surface2);padding:8px 10px;font-weight:700;text-align:left;border:1px solid var(--border);font-size:11px}
+.db-table td{padding:6px 10px;border:1px solid var(--border);color:var(--t2);font-family:'IBM Plex Mono',monospace;font-size:11px}
+.db-table .pk{color:var(--gold);font-weight:700}
+.db-table .fk{color:#2471a3;font-weight:600}
+.endpoint{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:6px 0;direction:ltr;text-align:left;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.method{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px}
+.method-get{background:var(--teal-light);color:var(--teal)}
+.method-post{background:#e3f2fd;color:#1565c0}
+.method-put{background:var(--gold-light);color:var(--gold)}
+.method-delete{background:#fdeaea;color:#c0392b}
+.url{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--t1)}
+.edesc{font-size:11px;color:var(--t3);width:100%;margin-top:2px;direction:rtl;text-align:right}
+.feat{padding:12px;border-radius:10px;background:rgba(255,255,255,.5);border:1px solid var(--border);font-size:12px;color:var(--t2);line-height:1.7;display:flex;align-items:flex-start;gap:8px}
+.feat .dot{min-width:6px;height:6px;border-radius:50%;background:var(--teal);margin-top:7px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:12px;overflow-x:auto}
+.nav-title{font-size:15px;font-weight:800;color:var(--teal);white-space:nowrap}
+.nav a{font-size:10px;padding:4px 10px;border-radius:6px;text-decoration:none;color:var(--t2);border:1px solid var(--border);white-space:nowrap}
+.nav a:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+footer{text-align:center;padding:30px 24px;border-top:1px solid var(--border);font-size:11px;color:var(--t3);margin-top:40px}
+@media(max-width:768px){.g2{grid-template-columns:1fr}.card{padding:18px}.nav a{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-title">⚙️ يسّروا — Blueprint</div>
+  <a href="#stack">التقنيات</a>
+  <a href="#structure">الهيكل</a>
+  <a href="#db">قاعدة البيانات</a>
+  <a href="#api">الـ API</a>
+  <a href="#ui">الصفحات</a>
+  <a href="#components">المكونات</a>
+  <a href="#scss">التصميم</a>
+  <a href="#fund">الصندوق</a>
+  <a href="#security">الأمان</a>
+  <a href="#deploy">النشر</a>
+  <a href="#plan">خطة التنفيذ</a>
+</nav>
+
+<div class="wrap">
+
+<!-- 1. TECH STACK -->
+<div class="section" id="stack">
+  <div class="stag">01 — التقنيات</div>
+  <h2>Tech Stack</h2>
+</div>
+<div class="g2">
+  <div class="card">
+    <h3>⚙️ Backend</h3>
+    <ul style="list-style:none;font-size:12px;color:var(--t2)">
+      <li>• <strong>Laravel 11</strong> — API Backend</li>
+      <li>• <strong>MySQL 8</strong> — Database</li>
+      <li>• <strong>Redis</strong> — Cache + Queues + Sessions</li>
+      <li>• <strong>Laravel Sanctum</strong> — API Auth</li>
+      <li>• <strong>Laravel Horizon</strong> — Queue Monitoring</li>
+      <li>• <strong>Spatie Media Library</strong> — File uploads</li>
+      <li>• <strong>Spatie Permission</strong> — Roles (admin/recommender/user)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>🎨 Frontend</h3>
+    <ul style="list-style:none;font-size:12px;color:var(--t2)">
+      <li>• <strong>Vue.js 3</strong> — Composition API + SFC</li>
+      <li>• <strong>Bootstrap 5.3</strong> — RTL + Custom Theme</li>
+      <li>• <strong>Vue Router 4</strong> — SPA Navigation</li>
+      <li>• <strong>Pinia</strong> — State Management</li>
+      <li>• <strong>Axios</strong> — HTTP Client</li>
+      <li>• <strong>Vite</strong> — Build Tool</li>
+      <li>• <strong>VeeValidate + Yup</strong> — Form Validation</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>💳 Payments & Services</h3>
+    <ul style="list-style:none;font-size:12px;color:var(--t2)">
+      <li>• <strong>Stripe</strong> — Payments (دولي)</li>
+      <li>• <strong>Fawry API</strong> — Payments (مصر)</li>
+      <li>• <strong>Mailgun</strong> — Emails</li>
+      <li>• <strong>Pusher / Soketi</strong> — Real-time notifications</li>
+      <li>• <strong>Cloudflare</strong> — CDN + DNS + Security</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>🎥 Course Platform</h3>
+    <ul style="list-style:none;font-size:12px;color:var(--t2)">
+      <li>• <strong>Bunny.net</strong> — Video CDN (أرخص من Vimeo)</li>
+      <li>• <strong>HLS.js</strong> — Video player</li>
+      <li>• <strong>Laravel</strong> — Progress tracking</li>
+      <li>• <strong>Canvas/Puppeteer</strong> — Certificate generation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2. PROJECT STRUCTURE -->
+<div class="section" id="structure">
+  <div class="stag">02 — هيكل المشروع</div>
+  <h2>File Structure الكامل</h2>
+</div>
+<div class="card">
+  <div class="code-block">
+    <pre>
+yassiru/
+├── app/
+│   ├── Http/Controllers/Api/
+│   │   ├── Auth/
+│   │   │   ├── RegisterController.php        <span class="c">// تسجيل (مستخدم/معرّف)</span>
+│   │   │   ├── LoginController.php
+│   │   │   └── VerifyIdentityController.php  <span class="c">// تحقق من الهوية</span>
+│   │   ├── Course/
+│   │   │   ├── CourseController.php           <span class="c">// الكورسات</span>
+│   │   │   ├── LessonController.php          <span class="c">// الدروس</span>
+│   │   │   ├── ProgressController.php        <span class="c">// تتبع التقدم</span>
+│   │   │   ├── QuizController.php            <span class="c">// الاختبارات</span>
+│   │   │   └── CertificateController.php     <span class="c">// الشهادات</span>
+│   │   ├── Matching/
+│   │   │   ├── RecommenderController.php     <span class="c">// المُعرِّفون</span>
+│   │   │   ├── CandidateController.php       <span class="c">// المرشحون</span>
+│   │   │   ├── RecommendationController.php  <span class="c">// التوصيات</span>
+│   │   │   └── FamilyRequestController.php   <span class="c">// طلبات العائلات</span>
+│   │   ├── Fund/
+│   │   │   ├── CircleController.php          <span class="c">// حلقات التيسير</span>
+│   │   │   ├── ContributionController.php    <span class="c">// المساهمات</span>
+│   │   │   ├── PayoutController.php          <span class="c">// الصرف</span>
+│   │   │   └── FundDashboardController.php   <span class="c">// لوحة الصندوق</span>
+│   │   ├── Wedding/
+│   │   │   ├── GroupWeddingController.php     <span class="c">// الأعراس الجماعية</span>
+│   │   │   ├── VendorController.php          <span class="c">// مقدمو الخدمات</span>
+│   │   │   └── CostCalculatorController.php  <span class="c">// حاسبة التكاليف</span>
+│   │   ├── Aftercare/
+│   │   │   ├── CounselingController.php      <span class="c">// الاستشارات</span>
+│   │   │   └── CommunityController.php       <span class="c">// مجتمع المتزوجين</span>
+│   │   ├── AdminController.php               <span class="c">// لوحة الإدارة</span>
+│   │   └── StatsController.php
+│   ├── Models/
+│   │   ├── User.php                          <span class="c">// المستخدم العام</span>
+│   │   ├── Recommender.php                   <span class="c">// المُعرِّف الموثوق</span>
+│   │   ├── Candidate.php                     <span class="c">// طالب/ة الزواج</span>
+│   │   ├── Recommendation.php                <span class="c">// توصية من معرّف</span>
+│   │   ├── FamilyRequest.php                 <span class="c">// طلب عائلة لعائلة</span>
+│   │   ├── Course.php
+│   │   ├── Lesson.php
+│   │   ├── CourseProgress.php
+│   │   ├── Quiz.php
+│   │   ├── QuizAttempt.php
+│   │   ├── Certificate.php
+│   │   ├── FundCircle.php                    <span class="c">// حلقة التيسير</span>
+│   │   ├── CircleMember.php
+│   │   ├── Contribution.php                  <span class="c">// مساهمة مالية</span>
+│   │   ├── Payout.php                        <span class="c">// صرف لعضو</span>
+│   │   ├── GroupWedding.php
+│   │   ├── WeddingRegistration.php
+│   │   ├── Vendor.php                        <span class="c">// مقدم خدمة (قاعة/مصور)</span>
+│   │   ├── CounselingSession.php
+│   │   ├── City.php
+│   │   └── Report.php
+│   ├── Services/
+│   │   ├── IdentityVerificationService.php
+│   │   ├── CertificateGeneratorService.php
+│   │   ├── MatchSuggestionService.php
+│   │   ├── FundCalculationService.php
+│   │   ├── PaymentService.php
+│   │   ├── NotificationService.php
+│   │   └── CostCalculatorService.php
+│   ├── Jobs/
+│   │   ├── ProcessContribution.php
+│   │   ├── GenerateCertificate.php
+│   │   ├── SendPayoutReminder.php
+│   │   └── SendCounselingReminder.php
+│   ├── Notifications/
+│   │   ├── NewRecommendation.php
+│   │   ├── FamilyRequestReceived.php
+│   │   ├── ContributionDue.php
+│   │   ├── PayoutReady.php
+│   │   └── CertificateEarned.php
+│   └── Policies/
+│       ├── CandidatePolicy.php
+│       ├── CirclePolicy.php
+│       └── RecommendationPolicy.php
+├── database/migrations/
+│   ├── 001_create_users_table.php
+│   ├── 002_create_cities_table.php
+│   ├── 003_create_recommenders_table.php
+│   ├── 004_create_candidates_table.php
+│   ├── 005_create_recommendations_table.php
+│   ├── 006_create_family_requests_table.php
+│   ├── 007_create_courses_table.php
+│   ├── 008_create_lessons_table.php
+│   ├── 009_create_course_progress_table.php
+│   ├── 010_create_quizzes_table.php
+│   ├── 011_create_quiz_attempts_table.php
+│   ├── 012_create_certificates_table.php
+│   ├── 013_create_fund_circles_table.php
+│   ├── 014_create_circle_members_table.php
+│   ├── 015_create_contributions_table.php
+│   ├── 016_create_payouts_table.php
+│   ├── 017_create_group_weddings_table.php
+│   ├── 018_create_wedding_registrations_table.php
+│   ├── 019_create_vendors_table.php
+│   ├── 020_create_counseling_sessions_table.php
+│   └── 021_create_reports_table.php
+├── resources/js/                             <span class="c">// Vue.js SPA</span>
+│   ├── App.vue
+│   ├── router/index.js
+│   ├── stores/
+│   │   ├── auth.js
+│   │   ├── course.js
+│   │   ├── matching.js
+│   │   ├── fund.js
+│   │   └── wedding.js
+│   ├── views/
+│   │   ├── public/
+│   │   │   ├── HomePage.vue
+│   │   │   ├── AboutPage.vue
+│   │   │   ├── LoginPage.vue
+│   │   │   ├── RegisterPage.vue
+│   │   │   └── CostCalculatorPage.vue
+│   │   ├── course/
+│   │   │   ├── CourseListPage.vue
+│   │   │   ├── CoursePage.vue
+│   │   │   ├── LessonPage.vue
+│   │   │   ├── QuizPage.vue
+│   │   │   └── CertificatePage.vue
+│   │   ├── matching/
+│   │   │   ├── RecommenderDashboard.vue
+│   │   │   ├── AddCandidatePage.vue
+│   │   │   ├── RecommendationsPage.vue
+│   │   │   └── FamilyRequestsPage.vue
+│   │   ├── fund/
+│   │   │   ├── FundOverviewPage.vue
+│   │   │   ├── CreateCirclePage.vue
+│   │   │   ├── CircleDashboard.vue
+│   │   │   └── ContributionPage.vue
+│   │   ├── wedding/
+│   │   │   ├── GroupWeddingsPage.vue
+│   │   │   ├── WeddingDetailPage.vue
+│   │   │   └── VendorsPage.vue
+│   │   ├── aftercare/
+│   │   │   ├── CounselingPage.vue
+│   │   │   └── CommunityPage.vue
+│   │   └── admin/
+│   │       ├── AdminDashboard.vue
+│   │       ├── ManageUsers.vue
+│   │       ├── ManageRecommenders.vue
+│   │       └── ManageCircles.vue
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── AppNavbar.vue
+│   │   │   ├── AppFooter.vue
+│   │   │   ├── AppSidebar.vue
+│   │   │   └── DashboardLayout.vue
+│   │   ├── course/
+│   │   │   ├── CourseCard.vue
+│   │   │   ├── VideoPlayer.vue
+│   │   │   ├── ProgressBar.vue
+│   │   │   └── QuizQuestion.vue
+│   │   ├── matching/
+│   │   │   ├── CandidateForm.vue
+│   │   │   ├── RecommendationCard.vue
+│   │   │   └── FamilyRequestCard.vue
+│   │   ├── fund/
+│   │   │   ├── CircleCard.vue
+│   │   │   ├── ContributionTimeline.vue
+│   │   │   ├── PayoutSchedule.vue
+│   │   │   └── FundStats.vue
+│   │   └── common/
+│   │       ├── LoadingSpinner.vue
+│   │       ├── AlertMessage.vue
+│   │       ├── ConfirmModal.vue
+│   │       ├── StatsCounter.vue
+│   │       └── CitySelector.vue
+│   └── assets/scss/
+│       ├── _variables.scss
+│       ├── _islamic-theme.scss
+│       ├── _rtl-fixes.scss
+│       └── app.scss</pre>
+  </div>
+</div>
+
+<!-- 3. DATABASE -->
+<div class="section" id="db">
+  <div class="stag">03 — قاعدة البيانات</div>
+  <h2>Database Schema — كل الجداول</h2>
+</div>
+
+<div class="card">
+  <h3>👤 users — المستخدمون</h3>
+  <table class="db-table">
+    <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+    <tr><td class="pk">id</td><td>BIGINT PK AI</td><td></td></tr>
+    <tr><td>name</td><td>VARCHAR(255)</td><td>الاسم الكامل</td></tr>
+    <tr><td>email</td><td>VARCHAR(255) UNIQUE</td><td></td></tr>
+    <tr><td>phone</td><td>VARCHAR(20) UNIQUE</td><td></td></tr>
+    <tr><td>password</td><td>VARCHAR(255)</td><td>hashed</td></tr>
+    <tr><td>role</td><td>ENUM('user','recommender','admin')</td><td></td></tr>
+    <tr><td>gender</td><td>ENUM('male','female')</td><td></td></tr>
+    <tr><td>national_id</td><td>VARCHAR(20) NULL</td><td>للتحقق</td></tr>
+    <tr><td>is_verified</td><td>BOOLEAN DEFAULT false</td><td>هوية مُتحقق منها</td></tr>
+    <tr><td>has_certificate</td><td>BOOLEAN DEFAULT false</td><td>أنهى كورس التأهيل</td></tr>
+    <tr><td class="fk">city_id</td><td>FK → cities.id</td><td></td></tr>
+    <tr><td>created_at / updated_at</td><td>TIMESTAMPS</td><td></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>🤝 recommenders — المُعرِّفون الموثوقون</h3>
+  <table class="db-table">
+    <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+    <tr><td class="pk">id</td><td>BIGINT PK</td><td></td></tr>
+    <tr><td class="fk">user_id</td><td>FK → users.id UNIQUE</td><td></td></tr>
+    <tr><td>type</td><td>ENUM('imam','teacher','relative','community_leader')</td><td></td></tr>
+    <tr><td>institution</td><td>VARCHAR(255) NULL</td><td>المسجد/المدرسة/الجامعة</td></tr>
+    <tr><td>bio</td><td>TEXT NULL</td><td>نبذة مختصرة</td></tr>
+    <tr><td>candidates_count</td><td>INT DEFAULT 0</td><td>عدد المسجلين عنده</td></tr>
+    <tr><td>successful_matches</td><td>INT DEFAULT 0</td><td>توفيقات ناجحة</td></tr>
+    <tr><td>is_approved</td><td>BOOLEAN DEFAULT false</td><td>معتمد من الإدارة</td></tr>
+    <tr><td>honor_pledge_signed</td><td>BOOLEAN DEFAULT false</td><td>ميثاق الشرف</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>💍 candidates — طالبو الزواج</h3>
+  <p style="margin-bottom:8px;font-size:12px;color:var(--teal)">ملاحظة: لا يُسجَّل المرشح نفسه — المُعرِّف هو من يسجله بعد معرفة شخصية</p>
+  <table class="db-table">
+    <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+    <tr><td class="pk">id</td><td>BIGINT PK</td><td></td></tr>
+    <tr><td class="fk">user_id</td><td>FK → users.id</td><td>حساب المرشح</td></tr>
+    <tr><td class="fk">recommender_id</td><td>FK → recommenders.id</td><td>المُعرِّف اللي سجله</td></tr>
+    <tr><td>guardian_name</td><td>VARCHAR(255)</td><td>اسم ولي الأمر</td></tr>
+    <tr><td>guardian_phone</td><td>VARCHAR(20)</td><td>رقم ولي الأمر</td></tr>
+    <tr><td>guardian_relation</td><td>VARCHAR(50)</td><td>صلة القرابة (أب/أخ/عم)</td></tr>
+    <tr><td>age</td><td>INT</td><td></td></tr>
+    <tr><td>education</td><td>VARCHAR(100)</td><td></td></tr>
+    <tr><td>occupation</td><td>VARCHAR(100)</td><td></td></tr>
+    <tr><td>marital_status</td><td>ENUM('single','divorced','widowed')</td><td></td></tr>
+    <tr><td>religiosity_level</td><td>ENUM('committed','moderate','learning')</td><td>مستوى الالتزام</td></tr>
+    <tr><td>preferences_json</td><td>JSON</td><td>تفضيلات (سن، تعليم، مدينة...)</td></tr>
+    <tr><td>recommender_notes</td><td>TEXT</td><td>ملاحظات المُعرِّف الشخصية</td></tr>
+    <tr><td>status</td><td>ENUM('active','matched','withdrawn')</td><td></td></tr>
+  </table>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <h3>📋 recommendations — التوصيات</h3>
+    <table class="db-table">
+      <tr><th>Column</th><th>Type</th></tr>
+      <tr><td class="pk">id</td><td>BIGINT PK</td></tr>
+      <tr><td class="fk">recommender_id</td><td>FK → recommenders.id</td></tr>
+      <tr><td class="fk">male_candidate_id</td><td>FK → candidates.id</td></tr>
+      <tr><td class="fk">female_candidate_id</td><td>FK → candidates.id</td></tr>
+      <tr><td>reason</td><td>TEXT</td></tr>
+      <tr><td>status</td><td>ENUM('pending','accepted','rejected')</td></tr>
+      <tr><td>created_at</td><td>TIMESTAMP</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>👨‍👩‍👦 family_requests — طلبات العائلات</h3>
+    <table class="db-table">
+      <tr><th>Column</th><th>Type</th></tr>
+      <tr><td class="pk">id</td><td>BIGINT PK</td></tr>
+      <tr><td class="fk">recommendation_id</td><td>FK → recommendations.id</td></tr>
+      <tr><td>initiated_by</td><td>ENUM('male_family','female_family')</td></tr>
+      <tr><td>status</td><td>ENUM('pending','accepted','rejected','meeting_scheduled')</td></tr>
+      <tr><td>meeting_date</td><td>DATE NULL</td></tr>
+      <tr><td>notes</td><td>TEXT NULL</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>💰 fund_circles — حلقات التيسير (الجمعية)</h3>
+  <table class="db-table">
+    <tr><th>Column</th><th>Type</th><th>Notes</th></tr>
+    <tr><td class="pk">id</td><td>BIGINT PK</td><td></td></tr>
+    <tr><td>name</td><td>VARCHAR(255)</td><td>اسم الحلقة</td></tr>
+    <tr><td class="fk">city_id</td><td>FK → cities.id</td><td></td></tr>
+    <tr><td class="fk">created_by</td><td>FK → users.id</td><td>منشئ الحلقة</td></tr>
+    <tr><td>max_members</td><td>INT DEFAULT 15</td><td>عدد الأعضاء الأقصى</td></tr>
+    <tr><td>monthly_amount</td><td>DECIMAL(10,2)</td><td>المبلغ الشهري لكل عضو</td></tr>
+    <tr><td>currency</td><td>VARCHAR(3) DEFAULT 'EGP'</td><td></td></tr>
+    <tr><td>cycle_months</td><td>INT</td><td>مدة الدورة بالأشهر</td></tr>
+    <tr><td>current_round</td><td>INT DEFAULT 1</td><td>الدورة الحالية</td></tr>
+    <tr><td>status</td><td>ENUM('forming','active','completed')</td><td></td></tr>
+    <tr><td>payout_method</td><td>ENUM('lottery','priority','schedule')</td><td>طريقة تحديد الأولوية</td></tr>
+    <tr><td>started_at</td><td>DATE NULL</td><td></td></tr>
+  </table>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <h3>👥 circle_members</h3>
+    <table class="db-table">
+      <tr><th>Column</th><th>Type</th></tr>
+      <tr><td class="pk">id</td><td>BIGINT PK</td></tr>
+      <tr><td class="fk">circle_id</td><td>FK → fund_circles.id</td></tr>
+      <tr><td class="fk">user_id</td><td>FK → users.id</td></tr>
+      <tr><td>payout_order</td><td>INT NULL</td></tr>
+      <tr><td>has_received_payout</td><td>BOOLEAN DEFAULT false</td></tr>
+      <tr><td>total_contributed</td><td>DECIMAL(10,2) DEFAULT 0</td></tr>
+      <tr><td>joined_at</td><td>TIMESTAMP</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>💳 contributions — المساهمات</h3>
+    <table class="db-table">
+      <tr><th>Column</th><th>Type</th></tr>
+      <tr><td class="pk">id</td><td>BIGINT PK</td></tr>
+      <tr><td class="fk">circle_id</td><td>FK → fund_circles.id</td></tr>
+      <tr><td class="fk">member_id</td><td>FK → circle_members.id</td></tr>
+      <tr><td>amount</td><td>DECIMAL(10,2)</td></tr>
+      <tr><td>round_number</td><td>INT</td></tr>
+      <tr><td>payment_ref</td><td>VARCHAR(255)</td></tr>
+      <tr><td>status</td><td>ENUM('pending','paid','late','failed')</td></tr>
+      <tr><td>paid_at</td><td>TIMESTAMP NULL</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h3>🎓 courses + lessons + progress + certificates</h3>
+  <div class="code-block">
+    <pre>
+<span class="c">-- courses: id, title, description, track (shariah/psychology/financial/practical)</span>
+<span class="c">--          duration_hours, lessons_count, is_active</span>
+
+<span class="c">-- lessons: id, course_id (FK), title, type (video/text/quiz)</span>
+<span class="c">--          content, video_url, order, duration_minutes</span>
+
+<span class="c">-- course_progress: id, user_id (FK), lesson_id (FK)</span>
+<span class="c">--                  completed_at, watch_percentage</span>
+
+<span class="c">-- quiz_attempts: id, user_id (FK), quiz_id (FK)</span>
+<span class="c">--                score, passed, attempted_at</span>
+
+<span class="c">-- certificates: id, user_id (FK), certificate_number (UNIQUE)</span>
+<span class="c">--               issued_at, pdf_path, tracks_completed (JSON)</span></pre>
+  </div>
+</div>
+
+<!-- 4. API ENDPOINTS -->
+<div class="section" id="api">
+  <div class="stag">04 — الـ API</div>
+  <h2>API Endpoints</h2>
+</div>
+
+<div class="card">
+  <h3>🔐 Auth</h3>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/auth/register</span><div class="edesc">تسجيل مستخدم جديد (اسم، إيميل، رقم، كلمة مرور، جنس، مدينة)</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/auth/login</span></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/auth/verify-identity</span><div class="edesc">رفع صورة الهوية للتحقق (إلزامي للمعرّفين)</div></div>
+</div>
+
+<div class="card">
+  <h3>🎓 Courses</h3>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/courses</span><div class="edesc">قائمة الكورسات المتاحة حسب المسار</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/courses/{id}/lessons</span><div class="edesc">دروس كورس محدد</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/courses/{id}/progress</span><div class="edesc">تحديث تقدم المستخدم في درس</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/quizzes/{id}/attempt</span><div class="edesc">تقديم إجابات الاختبار</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/certificates/mine</span><div class="edesc">شهاداتي</div></div>
+</div>
+
+<div class="card">
+  <h3>🤝 Matching</h3>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/recommender/register</span><div class="edesc">تسجيل كمُعرِّف موثوق (نوع، مؤسسة، ميثاق شرف)</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/recommender/candidates</span><div class="edesc">تسجيل مرشح جديد (بيانات + بيانات ولي الأمر)</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/recommender/candidates</span><div class="edesc">المرشحون المسجلون عند هذا المُعرِّف</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/recommender/suggestions</span><div class="edesc">اقتراحات توافق من النظام للمعرّف</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/recommender/recommend</span><div class="edesc">إنشاء توصية (ربط مرشح بمرشحة)</div></div>
+  <div class="endpoint"><span class="method method-put">PUT</span><span class="url">/api/family-requests/{id}/respond</span><div class="edesc">رد العائلة على التوصية (قبول/رفض)</div></div>
+</div>
+
+<div class="card">
+  <h3>💰 Fund</h3>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/circles</span><div class="edesc">إنشاء حلقة تيسير جديدة</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/circles?city={id}</span><div class="edesc">الحلقات المتاحة في مدينة</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/circles/{id}/join</span><div class="edesc">الانضمام لحلقة</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/circles/{id}/contribute</span><div class="edesc">دفع المساهمة الشهرية</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/circles/{id}/dashboard</span><div class="edesc">لوحة الحلقة: من دفع، الجدول، الإحصائيات</div></div>
+</div>
+
+<div class="card">
+  <h3>💒 Wedding + 🧮 Calculator</h3>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/weddings?city={id}</span><div class="edesc">الأعراس الجماعية القادمة في مدينة</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/weddings/{id}/register</span><div class="edesc">التسجيل في عرس جماعي</div></div>
+  <div class="endpoint"><span class="method method-get">GET</span><span class="url">/api/vendors?city={id}&category={cat}</span><div class="edesc">مقدمو خدمات بخصومات</div></div>
+  <div class="endpoint"><span class="method method-post">POST</span><span class="url">/api/calculator</span><div class="edesc">حاسبة تكاليف الزواج (مدينة + متطلبات)</div></div>
+</div>
+
+<!-- 5. UI PAGES -->
+<div class="section" id="ui">
+  <div class="stag">05 — الصفحات</div>
+  <h2>كل صفحة في الموقع</h2>
+</div>
+
+<div class="card">
+  <h3>🏠 الصفحة الرئيسية — HomePage.vue</h3>
+  <p>الأقسام بالترتيب:</p>
+  <div style="font-size:12px;color:var(--t2);line-height:2.2;margin-top:8px">
+    1. <strong>Hero Section:</strong> عنوان + وصف + CTA "ابدأ رحلتك" + إحصائيات الأزمة (4 أرقام)<br>
+    2. <strong>الأركان الخمسة:</strong> 5 بطاقات تشرح المنظومة بإيجاز<br>
+    3. <strong>حاسبة التكاليف:</strong> أداة تفاعلية — اختر مدينتك وشوف التكلفة (فردي vs جماعي)<br>
+    4. <strong>قصص نجاح:</strong> شهادات من أزواج تيسّر زواجهم (تضاف لاحقاً)<br>
+    5. <strong>إحصائيات المنصة:</strong> عدد المتأهلين، الحلقات، الأعراس الجماعية<br>
+    6. <strong>CTA:</strong> "سجّل الآن" + "كن مُعرِّفاً موثوقاً"<br>
+    7. <strong>Footer:</strong> روابط + "ادعم المشروع" + سوشيال ميديا
+  </div>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <h3>🎓 صفحات التأهيل</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • <strong>CourseListPage:</strong> 4 مسارات (شرعي/نفسي/مالي/عملي) كبطاقات<br>
+      • <strong>CoursePage:</strong> وصف + قائمة دروس + نسبة الإنجاز<br>
+      • <strong>LessonPage:</strong> فيديو/نص + تعليق أسفل + زر "الدرس التالي"<br>
+      • <strong>QuizPage:</strong> أسئلة اختيار من متعدد + نتيجة فورية<br>
+      • <strong>CertificatePage:</strong> عرض الشهادة + زر تحميل PDF + مشاركة
+    </div>
+  </div>
+  <div class="card">
+    <h3>🤝 صفحات التوفيق</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • <strong>RecommenderDashboard:</strong> إحصائيات + مرشحون + اقتراحات<br>
+      • <strong>AddCandidatePage:</strong> نموذج تسجيل مرشح + بيانات الولي<br>
+      • <strong>RecommendationsPage:</strong> توصياتي + حالة كل واحدة<br>
+      • <strong>FamilyRequestsPage:</strong> طلبات العائلات الواردة + الرد
+    </div>
+  </div>
+</div>
+
+<div class="g2">
+  <div class="card">
+    <h3>💰 صفحات الصندوق</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • <strong>FundOverviewPage:</strong> شرح النظام + حلقات متاحة<br>
+      • <strong>CreateCirclePage:</strong> إنشاء حلقة جديدة (اسم، مبلغ، عدد)<br>
+      • <strong>CircleDashboard:</strong> الأعضاء + الجدول + من دفع + من يستلم<br>
+      • <strong>ContributionPage:</strong> دفع المساهمة الشهرية
+    </div>
+  </div>
+  <div class="card">
+    <h3>💒 صفحات الزفاف</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • <strong>GroupWeddingsPage:</strong> تقويم أعراس جماعية + فلتر بالمدينة<br>
+      • <strong>WeddingDetailPage:</strong> تفاصيل + تكلفة + التسجيل<br>
+      • <strong>VendorsPage:</strong> مقدمو خدمات + خصومات حصرية<br>
+      • <strong>CostCalculatorPage:</strong> حاسبة تفاعلية
+    </div>
+  </div>
+</div>
+
+<!-- 6. SCSS THEME -->
+<div class="section" id="scss">
+  <div class="stag">06 — التصميم</div>
+  <h2>Bootstrap Islamic Theme</h2>
+</div>
+<div class="card">
+  <div class="code-block">
+    <div class="filename">resources/js/assets/scss/_variables.scss</div>
+    <pre>
+<span class="c">// ─── Bootstrap 5 Overrides ───</span>
+<span class="k">$primary</span>:       <span class="s">#0d7377</span>;   <span class="c">// Teal إسلامي</span>
+<span class="k">$secondary</span>:     <span class="s">#b8860b</span>;   <span class="c">// ذهبي</span>
+<span class="k">$success</span>:       <span class="s">#1b7a4a</span>;
+<span class="k">$danger</span>:        <span class="s">#c0392b</span>;
+<span class="k">$warning</span>:       <span class="s">#e67e22</span>;
+<span class="k">$info</span>:          <span class="s">#1565c0</span>;
+<span class="k">$light</span>:         <span class="s">#faf9f6</span>;   <span class="c">// خلفية دافئة</span>
+<span class="k">$dark</span>:          <span class="s">#1a1a2a</span>;
+
+<span class="k">$body-bg</span>:            <span class="s">#faf9f6</span>;
+<span class="k">$body-color</span>:         <span class="s">#1a1a2a</span>;
+
+<span class="c">// Typography</span>
+<span class="k">$font-family-sans-serif</span>: <span class="s">'Cairo', 'Tajawal'</span>, sans-serif;
+<span class="k">$font-size-base</span>:         <span class="s">0.95rem</span>;
+<span class="k">$line-height-base</span>:       <span class="s">1.85</span>;
+
+<span class="c">// Cards</span>
+<span class="k">$card-border-radius</span>:     <span class="s">1rem</span>;
+<span class="k">$card-border-color</span>:      <span class="s">#e0d8cc</span>;
+<span class="k">$card-bg</span>:                <span class="s">#fff</span>;
+
+<span class="c">// Buttons</span>
+<span class="k">$btn-border-radius</span>:      <span class="s">0.75rem</span>;
+<span class="k">$btn-padding-y</span>:          <span class="s">0.65rem</span>;
+<span class="k">$btn-padding-x</span>:          <span class="s">1.75rem</span>;
+<span class="k">$btn-font-weight</span>:        <span class="s">700</span>;
+
+<span class="c">// Forms</span>
+<span class="k">$input-border-radius</span>:    <span class="s">0.75rem</span>;
+<span class="k">$input-border-color</span>:     <span class="s">#e0d8cc</span>;
+<span class="k">$input-bg</span>:               <span class="s">#fff</span>;
+
+<span class="c">// RTL</span>
+<span class="k">$enable-rtl</span>:             <span class="s">true</span>;
+
+<span class="k">@import</span> <span class="s">'bootstrap/scss/bootstrap'</span>;
+<span class="k">@import</span> <span class="s">'islamic-theme'</span>;
+<span class="k">@import</span> <span class="s">'rtl-fixes'</span>;</pre>
+  </div>
+</div>
+
+<!-- 7. FUND LOGIC -->
+<div class="section" id="fund">
+  <div class="stag">07 — منطق الصندوق</div>
+  <h2>خوارزمية صندوق التيسير</h2>
+</div>
+<div class="card">
+  <div class="code-block">
+    <div class="filename">app/Services/FundCalculationService.php — المنطق الأساسي</div>
+    <pre>
+<span class="c">// حلقة من 15 عضو × 1000 جنيه/شهر</span>
+<span class="c">// ═══════════════════════════════════</span>
+<span class="c">// الشهر 1: كل الأعضاء يدفعون 1000 → عضو #1 يستلم 15,000</span>
+<span class="c">// الشهر 2: كل الأعضاء يدفعون 1000 → عضو #2 يستلم 15,000</span>
+<span class="c">// ...حتى الشهر 15: عضو #15 يستلم 15,000</span>
+<span class="c">// ═══════════════════════════════════</span>
+
+<span class="c">// ترتيب الاستلام:</span>
+<span class="c">// 1. بالقرعة العشوائية (lottery) — الأعدل</span>
+<span class="c">// 2. بالأولوية (priority) — الأكثر حاجة أولاً (تصويت المجموعة)</span>
+<span class="c">// 3. بالجدول (schedule) — ترتيب الانضمام</span>
+
+<span class="c">// حماية من التخلف عن الدفع:</span>
+<span class="c">// - إشعار تذكير قبل 3 أيام من موعد الدفع</span>
+<span class="c">// - مهلة 5 أيام بعد الموعد</span>
+<span class="c">// - بعد المهلة: تنبيه لكل الأعضاء + تجميد العضوية</span>
+<span class="c">// - بعد 15 يوم: حذف من الحلقة + إبلاغ الإدارة</span>
+<span class="c">// - ضمان: كل عضو يوقع عقد التزام رقمي عند الانضمام</span></pre>
+  </div>
+</div>
+
+<!-- 8. SECURITY -->
+<div class="section" id="security">
+  <div class="stag">08 — الأمان</div>
+  <h2>Security & Privacy</h2>
+</div>
+<div class="g2">
+  <div class="card">
+    <h3>🔒 أمان البيانات</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • HTTPS everywhere (Let's Encrypt)<br>
+      • بيانات حساسة مشفرة (AES-256)<br>
+      • Laravel Sanctum + CSRF Protection<br>
+      • Rate Limiting على كل Endpoints<br>
+      • Input Validation + SQL Injection Prevention<br>
+      • XSS Protection مفعّل<br>
+      • Cloudflare WAF + DDoS Protection
+    </div>
+  </div>
+  <div class="card">
+    <h3>🛡️ خصوصية المستخدم</h3>
+    <div style="font-size:12px;color:var(--t2);line-height:2">
+      • لا صور تُخزّن على السيرفر<br>
+      • بيانات المرشحين مرئية فقط لمعرّفهم<br>
+      • حذف الحساب فوري عند الطلب (GDPR)<br>
+      • أرقام أولياء الأمور مشفرة — تُكشف فقط عند القبول<br>
+      • سجل وصول (Audit Log) لكل عملية حساسة<br>
+      • فصل كامل في الصلاحيات (user/recommender/admin)
+    </div>
+  </div>
+</div>
+
+<!-- 9. DEPLOYMENT -->
+<div class="section" id="deploy">
+  <div class="stag">09 — النشر</div>
+  <h2>Deployment</h2>
+</div>
+<div class="card">
+  <h3>🖥️ السيرفر + التكلفة</h3>
+  <div class="code-block">
+    <pre>
+<span class="c">## السيرفر المقترح: Hetzner CPX31</span>
+<span class="c">## 4 vCPU + 8GB RAM + 160GB SSD = €12.49/شهر (~$14)</span>
+
+<span class="c">## التكلفة الشهرية الإجمالية:</span>
+<span class="c">## ───────────────────────────</span>
+<span class="c">## السيرفر (Hetzner):    $14</span>
+<span class="c">## Domain (.com):        $1  (سنوي $12)</span>
+<span class="c">## Video CDN (Bunny):    $5-15 (حسب المشاهدات)</span>
+<span class="c">## Email (Mailgun):      $0  (أول 5000 مجاني)</span>
+<span class="c">## Cloudflare:           $0  (خطة مجانية)</span>
+<span class="c">## SSL:                  $0  (Let's Encrypt)</span>
+<span class="c">## ───────────────────────────</span>
+<span class="c">## الإجمالي:             $20-30/شهر فقط</span>
+
+<span class="c">## Stack على السيرفر:</span>
+sudo apt install nginx mysql-server php8.3-fpm redis-server
+composer install --optimize-autoloader --no-dev
+npm run build
+php artisan migrate --seed
+php artisan config:cache && php artisan route:cache
+<span class="c">## Supervisor لـ queue:work و horizon</span></pre>
+  </div>
+</div>
+
+<!-- 10. EXECUTION PLAN -->
+<div class="section" id="plan">
+  <div class="stag">10 — خطة التنفيذ</div>
+  <h2>12 أسبوع — يوم بيوم — لشخص واحد</h2>
+  <div class="sdesc">3-4 ساعات يومياً — مصمم لشخص واحد يعمل بمفرده</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--teal)">
+  <h3>📅 أسبوع 1-2: الأساس</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 1-2:</strong> <code>laravel new yassiru</code> + MySQL + Redis + كل الـ Migrations<br>
+    <strong>يوم 3-4:</strong> كتابة الـ Models + العلاقات + Policies + Seeders<br>
+    <strong>يوم 5-7:</strong> Auth API (Register + Login + Verify) + Middleware<br>
+    <strong>يوم 8-10:</strong> إعداد Vue 3 + Bootstrap 5 RTL + Router + Pinia + SCSS Theme<br>
+    <strong>يوم 11-14:</strong> AppNavbar + AppFooter + HomePage (Hero + Stats + 5 Pillars)
+  </div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--gold)">
+  <h3>📅 أسبوع 3-4: كورس التأهيل</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 15-17:</strong> Course API (CRUD + Progress + Quiz) + Controllers<br>
+    <strong>يوم 18-20:</strong> CourseListPage + CoursePage + LessonPage + VideoPlayer<br>
+    <strong>يوم 21-23:</strong> QuizPage + QuizQuestion component + نظام الدرجات<br>
+    <strong>يوم 24-26:</strong> CertificateGeneratorService + CertificatePage + PDF Export<br>
+    <strong>يوم 27-28:</strong> تسجيل/تصوير أول 5 دروس تجريبية (المسار الشرعي)
+  </div>
+</div>
+
+<div class="card" style="border-top:3px solid #b8860b">
+  <h3>📅 أسبوع 5-6: نظام المُعرِّف والتوفيق</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 29-31:</strong> Recommender API + Registration + Approval Flow<br>
+    <strong>يوم 32-34:</strong> Candidate API + AddCandidatePage + CandidateForm<br>
+    <strong>يوم 35-37:</strong> MatchSuggestionService + RecommendationsPage<br>
+    <strong>يوم 38-40:</strong> FamilyRequestsPage + Notification System<br>
+    <strong>يوم 41-42:</strong> RecommenderDashboard + إحصائيات
+  </div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--plum)">
+  <h3>📅 أسبوع 7-8: صندوق التيسير</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 43-45:</strong> Fund Circle API + Create + Join + Dashboard<br>
+    <strong>يوم 46-48:</strong> Contribution API + Payment Integration (Fawry/Stripe)<br>
+    <strong>يوم 49-51:</strong> CircleDashboard + ContributionTimeline + PayoutSchedule<br>
+    <strong>يوم 52-54:</strong> إشعارات الدفع + التذكير التلقائي + حالات التأخر<br>
+    <strong>يوم 55-56:</strong> FundOverviewPage + FundStats + اختبار الدورة كاملة
+  </div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--sky)">
+  <h3>📅 أسبوع 9-10: الزفاف الجماعي + الحاسبة</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 57-59:</strong> GroupWedding API + Vendor API + Registration<br>
+    <strong>يوم 60-62:</strong> GroupWeddingsPage + WeddingDetailPage + VendorsPage<br>
+    <strong>يوم 63-65:</strong> CostCalculatorPage — أداة تفاعلية (مدينة + متطلبات → تكلفة)<br>
+    <strong>يوم 66-68:</strong> Admin Dashboard (إدارة المستخدمين + المعرّفين + الحلقات)<br>
+    <strong>يوم 69-70:</strong> Aftercare: CounselingPage + CommunityPage (أساسي)
+  </div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--coral)">
+  <h3>📅 أسبوع 11-12: التلميع والإطلاق</h3>
+  <div style="font-size:12px;color:var(--t2);line-height:2">
+    <strong>يوم 71-73:</strong> Responsive polish + RTL fixes + اختبار كل الصفحات على موبايل<br>
+    <strong>يوم 74-76:</strong> SEO (meta tags, OG images, sitemap) + About + Support pages<br>
+    <strong>يوم 77-79:</strong> Deploy على Hetzner + SSL + Cloudflare + Domain<br>
+    <strong>يوم 80-82:</strong> Beta مع 30-50 مستخدم + جمع feedback + إصلاح أخير<br>
+    <strong>يوم 83-84:</strong> 🚀 الإطلاق — مواقعك الإخبارية + سوشيال ميديا + مجتمعات إسلامية
+  </div>
+</div>
+
+</div>
+
+<footer>يسّروا — الخطة التقنية الشاملة | إعداد لإسلام — أبريل 2026</footer>
+</body>
+</html>

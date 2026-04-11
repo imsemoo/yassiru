@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّرو — خطة التسويق بميزانية محدودة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9f6;--surface:#fff;--surface2:#f3efe8;--teal:#0d7377;--teal-light:#e0f2f1;--teal-dark:#095456;--gold:#b8860b;--gold-light:#fdf5e6;--coral:#c0392b;--plum:#6a1b4d;--sky:#1565c0;--green:#1b7a4a;--green-light:#e8f5e9;--orange:#e67e22;--orange-light:#fef3e2;--t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#e0d8cc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);line-height:1.9}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px 24px;max-width:960px;margin:0 auto;position:relative}
+.slide-num{position:absolute;top:24px;left:24px;font-size:12px;font-weight:800;color:var(--t3);letter-spacing:2px}
+.slide-divider{height:1px;background:var(--border);max-width:960px;margin:0 auto}
+h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.2;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--teal)}
+h2{font-size:clamp(22px,3.5vw,36px);font-weight:900;margin-bottom:12px}
+h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.subtitle{font-size:16px;color:var(--t2);max-width:640px;line-height:2;margin-bottom:24px}
+.tag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.stat-card{text-align:center;padding:24px 16px;border-radius:18px;background:var(--surface);border:1px solid var(--border)}
+.stat-card .num{font-size:32px;font-weight:900}
+.stat-card .label{font-size:12px;color:var(--t3);margin-top:4px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:14px}
+.card p{color:var(--t2);font-size:13.5px}
+.badge{display:inline-block;padding:4px 14px;border-radius:8px;font-size:12px;font-weight:700}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-gold{background:var(--gold-light);color:var(--gold)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-coral{background:#fdeaea;color:var(--coral)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.shield{display:flex;gap:10px;padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);margin-bottom:8px}
+.shield .ico{font-size:18px;min-width:26px}
+.shield .txt{font-size:12.5px;color:var(--t2);line-height:1.7}
+.shield .txt strong{color:var(--t1)}
+.phase-badge{display:inline-block;padding:4px 12px;border-radius:8px;font-size:11px;font-weight:800;margin-bottom:12px}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);margin-bottom:6px}
+.cost-row .name{font-size:13px;color:var(--t2)}
+.cost-row .price{font-size:15px;font-weight:800}
+.cost-row .price.free{color:var(--green)}
+.cost-row .price.paid{color:var(--coral)}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-radius:14px;margin-top:8px;font-weight:800}
+.quote{font-family:'Amiri',serif;font-size:clamp(15px,2vw,20px);color:var(--gold);text-align:center;padding:16px;line-height:2.2}
+.quote-ref{font-size:12px;color:var(--t3);text-align:center}
+.content-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:10px}
+.content-card h4{font-size:14px;font-weight:800;color:var(--teal);margin-bottom:6px}
+.content-card p{font-size:12px;color:var(--t2);line-height:1.7;margin:0}
+.content-card .meta{font-size:10.5px;color:var(--t3);margin-top:6px}
+.timeline-v{position:relative;padding-right:30px}
+.timeline-v::before{content:'';position:absolute;right:10px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-item::before{content:'';position:absolute;right:-24px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--teal);background:var(--bg)}
+.tl-item.done::before{background:var(--green);border-color:var(--green)}
+.tl-item h4{font-size:14px;font-weight:800;margin-bottom:3px}
+.tl-item p{font-size:12px;color:var(--t2);line-height:1.6;margin:0}
+.tl-item .week{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:1px}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--t3)}
+@media(max-width:768px){.g2,.g3,.g4{grid-template-columns:1fr;display:grid}}
+@media print{.slide{min-height:auto;page-break-after:always;padding:24px 16px}.slide-divider{display:none}}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">01 / 12</div>
+  <div style="font-family:'Amiri',serif;font-size:18px;color:var(--gold);opacity:.6;margin-bottom:20px">بسم الله الرحمن الرحيم</div>
+  <h1>خطة تسويق <em>يسّرو</em></h1>
+  <p style="font-size:18px;font-weight:700;color:var(--t2);margin-bottom:8px">ميزانية 5,000 جنيه — نتائج مليونية</p>
+  <p style="font-size:14px;color:var(--t3);max-width:560px;margin:0 auto">كيف نوصل لآلاف المستخدمين بأقل تكلفة ممكنة — باستخدام 10 مواقع إخبارية + SEO + واتساب + محتوى فيروسي</p>
+  <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <span class="badge badge-green">90% من التسويق مجاني</span>
+    <span class="badge badge-gold">الميزانية: 5,000 ج.م فقط</span>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 2: Unfair Advantage -->
+<div class="slide">
+  <div class="slide-num">02 / 12</div>
+  <div class="tag">السلاح السري</div>
+  <h2>10 مواقع إخبارية + 6 مليون زيارة = تسويق مجاني</h2>
+  <p class="subtitle">أنت تملك ما لا يملكه أي منافس: قنوات وصول جاهزة لملايين المسلمين بدون دولار واحد إعلانات.</p>
+  <div class="g3">
+    <div class="stat-card"><div class="num" style="color:var(--teal)">10+</div><div class="label">مواقع إخبارية مملوكة</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">6M+</div><div class="label">زيارة شهرية إجمالية</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--green)">$0</div><div class="label">تكلفة الوصول لهذا الجمهور</div></div>
+  </div>
+  <div class="card" style="margin-top:16px;background:var(--teal-light);border-color:rgba(13,115,119,.2);text-align:center">
+    <p style="font-weight:700;color:var(--teal-dark);font-size:14px;margin:0">هذه الميزة وحدها تساوي $10,000+/شهر لو اشتريناها كإعلانات — ونحن نملكها مجاناً</p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 3: Budget Breakdown -->
+<div class="slide">
+  <div class="slide-num">03 / 12</div>
+  <div class="tag">الميزانية</div>
+  <h2>5,000 جنيه — كل قرش في مكانه</h2>
+  <div class="g2">
+    <div>
+      <h3 style="color:var(--green);margin-bottom:12px">🆓 مجاني (0 جنيه)</h3>
+      <div class="cost-row"><div class="name">مقالات SEO على مواقعك الإخبارية</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">بوستات السوشال ميديا (Facebook, Twitter, Instagram)</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">رسائل واتساب للمعارف والجروبات</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">Google Search Console + Sitemap</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">نظام الإحالة الداخلي (referral)</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">محتوى فيروسي (إنفوجرافيك + ريلز)</div><div class="price free">مجاني</div></div>
+      <div class="cost-row"><div class="name">التواصل المباشر مع أئمة المساجد</div><div class="price free">مجاني</div></div>
+    </div>
+    <div>
+      <h3 style="color:var(--coral);margin-bottom:12px">💰 مدفوع (5,000 جنيه)</h3>
+      <div class="cost-row"><div class="name">إعلانات Facebook/Instagram مستهدفة</div><div class="price paid">2,000 ج.م</div></div>
+      <div class="cost-row"><div class="name">تصميم 10 بوستات + 5 ريلز (Canva Pro أو مصمم)</div><div class="price paid">1,000 ج.م</div></div>
+      <div class="cost-row"><div class="name">طباعة بروشورات (500 نسخة) للمساجد</div><div class="price paid">500 ج.م</div></div>
+      <div class="cost-row"><div class="name">استضافة + Domain (3 أشهر)</div><div class="price paid">500 ج.م</div></div>
+      <div class="cost-row"><div class="name">احتياطي لأي طوارئ</div><div class="price paid">1,000 ج.م</div></div>
+      <div class="total-row" style="background:var(--gold-light);border:1px solid rgba(184,134,11,.2)">
+        <div style="color:var(--gold)">الإجمالي</div>
+        <div style="color:var(--gold);font-size:20px">5,000 ج.م</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 4: SEO Strategy -->
+<div class="slide">
+  <div class="slide-num">04 / 12</div>
+  <div class="phase-badge badge-teal">القناة 1 — مجاني 100%</div>
+  <h2>📝 مقالات SEO على مواقعك الإخبارية</h2>
+  <p class="subtitle">كل مقال = زوار مجانيين من Google لسنوات. ده أقوى استثمار تسويقي لأنك تملك المنصات.</p>
+  <div class="g2">
+    <div>
+      <h3>المقالات المطلوبة (10 مقالات)</h3>
+      <div class="content-card"><h4>1. كم تكلفة الزواج في مصر 2026؟</h4><p>مقارنة تفصيلية بالأرقام بين المدن المصرية. في النهاية: "جرب حاسبة يسّرو المجانية"</p><div class="meta">🎯 كلمة مفتاحية: "تكاليف الزواج في مصر" — بحث شهري: 12,000+</div></div>
+      <div class="content-card"><h4>2. الأعراس الجماعية — وفّر 70% من تكاليف زواجك</h4><p>شرح المفهوم + قصص نجاح + رابط ليسّرو</p><div class="meta">🎯 "أعراس جماعية" + "حفلات زواج جماعي" — بحث: 5,000+</div></div>
+      <div class="content-card"><h4>3. الجمعية الرقمية — بديل القروض الحلال</h4><p>شرح صندوق التيسير + كيف يشتغل + لماذا حلال</p><div class="meta">🎯 "جمعية رقمية" + "قرض حسن" — بحث: 3,000+</div></div>
+      <div class="content-card"><h4>4. كيف تستعد للزواج شرعياً ونفسياً؟</h4><p>نصائح عملية + في النهاية: "أكمل دورة يسّرو المجانية"</p><div class="meta">🎯 "الاستعداد للزواج" + "نصائح قبل الزواج" — بحث: 8,000+</div></div>
+      <div class="content-card"><h4>5. أزمة العنوسة في مصر — الأرقام والحلول</h4><p>إحصائيات صادمة + يسّرو كحل عملي</p><div class="meta">🎯 "العنوسة في مصر" — بحث: 6,000+</div></div>
+    </div>
+    <div>
+      <div class="content-card"><h4>6. حقوق الزوجين في الإسلام — دليل شامل</h4><p>محتوى شرعي غني + رابط للدورة التأهيلية</p><div class="meta">🎯 "حقوق الزوج" + "حقوق الزوجة" — بحث: 15,000+</div></div>
+      <div class="content-card"><h4>7. كيف تختار زوجتك/زوجك — معايير شرعية</h4><p>نصائح من السنة + نظام المعرّف في يسّرو</p><div class="meta">🎯 "اختيار الزوجة" + "معايير الزواج" — بحث: 7,000+</div></div>
+      <div class="content-card"><h4>8. إدارة ميزانية الزواج — خطة عملية</h4><p>جدول تفصيلي + الحاسبة + الصندوق التعاوني</p><div class="meta">🎯 "ميزانية الزواج" + "تكاليف الفرح" — بحث: 4,000+</div></div>
+      <div class="content-card"><h4>9. أول سنة زواج — 10 نصائح للنجاح</h4><p>نصائح عملية + رابط لخدمة الاستشارات</p><div class="meta">🎯 "نصائح أول سنة زواج" — بحث: 3,000+</div></div>
+      <div class="content-card"><h4>10. قصة يسّرو — كيف بدأنا ولماذا</h4><p>القصة الشخصية + الرسالة + الدعوة للمشاركة</p><div class="meta">🎯 Brand awareness — يُشارك عاطفياً</div></div>
+
+      <div class="card" style="background:var(--green-light);border-color:rgba(27,122,74,.2);text-align:center;margin-top:12px">
+        <p style="font-weight:700;color:var(--green);font-size:13px;margin:0">10 مقالات × 5,000 زيارة/مقال = 50,000 زيارة مجانية/شهر</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 5: WhatsApp Strategy -->
+<div class="slide">
+  <div class="slide-num">05 / 12</div>
+  <div class="phase-badge badge-green">القناة 2 — مجاني 100%</div>
+  <h2>📱 واتساب — القناة الأقوى في مصر</h2>
+  <p class="subtitle">95% من المصريين يستخدمون واتساب يومياً. رسالة واحدة في جروب = 200 شخص يشوفوها.</p>
+  <div class="g2">
+    <div class="card">
+      <h3>📋 رسالة التعريف بالمنصة</h3>
+      <div style="background:var(--surface2);border-radius:12px;padding:16px;margin-top:8px;font-size:12.5px;color:var(--t2);line-height:1.9">
+        🕌 <strong>يسّرو — أول منصة تيسير زواج متكاملة</strong><br><br>
+        زواجك بنصف التكلفة. بدون فوائد. بدون ديون.<br><br>
+        ✅ دورة تأهيلية مجانية (شرعي + نفسي + مالي)<br>
+        ✅ توفيق عبر أئمة ومعرّفين موثوقين<br>
+        ✅ صندوق تعاوني — جمعية رقمية بدون فوائد<br>
+        ✅ أعراس جماعية بتوفير 70%<br><br>
+        📊 احسب كم هتوفّر: yassiru.com/calculator<br>
+        📝 سجّل مجاناً: yassiru.com<br><br>
+        ابعت الرسالة لأي حد تعرفه محتاج يتجوز 💍
+      </div>
+    </div>
+    <div class="card">
+      <h3>🎯 أين تنشر؟</h3>
+      <div class="shield"><div class="ico">👨‍👩‍👧‍👦</div><div class="txt"><strong>جروبات العائلة</strong> — كل عيلة فيها شاب محتاج يتجوز</div></div>
+      <div class="shield"><div class="ico">🕌</div><div class="txt"><strong>جروبات المساجد</strong> — أعضاء واثقين في بعض</div></div>
+      <div class="shield"><div class="ico">🎓</div><div class="txt"><strong>جروبات الجامعات</strong> — خريجين في سن الزواج</div></div>
+      <div class="shield"><div class="ico">💼</div><div class="txt"><strong>جروبات الشغل</strong> — زملاء محتاجين يوفّروا</div></div>
+      <div class="shield"><div class="ico">🏘️</div><div class="txt"><strong>جروبات الحي/المنطقة</strong> — جيران = ثقة</div></div>
+      <div class="shield"><div class="ico">📢</div><div class="txt"><strong>جروبات خيرية/دينية</strong> — الفئة الأكثر تعاطفاً مع الرسالة</div></div>
+      <div style="text-align:center;margin-top:10px"><span class="badge badge-green">20 جروب × 200 عضو = 4,000 شخص مجاناً</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 6: Social Media -->
+<div class="slide">
+  <div class="slide-num">06 / 12</div>
+  <div class="phase-badge badge-gold">القناة 3 — مجاني + 2,000 ج.م إعلانات</div>
+  <h2>📲 السوشال ميديا — محتوى فيروسي</h2>
+  <div class="g2">
+    <div class="card">
+      <h3>🎨 أنواع المحتوى (3 بوستات/أسبوع)</h3>
+      <div class="shield"><div class="ico">📊</div><div class="txt"><strong>إنفوجرافيك صادم</strong> — "تكلفة الزواج في مصر = 10 سنوات راتب" — يتشارك بجنون</div></div>
+      <div class="shield"><div class="ico">🧮</div><div class="txt"><strong>"احسب توفيرك"</strong> — screenshot من الحاسبة + "جرب بنفسك" + رابط</div></div>
+      <div class="shield"><div class="ico">📖</div><div class="txt"><strong>نصيحة شرعية/نفسية</strong> — من محتوى الدورة — قيمة حقيقية مجانية</div></div>
+      <div class="shield"><div class="ico">💬</div><div class="txt"><strong>سؤال تفاعلي</strong> — "كام تكلفة زواجك؟" أو "إيه أكبر عائق؟" — يجيب تفاعل</div></div>
+      <div class="shield"><div class="ico">🎬</div><div class="txt"><strong>ريلز 30 ثانية</strong> — "الزواج في مصر كارثة — وده الحل" — يوصل لآلاف</div></div>
+      <div class="shield"><div class="ico">📝</div><div class="txt"><strong>قصة مؤسس</strong> — "ليه بنيت يسّرو" — الناس بتحب القصص الشخصية</div></div>
+    </div>
+    <div class="card">
+      <h3>💰 إعلانات Facebook/Instagram (2,000 ج.م)</h3>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">🎯</div><div class="txt"><strong>الاستهداف:</strong> ذكور 22-35 + إناث 20-30 — مصر — مهتمين بالزواج/الأسرة/الدين</div></div>
+        <div class="shield"><div class="ico">📍</div><div class="txt"><strong>المدن:</strong> القاهرة + الإسكندرية + المنصورة (أكبر 3 مدن)</div></div>
+        <div class="shield"><div class="ico">📐</div><div class="txt"><strong>النوع:</strong> إعلان Traffic → يوجّه لصفحة الحاسبة (أعلى conversion)</div></div>
+        <div class="shield"><div class="ico">⏱️</div><div class="txt"><strong>المدة:</strong> 500 ج.م/أسبوع × 4 أسابيع = 2,000 ج.م</div></div>
+        <div class="shield"><div class="ico">📈</div><div class="txt"><strong>المتوقع:</strong> ~20,000-40,000 وصول + 2,000-5,000 نقرة + 200-500 تسجيل</div></div>
+      </div>
+      <div style="text-align:center;margin-top:10px"><span class="badge badge-gold">تكلفة التسجيل المتوقعة: 4-10 ج.م/مستخدم</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 7: Mosque Strategy -->
+<div class="slide">
+  <div class="slide-num">07 / 12</div>
+  <div class="phase-badge badge-teal">القناة 4 — 500 ج.م فقط</div>
+  <h2>🕌 المساجد — أقوى مصدر ثقة</h2>
+  <p class="subtitle">الإمام لما يقول "المنصة دي كويسة" = أقوى من أي إعلان. التوصية الشخصية أقوى 10x من الإعلان.</p>
+  <div class="g2">
+    <div class="card">
+      <h3>📋 الخطة</h3>
+      <div class="shield"><div class="ico">1️⃣</div><div class="txt"><strong>اطبع 500 بروشور</strong> (A5) — فيه QR code + وصف قصير + "مجاني 100%"</div></div>
+      <div class="shield"><div class="ico">2️⃣</div><div class="txt"><strong>زُر 20 مسجد</strong> في منطقتك — اتكلم مع الإمام شخصياً</div></div>
+      <div class="shield"><div class="ico">3️⃣</div><div class="txt"><strong>اعرض عليه يكون معرّف</strong> على المنصة (مجاني + أجر)</div></div>
+      <div class="shield"><div class="ico">4️⃣</div><div class="txt"><strong>اسأله يذكر المنصة</strong> في خطبة الجمعة أو درس عن الزواج</div></div>
+      <div class="shield"><div class="ico">5️⃣</div><div class="txt"><strong>سيب البروشورات</strong> عند باب المسجد أو لوحة الإعلانات</div></div>
+    </div>
+    <div class="card">
+      <h3>📄 البروشور يحتوي على:</h3>
+      <div style="background:var(--surface2);border-radius:12px;padding:16px;margin-top:8px;font-size:12px;color:var(--t2);line-height:1.9">
+        <div style="text-align:center;font-size:20px;font-weight:900;color:var(--teal);margin-bottom:8px">يسّرو</div>
+        <strong>زواجك بنصف التكلفة — بدون فوائد — بدون ديون</strong><br><br>
+        ✅ دورة تأهيلية شرعية مجانية<br>
+        ✅ توفيق عبر أئمة ومعرّفين موثوقين<br>
+        ✅ صندوق تعاوني (جمعية رقمية)<br>
+        ✅ أعراس جماعية بتوفير 70%<br><br>
+        <div style="text-align:center;font-weight:700">📱 yassiru.com</div>
+        <div style="text-align:center;font-size:10px;color:var(--t3);margin-top:4px">[QR Code هنا]</div>
+      </div>
+      <div style="text-align:center;margin-top:10px"><span class="badge badge-coral">500 بروشور × 20 مسجد = تكلفة: ~500 ج.م</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 8: Viral Content -->
+<div class="slide">
+  <div class="slide-num">08 / 12</div>
+  <div class="phase-badge badge-green">القناة 5 — مجاني 100%</div>
+  <h2>🔥 المحتوى الفيروسي — يتشارك لوحده</h2>
+  <p class="subtitle">المحتوى اللي بيلمس مشاعر الناس بيتشارك بدون ما تدفع قرش.</p>
+  <div class="g3">
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">😱</div>
+      <h3 style="font-size:14px">الصدمة بالأرقام</h3>
+      <p>"200,000 جنيه = تكلفة زواج في القاهرة. راتبك 4,000 = محتاج 50 شهر. يسّرو بتوفّر 70%."</p>
+      <div class="meta" style="font-size:10px;color:var(--t3);margin-top:6px">📍 Facebook + Twitter + Instagram Stories</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">🧮</div>
+      <h3 style="font-size:14px">تحدي الحاسبة</h3>
+      <p>"احسب كم هتوفّر لو اتجوزت عبر يسّرو — جرب الحاسبة وشاركنا النتيجة!"</p>
+      <div class="meta" style="font-size:10px;color:var(--t3);margin-top:6px">📍 Instagram Reels + TikTok + Facebook</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">💬</div>
+      <h3 style="font-size:14px">أسئلة تفاعلية</h3>
+      <p>"إيه أكبر عائق بيمنعك تتجوز؟ A) التكلفة B) ملقتش حد C) الأهل D) تاني" — يجيب 100+ تعليق</p>
+      <div class="meta" style="font-size:10px;color:var(--t3);margin-top:6px">📍 Facebook Groups + Twitter Polls</div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:12px">
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">🎬</div>
+      <h3 style="font-size:14px">ريلز "ليه بنيت يسّرو"</h3>
+      <p>فيديو 60 ثانية — وجهك + القصة الشخصية + "40% من الشباب مش قادرين يتجوزوا". الناس بتحب تشوف المؤسس.</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:32px;margin-bottom:8px">📊</div>
+      <h3 style="font-size:14px">إنفوجرافيك للمشاركة</h3>
+      <p>صورة واحدة فيها: المشكلة (أرقام) → الحل (5 أركان) → CTA (سجّل مجاناً). تتصمم على Canva مجاناً.</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 9: Referral System -->
+<div class="slide">
+  <div class="slide-num">09 / 12</div>
+  <div class="phase-badge badge-teal">القناة 6 — مجاني (مبني في المنصة)</div>
+  <h2>🔗 نظام الإحالة — كل مستخدم يجيب 3</h2>
+  <p class="subtitle">لو كل مستخدم جاب 3 أصحابه: 50 مستخدم → 150 → 450 → 1,350 → 4,050 في شهر واحد.</p>
+  <div class="g3">
+    <div class="card" style="text-align:center;border-top:3px solid var(--teal)">
+      <div style="font-size:32px;margin-bottom:8px">🎁</div>
+      <h3 style="font-size:15px">الحافز</h3>
+      <p>كل إحالة ناجحة = نقاط<br>النقاط = خصم على رسوم الصندوق<br>أو أولوية في قائمة الانتظار</p>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--gold)">
+      <div style="font-size:32px;margin-bottom:8px">📢</div>
+      <h3 style="font-size:15px">التنفيذ</h3>
+      <p>كل مستخدم عنده كود فريد<br>يشاركه على واتساب/سوشال<br>لما حد يسجل بالكود = نقطة</p>
+    </div>
+    <div class="card" style="text-align:center;border-top:3px solid var(--green)">
+      <div style="font-size:32px;margin-bottom:8px">🏆</div>
+      <h3 style="font-size:15px">Gamification</h3>
+      <p>لوحة "أكثر المحيلين"<br>Top 3 كل شهر ياخدوا مكافأة<br>(مثلاً: إعفاء من رسوم الصندوق)</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 10: Timeline -->
+<div class="slide">
+  <div class="slide-num">10 / 12</div>
+  <div class="tag">الجدول الزمني</div>
+  <h2>12 أسبوع — من الصفر لـ 1,000 مستخدم</h2>
+  <div class="g2">
+    <div>
+      <div class="timeline-v">
+        <div class="tl-item"><div class="week">الأسبوع 1</div><h4>التجهيز</h4><p>انشر أول 3 مقالات SEO على مواقعك + جهّز 10 بوستات سوشال + اطبع البروشورات</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 2</div><h4>المساجد</h4><p>زُر 10 مساجد + سجّل 5 أئمة كمعرّفين + وزّع بروشورات + ابدأ واتساب</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 3</div><h4>السوشال ميديا</h4><p>ابدأ النشر (3 بوستات/أسبوع) + أول ريلز + شغّل إعلان Facebook (500 ج.م)</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 4</div><h4>الموجة الأولى</h4><p>انشر مقال "تكاليف الزواج" على كل مواقعك + شاركه في 20 جروب واتساب</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 5-6</div><h4>التكثيف</h4><p>3 مقالات إضافية + 10 مساجد تانية + إعلان Facebook ثاني (500 ج.م) + أول 100 مستخدم</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="timeline-v">
+        <div class="tl-item"><div class="week">الأسبوع 7-8</div><h4>المحتوى الفيروسي</h4><p>ريلز "ليه بنيت يسّرو" + إنفوجرافيك الأرقام + "تحدي الحاسبة" + 250 مستخدم</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 9-10</div><h4>الإحالات</h4><p>فعّل نظام الإحالة + "ابعت لـ 3 أصحابك" + إعلان ثالث (500 ج.م) + 500 مستخدم</p></div>
+        <div class="tl-item"><div class="week">الأسبوع 11-12</div><h4>الانطلاقة</h4><p>آخر إعلان (500 ج.م) + مقالات SEO بدأت تجيب زيارات من Google + 1,000 مستخدم</p></div>
+      </div>
+      <div class="card" style="background:var(--teal-light);border-color:rgba(13,115,119,.2);text-align:center;margin-top:16px">
+        <h3 style="color:var(--teal);font-size:18px">الهدف: 1,000 مستخدم</h3>
+        <p style="margin:0">50 حاصلين على شهادة<br>10 معرّفين نشطين<br>5 حلقات صندوق<br>أول عرس جماعي قيد التسجيل</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 11: KPIs -->
+<div class="slide">
+  <div class="slide-num">11 / 12</div>
+  <div class="tag">قياس النجاح</div>
+  <h2>📊 أرقام نتابعها أسبوعياً</h2>
+  <div class="g4">
+    <div class="stat-card" style="border-top:3px solid var(--teal)"><div class="num" style="color:var(--teal);font-size:28px">👤</div><div class="label">عدد المسجلين الجدد/أسبوع<br><strong>الهدف: 80+</strong></div></div>
+    <div class="stat-card" style="border-top:3px solid var(--gold)"><div class="num" style="color:var(--gold);font-size:28px">🎓</div><div class="label">عدد الشهادات الصادرة/أسبوع<br><strong>الهدف: 5+</strong></div></div>
+    <div class="stat-card" style="border-top:3px solid var(--green)"><div class="num" style="color:var(--green);font-size:28px">💰</div><div class="label">عدد الحلقات النشطة<br><strong>الهدف: 5+</strong></div></div>
+    <div class="stat-card" style="border-top:3px solid var(--plum)"><div class="num" style="color:var(--plum);font-size:28px">🕌</div><div class="label">عدد المعرّفين النشطين<br><strong>الهدف: 10+</strong></div></div>
+  </div>
+  <div class="g3" style="margin-top:16px">
+    <div class="card" style="text-align:center">
+      <h3 style="font-size:14px;color:var(--teal)">Google Analytics</h3>
+      <p>زيارات + مصادر + الصفحات الأكثر زيارة + معدل الارتداد + وقت الجلسة</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 style="font-size:14px;color:var(--gold)">لوحة الأدمن</h3>
+      <p>مستخدمين جدد + شهادات + حلقات + أعراس + بلاغات + مدفوعات</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <h3 style="font-size:14px;color:var(--green)">Search Console</h3>
+      <p>ترتيب الكلمات المفتاحية + عدد النقرات من Google + أخطاء الزحف</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 12: CTA -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">12 / 12</div>
+  <div class="quote">﴿ وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَا إِلَى اللَّهِ وَعَمِلَ صَالِحًا ﴾</div>
+  <div class="quote-ref">سورة فصّلت — آية 33</div>
+  <div style="margin-top:28px">
+    <h2>5,000 جنيه + 10 مواقع + إخلاص = آلاف الأسر</h2>
+    <p class="subtitle" style="text-align:center;max-width:500px;margin:12px auto 0">
+      التسويق مش محتاج ملايين — محتاج محتوى صادق يلمس مشاعر الناس ويحل مشكلة حقيقية. وده بالظبط اللي عندنا.
+    </p>
+  </div>
+</div>
+
+<footer>
+  يسّرو — خطة التسويق | إعداد: إسلام — أبريل 2026<br>
+  <span style="font-family:'Amiri',serif;color:var(--gold);font-size:14px">اللهم بارك في كل خطوة تيسّر بها زواج شاب مسلم</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "يسّرو — منصة تيسير الزواج",
+  "short_name": "يسّرو",
+  "description": "منظومة متكاملة لتيسير الزواج في العالم الإسلامي",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "background_color": "#faf9f6",
+  "theme_color": "#0d7377",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "lifestyle"]
+}

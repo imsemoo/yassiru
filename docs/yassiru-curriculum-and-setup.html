@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — منهج التأهيل + الإعداد التقني</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{background:#FAF9F5;color:#1a1a2a;line-height:1.9}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+h1{font-size:24px;font-weight:900;text-align:center;padding:40px 0 4px;color:#0d7377}
+.sub{text-align:center;color:#8888a0;font-size:13px;margin-bottom:32px}
+h2{font-size:20px;font-weight:900;margin:36px 0 12px;color:#0d7377}
+h3{font-size:15px;font-weight:800;margin:20px 0 8px}
+h4{font-size:13px;font-weight:700;margin:12px 0 6px;color:#0d7377}
+.card{background:#fff;border:1px solid #E0D8CC;border-radius:16px;padding:24px;margin-bottom:14px}
+.card p,.card li{font-size:13px;color:#4a4a5e}
+.track{border-right:4px solid;padding-right:4px}
+.track-1{border-color:#0d7377}
+.track-2{border-color:#b8860b}
+.track-3{border-color:#6a1b4d}
+.track-4{border-color:#1565c0}
+.lesson{background:#f8f7f4;border:1px solid #E0D8CC;border-radius:10px;padding:14px;margin-bottom:8px}
+.lesson .num{font-size:11px;font-weight:800;color:#0d7377;margin-bottom:2px}
+.lesson .title{font-size:14px;font-weight:700;margin-bottom:4px}
+.lesson .meta{font-size:11px;color:#8888a0}
+.lesson .points{font-size:12px;color:#4a4a5e;margin-top:6px;padding-right:16px}
+.lesson .points li{margin-bottom:2px}
+.code{background:#1e1e2e;border-radius:10px;padding:16px;margin:10px 0;overflow-x:auto;direction:ltr;text-align:left}
+.code pre{font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.65;color:#cdd6f4;white-space:pre;margin:0}
+.code .fn{font-family:'IBM Plex Mono';font-size:10px;color:#6c7086;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #313244}
+.k{color:#89b4fa}.s{color:#a6e3a1}.c{color:#6c7086}.n{color:#fab387}.t{color:#f9e2af}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700}
+.hl{background:rgba(13,115,119,.04);border-right:3px solid #0d7377;padding:10px 14px;border-radius:0 8px 8px 0;margin:8px 0;font-size:12px;color:#4a4a5e}
+footer{text-align:center;padding:30px;font-size:11px;color:#8888a0;border-top:1px solid #E0D8CC;margin-top:40px}
+@media(max-width:768px){.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>📚 منهج كورس التأهيل + 🛠️ الإعداد التقني</h1>
+<p class="sub">الجزء الأول: المنهج الكامل لكل مسار | الجزء الثاني: سكريبت الإعداد + بيانات Seeders</p>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PART 1: COURSE CURRICULUM -->
+<!-- ══════════════════════════════════════ -->
+<h2>📚 الجزء الأول: منهج كورس التأهيل — 4 مسارات</h2>
+<div class="hl"><strong>إجمالي:</strong> 14 درس | 10.5 ساعة | اختبار في نهاية كل مسار | شهادة بعد اجتياز الكل</div>
+
+<!-- TRACK 1 -->
+<div class="card track track-1">
+  <h3>🕌 المسار الأول: التأهيل الشرعي (4 دروس — 3 ساعات)</h3>
+  <p style="margin-bottom:12px">المصادر: كتب الفقه المعتمدة عند أهل السنة + فتاوى اللجنة الدائمة + كتاب "عشرة النساء" لابن الجوزي</p>
+
+  <div class="lesson">
+    <div class="num">الدرس 1 — 45 دقيقة — فيديو</div>
+    <div class="title">الزواج في الإسلام: غايته وأحكامه</div>
+    <ul class="points">
+      <li>الزواج سنة النبي ﷺ وميثاق غليظ — ليس عقداً تجارياً</li>
+      <li>الحِكم من تشريع الزواج: السكن والمودة والرحمة</li>
+      <li>أركان عقد الزواج وشروط صحته</li>
+      <li>صفات الزوج الصالح وصفات الزوجة الصالحة — من السنة</li>
+      <li>الاستخارة والاستشارة قبل القرار</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 2 — 45 دقيقة — فيديو</div>
+    <div class="title">حقوق الزوجين: ما لك وما عليك</div>
+    <ul class="points">
+      <li>حقوق الزوجة: النفقة، المسكن، المعاشرة بالمعروف، العدل</li>
+      <li>حقوق الزوج: الطاعة بالمعروف، حفظ الغيب، القرار المشترك</li>
+      <li>الحقوق المشتركة: المودة، الاحترام، الصدق، التعاون</li>
+      <li>الفرق بين القوامة والتسلط — فهم صحيح</li>
+      <li>حق كل طرف في الخصوصية والمساحة الشخصية</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 3 — 45 دقيقة — فيديو</div>
+    <div class="title">آداب الخلاف وحل النزاعات شرعياً</div>
+    <ul class="points">
+      <li>الخلاف طبيعي — النبي ﷺ اختلف مع زوجاته</li>
+      <li>آداب الغضب: لا ضرب، لا سب، لا تهديد بالطلاق</li>
+      <li>خطوات حل الخلاف: النصيحة → الهجر في المضجع → التحكيم</li>
+      <li>دور الأهل: متى يتدخلون ومتى لا</li>
+      <li>الطلاق: آخر الحلول لا أولها — أحكامه وآدابه</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 4 — 45 دقيقة — فيديو</div>
+    <div class="title">العلاقة الزوجية الحميمة — الآداب الشرعية</div>
+    <ul class="points">
+      <li>مكانة العلاقة الحميمة في الإسلام — عبادة وصدقة</li>
+      <li>آداب الجماع: الدعاء، الملاطفة، مراعاة الطرفين</li>
+      <li>المحرمات: الإتيان في الدبر، الجماع في الحيض</li>
+      <li>حق كلا الزوجين في الاستمتاع — بدون حرج</li>
+      <li>التوقعات الواقعية vs ما يُروَّج له</li>
+    </ul>
+    <div class="hl"><strong>ملاحظة:</strong> هذا الدرس يُعرض بلغة علمية محترمة — يُراجع بالكامل من الهيئة الشرعية قبل النشر. يُفصل بين نسخة الرجال ونسخة النساء إذا لزم الأمر.</div>
+  </div>
+</div>
+
+<!-- TRACK 2 -->
+<div class="card track track-2">
+  <h3>🧠 المسار الثاني: التأهيل النفسي (4 دروس — 3 ساعات)</h3>
+
+  <div class="lesson">
+    <div class="num">الدرس 1 — 45 دقيقة</div>
+    <div class="title">مهارات التواصل الفعّال بين الزوجين</div>
+    <ul class="points">
+      <li>الفرق بين الاستماع والإنصات — الإنصات الفعّال</li>
+      <li>لغة "أنا أشعر" بدل "أنت دائماً" — التواصل بدون اتهام</li>
+      <li>قراءة لغة الجسد — ماذا يقول شريكك بدون كلام</li>
+      <li>5 لغات للحب: كلمات التقدير، الأفعال، الهدايا، الوقت، اللمس</li>
+      <li>تمرين عملي: محادثة نموذجية (قبل وبعد)</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 2 — 45 دقيقة</div>
+    <div class="title">إدارة التوقعات — الواقع vs الخيال</div>
+    <ul class="points">
+      <li>لماذا نتوقع الكمال؟ تأثير الدراما والسوشيال ميديا</li>
+      <li>قائمة التوقعات الواقعية: ماذا تتوقع فعلاً من الزواج</li>
+      <li>صدمة الواقع: الأشهر الثلاثة الأولى — طبيعية وليست فشلاً</li>
+      <li>الفرق بين "شريك مثالي" و"شريك مناسب"</li>
+      <li>تمرين: اكتب توقعاتك وناقشها مع نفسك بصراحة</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 3 — 45 دقيقة</div>
+    <div class="title">الذكاء العاطفي في الحياة الزوجية</div>
+    <ul class="points">
+      <li>ما هو الذكاء العاطفي ولماذا هو أهم من الذكاء العقلي في الزواج</li>
+      <li>الوعي بمشاعرك: كيف تعرف إنك غاضب/حزين/محبط قبل ما تتصرف</li>
+      <li>التعاطف: كيف تشعر بما يشعر به شريكك</li>
+      <li>إدارة الغضب: تقنيات عملية (التوقف، التنفس، التأجيل)</li>
+      <li>كيف تعتذر بصدق — ولماذا الاعتذار ليس ضعفاً</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 4 — 45 دقيقة</div>
+    <div class="title">التعامل مع الضغوط والأزمات</div>
+    <ul class="points">
+      <li>أنواع الضغوط: مالية، عائلية، وظيفية، صحية</li>
+      <li>كيف الضغوط تؤثر على العلاقة — ولماذا لا نحمّل الشريك</li>
+      <li>استراتيجيات المواجهة كفريق (نحن vs المشكلة، مش أنا vs أنت)</li>
+      <li>متى نطلب مساعدة متخصصة — وليس عيباً</li>
+      <li>بناء "صندوق أمان عاطفي" — عادات يومية تقوّي العلاقة</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TRACK 3 -->
+<div class="card track track-3">
+  <h3>💰 المسار الثالث: التأهيل المالي (3 دروس — 2.5 ساعة)</h3>
+
+  <div class="lesson">
+    <div class="num">الدرس 1 — 50 دقيقة</div>
+    <div class="title">بناء ميزانية الأسرة من الصفر</div>
+    <ul class="points">
+      <li>الفرق بين الدخل والمصروف — ولماذا معظم الأسر لا تعرف أين يذهب المال</li>
+      <li>قاعدة 50/30/20: الاحتياجات / الرغبات / الادخار</li>
+      <li>أدوات مجانية لتتبع المصاريف (تطبيقات + Excel)</li>
+      <li>تمرين عملي: اعمل ميزانية شهرية لأسرة براتب X</li>
+      <li>من المسؤول عن الميزانية؟ الجواب: الاثنان معاً</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 2 — 50 دقيقة</div>
+    <div class="title">تأسيس البيت بأقل تكلفة — بدون ديون</div>
+    <ul class="points">
+      <li>ترتيب الأولويات: ما تحتاجه فعلاً vs ما المجتمع يضغط عليك لشرائه</li>
+      <li>البداية بالأساسيات والتدريج — لا تشتري كل شيء دفعة واحدة</li>
+      <li>المستعمل vs الجديد — أين توفر ومتى تستثمر</li>
+      <li>خطر الديون والتقسيط في بداية الزواج</li>
+      <li>صندوق الطوارئ: لماذا تحتاجه من اليوم الأول</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 3 — 50 دقيقة</div>
+    <div class="title">التخطيط المالي طويل المدى للأسرة</div>
+    <ul class="points">
+      <li>أهداف مالية: 6 أشهر / سنة / 5 سنوات</li>
+      <li>الادخار للأطفال والتعليم — ابدأ من اليوم</li>
+      <li>التأمين الصحي والاجتماعي — هل تحتاجه؟</li>
+      <li>مصادر دخل إضافية حلال — أفكار عملية</li>
+      <li>كيف تتحدث مع شريكك عن المال بدون خلاف</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TRACK 4 -->
+<div class="card track track-4">
+  <h3>🏠 المسار الرابع: التأهيل العملي (3 دروس — 2 ساعة)</h3>
+
+  <div class="lesson">
+    <div class="num">الدرس 1 — 40 دقيقة</div>
+    <div class="title">إدارة البيت — مهارات أساسية للطرفين</div>
+    <ul class="points">
+      <li>تقسيم المهام المنزلية — مش مسؤولية طرف واحد</li>
+      <li>أساسيات الطبخ للمبتدئين — 5 وجبات سهلة</li>
+      <li>تنظيم المنزل بأقل مجهود — نظام بسيط ومستدام</li>
+      <li>إدارة الوقت: عمل + بيت + علاقة — كيف توازن</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 2 — 40 دقيقة</div>
+    <div class="title">التعامل مع الأهل — من الطرفين</div>
+    <ul class="points">
+      <li>أهلك بعد الزواج: علاقة تتطور لكن لا تنقطع</li>
+      <li>أهل الزوج/الزوجة: كيف تبني علاقة صحية بدون تدخل</li>
+      <li>حدود صحية: كيف تقول "لا" بأدب</li>
+      <li>الأم vs الزوجة / الأب vs الزوج — خلاف كلاسيكي وحله</li>
+      <li>الزيارات: كم مرة؟ متى؟ قواعد واقعية</li>
+    </ul>
+  </div>
+
+  <div class="lesson">
+    <div class="num">الدرس 3 — 40 دقيقة</div>
+    <div class="title">السنة الأولى — دليل البقاء</div>
+    <ul class="points">
+      <li>أول 3 شهور: فترة تكيّف طبيعية — لا تحكم بسرعة</li>
+      <li>اكتشاف عادات الشريك: بعضها سيزعجك — وده طبيعي</li>
+      <li>بناء تقاليد خاصة بكم: عشاء أسبوعي، نزهة شهرية</li>
+      <li>متى وكيف تخطط للإنجاب — قرار مشترك</li>
+      <li>علامات تحتاج فيها مساعدة متخصصة — لا تتأخر</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📝 هيكل الاختبار لكل مسار</h3>
+  <p><strong>عدد الأسئلة:</strong> 10 أسئلة لكل مسار (اختيار من متعدد)</p>
+  <p><strong>درجة النجاح:</strong> 70% (7 من 10)</p>
+  <p><strong>المحاولات:</strong> 3 محاولات لكل اختبار</p>
+  <p><strong>بعد اجتياز الأربعة:</strong> تُصدر شهادة الجاهزية تلقائياً</p>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PART 2: SETUP SCRIPT + SEEDERS -->
+<!-- ══════════════════════════════════════ -->
+<h2>🛠️ الجزء الثاني: سكريبت الإعداد + البيانات التجريبية</h2>
+
+<div class="card">
+  <h3>⚡ سكريبت إعداد المشروع — انسخه وشغّله</h3>
+  <div class="code">
+    <div class="fn">setup.sh — شغّل الأوامر دي بالترتيب</div>
+    <pre>
+<span class="c"># ═══ 1. إنشاء مشروع Laravel ═══</span>
+composer create-project laravel/laravel yassiru
+<span class="k">cd</span> yassiru
+
+<span class="c"># ═══ 2. تثبيت الحزم المطلوبة ═══</span>
+composer require laravel/sanctum
+composer require spatie/laravel-permission
+composer require spatie/laravel-medialibrary
+composer require stripe/stripe-php
+composer require laravel/horizon
+
+<span class="c"># ═══ 3. إعداد Vue.js + Bootstrap ═══</span>
+npm install vue@3 vue-router@4 pinia axios
+npm install bootstrap@5.3.3 @popperjs/core
+npm install sass vee-validate yup
+npm install @vitejs/plugin-vue
+
+<span class="c"># ═══ 4. إعداد قاعدة البيانات ═══</span>
+<span class="c"># عدّل ملف .env:</span>
+<span class="c"># DB_DATABASE=yassiru</span>
+<span class="c"># DB_USERNAME=root</span>
+<span class="c"># DB_PASSWORD=your_password</span>
+<span class="c"># CACHE_DRIVER=redis</span>
+<span class="c"># QUEUE_CONNECTION=redis</span>
+<span class="c"># SESSION_DRIVER=redis</span>
+
+php artisan migrate
+php artisan db:seed
+
+<span class="c"># ═══ 5. نشر ملفات الحزم ═══</span>
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+php artisan horizon:install
+
+<span class="c"># ═══ 6. إنشاء المفاتيح ═══</span>
+php artisan key:generate
+
+<span class="c"># ═══ 7. تشغيل المشروع ═══</span>
+php artisan serve &
+npm run dev</pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>⚙️ إعداد vite.config.js</h3>
+  <div class="code">
+    <div class="fn">vite.config.js</div>
+    <pre>
+<span class="k">import</span> { defineConfig } <span class="k">from</span> <span class="s">'vite'</span>
+<span class="k">import</span> vue <span class="k">from</span> <span class="s">'@vitejs/plugin-vue'</span>
+<span class="k">import</span> laravel <span class="k">from</span> <span class="s">'laravel-vite-plugin'</span>
+
+<span class="k">export default</span> defineConfig({
+  plugins: [
+    laravel({ input: [<span class="s">'resources/js/app.js'</span>], refresh: <span class="k">true</span> }),
+    vue({ template: { transformAssetUrls: { base: <span class="k">null</span>, includeAbsolute: <span class="k">false</span> } } }),
+  ],
+  resolve: { alias: { <span class="s">'@'</span>: <span class="s">'/resources/js'</span> } },
+})</pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📦 Seeder: المدن العربية</h3>
+  <div class="code">
+    <div class="fn">database/seeders/CitySeeder.php</div>
+    <pre>
+<span class="n">$cities</span> = [
+  [<span class="s">'name'</span> => <span class="s">'القاهرة'</span>, <span class="s">'country'</span> => <span class="s">'مصر'</span>, <span class="s">'country_code'</span> => <span class="s">'EG'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">150000</span>, <span class="s">'currency'</span> => <span class="s">'EGP'</span>],
+  [<span class="s">'name'</span> => <span class="s">'الإسكندرية'</span>, <span class="s">'country'</span> => <span class="s">'مصر'</span>, <span class="s">'country_code'</span> => <span class="s">'EG'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">120000</span>, <span class="s">'currency'</span> => <span class="s">'EGP'</span>],
+  [<span class="s">'name'</span> => <span class="s">'المنصورة'</span>, <span class="s">'country'</span> => <span class="s">'مصر'</span>, <span class="s">'country_code'</span> => <span class="s">'EG'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">100000</span>, <span class="s">'currency'</span> => <span class="s">'EGP'</span>],
+  [<span class="s">'name'</span> => <span class="s">'الرياض'</span>, <span class="s">'country'</span> => <span class="s">'السعودية'</span>, <span class="s">'country_code'</span> => <span class="s">'SA'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">300000</span>, <span class="s">'currency'</span> => <span class="s">'SAR'</span>],
+  [<span class="s">'name'</span> => <span class="s">'جدة'</span>, <span class="s">'country'</span> => <span class="s">'السعودية'</span>, <span class="s">'country_code'</span> => <span class="s">'SA'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">250000</span>, <span class="s">'currency'</span> => <span class="s">'SAR'</span>],
+  [<span class="s">'name'</span> => <span class="s">'دبي'</span>, <span class="s">'country'</span> => <span class="s">'الإمارات'</span>, <span class="s">'country_code'</span> => <span class="s">'AE'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">400000</span>, <span class="s">'currency'</span> => <span class="s">'AED'</span>],
+  [<span class="s">'name'</span> => <span class="s">'أبو ظبي'</span>, <span class="s">'country'</span> => <span class="s">'الإمارات'</span>, <span class="s">'country_code'</span> => <span class="s">'AE'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">350000</span>, <span class="s">'currency'</span> => <span class="s">'AED'</span>],
+  [<span class="s">'name'</span> => <span class="s">'الكويت'</span>, <span class="s">'country'</span> => <span class="s">'الكويت'</span>, <span class="s">'country_code'</span> => <span class="s">'KW'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">280000</span>, <span class="s">'currency'</span> => <span class="s">'KWD'</span>],
+  [<span class="s">'name'</span> => <span class="s">'عمّان'</span>, <span class="s">'country'</span> => <span class="s">'الأردن'</span>, <span class="s">'country_code'</span> => <span class="s">'JO'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">80000</span>, <span class="s">'currency'</span> => <span class="s">'JOD'</span>],
+  [<span class="s">'name'</span> => <span class="s">'بيروت'</span>, <span class="s">'country'</span> => <span class="s">'لبنان'</span>, <span class="s">'country_code'</span> => <span class="s">'LB'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">90000</span>, <span class="s">'currency'</span> => <span class="s">'USD'</span>],
+  [<span class="s">'name'</span> => <span class="s">'الدار البيضاء'</span>, <span class="s">'country'</span> => <span class="s">'المغرب'</span>, <span class="s">'country_code'</span> => <span class="s">'MA'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">100000</span>, <span class="s">'currency'</span> => <span class="s">'MAD'</span>],
+  [<span class="s">'name'</span> => <span class="s">'تونس'</span>, <span class="s">'country'</span> => <span class="s">'تونس'</span>, <span class="s">'country_code'</span> => <span class="s">'TN'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">70000</span>, <span class="s">'currency'</span> => <span class="s">'TND'</span>],
+  [<span class="s">'name'</span> => <span class="s">'إسطنبول'</span>, <span class="s">'country'</span> => <span class="s">'تركيا'</span>, <span class="s">'country_code'</span> => <span class="s">'TR'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">180000</span>, <span class="s">'currency'</span> => <span class="s">'TRY'</span>],
+  [<span class="s">'name'</span> => <span class="s">'الخرطوم'</span>, <span class="s">'country'</span> => <span class="s">'السودان'</span>, <span class="s">'country_code'</span> => <span class="s">'SD'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">50000</span>, <span class="s">'currency'</span> => <span class="s">'SDG'</span>],
+  [<span class="s">'name'</span> => <span class="s">'بغداد'</span>, <span class="s">'country'</span> => <span class="s">'العراق'</span>, <span class="s">'country_code'</span> => <span class="s">'IQ'</span>, <span class="s">'avg_marriage_cost'</span> => <span class="n">120000</span>, <span class="s">'currency'</span> => <span class="s">'IQD'</span>],
+];
+
+<span class="k">foreach</span> (<span class="n">$cities</span> <span class="k">as</span> <span class="n">$city</span>) {
+    City::<span class="k">create</span>(<span class="n">$city</span>);
+}</pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📦 Seeder: الكورسات والدروس</h3>
+  <div class="code">
+    <div class="fn">database/seeders/CourseSeeder.php</div>
+    <pre>
+<span class="n">$courses</span> = [
+  [
+    <span class="s">'title'</span> => <span class="s">'المسار الشرعي'</span>,
+    <span class="s">'track'</span> => <span class="s">'shariah'</span>,
+    <span class="s">'description'</span> => <span class="s">'حقوق الزوجين والمعاشرة بالمعروف وآداب الخلاف'</span>,
+    <span class="s">'duration_hours'</span> => <span class="n">3</span>,
+    <span class="s">'lessons'</span> => [
+      [<span class="s">'title'</span> => <span class="s">'الزواج في الإسلام: غايته وأحكامه'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">1</span>],
+      [<span class="s">'title'</span> => <span class="s">'حقوق الزوجين: ما لك وما عليك'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">2</span>],
+      [<span class="s">'title'</span> => <span class="s">'آداب الخلاف وحل النزاعات شرعياً'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">3</span>],
+      [<span class="s">'title'</span> => <span class="s">'العلاقة الزوجية الحميمة — الآداب الشرعية'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">4</span>],
+    ]
+  ],
+  [
+    <span class="s">'title'</span> => <span class="s">'المسار النفسي'</span>,
+    <span class="s">'track'</span> => <span class="s">'psychology'</span>,
+    <span class="s">'description'</span> => <span class="s">'التواصل والذكاء العاطفي وإدارة التوقعات'</span>,
+    <span class="s">'duration_hours'</span> => <span class="n">3</span>,
+    <span class="s">'lessons'</span> => [
+      [<span class="s">'title'</span> => <span class="s">'مهارات التواصل الفعّال بين الزوجين'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">1</span>],
+      [<span class="s">'title'</span> => <span class="s">'إدارة التوقعات — الواقع vs الخيال'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">2</span>],
+      [<span class="s">'title'</span> => <span class="s">'الذكاء العاطفي في الحياة الزوجية'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">3</span>],
+      [<span class="s">'title'</span> => <span class="s">'التعامل مع الضغوط والأزمات'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">45</span>, <span class="s">'order'</span> => <span class="n">4</span>],
+    ]
+  ],
+  [
+    <span class="s">'title'</span> => <span class="s">'المسار المالي'</span>,
+    <span class="s">'track'</span> => <span class="s">'financial'</span>,
+    <span class="s">'description'</span> => <span class="s">'ميزانية الأسرة والادخار وتجنب الديون'</span>,
+    <span class="s">'duration_hours'</span> => <span class="n">2.5</span>,
+    <span class="s">'lessons'</span> => [
+      [<span class="s">'title'</span> => <span class="s">'بناء ميزانية الأسرة من الصفر'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">50</span>, <span class="s">'order'</span> => <span class="n">1</span>],
+      [<span class="s">'title'</span> => <span class="s">'تأسيس البيت بأقل تكلفة — بدون ديون'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">50</span>, <span class="s">'order'</span> => <span class="n">2</span>],
+      [<span class="s">'title'</span> => <span class="s">'التخطيط المالي طويل المدى للأسرة'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">50</span>, <span class="s">'order'</span> => <span class="n">3</span>],
+    ]
+  ],
+  [
+    <span class="s">'title'</span> => <span class="s">'المسار العملي'</span>,
+    <span class="s">'track'</span> => <span class="s">'practical'</span>,
+    <span class="s">'description'</span> => <span class="s">'المهام المنزلية والتعامل مع الأهل والسنة الأولى'</span>,
+    <span class="s">'duration_hours'</span> => <span class="n">2</span>,
+    <span class="s">'lessons'</span> => [
+      [<span class="s">'title'</span> => <span class="s">'إدارة البيت — مهارات أساسية للطرفين'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">40</span>, <span class="s">'order'</span> => <span class="n">1</span>],
+      [<span class="s">'title'</span> => <span class="s">'التعامل مع الأهل — من الطرفين'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">40</span>, <span class="s">'order'</span> => <span class="n">2</span>],
+      [<span class="s">'title'</span> => <span class="s">'السنة الأولى — دليل البقاء'</span>, <span class="s">'type'</span> => <span class="s">'video'</span>, <span class="s">'duration_minutes'</span> => <span class="n">40</span>, <span class="s">'order'</span> => <span class="n">3</span>],
+    ]
+  ],
+];</pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📦 Seeder: كتب الأحاديث (لمشروع تبيّنوا لو حابب تدمجه)</h3>
+  <div class="code">
+    <div class="fn">database/seeders/BookSeeder.php</div>
+    <pre>
+<span class="n">$books</span> = [
+  [<span class="s">'name_ar'</span>=><span class="s">'صحيح البخاري'</span>, <span class="s">'slug'</span>=><span class="s">'bukhari'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام البخاري'</span>, <span class="s">'total_hadiths'</span>=><span class="n">7563</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'صحيح مسلم'</span>, <span class="s">'slug'</span>=><span class="s">'muslim'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام مسلم'</span>, <span class="s">'total_hadiths'</span>=><span class="n">7500</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'سنن الترمذي'</span>, <span class="s">'slug'</span>=><span class="s">'tirmidhi'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام الترمذي'</span>, <span class="s">'total_hadiths'</span>=><span class="n">3956</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'سنن أبي داود'</span>, <span class="s">'slug'</span>=><span class="s">'abu-dawud'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام أبو داود'</span>, <span class="s">'total_hadiths'</span>=><span class="n">5274</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'سنن النسائي'</span>, <span class="s">'slug'</span>=><span class="s">'nasai'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام النسائي'</span>, <span class="s">'total_hadiths'</span>=><span class="n">5758</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'سنن ابن ماجه'</span>, <span class="s">'slug'</span>=><span class="s">'ibn-majah'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام ابن ماجه'</span>, <span class="s">'total_hadiths'</span>=><span class="n">4341</span>, <span class="s">'is_primary'</span>=><span class="k">true</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'مسند أحمد'</span>, <span class="s">'slug'</span>=><span class="s">'ahmad'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام أحمد بن حنبل'</span>, <span class="s">'total_hadiths'</span>=><span class="n">27647</span>, <span class="s">'is_primary'</span>=><span class="k">false</span>],
+  [<span class="s">'name_ar'</span>=><span class="s">'موطأ مالك'</span>, <span class="s">'slug'</span>=><span class="s">'muwatta'</span>, <span class="s">'author_ar'</span>=><span class="s">'الإمام مالك'</span>, <span class="s">'total_hadiths'</span>=><span class="n">1832</span>, <span class="s">'is_primary'</span>=><span class="k">false</span>],
+];</pre>
+  </div>
+</div>
+
+<div class="card">
+  <h3>📦 Seeder: Roles & Permissions</h3>
+  <div class="code">
+    <div class="fn">database/seeders/RoleSeeder.php</div>
+    <pre>
+<span class="k">use</span> Spatie\Permission\Models\Role;
+<span class="k">use</span> Spatie\Permission\Models\Permission;
+
+<span class="c">// Roles</span>
+Role::<span class="k">create</span>([<span class="s">'name'</span> => <span class="s">'admin'</span>]);
+Role::<span class="k">create</span>([<span class="s">'name'</span> => <span class="s">'recommender'</span>]);
+Role::<span class="k">create</span>([<span class="s">'name'</span> => <span class="s">'user'</span>]);
+
+<span class="c">// Permissions</span>
+<span class="n">$permissions</span> = [
+  <span class="s">'manage-users'</span>, <span class="s">'manage-recommenders'</span>, <span class="s">'manage-circles'</span>, <span class="s">'manage-weddings'</span>,
+  <span class="s">'manage-courses'</span>, <span class="s">'manage-reports'</span>, <span class="s">'view-admin-dashboard'</span>,
+  <span class="s">'add-candidates'</span>, <span class="s">'make-recommendations'</span>, <span class="s">'view-recommender-dashboard'</span>,
+  <span class="s">'enroll-courses'</span>, <span class="s">'join-circles'</span>, <span class="s">'register-weddings'</span>, <span class="s">'submit-reports'</span>,
+];
+
+<span class="k">foreach</span> (<span class="n">$permissions</span> <span class="k">as</span> <span class="n">$p</span>) {
+  Permission::<span class="k">create</span>([<span class="s">'name'</span> => <span class="n">$p</span>]);
+}
+
+Role::<span class="k">findByName</span>(<span class="s">'admin'</span>)->givePermissionTo(Permission::<span class="k">all</span>());
+Role::<span class="k">findByName</span>(<span class="s">'recommender'</span>)->givePermissionTo([<span class="s">'add-candidates'</span>,<span class="s">'make-recommendations'</span>,<span class="s">'view-recommender-dashboard'</span>,<span class="s">'enroll-courses'</span>,<span class="s">'join-circles'</span>]);
+Role::<span class="k">findByName</span>(<span class="s">'user'</span>)->givePermissionTo([<span class="s">'enroll-courses'</span>,<span class="s">'join-circles'</span>,<span class="s">'register-weddings'</span>,<span class="s">'submit-reports'</span>]);</pre>
+  </div>
+</div>
+
+</div>
+<footer>يسّروا — منهج التأهيل + الإعداد التقني | أبريل 2026</footer>
+</body>
+</html>

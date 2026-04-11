@@ -1,0 +1,1034 @@
+// ========================================
+// يسّرو — Fund Page Styles
+// ========================================
+
+// ============================================
+// 1. FUND HERO
+// ============================================
+.fund-hero {
+  position: relative;
+  padding: 7rem 0 5rem;
+  overflow: hidden;
+  background: linear-gradient(160deg, #faf5e8 0%, $bg-warm 50%, #fff 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba($secondary, 0.1) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($primary, 0.06) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) { padding: 4rem 0 3rem; }
+}
+
+.fund-hero__content { position: relative; z-index: 2; }
+
+.fund-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba($secondary, 0.12);
+  color: $secondary-dark;
+  border: 1px solid rgba($secondary, 0.2);
+  border-radius: 100px;
+  font-family: $font-ruqaa;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.fund-hero__title {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: $lh-display;
+  letter-spacing: -0.01em;
+  color: $text-dark;
+  margin-bottom: 1.25rem;
+
+  .amount {
+    color: $secondary;
+    font-size: 1.15em;
+    font-weight: 900;
+    display: inline-block;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      right: 0;
+      left: 0;
+      height: 0.35em;
+      background: rgba($secondary, 0.18);
+      z-index: -1;
+      border-radius: 4px;
+    }
+  }
+}
+
+.fund-hero__subtitle {
+  font-size: 1.2rem;
+  line-height: $lh-body;
+  color: $text-secondary-custom;
+  margin-bottom: 2rem;
+  max-width: 540px;
+
+  @media (max-width: 768px) { font-size: 1rem; }
+}
+
+.fund-hero__cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.fund-hero__cta-primary {
+  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 8px 24px rgba($secondary, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+
+  &:hover {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba($secondary, 0.4);
+  }
+}
+
+.fund-hero__cta-secondary {
+  background: $bg-white;
+  color: $primary-dark;
+  border: 2px solid rgba($primary, 0.2);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.25s;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary;
+    border-color: $primary;
+    transform: translateY(-2px);
+  }
+}
+
+.fund-hero__trust {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-light;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: $text-muted-custom;
+    font-weight: 600;
+  }
+}
+
+// === Hero Visual: Circle Cycle ===
+.cycle-visual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+
+  @media (max-width: 991px) { margin-top: 3rem; }
+}
+
+.cycle-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px dashed rgba($secondary, 0.3);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  animation: rotateBg 60s linear infinite;
+}
+
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cycle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  text-align: center;
+  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  color: #fff;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba($secondary, 0.35);
+  padding: 1rem;
+
+  &__amount {
+    font-size: 1.75rem;
+    font-weight: 900;
+    line-height: $lh-numeric;
+    margin-bottom: 0.25rem;
+
+    @media (max-width: 768px) { font-size: 1.4rem; }
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    line-height: $lh-tight;
+  }
+}
+
+.cycle-member {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $bg-white;
+  border: 3px solid $border-custom;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: $text-muted-custom;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s;
+
+  &.active {
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    color: #fff;
+    border-color: $primary-dark;
+    transform: scale(1.15);
+    box-shadow: 0 10px 24px rgba($primary, 0.4);
+  }
+
+  &.received {
+    background: rgba($success, 0.15);
+    color: $success;
+    border-color: rgba($success, 0.4);
+  }
+}
+
+// ============================================
+// 2. COMPARISON SECTION (Why Yassiru vs Others)
+// ============================================
+.compare-section {
+  padding: 6rem 0;
+  background: $bg-white;
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.compare-table {
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  overflow-x: auto;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(13, 26, 42, 0.06);
+  border: 1px solid $border-light;
+  background: $bg-white;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+
+    th, td {
+      padding: 1.25rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid $border-light;
+
+      &:first-child {
+        text-align: right;
+        font-weight: 700;
+        color: $text-dark;
+        background: $bg-warm;
+        padding-right: 1.5rem;
+      }
+    }
+
+    th {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: $text-secondary-custom;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: $bg-warm;
+      padding: 1.25rem 1rem;
+
+      &.col-yassiru {
+        background: linear-gradient(180deg, $secondary 0%, $secondary-dark 100%);
+        color: #fff;
+        font-size: 1rem;
+        text-transform: none;
+        letter-spacing: 0;
+        position: relative;
+
+        &::before {
+          content: '★';
+          position: absolute;
+          top: 0.5rem;
+          right: 50%;
+          transform: translateX(50%);
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    td {
+      font-size: 0.9rem;
+      color: $text-secondary-custom;
+
+      &.col-yassiru {
+        background: rgba($secondary, 0.04);
+        font-weight: 700;
+        color: $secondary-dark;
+        border-right: 2px solid rgba($secondary, 0.15);
+        border-left: 2px solid rgba($secondary, 0.15);
+      }
+
+      .check { color: $success; }
+      .cross { color: $danger; }
+      .warn { color: $warning; }
+    }
+
+    tr:last-child td { border-bottom: none; }
+  }
+}
+
+// ============================================
+// 3. HOW IT WORKS — Visual Steps
+// ============================================
+.fund-how-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.fund-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  position: relative;
+
+  @media (max-width: 991px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+.fund-step {
+  background: $bg-white;
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid $border-light;
+  position: relative;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($secondary, 0.3);
+    box-shadow: 0 16px 36px rgba(13, 26, 42, 0.06);
+
+    .fund-step__number { background: $secondary; color: #fff; }
+  }
+
+  &__number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($secondary, 0.1);
+    color: $secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+  }
+
+  &__title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  &__desc {
+    font-size: 0.85rem;
+    color: $text-secondary-custom;
+    line-height: $lh-body-sm;
+    margin-bottom: 0.75rem;
+  }
+
+  &__example {
+    background: $bg-warm;
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.78rem;
+    color: $secondary-dark;
+    font-weight: 600;
+    border-right: 3px solid $secondary;
+  }
+}
+
+.fund-example-banner {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  padding: 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba($secondary, 0.08) 0%, rgba($primary, 0.06) 100%);
+  border: 2px dashed rgba($secondary, 0.3);
+  text-align: center;
+
+  &__title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: $secondary-dark;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+  }
+
+  &__text {
+    font-size: 1.1rem;
+    line-height: $lh-body;
+    color: $text-dark;
+    margin: 0;
+
+    strong { color: $secondary-dark; font-size: 1.15em; }
+  }
+}
+
+// ============================================
+// 4. INTERACTIVE CALCULATOR
+// ============================================
+.fund-calc-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #1a3a3c 0%, $primary-dark 50%, #094548 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(255,255,255,0.06)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.fund-calc__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.fund-calc__header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+}
+
+.fund-calc__tool {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2.5rem;
+  max-width: 760px;
+  margin: 0 auto;
+  color: $text-dark;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 768px) { padding: 1.5rem; border-radius: 20px; }
+}
+
+.fund-slider {
+  margin-bottom: 2rem;
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    color: $text-dark;
+
+    .label-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      color: $text-secondary-custom;
+    }
+
+    .label-value {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: $secondary-dark;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  &__input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: $border-light;
+    border-radius: 100px;
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba($secondary, 0.4);
+      border: 3px solid #fff;
+      transition: transform 0.2s;
+    }
+
+    &::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+    &::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba($secondary, 0.4);
+      border: 3px solid #fff;
+    }
+  }
+
+  &__range {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: $text-muted-custom;
+  }
+}
+
+.fund-result {
+  background: linear-gradient(135deg, rgba($secondary, 0.08) 0%, rgba($primary, 0.05) 100%);
+  border: 2px solid rgba($secondary, 0.2);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  text-align: center;
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $text-secondary-custom;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  &__amount {
+    font-size: 3rem;
+    font-weight: 900;
+    color: $secondary-dark;
+    line-height: $lh-numeric;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 576px) { font-size: 2.25rem; }
+  }
+
+  &__currency {
+    font-size: 1rem;
+    color: $text-muted-custom;
+    margin-bottom: 1rem;
+  }
+
+  &__details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba($secondary, 0.15);
+  }
+
+  &__detail {
+    .icon { color: $secondary; margin-bottom: 0.25rem; }
+    .value { font-size: 1.05rem; font-weight: 800; color: $text-dark; }
+    .label { font-size: 0.75rem; color: $text-muted-custom; }
+  }
+}
+
+.fund-calc__cta {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+// ============================================
+// 5. SECURITY LAYERS
+// ============================================
+.security-section {
+  padding: 6rem 0;
+  background: $bg-white;
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.security-layers {
+  max-width: 1000px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.security-layer {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  background: $bg-warm;
+  border: 1px solid $border-light;
+  border-radius: 18px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+
+  &:hover {
+    background: $bg-white;
+    border-color: rgba($primary, 0.25);
+    box-shadow: 0 12px 32px rgba(13, 26, 42, 0.05);
+    transform: translateX(-4px);
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+
+    .security-layer__number {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .security-layer__content { grid-column: 2; grid-row: 1; }
+    .security-layer__icon { display: none; }
+  }
+
+  &__number {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--layer-color) 0%, var(--layer-dark) 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    @media (max-width: 576px) { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 12px; }
+  }
+
+  &__title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 0.4rem;
+
+    @media (max-width: 576px) { font-size: 1rem; }
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: $text-secondary-custom;
+    line-height: $lh-body-sm;
+    margin: 0;
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--layer-bg);
+    color: var(--layer-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ============================================
+// 6. SHARIA SECTION
+// ============================================
+.sharia-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, $bg-warm 0%, #fff 100%);
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.sharia-card {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem;
+  border: 2px solid rgba($success, 0.2);
+  box-shadow: 0 20px 60px rgba(13, 26, 42, 0.06);
+  position: relative;
+
+  @media (max-width: 768px) { padding: 2rem 1.5rem; }
+
+  &__badge {
+    position: absolute;
+    top: -16px;
+    right: 50%;
+    transform: translateX(50%);
+    background: linear-gradient(135deg, $success 0%, #14613b 100%);
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    box-shadow: 0 6px 16px rgba($success, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  &__quote {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    line-height: $lh-body;
+    color: $text-dark;
+    text-align: center;
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem;
+    background: rgba($success, 0.05);
+    border-radius: 14px;
+    border-right: 4px solid $success;
+
+    @media (max-width: 576px) { font-size: 1.1rem; }
+  }
+
+  &__points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    @media (max-width: 576px) { grid-template-columns: 1fr; }
+  }
+
+  &__point {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+
+    .icon {
+      flex-shrink: 0;
+      color: $success;
+      margin-top: 0.15rem;
+    }
+
+    .text {
+      font-size: 0.9rem;
+      line-height: $lh-body-sm;
+      color: $text-secondary-custom;
+
+      strong { color: $text-dark; }
+    }
+  }
+}
+
+// ============================================
+// 7. SUCCESS STORIES
+// ============================================
+.fund-stories-section {
+  padding: 6rem 0;
+  background: $bg-white;
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 3rem auto 0;
+
+  @media (max-width: 991px) { grid-template-columns: 1fr; }
+}
+
+.story-card {
+  background: $bg-warm;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid $border-light;
+  transition: all 0.3s;
+  position: relative;
+
+  &:hover {
+    background: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(13, 26, 42, 0.08);
+    border-color: rgba($secondary, 0.25);
+  }
+
+  &__amount {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+    color: #fff;
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  &__quote {
+    font-size: 0.95rem;
+    line-height: $lh-body;
+    color: $text-secondary-custom;
+    margin-bottom: 1.25rem;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid $border-light;
+
+    &-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    &-info {
+      .name { font-weight: 700; color: $text-dark; font-size: 0.95rem; margin: 0; }
+      .role { font-size: 0.8rem; color: $text-muted-custom; }
+    }
+  }
+}
+
+// ============================================
+// 8. FAQ (reuses .faq-* from home.scss)
+// ============================================
+.fund-faq-section {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #fff 0%, $bg-warm 100%);
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+}
+
+// ============================================
+// 9. FUND FINAL CTA — Dual Path
+// ============================================
+.fund-final-cta {
+  padding: 6rem 0;
+  background: $text-dark;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($secondary, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba($primary, 0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) { padding: 4rem 0; }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 900;
+    line-height: $lh-heading-lg;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+}
+
+.fund-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; }
+}
+
+.fund-path {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s;
+  display: block;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    color: #fff;
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &--primary &__icon { background: rgba($secondary, 0.2); color: $secondary; }
+  &--secondary &__icon { background: rgba($primary, 0.2); color: lighten($primary, 20%); }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    line-height: $lh-body-sm;
+    margin-bottom: 1.25rem;
+  }
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.75rem;
+  }
+
+  &--primary &__action { color: $secondary; }
+  &--secondary &__action { color: lighten($primary, 20%); }
+}

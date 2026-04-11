@@ -1,0 +1,100 @@
+// ========================================
+// يسّرو — Typography System
+// Optimized for Arabic readability
+// ========================================
+
+// === Font Families ===
+$font-cairo: 'Cairo', 'Segoe UI', sans-serif;
+$font-amiri: 'Amiri', 'Times New Roman', serif;
+$font-ruqaa: 'Aref Ruqaa', 'Amiri', serif; // Decorative — secondary use only
+
+// === Line-Heights (Arabic-optimized) ===
+// Arabic needs MORE line-height than Latin due to diacritics + descenders
+$lh-display:    1.4;    // H1 hero — display titles
+$lh-heading-lg: 1.45;   // H2 — large section titles
+$lh-heading:    1.5;    // H3 — sub-titles
+$lh-heading-sm: 1.6;    // H4-H6 — small headings
+$lh-body:       1.95;   // Paragraphs — comfortable reading
+$lh-body-sm:    1.75;   // Small text
+$lh-tight:      1.4;    // UI labels, buttons, badges
+$lh-verse:      2.2;    // Quranic verses (Amiri) — needs most space
+$lh-numeric:    1.1;    // Big numbers (no descenders)
+
+// === Letter-Spacing ===
+$ls-display:    0;       // Arabic display
+$ls-tight:      -0.02em; // Latin numbers (large displays)
+$ls-eyebrow:    1px;     // Eyebrow (uppercase Latin)
+$ls-eyebrow-ar: 0.3px;   // Eyebrow (Arabic)
+
+// ========================================
+// Global Element Resets
+// ========================================
+body {
+  line-height: $lh-body;
+  font-feature-settings: "kern", "liga", "calt";
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: $lh-heading;
+  margin-top: 0;
+}
+
+h1 { line-height: $lh-display; }
+h2 { line-height: $lh-heading-lg; }
+h3 { line-height: $lh-heading; }
+h4, h5, h6 { line-height: $lh-heading-sm; }
+
+p {
+  line-height: $lh-body;
+}
+
+// Make small text breathe a bit more
+small, .small {
+  line-height: $lh-body-sm;
+}
+
+// Buttons & UI labels
+button, .btn, .badge, label {
+  line-height: $lh-tight;
+}
+
+// ========================================
+// Utility Classes
+// ========================================
+.font-cairo  { font-family: $font-cairo !important; }
+.font-amiri  { font-family: $font-amiri !important; }
+.font-ruqaa  { font-family: $font-ruqaa !important; }
+
+// === Line-height utilities ===
+.lh-display    { line-height: $lh-display !important; }
+.lh-heading-lg { line-height: $lh-heading-lg !important; }
+.lh-heading    { line-height: $lh-heading !important; }
+.lh-heading-sm { line-height: $lh-heading-sm !important; }
+.lh-body       { line-height: $lh-body !important; }
+.lh-body-sm    { line-height: $lh-body-sm !important; }
+.lh-tight      { line-height: $lh-tight !important; }
+.lh-verse      { line-height: $lh-verse !important; }
+.lh-numeric    { line-height: $lh-numeric !important; }
+
+// ========================================
+// Decorative Ruqaa Eyebrows
+// ========================================
+// Used for section eyebrows globally — gives subtle decorative touch
+.eyebrow-ruqaa {
+  font-family: $font-ruqaa;
+  font-weight: 700;
+  letter-spacing: $ls-eyebrow-ar;
+  // Slight optical adjustment — Ruqaa has its own height
+  line-height: 1.5;
+}
+
+// Use this on accent words inside headings (e.g. "نصف التكلفة")
+.accent-ruqaa {
+  font-family: $font-ruqaa;
+  font-weight: 700;
+  // Optical sizing — Ruqaa appears slightly smaller than Cairo, so bump it
+  font-size: 1.05em;
+  line-height: 1;
+  display: inline-block;
+}

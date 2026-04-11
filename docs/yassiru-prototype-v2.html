@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — تيسير الزواج</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<style>
+:root{--teal:#0d7377;--teal-l:#e0f2f1;--teal-d:#095456;--gold:#b8860b;--gold-l:#fdf5e6;--coral:#c0392b;--plum:#6a1b4d;--sky:#1565c0;--bg:#FAF9F5;--s1:#fff;--s2:#F0EBE3;--bdr:#E0D8CC;--t1:#1a1a2a;--t2:#55556a;--t3:#9090a6}
+*{font-family:'Cairo',sans-serif;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);margin:0}
+.amiri{font-family:'Amiri',serif}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes countUp{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulseGlow{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.7;transform:scale(1.1)}}
+.anim{opacity:0;animation:fadeUp .65s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}
+
+/* === NAVBAR === */
+.ynav{position:sticky;top:0;z-index:999;background:rgba(250,249,245,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);transition:.3s}
+.ynav .brand{font-size:1.35rem;font-weight:900;color:var(--teal);text-decoration:none;display:flex;align-items:center;gap:8px}
+.ynav .nlink{padding:8px 16px;border-radius:12px;font-size:.82rem;font-weight:600;color:var(--t2);text-decoration:none;transition:.2s;cursor:pointer;border:none;background:none}
+.ynav .nlink:hover,.ynav .nlink.active{background:var(--teal-l);color:var(--teal)}
+
+/* === BUTTONS === */
+.btn-y{background:linear-gradient(135deg,#0d7377,#0a9396);color:#fff;border:none;padding:13px 32px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 4px 20px rgba(13,115,119,.2);display:inline-block;text-decoration:none}
+.btn-y:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(13,115,119,.3);color:#fff}
+.btn-yo{background:transparent;color:var(--teal);border:2px solid var(--teal);padding:11px 28px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:.25s;display:inline-block;text-decoration:none}
+.btn-yo:hover{background:var(--teal);color:#fff}
+.btn-gold{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border:none;padding:13px 32px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 4px 20px rgba(184,134,11,.2);display:inline-block}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,134,11,.3)}
+.btn-sm-y{padding:8px 20px;font-size:13px;border-radius:10px}
+
+/* === CARDS === */
+.ycard{background:var(--s1);border:1px solid var(--bdr);border-radius:20px;padding:28px;transition:transform .25s,box-shadow .25s}
+.ycard:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,.06)}
+.ycard-static{background:var(--s1);border:1px solid var(--bdr);border-radius:20px;padding:28px}
+
+/* === BADGES === */
+.ybadge{display:inline-block;padding:5px 14px;border-radius:8px;font-size:12px;font-weight:700}
+.yb-teal{background:var(--teal-l);color:var(--teal)}.yb-gold{background:var(--gold-l);color:var(--gold)}.yb-coral{background:#fdeaea;color:var(--coral)}
+
+/* === PROGRESS === */
+.ybar{height:8px;border-radius:4px;background:var(--bdr);overflow:hidden}
+.ybar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+
+/* === STAT === */
+.ystat{text-align:center;padding:24px 12px;border-radius:20px;background:var(--s1);border:1px solid var(--bdr)}
+.ystat .num{font-size:2.2rem;font-weight:900;line-height:1}
+.ystat .lbl{font-size:.7rem;color:var(--t3);margin-top:6px;line-height:1.4}
+
+/* === HERO === */
+.yhero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,#EDE8DC 0%,var(--bg) 100%)}
+.yhero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(13,115,119,.07),transparent 65%);top:-120px;left:50%;transform:translateX(-50%);animation:pulseGlow 8s ease-in-out infinite}
+.yhero::after{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(184,134,11,.05),transparent 65%);bottom:-80px;right:-60px}
+
+/* === PILLAR === */
+.ypillar{text-align:center;padding:28px 16px;border-radius:20px;border:1px solid var(--bdr);background:var(--s1);transition:.3s;cursor:pointer}
+.ypillar:hover{border-color:var(--teal);background:var(--teal-l);transform:translateY(-4px)}
+.ypillar .emoji{font-size:2.4rem;margin-bottom:12px;display:block;animation:float 4s ease-in-out infinite}
+.ypillar h5{font-size:.92rem;font-weight:800;margin-bottom:4px}
+.ypillar p{font-size:.72rem;color:var(--t3);margin:0;line-height:1.5}
+
+/* === CIRCLE DOT === */
+.cdot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:2px solid var(--bdr)}
+.cdot-done{background:var(--teal);border-color:var(--teal)}
+.cdot-current{background:var(--gold);border-color:var(--gold)}
+
+/* === WEDDING === */
+.ywedding{border-top:3px solid var(--teal)}
+
+/* === TABLE === */
+.ytable{width:100%;border-collapse:collapse;font-size:.82rem}
+.ytable th{padding:10px 8px;text-align:right;font-weight:700;color:var(--t3);border-bottom:2px solid var(--bdr);font-size:.75rem}
+.ytable td{padding:10px 8px;border-bottom:1px solid #f0ebe3}
+.ytable tfoot td{border-top:2px solid var(--bdr);font-weight:800}
+
+/* === RANGE === */
+input[type=range]{width:100%;accent-color:var(--teal);height:6px}
+select.yselect{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--bdr);font-size:14px;font-family:'Cairo';background:var(--bg);appearance:auto}
+
+/* === FOOTER === */
+.yfooter{background:var(--s2);border-top:1px solid var(--bdr);padding:48px 0 28px}
+
+/* === RESPONSIVE === */
+@media(max-width:768px){
+  .yhero{min-height:auto;padding:48px 0}
+  .yhero h1{font-size:2rem!important}
+  .ystat .num{font-size:1.5rem}
+  .hide-m{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="ynav py-2">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="brand" href="#" @click.prevent="go('home')">🌱 يسّروا</a>
+    <div class="d-flex gap-1 align-items-center hide-m">
+      <button v-for="n in navItems" :key="n.id" class="nlink" :class="{active:page===n.id}" @click="go(n.id)">{{n.label}}</button>
+    </div>
+    <div class="d-flex gap-2 hide-m">
+      <button class="btn-yo btn-sm-y">تسجيل الدخول</button>
+      <button class="btn-y btn-sm-y">إنشاء حساب</button>
+    </div>
+    <!-- Mobile menu toggle -->
+    <button class="d-lg-none border-0 bg-transparent fs-4" @click="mobileMenu=!mobileMenu">☰</button>
+  </div>
+  <div v-if="mobileMenu" class="container pb-2">
+    <div class="d-flex flex-column gap-1">
+      <button v-for="n in navItems" :key="n.id" class="nlink text-end" :class="{active:page===n.id}" @click="go(n.id);mobileMenu=false">{{n.label}}</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HOME PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='home'">
+
+  <!-- Hero -->
+  <section class="yhero">
+    <div style="position:relative;z-index:1;max-width:660px;padding:60px 24px">
+      <p class="amiri anim mb-2" style="font-size:1.15rem;color:var(--gold);opacity:.6">بسم الله الرحمن الرحيم</p>
+      <p class="amiri anim d1" style="font-size:clamp(1.1rem,2.8vw,1.5rem);color:var(--gold);line-height:2.2;margin-bottom:4px">«يَسِّرُوا وَلَا تُعَسِّرُوا، وَبَشِّرُوا وَلَا تُنَفِّرُوا»</p>
+      <p class="anim d1" style="font-size:.8rem;color:var(--t3);margin-bottom:28px">متفق عليه — البخاري ومسلم</p>
+      <h1 class="anim d2 mb-3" style="font-size:clamp(2rem,5.5vw,3.5rem);font-weight:900;line-height:1.15;letter-spacing:-1px">
+        منظومة <span style="color:var(--teal)">تيسير الزواج</span>
+      </h1>
+      <p class="anim d3" style="font-size:clamp(.9rem,1.8vw,1.05rem);color:var(--t2);line-height:2;margin-bottom:32px">
+        ليست منصة تعارف — بل حل شامل لإزالة كل عوائق الزواج:<br>التأهيل، التوفيق الموثوق، التمويل التعاوني، والزفاف الجماعي
+      </p>
+      <div class="anim d4 d-flex gap-3 justify-content-center flex-wrap">
+        <button class="btn-y" @click="go('courses')">🎓 ابدأ رحلة التأهيل</button>
+        <button class="btn-yo" @click="go('recommender')">🤝 كن مُعرِّفاً موثوقاً</button>
+      </div>
+      <div class="anim d5 mt-4">
+        <span style="display:inline-block;background:var(--teal-l);color:var(--teal);padding:8px 24px;border-radius:100px;font-size:.8rem;font-weight:700">🌱 صدقة جارية + دخل مستدام</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Crisis -->
+  <section class="py-5" style="background:#fff">
+    <div class="container" style="max-width:900px">
+      <div class="text-center mb-4">
+        <span class="ybadge yb-coral mb-2">⚠️ أزمة حقيقية بالأرقام</span>
+        <h2 class="fw-bold mt-2" style="font-size:1.7rem">جيل كامل مهدد بالبقاء بدون زواج</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3" v-for="(s,i) in crisisStats" :key="i">
+          <div class="ystat anim" :style="{animationDelay:i*.1+'s'}">
+            <div class="num" style="color:var(--coral)">{{s.num}}</div>
+            <div class="lbl">{{s.label}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="py-5" style="background:var(--s2)">
+    <div class="container" style="max-width:1000px">
+      <div class="text-center mb-4">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--teal)">المنظومة</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.6rem">5 أركان تغطي رحلة الزواج كاملة</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-lg" v-for="(p,i) in pillars" :key="i">
+          <div class="ypillar h-100" :style="{borderTop:'3px solid '+p.color}" @click="go(p.page)">
+            <span class="emoji" :style="{animationDelay:i*.3+'s'}">{{p.emoji}}</span>
+            <h5>{{p.title}}</h5>
+            <p>{{p.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator CTA -->
+  <section class="py-5">
+    <div class="container" style="max-width:900px">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-6">
+          <small style="font-weight:800;letter-spacing:3px;color:var(--teal)">أداة تفاعلية</small>
+          <h2 class="fw-bold mt-1" style="font-size:1.6rem">كم يكلف الزواج في مدينتك؟</h2>
+          <p style="color:var(--t2);line-height:2">حاسبة التكاليف تقارن بين الزواج التقليدي والزواج عبر يسّروا — وتوريك كم ممكن توفّر</p>
+          <button class="btn-y" @click="go('calc')">🧮 جرّب الحاسبة الآن</button>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="text-center p-4 rounded-4" style="background:#fdeaea;border:1px solid rgba(192,57,43,.1)">
+                <div style="font-size:.75rem;color:var(--coral);font-weight:700">❌ تقليدي</div>
+                <div class="mt-1" style="font-size:2rem;font-weight:900;color:var(--coral)">150,000</div>
+                <div style="font-size:.7rem;color:var(--t3)">جنيه مصري</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="text-center p-4 rounded-4" style="background:var(--teal-l);border:1px solid rgba(13,115,119,.1)">
+                <div style="font-size:.75rem;color:var(--teal);font-weight:700">✅ مع يسّروا</div>
+                <div class="mt-1" style="font-size:2rem;font-weight:900;color:var(--teal)">45,000</div>
+                <div style="font-size:.75rem;color:var(--teal);font-weight:700">توفير 70% ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Stats -->
+  <section class="py-5" style="background:var(--s2)">
+    <div class="container" style="max-width:800px">
+      <div class="text-center mb-4"><h2 class="fw-bold" style="font-size:1.5rem">إحصائيات المنصة</h2></div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3"><div class="ystat"><div class="num" style="color:var(--teal)">1,247</div><div class="lbl">مستخدم مسجل</div></div></div>
+        <div class="col-6 col-md-3"><div class="ystat"><div class="num" style="color:var(--gold)">389</div><div class="lbl">حاصل على الشهادة</div></div></div>
+        <div class="col-6 col-md-3"><div class="ystat"><div class="num" style="color:var(--plum)">22</div><div class="lbl">حلقة تيسير نشطة</div></div></div>
+        <div class="col-6 col-md-3"><div class="ystat"><div class="num" style="color:#1b7a4a">47</div><div class="lbl">زواج تم بنجاح ✓</div></div></div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COURSES PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='courses'">
+  <section class="py-5">
+    <div class="container" style="max-width:780px">
+      <div class="text-center mb-4 anim">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--teal)">الركن الأول</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.6rem">🎓 شهادة الجاهزية للزواج</h2>
+        <p style="color:var(--t2)">أكمل المسارات الأربعة واحصل على شهادتك</p>
+      </div>
+      <!-- Overall -->
+      <div class="ycard-static p-4 mb-4 anim d1">
+        <div class="d-flex justify-content-between mb-2">
+          <span class="fw-bold">إجمالي التقدم</span>
+          <span class="ybadge yb-teal">{{overallProg}}%</span>
+        </div>
+        <div class="ybar"><div class="ybar-fill" :style="{width:overallProg+'%',background:'linear-gradient(90deg,#0d7377,#0a9396)'}"></div></div>
+        <p class="small mt-2 mb-0" style="color:var(--t3)">أكملت {{doneLessons}} من {{totalLessons}} درس</p>
+      </div>
+      <!-- Courses -->
+      <div class="row g-3">
+        <div class="col-md-6" v-for="(c,i) in courses" :key="i">
+          <div class="ycard h-100 anim" :style="{borderRight:'4px solid '+c.color,animationDelay:(.15*(i+1))+'s'}">
+            <div style="font-size:2rem;margin-bottom:8px">{{c.emoji}}</div>
+            <h5 class="fw-bold" style="font-size:1rem">{{c.title}}</h5>
+            <p class="small mb-1" style="color:var(--t3)">{{c.desc}}</p>
+            <p class="small mb-3" style="color:var(--t3)">{{c.lessons}} دروس | {{c.hours}} ساعات</p>
+            <div class="ybar mb-3"><div class="ybar-fill" :style="{width:c.progress+'%',background:c.color}"></div></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="ybadge" :style="{background:c.progress>0?'var(--teal-l)':'#f0ebe3',color:c.progress>0?'var(--teal)':'var(--t3)'}">
+                {{c.progress>0?c.progress+'% مكتمل':'لم يبدأ'}}
+              </span>
+              <button @click="advanceCourse(i)" :style="{background:c.color,color:'#fff',border:'none',padding:'8px 20px',borderRadius:'10px',fontSize:'13px',fontWeight:700,cursor:'pointer',transition:'.2s'}">
+                {{c.progress>=100?'✓ مكتمل':c.progress>0?'أكمل ←':'ابدأ ←'}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Certificate -->
+      <div v-if="overallProg>=100" class="text-center p-5 mt-4 rounded-4 anim" style="background:var(--gold-l);border:2px solid rgba(184,134,11,.2)">
+        <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+        <h3 class="fw-bold" style="color:var(--gold)">مبروك! حصلت على شهادة الجاهزية</h3>
+        <p style="color:var(--t2)">يمكنك الآن الانضمام لحلقات التيسير والتسجيل عند المُعرِّفين</p>
+        <button class="btn-gold">📥 تحميل الشهادة PDF</button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- RECOMMENDER PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='recommender'">
+  <section class="py-5">
+    <div class="container" style="max-width:820px">
+      <div class="text-center mb-4 anim">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--gold)">الركن الثاني</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.6rem">🤝 نظام المُعرِّف الموثوق</h2>
+        <p style="color:var(--t2)">رقمنة دور "إمام الحي" و"الخاطبة" — صفر تواصل مباشر</p>
+      </div>
+      <div class="row g-3 mb-4">
+        <div class="col-md-4" v-for="(s,i) in recSteps" :key="i">
+          <div class="ycard h-100 text-center anim" :style="{animationDelay:(.1*(i+1))+'s'}">
+            <div style="font-size:2.2rem;margin-bottom:10px">{{s.emoji}}</div>
+            <span class="ybadge yb-teal mb-2">الخطوة {{i+1}}</span>
+            <h5 class="fw-bold" style="font-size:.95rem">{{s.title}}</h5>
+            <p class="small mb-0" style="color:var(--t3)">{{s.desc}}</p>
+          </div>
+        </div>
+      </div>
+      <h5 class="fw-bold mb-3">من يمكنه أن يكون مُعرِّفاً؟</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3" v-for="(t,i) in recTypes" :key="i">
+          <div class="ycard text-center h-100 anim" :style="{animationDelay:(.1*(i+1))+'s'}">
+            <div style="font-size:1.8rem;margin-bottom:8px">{{t.emoji}}</div>
+            <h6 class="fw-bold" style="font-size:.85rem">{{t.title}}</h6>
+            <p class="small mb-0" style="color:var(--t3)">{{t.desc}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 rounded-4 mb-4 anim d3" style="background:var(--teal-l);border-right:4px solid var(--teal)">
+        <h6 class="fw-bold" style="color:var(--teal-d)">⚖️ الضوابط الشرعية</h6>
+        <p class="small mb-0" style="color:var(--t2);line-height:1.9">لا تواصل مباشر بين الرجل والمرأة نهائياً. لا صور تُعرض. لا تصفح ملفات. كل شيء عبر ولي الأمر أو المُعرِّف. هذا النموذج أقرب لـ "الخاطبة الرقمية" — لا شبهة شرعية ولا قانونية.</p>
+      </div>
+      <div class="text-center"><button class="btn-y" style="font-size:1rem">🤝 سجّل كمُعرِّف موثوق</button></div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FUND PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='fund'">
+  <section class="py-5">
+    <div class="container" style="max-width:780px">
+      <div class="text-center mb-4 anim">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--plum)">الركن الثالث — الابتكار الأهم</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.5rem">💰 صندوق التيسير — جمعية الزواج الرقمية</h2>
+      </div>
+
+      <!-- Interactive Sliders -->
+      <div class="ycard-static p-4 mb-4 anim d1">
+        <h5 class="fw-bold text-center mb-4" style="font-size:1rem">🎮 غيّر الأرقام وشوف النتيجة لحظياً</h5>
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <label class="small fw-bold mb-2 d-block">👥 عدد الأعضاء: <span style="color:var(--plum)">{{fund.members}}</span></label>
+            <input type="range" min="5" max="30" v-model.number="fund.members" style="accent-color:var(--plum)">
+          </div>
+          <div class="col-md-6">
+            <label class="small fw-bold mb-2 d-block">💳 المبلغ الشهري: <span style="color:var(--plum)">{{fund.amount.toLocaleString()}} ج.م</span></label>
+            <input type="range" min="200" max="5000" step="100" v-model.number="fund.amount" style="accent-color:var(--plum)">
+          </div>
+        </div>
+        <div class="text-center p-4 rounded-4" style="background:linear-gradient(135deg,rgba(106,27,77,.05),rgba(13,115,119,.05));border:1px solid rgba(106,27,77,.1)">
+          <div style="font-size:.85rem;color:var(--t3)">كل عضو يحصل على</div>
+          <div style="font-size:3rem;font-weight:900;color:var(--teal);line-height:1.2;transition:.3s">{{fundTotal.toLocaleString()}} <span style="font-size:1rem">ج.م</span></div>
+          <div style="font-size:.8rem;color:var(--t3);margin-top:4px">خلال {{fund.members}} شهر — بدفع {{fund.amount.toLocaleString()}} ج.م شهرياً فقط</div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="ycard-static p-4 anim d2">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h5 class="fw-bold mb-0" style="font-size:.95rem">حلقة "شباب المعادي"</h5>
+            <span class="small" style="color:var(--t3)">15 عضو | 1,000 ج.م/شهر</span>
+          </div>
+          <span class="ybadge yb-teal">نشطة ✓</span>
+        </div>
+        <div v-for="(m,i) in circleMembers" :key="i" class="d-flex align-items-center gap-3 py-2" :style="{borderBottom:i<circleMembers.length-1?'1px solid #f0ebe3':'none'}">
+          <div class="cdot" :class="{'cdot-done':m.s==='done','cdot-current':m.s==='current'}"></div>
+          <div class="flex-grow-1 small"><strong>الدورة {{i+1}}</strong> — {{m.name}}</div>
+          <span class="ybadge" :class="{'yb-teal':m.s==='done','yb-gold':m.s==='current'}" :style="m.s==='pending'?'background:#f0ebe3;color:var(--t3)':''">
+            {{m.s==='done'?'استلم ✓':m.s==='current'?'الحالية':'منتظر'}}
+          </span>
+        </div>
+      </div>
+
+      <div class="p-3 rounded-4 mt-4 anim d3" style="background:var(--teal-l);border-right:4px solid var(--teal)">
+        <p class="small mb-0" style="color:var(--t2)"><strong style="color:var(--teal-d)">⚖️ الحكم الشرعي:</strong> الجمعية = قرض حسن دوري — جائزة شرعاً بلا ربا. المنصة منظّم فقط وليست مؤسسة مالية.</p>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- WEDDINGS PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='weddings'">
+  <section class="py-5">
+    <div class="container" style="max-width:850px">
+      <div class="text-center mb-4 anim">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--sky)">الركن الرابع</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.5rem">💒 الأعراس الجماعية</h2>
+        <p style="color:var(--t2)">احجز مكانك — وفّر 60-70% من التكاليف</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6" v-for="(w,i) in weddings" :key="i">
+          <div class="ycard h-100 ywedding anim" :style="{borderTopColor:w.color,animationDelay:(.12*(i+1))+'s'}">
+            <h5 class="fw-bold" style="font-size:1rem">🏛️ عرس جماعي — {{w.city}}</h5>
+            <p class="small mb-2" style="color:var(--t3)">📅 {{w.date}} &nbsp;|&nbsp; 📍 {{w.venue}}</p>
+            <div class="d-flex justify-content-between small mb-2">
+              <span>👥 {{w.total}} عريس</span>
+              <span class="fw-bold" :style="{color:w.remaining<=6?'var(--coral)':'var(--teal)'}">{{w.remaining}} مكان متبقي</span>
+            </div>
+            <div class="ybar mb-3"><div class="ybar-fill" :style="{width:((w.total-w.remaining)/w.total*100)+'%',background:w.color}"></div></div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <span class="small text-decoration-line-through" style="color:var(--t3)">{{w.original.toLocaleString()}} ج.م</span><br>
+                <span style="font-size:1.6rem;font-weight:900;color:var(--teal)">{{w.price.toLocaleString()}}</span>
+                <span class="small" style="color:var(--t3)"> ج.م</span>
+              </div>
+              <button class="btn-y btn-sm-y">سجّل الآن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CALCULATOR PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<template v-if="page==='calc'">
+  <section class="py-5">
+    <div class="container" style="max-width:700px">
+      <div class="text-center mb-4 anim">
+        <small style="font-weight:800;letter-spacing:3px;color:var(--teal)">أداة تفاعلية</small>
+        <h2 class="fw-bold mt-1" style="font-size:1.5rem">🧮 حاسبة تكاليف الزواج</h2>
+        <p style="color:var(--t2)">اختر مدينتك ومستوى الزفاف وشوف الفرق</p>
+      </div>
+
+      <div class="ycard-static p-4 mb-4 anim d1">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="small fw-bold mb-2 d-block">🏙️ المدينة</label>
+            <select class="yselect" v-model.number="calcCityIdx">
+              <option v-for="(c,i) in cities" :key="i" :value="i">{{c.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="small fw-bold mb-2 d-block">💍 مستوى الزفاف</label>
+            <select class="yselect" v-model="calcLevel">
+              <option value="simple">بسيط</option>
+              <option value="medium">متوسط</option>
+              <option value="luxury">فاخر</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-6">
+          <div class="text-center p-4 rounded-4 anim d2" style="background:#fdeaea;border:1px solid rgba(192,57,43,.1)">
+            <div class="small fw-bold mb-1" style="color:var(--coral)">❌ التكلفة التقليدية</div>
+            <div style="font-size:2.2rem;font-weight:900;color:var(--coral);transition:.3s">{{individualCost.toLocaleString()}}</div>
+            <div class="small" style="color:var(--t3)">{{cities[calcCityIdx].currency}}</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="text-center p-4 rounded-4 anim d3" style="background:var(--teal-l);border:1px solid rgba(13,115,119,.1)">
+            <div class="small fw-bold mb-1" style="color:var(--teal)">✅ مع يسّروا</div>
+            <div style="font-size:2.2rem;font-weight:900;color:var(--teal);transition:.3s">{{yassiruCost.toLocaleString()}}</div>
+            <div class="small fw-bold" style="color:var(--teal)">توفير {{savingsPercent}}% ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ycard-static p-4 anim d4">
+        <h5 class="fw-bold mb-3" style="font-size:.95rem">📋 تفصيل التكاليف</h5>
+        <table class="ytable">
+          <thead><tr><th>البند</th><th style="color:var(--coral)">تقليدي</th><th style="color:var(--teal)">مع يسّروا</th><th class="text-center">التوفير</th></tr></thead>
+          <tbody>
+            <tr v-for="(b,i) in breakdown" :key="i">
+              <td class="fw-bold">{{b.name}}</td>
+              <td style="color:var(--coral)">{{b.t.toLocaleString()}}</td>
+              <td style="color:var(--teal);font-weight:700">{{b.y.toLocaleString()}}</td>
+              <td class="text-center"><span class="ybadge yb-teal">{{b.t>0?Math.round((1-b.y/b.t)*100):0}}%</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>الإجمالي</td>
+              <td style="color:var(--coral)">{{individualCost.toLocaleString()}}</td>
+              <td style="color:var(--teal)">{{yassiruCost.toLocaleString()}}</td>
+              <td class="text-center"><span class="ybadge" style="background:var(--teal);color:#fff">{{savingsPercent}}%</span></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="text-center mt-4"><button class="btn-y" @click="go('fund')">💰 انضم لصندوق التيسير الآن</button></div>
+    </div>
+  </section>
+</template>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="yfooter">
+  <div class="container text-center">
+    <div style="font-size:1.5rem;margin-bottom:8px">🌱</div>
+    <h4 class="fw-bold" style="color:var(--teal);font-size:1.2rem">يسّروا</h4>
+    <p class="small" style="color:var(--t3)">منظومة متكاملة لتيسير الزواج في العالم الإسلامي</p>
+    <p class="amiri" style="font-size:1.1rem;color:var(--gold);margin:12px 0">﴿ وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ ﴾</p>
+    <button class="btn-gold btn-sm-y mb-3">💚 ادعم المشروع</button>
+    <p class="small mb-0" style="color:var(--t3)">© 2026 يسّروا — مشروع صدقة جارية</p>
+  </div>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const{createApp,ref,computed}=Vue;
+createApp({
+  setup(){
+    const page=ref('home'),mobileMenu=ref(false);
+    const navItems=[
+      {id:'home',label:'الرئيسية'},{id:'courses',label:'التأهيل'},{id:'recommender',label:'المُعرِّفون'},
+      {id:'fund',label:'الصندوق'},{id:'weddings',label:'الأعراس'},{id:'calc',label:'الحاسبة'}
+    ];
+    const go=(p)=>{page.value=p;mobileMenu.value=false;window.scrollTo({top:0,behavior:'smooth'})};
+
+    const crisisStats=[
+      {num:'40%',label:'من الشباب العربي لن يتزوجوا بسبب العجز المالي'},
+      {num:'10x',label:'تكلفة الزواج = دخل 10 سنوات كاملة'},
+      {num:'85%',label:'من الجامعيين يقولون التكلفة هي العائق'},
+      {num:'32+',label:'سنة — متوسط سن زواج الرجال في العواصم'}
+    ];
+
+    const pillars=[
+      {emoji:'🎓',title:'التأهيل',desc:'كورس إلزامي شرعي ونفسي ومالي — شهادة جاهزية',color:'#0d7377',page:'courses'},
+      {emoji:'🤝',title:'المُعرِّف الموثوق',desc:'توفيق عبر أئمة ومعلمين — صفر تواصل مباشر',color:'#b8860b',page:'recommender'},
+      {emoji:'💰',title:'صندوق التيسير',desc:'جمعية رقمية — شباب يوفرون معاً لتمويل الزواج',color:'#6a1b4d',page:'fund'},
+      {emoji:'💒',title:'الزفاف الجماعي',desc:'أعراس جماعية — توفير 60-70%',color:'#1565c0',page:'weddings'},
+      {emoji:'🛡️',title:'رعاية ما بعد',desc:'استشارات أسرية للسنة الأولى — لمنع الطلاق المبكر',color:'#1b7a4a',page:'home'}
+    ];
+
+    // Courses
+    const courses=ref([
+      {emoji:'🕌',title:'المسار الشرعي',desc:'حقوق الزوجين • المعاشرة • آداب الخلاف',lessons:4,hours:3,progress:75,color:'#0d7377'},
+      {emoji:'🧠',title:'المسار النفسي',desc:'التواصل • الذكاء العاطفي • إدارة التوقعات',lessons:4,hours:3,progress:50,color:'#b8860b'},
+      {emoji:'💰',title:'المسار المالي',desc:'ميزانية الأسرة • الادخار • تجنب الديون',lessons:3,hours:2.5,progress:0,color:'#6a1b4d'},
+      {emoji:'🏠',title:'المسار العملي',desc:'المهام المنزلية • التعامل مع الأهل',lessons:3,hours:2,progress:0,color:'#1565c0'}
+    ]);
+    const totalLessons=computed(()=>courses.value.reduce((a,c)=>a+c.lessons,0));
+    const doneLessons=computed(()=>courses.value.reduce((a,c)=>a+Math.round(c.lessons*c.progress/100),0));
+    const overallProg=computed(()=>Math.round(doneLessons.value/totalLessons.value*100));
+    const advanceCourse=(i)=>{if(courses.value[i].progress<100)courses.value[i].progress=Math.min(100,courses.value[i].progress+25)};
+
+    // Recommender
+    const recSteps=[
+      {emoji:'🔐',title:'التسجيل والتحقق',desc:'سجّل كمُعرِّف وتحقق من هويتك — الاعتماد خلال 48 ساعة'},
+      {emoji:'📝',title:'تسجيل المرشحين',desc:'سجّل أشخاصاً تعرفهم شخصياً مع بيانات ولي الأمر'},
+      {emoji:'🤝',title:'التوصية والتوفيق',desc:'النظام يقترح توافقات — أنت ترشّح — العائلات تتواصل عبرك'}
+    ];
+    const recTypes=[
+      {emoji:'🕌',title:'إمام مسجد',desc:'يعرف عائلات الحي'},{emoji:'👨‍🏫',title:'معلم / أستاذ',desc:'يعرف طلابه وأخلاقهم'},
+      {emoji:'👨‍👩‍👦',title:'قريب موثوق',desc:'عم أو خال يعرف الطرفين'},{emoji:'🏢',title:'قائد مجتمعي',desc:'مسؤول في جمعية'}
+    ];
+
+    // Fund
+    const fund=ref({members:15,amount:1000});
+    const fundTotal=computed(()=>fund.value.members*fund.value.amount);
+    const circleMembers=[
+      {name:'عمرو س.',s:'done'},{name:'خالد م.',s:'done'},{name:'يوسف أ.',s:'done'},
+      {name:'أحمد ح.',s:'current'},{name:'محمد ر.',s:'pending'},{name:'علي ع.',s:'pending'}
+    ];
+
+    // Weddings
+    const weddings=[
+      {city:'القاهرة',date:'15 مايو 2026',venue:'قاعة النيل الكبرى',total:20,remaining:6,price:8000,original:25000,color:'#0d7377'},
+      {city:'الإسكندرية',date:'22 يونيو 2026',venue:'فندق البحر الأبيض',total:15,remaining:12,price:6500,original:20000,color:'#b8860b'},
+      {city:'الرياض',date:'10 يوليو 2026',venue:'فندق الفيصلية',total:25,remaining:20,price:15000,original:50000,color:'#6a1b4d'},
+      {city:'عمّان',date:'5 أغسطس 2026',venue:'فندق لو رويال',total:15,remaining:15,price:4000,original:12000,color:'#1565c0'}
+    ];
+
+    // Calculator
+    const cities=[
+      {name:'القاهرة',base:150000,currency:'جنيه مصري'},{name:'الإسكندرية',base:120000,currency:'جنيه مصري'},
+      {name:'الرياض',base:300000,currency:'ريال سعودي'},{name:'جدة',base:250000,currency:'ريال سعودي'},
+      {name:'دبي',base:400000,currency:'درهم إماراتي'},{name:'عمّان',base:80000,currency:'دينار أردني'},
+      {name:'الدار البيضاء',base:100000,currency:'درهم مغربي'},{name:'إسطنبول',base:180000,currency:'ليرة تركية'}
+    ];
+    const calcCityIdx=ref(0),calcLevel=ref('medium');
+    const mult=computed(()=>({simple:.6,medium:1,luxury:1.8}[calcLevel.value]));
+    const individualCost=computed(()=>Math.round(cities[calcCityIdx.value].base*mult.value));
+    const yassiruCost=computed(()=>Math.round(individualCost.value*.3));
+    const savingsPercent=computed(()=>Math.round((1-yassiruCost.value/individualCost.value)*100));
+    const breakdown=computed(()=>{
+      const b=individualCost.value;
+      return[
+        {name:'المهر والشبكة',t:Math.round(b*.25),y:Math.round(b*.25)},
+        {name:'القاعة والحفل',t:Math.round(b*.3),y:Math.round(b*.3*.2)},
+        {name:'الأثاث والتجهيز',t:Math.round(b*.25),y:Math.round(b*.25*.5)},
+        {name:'الملابس والتصوير',t:Math.round(b*.1),y:Math.round(b*.1*.3)},
+        {name:'متفرقات',t:Math.round(b*.1),y:Math.round(b*.1*.4)}
+      ]
+    });
+
+    return{page,mobileMenu,navItems,go,crisisStats,pillars,
+      courses,totalLessons,doneLessons,overallProg,advanceCourse,
+      recSteps,recTypes,fund,fundTotal,circleMembers,weddings,
+      cities,calcCityIdx,calcLevel,individualCost,yassiruCost,savingsPercent,breakdown}
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

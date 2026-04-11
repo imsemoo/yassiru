@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — بروتوتايب</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<style>
+:root{
+  --y-teal:#0d7377;--y-teal-light:#e0f2f1;--y-teal-dark:#095456;
+  --y-gold:#b8860b;--y-gold-light:#fdf5e6;
+  --y-coral:#c0392b;--y-plum:#6a1b4d;--y-sky:#1565c0;
+  --y-bg:#faf9f6;--y-surface:#fff;--y-surface2:#f3efe8;
+  --y-border:#e0d8cc;--y-t1:#1a1a2a;--y-t2:#4a4a5e;--y-t3:#8888a0;
+}
+*{font-family:'Cairo','Tajawal',sans-serif}
+body{background:var(--y-bg);color:var(--y-t1);line-height:1.85}
+.amiri{font-family:'Amiri',serif}
+
+/* Navbar */
+.y-nav{background:rgba(250,249,246,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--y-border)}
+.y-nav .navbar-brand{font-weight:900;color:var(--y-teal)!important;font-size:1.3rem}
+.y-nav .nav-link{font-size:.85rem;font-weight:600;color:var(--y-t2)!important;padding:.5rem .8rem!important;border-radius:.5rem;transition:.2s}
+.y-nav .nav-link:hover,.y-nav .nav-link.active{background:var(--y-teal-light);color:var(--y-teal)!important}
+
+/* Hero */
+.y-hero{min-height:85vh;display:flex;align-items:center;background:linear-gradient(180deg,var(--y-surface2) 0%,var(--y-bg) 100%);position:relative;overflow:hidden}
+.y-hero::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(13,115,119,.06),transparent 70%);top:-100px;left:50%;transform:translateX(-50%)}
+
+/* Cards */
+.y-card{background:var(--y-surface);border:1px solid var(--y-border);border-radius:1rem;transition:transform .2s,box-shadow .2s}
+.y-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+
+/* Pillar Cards */
+.y-pillar{text-align:center;padding:1.5rem 1rem;border-radius:1rem;border:1px solid var(--y-border);background:var(--y-surface);transition:.2s;cursor:pointer}
+.y-pillar:hover{border-color:var(--y-teal);background:var(--y-teal-light)}
+.y-pillar .emoji{font-size:2rem;margin-bottom:.5rem}
+.y-pillar h5{font-size:.9rem;font-weight:800;margin-bottom:.3rem}
+.y-pillar p{font-size:.75rem;color:var(--y-t3);margin:0;line-height:1.5}
+
+/* Stat Card */
+.y-stat{text-align:center;padding:1.2rem;border-radius:1rem;background:var(--y-surface);border:1px solid var(--y-border)}
+.y-stat .num{font-size:1.8rem;font-weight:900;line-height:1}
+.y-stat .lbl{font-size:.7rem;color:var(--y-t3);margin-top:.3rem}
+
+/* Btn custom */
+.btn-teal{background:var(--y-teal);color:#fff;border:none;font-weight:700;border-radius:.75rem;padding:.65rem 1.5rem}
+.btn-teal:hover{background:var(--y-teal-dark);color:#fff}
+.btn-gold{background:var(--y-gold);color:#fff;border:none;font-weight:700;border-radius:.75rem;padding:.65rem 1.5rem}
+.btn-gold:hover{background:#9a7209;color:#fff}
+.btn-outline-teal{border:2px solid var(--y-teal);color:var(--y-teal);background:transparent;font-weight:700;border-radius:.75rem;padding:.6rem 1.5rem}
+.btn-outline-teal:hover{background:var(--y-teal);color:#fff}
+
+/* Badge */
+.badge-teal{background:var(--y-teal-light)!important;color:var(--y-teal)!important;font-weight:700}
+.badge-gold{background:var(--y-gold-light)!important;color:var(--y-gold)!important;font-weight:700}
+.badge-coral{background:#fdeaea!important;color:var(--y-coral)!important;font-weight:700}
+
+/* Progress */
+.progress{height:.5rem;border-radius:.25rem;background:var(--y-border)}
+.progress-bar{background:var(--y-teal)}
+
+/* Course card */
+.course-track{width:4px;border-radius:4px;position:absolute;right:0;top:0;bottom:0}
+
+/* Calculator */
+.calc-result{border-radius:1rem;padding:1.5rem;text-align:center;transition:.3s}
+.calc-individual{background:#fdeaea;border:1px solid rgba(192,57,43,.15)}
+.calc-yassiru{background:var(--y-teal-light);border:1px solid rgba(13,115,119,.15)}
+
+/* Circle timeline */
+.circle-step{display:flex;align-items:center;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--y-border);font-size:.85rem}
+.circle-step:last-child{border:none}
+.circle-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--y-teal);flex-shrink:0}
+.circle-dot.done{background:var(--y-teal)}
+.circle-dot.current{background:var(--y-gold);border-color:var(--y-gold)}
+
+/* Footer */
+.y-footer{background:var(--y-surface2);border-top:1px solid var(--y-border);padding:2rem 0}
+
+/* Smooth transitions */
+.fade-enter-active,.fade-leave-active{transition:opacity .25s ease}
+.fade-enter-from,.fade-leave-to{opacity:0}
+
+/* Wedding card */
+.wedding-card{border-top:3px solid var(--y-teal)}
+
+/* Scroll anchor fix */
+html{scroll-behavior:smooth}
+
+@media(max-width:768px){
+  .y-hero{min-height:auto;padding:3rem 0}
+  .y-stat .num{font-size:1.3rem}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg y-nav sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#" @click.prevent="page='home'">🌱 يسّروا</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='home'}" href="#" @click.prevent="page='home'">الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='courses'}" href="#" @click.prevent="page='courses'">التأهيل</a></li>
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='recommender'}" href="#" @click.prevent="page='recommender'">المُعرِّفون</a></li>
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='fund'}" href="#" @click.prevent="page='fund'">صندوق التيسير</a></li>
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='weddings'}" href="#" @click.prevent="page='weddings'">الأعراس الجماعية</a></li>
+        <li class="nav-item"><a class="nav-link" :class="{active:page==='calculator'}" href="#" @click.prevent="page='calculator'">حاسبة التكاليف</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-teal btn-sm">تسجيل الدخول</button>
+        <button class="btn btn-teal btn-sm">إنشاء حساب</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HOME PAGE ═══════════════════════ -->
+<div v-if="page==='home'">
+
+  <!-- Hero -->
+  <section class="y-hero">
+    <div class="container text-center">
+      <p class="amiri fs-5 mb-3" style="color:var(--y-gold);opacity:.7">بسم الله الرحمن الرحيم</p>
+      <p class="amiri fs-4 mb-2" style="color:var(--y-gold)">«يَسِّرُوا وَلَا تُعَسِّرُوا»</p>
+      <p class="small text-muted mb-4">متفق عليه</p>
+      <h1 class="display-3 fw-bold mb-3" style="letter-spacing:-1px">منظومة <span style="color:var(--y-teal)">تيسير الزواج</span></h1>
+      <p class="lead text-muted mx-auto mb-4" style="max-width:560px">ليست منصة تعارف — بل حل شامل لإزالة كل عوائق الزواج: التأهيل، التوفيق الموثوق، التمويل التعاوني، والزفاف الجماعي</p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <button class="btn btn-teal btn-lg" @click="page='courses'">🎓 ابدأ رحلة التأهيل</button>
+        <button class="btn btn-outline-teal btn-lg" @click="page='recommender'">🤝 كن مُعرِّفاً موثوقاً</button>
+      </div>
+      <div class="d-inline-block mt-4 px-3 py-2 rounded-pill" style="background:var(--y-teal-light);color:var(--y-teal);font-size:.8rem;font-weight:700">🌱 مشروع صدقة جارية + دخل مستدام</div>
+    </div>
+  </section>
+
+  <!-- Crisis Stats -->
+  <section class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="badge badge-coral px-3 py-2 mb-2">⚠️ أزمة حقيقية</span>
+        <h2 class="fw-bold">الأرقام لا تكذب</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-coral)">40%</div><div class="lbl">من الشباب العربي لن يتزوجوا بسبب العجز المالي</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-coral)">10<small>سنوات</small></div><div class="lbl">دخل الشاب = تكلفة زواج واحد</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-coral)">85%</div><div class="lbl">يقولون التكلفة هي العائق الأول</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-coral)">0</div><div class="lbl">منصات تحل المشكلة المالية فعلياً</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Pillars -->
+  <section class="py-5" style="background:var(--y-surface2)">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-teal)">المنظومة</span>
+        <h2 class="fw-bold mt-1">5 أركان تغطي رحلة الزواج كاملة</h2>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-lg" v-for="(p,i) in pillars" :key="i">
+          <div class="y-pillar h-100" @click="page=p.page">
+            <div class="emoji">{{p.emoji}}</div>
+            <h5>{{p.title}}</h5>
+            <p>{{p.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Calculator CTA -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-teal)">أداة تفاعلية</span>
+          <h2 class="fw-bold mt-1">كم يكلف الزواج في مدينتك؟</h2>
+          <p class="text-muted">حاسبة تكاليف الزواج — قارن بين التكلفة الفردية والتكلفة مع يسّروا</p>
+          <button class="btn btn-teal" @click="page='calculator'">🧮 جرّب الحاسبة الآن</button>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6"><div class="calc-result calc-individual"><div style="font-size:.75rem;color:var(--y-coral)">التكلفة الفردية</div><div class="fs-3 fw-bold" style="color:var(--y-coral)">150,000</div><div style="font-size:.7rem;color:var(--y-t3)">جنيه مصري</div></div></div>
+            <div class="col-6"><div class="calc-result calc-yassiru"><div style="font-size:.75rem;color:var(--y-teal)">مع يسّروا</div><div class="fs-3 fw-bold" style="color:var(--y-teal)">45,000</div><div style="font-size:.7rem;color:var(--y-teal)">توفير 70% ✓</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Stats -->
+  <section class="py-5" style="background:var(--y-surface2)">
+    <div class="container">
+      <div class="text-center mb-4"><h2 class="fw-bold">إحصائيات المنصة</h2></div>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-teal)">{{stats.users.toLocaleString()}}</div><div class="lbl">مستخدم مسجل</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-gold)">{{stats.certified}}</div><div class="lbl">حاصل على شهادة التأهيل</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:var(--y-plum)">{{stats.circles}}</div><div class="lbl">حلقة تيسير نشطة</div></div></div>
+        <div class="col-6 col-md-3"><div class="y-stat"><div class="num" style="color:#1b7a4a">{{stats.marriages}}</div><div class="lbl">زواج تم بنجاح ✓</div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ COURSES PAGE ═══════════════════════ -->
+<div v-if="page==='courses'">
+  <section class="py-5">
+    <div class="container" style="max-width:800px">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-teal)">الركن الأول</span>
+        <h2 class="fw-bold mt-1">🎓 شهادة الجاهزية للزواج</h2>
+        <p class="text-muted">أكمل المسارات الأربعة واحصل على شهادتك — الخطوة الأولى نحو تيسير زواجك</p>
+      </div>
+
+      <!-- Overall Progress -->
+      <div class="y-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="fw-bold">إجمالي التقدم</span>
+          <span class="badge badge-teal">{{overallProgress}}%</span>
+        </div>
+        <div class="progress"><div class="progress-bar" :style="{width:overallProgress+'%'}"></div></div>
+        <p class="small text-muted mt-2 mb-0">أكملت {{completedLessons}} من {{totalLessons}} درس</p>
+      </div>
+
+      <!-- Course Cards -->
+      <div class="row g-3">
+        <div class="col-md-6" v-for="(c,i) in courses" :key="i">
+          <div class="y-card p-4 h-100 position-relative overflow-hidden">
+            <div class="course-track" :style="{background:c.color}"></div>
+            <div class="fs-3 mb-2">{{c.emoji}}</div>
+            <h5 class="fw-bold">{{c.title}}</h5>
+            <p class="small text-muted mb-2">{{c.lessons}} دروس | {{c.hours}} ساعات</p>
+            <div class="progress mb-2"><div class="progress-bar" :style="{width:c.progress+'%',background:c.color}"></div></div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="badge" :class="c.progress>0?'badge-teal':''" :style="c.progress===0?'background:#f0ebe3;color:var(--y-t3)':''">
+                {{c.progress>0 ? c.progress+'% مكتمل' : 'لم يبدأ بعد'}}
+              </span>
+              <button class="btn btn-sm" :style="{background:c.color,color:'#fff'}" @click="c.progress=Math.min(100,c.progress+25)">
+                {{c.progress>0?'أكمل':'ابدأ'}} ←
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate Preview -->
+      <div v-if="overallProgress>=100" class="y-card p-5 text-center mt-4" style="background:var(--y-gold-light);border-color:rgba(184,134,11,.2)">
+        <div style="font-size:.75rem;font-weight:800;letter-spacing:3px;color:var(--y-gold)">🎉 مبروك!</div>
+        <h3 class="fw-bold mt-2">حصلت على شهادة الجاهزية للزواج</h3>
+        <p class="text-muted">يمكنك الآن الانضمام لحلقات التيسير والتسجيل عند المُعرِّفين</p>
+        <button class="btn btn-gold">📥 تحميل الشهادة PDF</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ RECOMMENDER PAGE ═══════════════════════ -->
+<div v-if="page==='recommender'">
+  <section class="py-5">
+    <div class="container" style="max-width:900px">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-teal)">الركن الثاني</span>
+        <h2 class="fw-bold mt-1">🤝 نظام المُعرِّف الموثوق</h2>
+        <p class="text-muted">توفيق عبر وسطاء موثوقين يعرفون العائلات شخصياً — لا تصفح ملفات ولا تواصل مباشر</p>
+      </div>
+
+      <!-- How it works -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4" v-for="(s,i) in recommenderSteps" :key="i">
+          <div class="y-card p-4 text-center h-100">
+            <div class="fs-1 mb-2">{{s.emoji}}</div>
+            <div class="badge badge-teal mb-2">الخطوة {{i+1}}</div>
+            <h6 class="fw-bold">{{s.title}}</h6>
+            <p class="small text-muted mb-0">{{s.desc}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommender Types -->
+      <h5 class="fw-bold mb-3">من يمكنه أن يكون مُعرِّفاً؟</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-md-3" v-for="(t,i) in recommenderTypes" :key="i">
+          <div class="y-card p-3 text-center h-100">
+            <div class="fs-2 mb-2">{{t.emoji}}</div>
+            <h6 class="fw-bold" style="font-size:.85rem">{{t.title}}</h6>
+            <p class="small text-muted mb-0">{{t.desc}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Safety Notice -->
+      <div class="p-4 rounded-3" style="background:var(--y-teal-light);border-right:4px solid var(--y-teal)">
+        <h6 class="fw-bold" style="color:var(--y-teal-dark)">⚖️ الضوابط الشرعية</h6>
+        <p class="small text-muted mb-0">لا تواصل مباشر بين الرجل والمرأة نهائياً. كل التواصل عبر ولي الأمر أو المُعرِّف. لا صور تُعرض. لا تصفح حر للملفات. هذا النموذج أقرب لدور "الخاطبة" التقليدية في ثوب رقمي.</p>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-teal btn-lg">🤝 سجّل كمُعرِّف موثوق</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ FUND PAGE ═══════════════════════ -->
+<div v-if="page==='fund'">
+  <section class="py-5">
+    <div class="container" style="max-width:800px">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-plum)">الركن الثالث</span>
+        <h2 class="fw-bold mt-1">💰 صندوق التيسير — جمعية الزواج الرقمية</h2>
+        <p class="text-muted">مجموعة شباب يوفرون معاً — كل شهر واحد يحصل على المبلغ لتمويل زواجه</p>
+      </div>
+
+      <!-- Example -->
+      <div class="y-card p-4 mb-4 text-center" style="background:var(--y-gold-light);border-color:rgba(184,134,11,.2)">
+        <h6 class="fw-bold" style="color:var(--y-gold)">المثال العملي</h6>
+        <p class="fs-4 fw-bold mb-1">{{fundCircle.members}} شاب × {{fundCircle.amount.toLocaleString()}} ج.م/شهر</p>
+        <p class="fs-2 fw-bold mb-1" style="color:var(--y-teal)">= {{(fundCircle.members * fundCircle.amount).toLocaleString()}} ج.م كل شهر</p>
+        <p class="small text-muted mb-0">كل شهر شاب واحد يحصل على المبلغ الكامل — بعد {{fundCircle.members}} شهر الكل اتجوّز</p>
+      </div>
+
+      <!-- Interactive Controls -->
+      <div class="y-card p-4 mb-4">
+        <h6 class="fw-bold mb-3">🎮 جرّب بنفسك — غيّر الأرقام</h6>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label small fw-bold">عدد الأعضاء: {{fundCircle.members}}</label>
+            <input type="range" class="form-range" min="5" max="30" v-model.number="fundCircle.members">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-bold">المبلغ الشهري: {{fundCircle.amount.toLocaleString()}} ج.م</label>
+            <input type="range" class="form-range" min="200" max="5000" step="100" v-model.number="fundCircle.amount">
+          </div>
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-md-4"><div class="y-stat"><div class="num" style="color:var(--y-plum)">{{(fundCircle.members * fundCircle.amount).toLocaleString()}}</div><div class="lbl">يحصل عليه كل عضو (ج.م)</div></div></div>
+          <div class="col-md-4"><div class="y-stat"><div class="num" style="color:var(--y-teal)">{{fundCircle.members}}</div><div class="lbl">شهر لإتمام الدورة</div></div></div>
+          <div class="col-md-4"><div class="y-stat"><div class="num" style="color:var(--y-gold)">{{fundCircle.amount.toLocaleString()}}</div><div class="lbl">تدفعه شهرياً فقط</div></div></div>
+        </div>
+      </div>
+
+      <!-- Circle Dashboard Preview -->
+      <div class="y-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <h6 class="fw-bold mb-0">حلقة "شباب المعادي"</h6>
+            <span class="small text-muted">15 عضو | 1,000 ج.م/شهر | الدورة 4</span>
+          </div>
+          <span class="badge badge-teal">نشطة ✓</span>
+        </div>
+        <div v-for="(m,i) in circleTimeline" :key="i" class="circle-step">
+          <div class="circle-dot" :class="{done:m.status==='done',current:m.status==='current'}"></div>
+          <div class="flex-grow-1">
+            <span class="fw-bold">الدورة {{i+1}}</span> — {{m.name}}
+          </div>
+          <span class="badge" :class="m.status==='done'?'badge-teal':m.status==='current'?'badge-gold':''">
+            {{m.status==='done'?'استلم ✓':m.status==='current'?'الدورة الحالية':'منتظر'}}
+          </span>
+        </div>
+      </div>
+
+      <!-- Shariah Note -->
+      <div class="p-3 rounded-3 mt-4" style="background:var(--y-teal-light);border-right:4px solid var(--y-teal)">
+        <p class="small text-muted mb-0"><strong style="color:var(--y-teal-dark)">⚖️ الحكم الشرعي:</strong> الجمعية (القرض الحسن الدوري) جائزة شرعاً — هي قرض حسن بالتناوب بدون أي زيادة ربوية. المنصة منظّم فقط وليست مؤسسة مالية.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ WEDDINGS PAGE ═══════════════════════ -->
+<div v-if="page==='weddings'">
+  <section class="py-5">
+    <div class="container" style="max-width:800px">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-sky)">الركن الرابع</span>
+        <h2 class="fw-bold mt-1">💒 الأعراس الجماعية</h2>
+        <p class="text-muted">احجز مكانك في عرس جماعي — وفّر 60-70% من التكاليف</p>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6" v-for="(w,i) in weddings" :key="i">
+          <div class="y-card p-4 h-100 wedding-card" :style="{borderTopColor:w.color}">
+            <h5 class="fw-bold">🏛️ {{w.title}}</h5>
+            <p class="small text-muted mb-2">📅 {{w.date}} | 📍 {{w.venue}}</p>
+            <div class="d-flex justify-content-between small mb-2">
+              <span>👥 {{w.total}} عريس</span>
+              <span class="fw-bold" :style="{color:w.remaining<=5?'var(--y-coral)':'var(--y-teal)'}">{{w.remaining}} مكان متبقي</span>
+            </div>
+            <div class="progress mb-3"><div class="progress-bar" :style="{width:((w.total-w.remaining)/w.total*100)+'%'}"></div></div>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <span class="small text-decoration-line-through text-muted">{{w.originalPrice.toLocaleString()}} ج.م</span><br>
+                <span class="fs-4 fw-bold" style="color:var(--y-teal)">{{w.price.toLocaleString()}} ج.م</span>
+              </div>
+              <button class="btn btn-teal btn-sm">سجّل الآن</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════ CALCULATOR PAGE ═══════════════════════ -->
+<div v-if="page==='calculator'">
+  <section class="py-5">
+    <div class="container" style="max-width:700px">
+      <div class="text-center mb-4">
+        <span style="font-size:.7rem;font-weight:800;letter-spacing:3px;color:var(--y-teal)">أداة تفاعلية</span>
+        <h2 class="fw-bold mt-1">🧮 حاسبة تكاليف الزواج</h2>
+        <p class="text-muted">اختر مدينتك وشوف الفرق بين التكلفة العادية والتكلفة مع يسّروا</p>
+      </div>
+
+      <div class="y-card p-4 mb-4">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label small fw-bold">🏙️ المدينة</label>
+            <select class="form-select" v-model="calcCity">
+              <option v-for="c in cities" :key="c.name" :value="c">{{c.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-bold">💍 مستوى الزفاف</label>
+            <select class="form-select" v-model="calcLevel">
+              <option value="simple">بسيط</option>
+              <option value="medium">متوسط</option>
+              <option value="luxury">فاخر</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <div class="calc-result calc-individual p-4">
+            <div class="small mb-1" style="color:var(--y-coral)">❌ التكلفة الفردية التقليدية</div>
+            <div class="display-5 fw-bold" style="color:var(--y-coral)">{{individualCost.toLocaleString()}}</div>
+            <div class="small text-muted">جنيه مصري</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="calc-result calc-yassiru p-4">
+            <div class="small mb-1" style="color:var(--y-teal)">✅ التكلفة مع يسّروا</div>
+            <div class="display-5 fw-bold" style="color:var(--y-teal)">{{yassiruCost.toLocaleString()}}</div>
+            <div class="small" style="color:var(--y-teal)">توفير {{savingsPercent}}% ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Breakdown -->
+      <div class="y-card p-4">
+        <h6 class="fw-bold mb-3">📋 تفصيل التكاليف</h6>
+        <table class="table table-sm small">
+          <thead><tr class="text-muted"><th>البند</th><th>تقليدي</th><th style="color:var(--y-teal)">مع يسّروا</th><th>التوفير</th></tr></thead>
+          <tbody>
+            <tr v-for="(item,i) in costBreakdown" :key="i">
+              <td class="fw-bold">{{item.name}}</td>
+              <td style="color:var(--y-coral)">{{item.traditional.toLocaleString()}}</td>
+              <td style="color:var(--y-teal)">{{item.yassiru.toLocaleString()}}</td>
+              <td><span class="badge badge-teal">{{Math.round((1-item.yassiru/item.traditional)*100)}}%</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="fw-bold">
+              <td>الإجمالي</td>
+              <td style="color:var(--y-coral)">{{individualCost.toLocaleString()}}</td>
+              <td style="color:var(--y-teal)">{{yassiruCost.toLocaleString()}}</td>
+              <td><span class="badge badge-teal">{{savingsPercent}}%</span></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-teal btn-lg" @click="page='fund'">💰 انضم لصندوق التيسير الآن</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="y-footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <h5 class="fw-bold" style="color:var(--y-teal)">🌱 يسّروا</h5>
+        <p class="small text-muted">منظومة متكاملة لتيسير الزواج في العالم الإسلامي — صدقة جارية ومشروع مستدام.</p>
+      </div>
+      <div class="col-md-2">
+        <h6 class="fw-bold small">المنظومة</h6>
+        <ul class="list-unstyled small text-muted">
+          <li><a href="#" @click.prevent="page='courses'" class="text-decoration-none text-muted">التأهيل</a></li>
+          <li><a href="#" @click.prevent="page='recommender'" class="text-decoration-none text-muted">المُعرِّفون</a></li>
+          <li><a href="#" @click.prevent="page='fund'" class="text-decoration-none text-muted">الصندوق</a></li>
+          <li><a href="#" @click.prevent="page='weddings'" class="text-decoration-none text-muted">الأعراس</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="fw-bold small">روابط مهمة</h6>
+        <ul class="list-unstyled small text-muted">
+          <li>عن يسّروا</li>
+          <li>الهيئة الشرعية</li>
+          <li>سياسة الخصوصية</li>
+          <li>تواصل معنا</li>
+        </ul>
+      </div>
+      <div class="col-md-3 text-center text-md-end">
+        <button class="btn btn-gold btn-sm w-100 mb-2">💚 ادعم المشروع</button>
+        <p class="amiri small" style="color:var(--y-gold)">«وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ»</p>
+      </div>
+    </div>
+    <hr style="border-color:var(--y-border)">
+    <p class="text-center small text-muted mb-0">يسّروا — تيسير الزواج © 2026 | مشروع صدقة جارية</p>
+  </div>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const{createApp,ref,computed}=Vue;
+
+createApp({
+  setup(){
+    const page=ref('home');
+
+    // Stats
+    const stats=ref({users:1247,certified:389,circles:22,marriages:47});
+
+    // Pillars
+    const pillars=[
+      {emoji:'🎓',title:'التأهيل',desc:'كورس تأهيلي إلزامي — شرعي ونفسي ومالي',page:'courses'},
+      {emoji:'🤝',title:'المُعرِّف الموثوق',desc:'توفيق عبر أئمة ومعلمين يعرفون العائلات',page:'recommender'},
+      {emoji:'💰',title:'صندوق التيسير',desc:'جمعية رقمية لتمويل الزواج تعاونياً',page:'fund'},
+      {emoji:'💒',title:'الزفاف الجماعي',desc:'أعراس جماعية بتوفير 70% من التكاليف',page:'weddings'},
+      {emoji:'🛡️',title:'رعاية ما بعد',desc:'استشارات أسرية للسنة الأولى',page:'home'},
+    ];
+
+    // Courses
+    const courses=ref([
+      {emoji:'🕌',title:'المسار الشرعي',lessons:4,hours:3,progress:75,color:'var(--y-teal)'},
+      {emoji:'🧠',title:'المسار النفسي',lessons:4,hours:3,progress:50,color:'var(--y-gold)'},
+      {emoji:'💰',title:'المسار المالي',lessons:3,hours:2.5,progress:0,color:'var(--y-plum)'},
+      {emoji:'🏠',title:'المسار العملي',lessons:3,hours:2,progress:0,color:'var(--y-sky)'},
+    ]);
+    const totalLessons=computed(()=>courses.value.reduce((a,c)=>a+c.lessons,0));
+    const completedLessons=computed(()=>courses.value.reduce((a,c)=>a+Math.round(c.lessons*c.progress/100),0));
+    const overallProgress=computed(()=>Math.round(completedLessons.value/totalLessons.value*100));
+
+    // Recommender
+    const recommenderSteps=[
+      {emoji:'🔐',title:'التسجيل والتحقق',desc:'سجّل كمُعرِّف وتحقق من هويتك — الاعتماد خلال 48 ساعة'},
+      {emoji:'📝',title:'تسجيل المرشحين',desc:'سجّل أشخاصاً تعرفهم شخصياً مع بيانات ولي الأمر'},
+      {emoji:'🤝',title:'التوصية والتوفيق',desc:'النظام يقترح توافقات — أنت ترشّح — العائلات تتواصل عبرك'},
+    ];
+    const recommenderTypes=[
+      {emoji:'🕌',title:'إمام مسجد',desc:'يعرف عائلات الحي'},
+      {emoji:'👨‍🏫',title:'معلم / أستاذ',desc:'يعرف طلابه وأخلاقهم'},
+      {emoji:'👨‍👩‍👦',title:'قريب موثوق',desc:'عم أو خال أو كبير عائلة'},
+      {emoji:'🏢',title:'قائد مجتمعي',desc:'مسؤول في جمعية أو مركز'},
+    ];
+
+    // Fund
+    const fundCircle=ref({members:15,amount:1000});
+    const circleTimeline=[
+      {name:'عمرو س.',status:'done'},{name:'خالد م.',status:'done'},{name:'يوسف أ.',status:'done'},
+      {name:'أحمد ح.',status:'current'},{name:'محمد ر.',status:'pending'},
+    ];
+
+    // Weddings
+    const weddings=[
+      {title:'عرس جماعي — القاهرة',date:'15 مايو 2026',venue:'قاعة النيل الكبرى',total:20,remaining:6,price:8000,originalPrice:25000,color:'var(--y-teal)'},
+      {title:'عرس جماعي — الإسكندرية',date:'22 يونيو 2026',venue:'فندق البحر الأبيض',total:15,remaining:12,price:6500,originalPrice:20000,color:'var(--y-gold)'},
+      {title:'عرس جماعي — الرياض',date:'10 يوليو 2026',venue:'فندق الفيصلية',total:25,remaining:20,price:15000,originalPrice:50000,color:'var(--y-plum)'},
+      {title:'عرس جماعي — عمّان',date:'5 أغسطس 2026',venue:'فندق لو رويال',total:15,remaining:15,price:4000,originalPrice:12000,color:'var(--y-sky)'},
+    ];
+
+    // Calculator
+    const cities=[
+      {name:'القاهرة',base:150000},{name:'الإسكندرية',base:120000},{name:'الرياض',base:300000},
+      {name:'جدة',base:250000},{name:'دبي',base:400000},{name:'عمّان',base:80000},
+      {name:'الدار البيضاء',base:100000},{name:'إسطنبول',base:180000},
+    ];
+    const calcCity=ref(cities[0]);
+    const calcLevel=ref('medium');
+    const levelMultiplier=computed(()=>({simple:.6,medium:1,luxury:1.8}[calcLevel.value]));
+    const individualCost=computed(()=>Math.round(calcCity.value.base*levelMultiplier.value));
+    const yassiruCost=computed(()=>Math.round(individualCost.value*0.3));
+    const savingsPercent=computed(()=>Math.round((1-yassiruCost.value/individualCost.value)*100));
+    const costBreakdown=computed(()=>{
+      const b=individualCost.value;
+      return[
+        {name:'المهر والشبكة',traditional:Math.round(b*.25),yassiru:Math.round(b*.25)},
+        {name:'القاعة والحفل',traditional:Math.round(b*.3),yassiru:Math.round(b*.3*.2)},
+        {name:'الأثاث والتجهيز',traditional:Math.round(b*.25),yassiru:Math.round(b*.25*.5)},
+        {name:'الملابس والتصوير',traditional:Math.round(b*.1),yassiru:Math.round(b*.1*.3)},
+        {name:'متفرقات',traditional:Math.round(b*.1),yassiru:Math.round(b*.1*.4)},
+      ];
+    });
+
+    return{page,stats,pillars,courses,totalLessons,completedLessons,overallProgress,
+      recommenderSteps,recommenderTypes,fundCircle,circleTimeline,weddings,
+      cities,calcCity,calcLevel,individualCost,yassiruCost,savingsPercent,costBreakdown};
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

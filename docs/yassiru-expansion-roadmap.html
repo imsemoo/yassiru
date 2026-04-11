@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّرو — خطة التوسع والمحاور الجديدة</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9f6;--surface:#fff;--surface2:#f3efe8;--teal:#0d7377;--teal-light:#e0f2f1;--teal-dark:#095456;--gold:#b8860b;--gold-light:#fdf5e6;--coral:#c0392b;--plum:#6a1b4d;--sky:#1565c0;--green:#1b7a4a;--green-light:#e8f5e9;--orange:#e67e22;--orange-light:#fef3e2;--t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#e0d8cc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);line-height:1.9}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px 24px;max-width:960px;margin:0 auto;position:relative}
+.slide-num{position:absolute;top:24px;left:24px;font-size:12px;font-weight:800;color:var(--t3);letter-spacing:2px}
+.slide-divider{height:1px;background:var(--border);max-width:960px;margin:0 auto}
+h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.2;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--teal)}
+h2{font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:12px}
+h3{font-size:20px;font-weight:800;margin-bottom:10px}
+.subtitle{font-size:17px;color:var(--t2);max-width:640px;line-height:2;margin-bottom:28px}
+.tag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.stat-card{text-align:center;padding:28px 16px;border-radius:18px;background:var(--surface);border:1px solid var(--border)}
+.stat-card .num{font-size:36px;font-weight:900}
+.stat-card .label{font-size:12px;color:var(--t3);margin-top:4px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:16px}
+.card p{color:var(--t2);font-size:14px}
+.pillar-card{border-radius:18px;padding:28px;text-align:center;border:1px solid var(--border);background:var(--surface)}
+.pillar-card .emoji{font-size:36px;margin-bottom:12px}
+.pillar-card h4{font-size:16px;font-weight:800;margin-bottom:6px}
+.pillar-card p{font-size:12.5px;color:var(--t2);line-height:1.7}
+.quote{font-family:'Amiri',serif;font-size:clamp(16px,2.5vw,22px);color:var(--gold);text-align:center;padding:20px;line-height:2.2}
+.quote-ref{font-size:13px;color:var(--t3);text-align:center}
+.timeline-row{display:flex;gap:12px;margin:16px 0}
+.timeline-item{flex:1;padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border);text-align:center}
+.timeline-item .phase{font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:6px}
+.timeline-item .title{font-size:14px;font-weight:700;margin-bottom:4px}
+.timeline-item .desc{font-size:11.5px;color:var(--t2);line-height:1.6}
+.badge{display:inline-block;padding:4px 14px;border-radius:8px;font-size:12px;font-weight:700}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-gold{background:var(--gold-light);color:var(--gold)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-coral{background:#fdeaea;color:var(--coral)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-plum{background:rgba(106,27,77,.08);color:var(--plum)}
+.badge-sky{background:rgba(21,101,192,.08);color:var(--sky)}
+.shield{display:flex;gap:10px;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);margin-bottom:10px}
+.shield .ico{font-size:20px;min-width:28px}
+.shield .txt{font-size:13px;color:var(--t2);line-height:1.7}
+.shield .txt strong{color:var(--t1)}
+.phase-badge{display:inline-block;padding:4px 12px;border-radius:8px;font-size:11px;font-weight:800;margin-bottom:12px}
+.rev-item{padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.rev-item .name{font-size:14px;color:var(--t2)}
+.rev-item .amount{font-size:16px;font-weight:800;color:var(--teal)}
+.rev-total{text-align:center;padding:24px;border-radius:16px;background:linear-gradient(135deg,rgba(13,115,119,.06),rgba(184,134,11,.06));border:1px solid rgba(13,115,119,.15);margin-top:16px}
+.rev-total .num{font-size:36px;font-weight:900;color:var(--teal)}
+.rev-total .lbl{font-size:12px;color:var(--t3)}
+.map-item{padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border);text-align:center}
+.map-item .flag{font-size:32px;margin-bottom:8px}
+.map-item h4{font-size:14px;font-weight:800;margin-bottom:4px}
+.map-item p{font-size:11.5px;color:var(--t2);line-height:1.6}
+.flow-step{display:flex;align-items:flex-start;gap:16px;padding:16px;margin-bottom:8px}
+.flow-step .num{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex-shrink:0}
+.flow-step .content h4{font-size:14px;font-weight:800;margin-bottom:3px}
+.flow-step .content p{font-size:12px;color:var(--t2);line-height:1.6;margin:0}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--t3)}
+@media(max-width:768px){.g2,.g3,.g4,.timeline-row{grid-template-columns:1fr;display:grid}}
+@media print{.slide{min-height:auto;page-break-after:always;padding:30px 20px}.slide-divider{display:none}}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">01 / 14</div>
+  <div style="font-family:'Amiri',serif;font-size:20px;color:var(--gold);opacity:.6;margin-bottom:24px">بسم الله الرحمن الرحيم</div>
+  <h1>خطة توسع <em>يسّرو</em></h1>
+  <p style="font-size:20px;font-weight:700;color:var(--t2);margin-bottom:8px">من منصة تيسير زواج إلى منظومة أسرية متكاملة</p>
+  <p style="font-size:14px;color:var(--t3);max-width:600px;margin:0 auto">5 مراحل مدروسة لتحويل يسّرو من خدمة الزواج الأول إلى منصة تخدم الأسرة المسلمة في كل مراحل حياتها</p>
+  <div style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <span class="badge badge-green">المنصة الأساسية مكتملة</span>
+    <span class="badge badge-gold">الهدف: $76,500/شهر خلال سنتين</span>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 2: Vision -->
+<div class="slide">
+  <div class="slide-num">02 / 14</div>
+  <div class="tag">الرؤية الكبرى</div>
+  <h2>يسّرو ليست منصة زواج — بل منظومة أسرية</h2>
+  <p class="subtitle">الزواج هو البداية فقط. الأسرة المسلمة محتاجة دعم في كل مرحلة — ويسّرو تقدر تكون هناك.</p>
+  <div class="timeline-row">
+    <div class="timeline-item" style="border-top:3px solid var(--green)">
+      <div class="phase" style="color:var(--green)">الآن ✓</div>
+      <div class="title">الزواج الأول</div>
+      <div class="desc">تأهيل + توفيق + تمويل + عرس جماعي</div>
+    </div>
+    <div class="timeline-item" style="border-top:3px solid var(--teal)">
+      <div class="phase" style="color:var(--teal)">قريباً</div>
+      <div class="title">الحياة الزوجية</div>
+      <div class="desc">استشارات + مجتمع + أكاديمية + طوارئ</div>
+    </div>
+    <div class="timeline-item" style="border-top:3px solid var(--gold)">
+      <div class="phase" style="color:var(--gold)">لاحقاً</div>
+      <div class="title">الزواج مرة أخرى</div>
+      <div class="desc">مسار خاص للمطلقين والأرامل</div>
+    </div>
+    <div class="timeline-item" style="border-top:3px solid var(--plum)">
+      <div class="phase" style="color:var(--plum)">المستقبل</div>
+      <div class="title">الأبناء والتربية</div>
+      <div class="desc">كورسات تربوية + مجتمع آباء</div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 3: Phase 1 -->
+<div class="slide">
+  <div class="slide-num">03 / 14</div>
+  <div class="phase-badge badge-teal">المرحلة 1 — شهر 1-3 بعد الإطلاق</div>
+  <h2>تعميق المنتج الحالي</h2>
+  <p class="subtitle">قبل ما نبني حاجة جديدة — نخلّي اللي موجود يشتغل ممتاز ويكبر عضوياً.</p>
+  <div class="g2">
+    <div class="card" style="border-right:4px solid var(--teal)">
+      <h3>⭐ تقييم المعرّفين</h3>
+      <p>العائلات تقيّم المعرّف بعد كل توصية ناجحة. تقييم 5 نجوم + تعليق. الأعلى تقييماً يظهر أول. badge "معرّف متميز" لمن حقق 4.5+ مع 10+ توصية.</p>
+      <div style="margin-top:8px"><span class="badge badge-teal">يزيد الثقة بنسبة 3x</span></div>
+    </div>
+    <div class="card" style="border-right:4px solid var(--gold)">
+      <h3>💬 دردشة محدودة</h3>
+      <p>دردشة نصية بين المعرّف وولي الأمر فقط — لا دردشة بين الرجل والمرأة أبداً. كل الرسائل محفوظة كسجل. إشعارات فورية.</p>
+      <div style="margin-top:8px"><span class="badge badge-coral">خط أحمر: صفر تواصل مباشر</span></div>
+    </div>
+    <div class="card" style="border-right:4px solid var(--green)">
+      <h3>📱 إشعارات واتساب</h3>
+      <p>ربط WhatsApp Business API. تذكير مساهمة، تأكيد دفع، توصية جديدة، تذكير جلسة. الفئة المستهدفة بتعيش على واتساب.</p>
+      <div style="margin-top:8px"><span class="badge badge-green">يزيد التفاعل 300%+</span></div>
+    </div>
+    <div class="card" style="border-right:4px solid var(--plum)">
+      <h3>🔗 نظام الإحالة</h3>
+      <p>كل مستخدم عنده كود إحالة. اللي يجيب أصحابه ياخد نقاط = خصم على رسوم الصندوق أو أولوية. لوحة "أكثر المحيلين".</p>
+      <div style="margin-top:8px"><span class="badge badge-plum">نمو بدون إنفاق إعلاني</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 4: Phase 2 - Divorce/Widows -->
+<div class="slide">
+  <div class="slide-num">04 / 14</div>
+  <div class="phase-badge badge-gold">المرحلة 2 — شهر 3-6</div>
+  <h2>💍 الزواج مرة أخرى — المطلقون والأرامل</h2>
+  <p class="subtitle">40% من حالات الطلاق تحصل في السنتين الأولى. ملايين المطلقين والأرامل محتاجين فرصة ثانية — ومفيش منصة بتخدمهم.</p>
+  <div class="g2">
+    <div class="card">
+      <h3>🎓 مسار تأهيلي خاص</h3>
+      <p>دروس مختلفة عن الزواج الأول:</p>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">📖</div><div class="txt"><strong>التعامل مع الماضي</strong> — كيف تتجاوز تجربة الزواج السابق نفسياً وشرعياً</div></div>
+        <div class="shield"><div class="ico">👶</div><div class="txt"><strong>حقوق الأبناء</strong> — حضانة، نفقة، تعامل الزوج الجديد مع أبناء الزواج الأول</div></div>
+        <div class="shield"><div class="ico">🤝</div><div class="txt"><strong>البداية الجديدة</strong> — توقعات واقعية، تواصل صريح، بناء ثقة من الصفر</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>⚙️ أدوات مخصصة</h3>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">🔍</div><div class="txt"><strong>فلتر توفيق</strong> — المعرّف يحدد "مطلق يبحث عن مطلقة" أو "أرمل يبحث عن أرملة" — توافق أدق</div></div>
+        <div class="shield"><div class="ico">💰</div><div class="txt"><strong>صندوق مخصص</strong> — مبالغ أقل، دورات أقصر — لأن الزواج الثاني أقل تكلفة</div></div>
+        <div class="shield"><div class="ico">🧮</div><div class="txt"><strong>حاسبة مخصصة</strong> — تكاليف مختلفة: مفيش تجهيز شقة من الصفر غالباً</div></div>
+        <div class="shield"><div class="ico">🛡️</div><div class="txt"><strong>استشارات متخصصة</strong> — مستشارين بخبرة في الأسر المركبة (blended families)</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="g3" style="margin-top:12px">
+    <div class="stat-card"><div class="num" style="color:var(--coral)">2.5M</div><div class="label">حالة طلاق سنوياً في العالم العربي</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--coral)">40%</div><div class="label">طلاق في السنتين الأولى</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">0</div><div class="label">منصات تخدم هذه الفئة بشكل متكامل</div></div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 5: Phase 2 - Partnerships -->
+<div class="slide">
+  <div class="slide-num">05 / 14</div>
+  <div class="phase-badge badge-gold">المرحلة 2 — شهر 3-6</div>
+  <h2>🏪 الشراكات والخصومات + المحفظة الرقمية</h2>
+  <p class="subtitle">الزواج مش بس فرح — فيه أثاث وأجهزة وشقة. يسّرو تقدر توفّر في كل حاجة.</p>
+  <div class="g3">
+    <div class="pillar-card" style="border-top:3px solid var(--gold)">
+      <div class="emoji">🛋️</div>
+      <h4>دليل موردين معتمدين</h4>
+      <p>أثاث، أجهزة كهربائية، مصورين، قاعات أفراح، شقق — كلهم بخصومات حصرية لحاملي شهادة يسّرو.</p>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--teal)">
+      <div class="emoji">🏷️</div>
+      <h4>نظام كوبونات</h4>
+      <p>المورد يعمل كوبون خصم، يسّرو تاخد عمولة صغيرة. المستخدم يقارن بين الموردين ويقرأ تقييمات أزواج سابقين.</p>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--plum)">
+      <div class="emoji">👛</div>
+      <h4>المحفظة الرقمية</h4>
+      <p>رصيد موحد: المدفوع، المتبقي، المسترد. سجل معاملات كامل. إيصالات PDF. "دورك بعد 3 أشهر — المتبقي: 12,000 ج.م"</p>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;margin-top:12px;background:var(--gold-light);border-color:rgba(184,134,11,.2)">
+    <p style="font-weight:700;color:var(--gold);font-size:15px;margin:0">مصدر دخل جديد: عمولة 5-15% من كل عملية شراء عبر كوبونات يسّرو — متوقع $3,000/شهر إضافي</p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 6: Phase 3 - Geographic Expansion -->
+<div class="slide">
+  <div class="slide-num">06 / 14</div>
+  <div class="phase-badge badge-orange">المرحلة 3 — شهر 6-12</div>
+  <h2>🌍 التوسع الجغرافي</h2>
+  <p class="subtitle">البنية التقنية مصممة من البداية للتوسع — الـ API جاهز، الـ database مرن، بوابة الدفع قابلة للتبديل.</p>
+  <div class="g3">
+    <div class="map-item" style="border-top:3px solid var(--green)">
+      <div class="flag">🇪🇬</div>
+      <h4>مصر — الآن</h4>
+      <p>105 مليون نسمة<br>بوابة دفع: فوري ✓<br>عملة: EGP ✓<br>15 مدينة ✓</p>
+      <div style="margin-top:8px"><span class="badge badge-green">مكتمل</span></div>
+    </div>
+    <div class="map-item" style="border-top:3px solid var(--gold)">
+      <div class="flag">🇸🇦 🇦🇪 🇰🇼</div>
+      <h4>الخليج — شهر 6</h4>
+      <p>أعلى تكلفة زواج + قدرة شرائية<br>بوابة دفع: Stripe<br>عملات: SAR, AED, KWD<br>الرياض، جدة، دبي، الكويت</p>
+      <div style="margin-top:8px"><span class="badge badge-gold">البنية جاهزة</span></div>
+    </div>
+    <div class="map-item" style="border-top:3px solid var(--plum)">
+      <div class="flag">🇹🇷 🇮🇩 🇲🇾</div>
+      <h4>عالمي — سنة 1</h4>
+      <p>تركيا + إندونيسيا + ماليزيا<br>+ المسلمون في أوروبا وأمريكا<br>ترجمة: EN, TR, ID, MS<br>vue-i18n جاهز للإضافة</p>
+      <div style="margin-top:8px"><span class="badge badge-plum">2 مليار مسلم</span></div>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;margin-top:12px;background:var(--teal-light);border-color:rgba(13,115,119,.2)">
+    <p style="font-weight:700;color:var(--teal-dark);margin:0">الخليج وحده = 3x إيرادات مصر بسبب القدرة الشرائية الأعلى + تكاليف زواج أكبر</p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 7: Phase 4 - Academy -->
+<div class="slide">
+  <div class="slide-num">07 / 14</div>
+  <div class="phase-badge badge-plum">المرحلة 4 — سنة 1-2</div>
+  <h2>🎓 أكاديمية يسّرو — تعلّم مستمر لحياة أسرية أفضل</h2>
+  <p class="subtitle">الدورة التأهيلية بتنتهي عند الشهادة. بس الحياة الزوجية بتحتاج تعلم مستمر.</p>
+  <div class="g2">
+    <div class="card">
+      <h3>📚 كورسات مدفوعة ($5-15)</h3>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">🏠</div><div class="txt"><strong>"السنة الأولى — دليل البقاء"</strong> — 6 دروس عن التوقعات، التواصل، المشاكل الشائعة</div></div>
+        <div class="shield"><div class="ico">💬</div><div class="txt"><strong>"فن التواصل الزوجي"</strong> — 4 دروس عن الإنصات، التعبير، حل الخلافات</div></div>
+        <div class="shield"><div class="ico">💰</div><div class="txt"><strong>"إدارة المال كزوجين"</strong> — 4 دروس عن الميزانية المشتركة، الادخار، القرارات المالية</div></div>
+        <div class="shield"><div class="ico">👶</div><div class="txt"><strong>"التربية الواعية"</strong> — 8 دروس عن الأبناء، الانضباط الإيجابي، القيم</div></div>
+        <div class="shield"><div class="ico">👨‍👩‍👦</div><div class="txt"><strong>"أهل الزوج والزوجة"</strong> — 3 دروس عن الحدود، الاحترام، التعامل الحكيم</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🎥 ميزات تفاعلية</h3>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">📜</div><div class="txt"><strong>شهادات إضافية</strong> — لكل كورس شهادة تُضاف لملفك</div></div>
+        <div class="shield"><div class="ico">💭</div><div class="txt"><strong>منتدى نقاشي</strong> — خاص بكل كورس، الأزواج يشاركوا تجاربهم</div></div>
+        <div class="shield"><div class="ico">📡</div><div class="txt"><strong>بث مباشر شهري</strong> — مع مستشار أسري + أسئلة وأجوبة</div></div>
+        <div class="shield"><div class="ico">🏆</div><div class="txt"><strong>تحديات أسبوعية</strong> — "تحدي التقدير" أو "تحدي التواصل" — gamification</div></div>
+      </div>
+      <div style="margin-top:12px;text-align:center"><span class="badge badge-teal">إيراد متوقع: $8,000/شهر</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 8: Phase 4 - Community + Emergency -->
+<div class="slide">
+  <div class="slide-num">08 / 14</div>
+  <div class="phase-badge badge-plum">المرحلة 4 — سنة 1-2</div>
+  <h2>👨‍👩‍👧‍👦 مجتمع الأزواج + صندوق الطوارئ</h2>
+  <div class="g2">
+    <div class="card" style="border-right:4px solid var(--teal)">
+      <h3>🤝 مجتمع الأزواج</h3>
+      <p style="margin-bottom:12px">الأزواج الجدد بيحسوا بالعزلة. يسّرو تقدر تبني أقوى مجتمع داعم للأسر المسلمة.</p>
+      <div class="shield"><div class="ico">👥</div><div class="txt"><strong>مجموعات محلية</strong> — أزواج من نفس المنطقة يتعارفوا ويتشاركوا</div></div>
+      <div class="shield"><div class="ico">🧭</div><div class="txt"><strong>نظام المنتور</strong> — زوج/زوجة خبير (5+ سنوات) يوجه زوج جديد</div></div>
+      <div class="shield"><div class="ico">🗓️</div><div class="txt"><strong>لقاءات شهرية</strong> — أونلاين + أوفلاين في كل مدينة</div></div>
+      <div class="shield"><div class="ico">📝</div><div class="txt"><strong>قصص نجاح</strong> — أزواج يسّرو يشاركوا رحلتهم ويلهموا الآخرين</div></div>
+    </div>
+    <div class="card" style="border-right:4px solid var(--coral)">
+      <h3>🆘 صندوق الطوارئ الأسري</h3>
+      <p style="margin-bottom:12px">أزمات مالية مفاجئة بتهدد الاستقرار. تكافل اجتماعي حقيقي.</p>
+      <div class="shield"><div class="ico">💰</div><div class="txt"><strong>اشتراك صغير</strong> — 50-200 ج.م/شهر لكل أسرة</div></div>
+      <div class="shield"><div class="ico">🏥</div><div class="txt"><strong>تغطية الطوارئ</strong> — مرض، فقد وظيفة، حوادث</div></div>
+      <div class="shield"><div class="ico">🚫</div><div class="txt"><strong>بدون فوائد</strong> — تكافل إسلامي حقيقي، لا ربا</div></div>
+      <div class="shield"><div class="ico">📊</div><div class="txt"><strong>شفافية كاملة</strong> — كل مساهمة وكل صرف معروض للجميع</div></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 9: Phase 4 - Advanced Counseling -->
+<div class="slide">
+  <div class="slide-num">09 / 14</div>
+  <div class="phase-badge badge-plum">المرحلة 4 — سنة 1-2</div>
+  <h2>🎧 استشارات متقدمة — من حجز جلسة لمنظومة دعم كاملة</h2>
+  <div class="g2">
+    <div class="card">
+      <h3>الخدمات</h3>
+      <div class="shield"><div class="ico">📹</div><div class="txt"><strong>فيديو كول مباشر</strong> — مع المستشار عبر Zoom/Jitsi</div></div>
+      <div class="shield"><div class="ico">🕌</div><div class="txt"><strong>تخصصات</strong> — مستشار شرعي، نفسي، مالي، تربوي</div></div>
+      <div class="shield"><div class="ico">👥</div><div class="txt"><strong>جلسات جماعية</strong> — أرخص ومفيدة لمواضيع عامة</div></div>
+      <div class="shield"><div class="ico">🆘</div><div class="txt"><strong>خط طوارئ 24/7</strong> — واتساب مباشر مع مستشار متاح</div></div>
+    </div>
+    <div class="card">
+      <h3>💎 باقات الاشتراك</h3>
+      <div class="g3" style="margin-top:12px">
+        <div style="text-align:center;padding:16px;background:var(--surface2);border-radius:12px">
+          <div style="font-size:24px;font-weight:900;color:var(--t1)">$10</div>
+          <div style="font-size:11px;color:var(--t3)">جلسة واحدة</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--teal-light);border-radius:12px;border:2px solid var(--teal)">
+          <div style="font-size:24px;font-weight:900;color:var(--teal)">$30</div>
+          <div style="font-size:11px;color:var(--teal)">4 جلسات/شهر</div>
+          <div style="font-size:9px;color:var(--teal);font-weight:700;margin-top:4px">الأكثر شعبية</div>
+        </div>
+        <div style="text-align:center;padding:16px;background:var(--gold-light);border-radius:12px">
+          <div style="font-size:24px;font-weight:900;color:var(--gold)">$50</div>
+          <div style="font-size:11px;color:var(--gold)">غير محدود</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px"><span class="badge badge-teal">إيراد متوقع: $5,000/شهر</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 10: Phase 5 - Innovations -->
+<div class="slide">
+  <div class="slide-num">10 / 14</div>
+  <div class="phase-badge badge-sky">المرحلة 5 — سنة 2+</div>
+  <h2>🚀 ابتكارات — يسّرو الجيل القادم</h2>
+  <div class="g2">
+    <div class="card" style="border-right:4px solid var(--sky)">
+      <h3>🤖 AI Matching — توفيق بالذكاء الاصطناعي</h3>
+      <p>الخوارزمية الحالية بسيطة (مدينة + عمر + تدين). الجيل القادم:</p>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">🧠</div><div class="txt"><strong>اختبار شخصية</strong> — 20 سؤال عند التسجيل (القيم، أسلوب الحياة، التوقعات)</div></div>
+        <div class="shield"><div class="ico">📈</div><div class="txt"><strong>تعلم من النجاح</strong> — تحليل أنماط الزيجات الناجحة (1+ سنة بدون مشاكل)</div></div>
+        <div class="shield"><div class="ico">🎯</div><div class="txt"><strong>توافق أعمق</strong> — مش بس بيانات ديموغرافية، بل توافق حقيقي في الشخصية</div></div>
+      </div>
+      <div style="margin-top:8px"><span class="badge badge-sky">ميزة تنافسية لا تُنسخ</span></div>
+    </div>
+    <div class="card" style="border-right:4px solid var(--plum)">
+      <h3>🏢 B2B — يسّرو للمؤسسات</h3>
+      <p>مؤسسات خيرية وجمعيات بتنظم أعراس جماعية يدوياً. يسّرو تقدر تكون أداتهم.</p>
+      <div style="margin-top:8px">
+        <div class="shield"><div class="ico">🖥️</div><div class="txt"><strong>لوحة تحكم مؤسسية</strong> — المؤسسة تدير أعراسها عبر يسّرو</div></div>
+        <div class="shield"><div class="ico">🏷️</div><div class="txt"><strong>White-label</strong> — المؤسسة تستخدم يسّرو بشعارها</div></div>
+        <div class="shield"><div class="ico">📊</div><div class="txt"><strong>تقارير أثر</strong> — إحصائيات الزيجات، التكاليف، الأثر الاجتماعي</div></div>
+      </div>
+      <div style="margin-top:8px"><span class="badge badge-plum">اشتراك $50-200/مؤسسة/شهر</span></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 11: Yassiru Pay -->
+<div class="slide">
+  <div class="slide-num">11 / 14</div>
+  <div class="phase-badge badge-sky">المرحلة 5 — سنة 2+</div>
+  <h2>💳 يسّرو Pay — القفزة المالية الكبيرة</h2>
+  <p class="subtitle">بعد بناء ثقة مع آلاف الأسر، نوسّع الخدمات المالية الإسلامية.</p>
+  <div class="g3">
+    <div class="pillar-card" style="border-top:3px solid var(--teal)">
+      <div class="emoji">👛</div>
+      <h4>محفظة ادخار أسري</h4>
+      <p>ادخار مشترك للزوجين. أهداف (مثل: تجهيز غرفة الطفل). تتبع تلقائي.</p>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--gold)">
+      <div class="emoji">🔄</div>
+      <h4>تحويلات أسرية</h4>
+      <p>تحويل بين أعضاء الأسرة. مصروف شهري. هدايا رقمية. بدون رسوم.</p>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--green)">
+      <div class="emoji">🏦</div>
+      <h4>ميكروتمويل حلال</h4>
+      <p>قروض حسنة صغيرة لتأثيث المنزل. شراكة مع بنوك إسلامية (فيصل، البركة). بدون ربا.</p>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;margin-top:12px;background:var(--teal-light);border-color:rgba(13,115,119,.2)">
+    <p style="font-weight:700;color:var(--teal-dark);font-size:15px;margin:0">يسّرو Pay = إيراد $15,000/شهر من عمولات التحويل والشراكات البنكية</p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 12: Revenue Growth -->
+<div class="slide">
+  <div class="slide-num">12 / 14</div>
+  <div class="tag">نمو الإيرادات</div>
+  <h2>من $8,000 إلى $76,500/شهر — خلال سنتين</h2>
+  <div class="g2">
+    <div>
+      <div class="rev-item"><div class="name">🎓 رسوم التأهيل</div><div class="amount">$2,500</div></div>
+      <div class="rev-item"><div class="name">💰 رسوم الصندوق (2-3%)</div><div class="amount">$1,500</div></div>
+      <div class="rev-item"><div class="name">💒 عمولة أعراس</div><div class="amount">$2,000</div></div>
+      <div class="rev-item"><div class="name">🕌 اشتراكات معرّفين</div><div class="amount">$1,000</div></div>
+      <div class="rev-item"><div class="name">💚 تبرعات</div><div class="amount">$1,000</div></div>
+      <div class="rev-total">
+        <div class="lbl">الآن — مصر فقط</div>
+        <div class="num">$8,000/شهر</div>
+      </div>
+    </div>
+    <div>
+      <div class="rev-item"><div class="name">🏷️ شراكات + كوبونات</div><div class="amount">+$3,000</div></div>
+      <div class="rev-item"><div class="name">🇸🇦 الخليج (x3)</div><div class="amount">+$15,000</div></div>
+      <div class="rev-item"><div class="name">🌍 شمال أفريقيا</div><div class="amount">+$5,000</div></div>
+      <div class="rev-item"><div class="name">📚 أكاديمية + استشارات</div><div class="amount">+$13,000</div></div>
+      <div class="rev-item"><div class="name">🏢 B2B + يسّرو Pay</div><div class="amount">+$30,000</div></div>
+      <div class="rev-total" style="background:linear-gradient(135deg,rgba(13,115,119,.1),rgba(184,134,11,.1))">
+        <div class="lbl">بعد سنتين — عالمي</div>
+        <div class="num" style="font-size:42px">$76,500/شهر</div>
+        <div class="lbl">نمو 9.5x</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 13: Priorities -->
+<div class="slide">
+  <div class="slide-num">13 / 14</div>
+  <div class="tag">ترتيب الأولويات</div>
+  <h2>ماذا نبني أولاً؟</h2>
+  <p class="subtitle">القاعدة: لا نبني ميزة جديدة قبل ما الميزة الحالية تشتغل ممتاز.</p>
+  <div class="flow-step"><div class="num" style="background:var(--green-light);color:var(--green)">1</div><div class="content"><h4>تقييم المعرّفين + إشعارات واتساب + نظام إحالة</h4><p>أقل تكلفة تطوير، أعلى أثر على النمو والثقة. شهر 1-3.</p></div></div>
+  <div class="flow-step"><div class="num" style="background:var(--gold-light);color:var(--gold)">2</div><div class="content"><h4>مسار المطلقين/الأرامل + شراكات الموردين</h4><p>سوق ضخم مهمل + مصدر دخل جديد. شهر 3-6.</p></div></div>
+  <div class="flow-step"><div class="num" style="background:var(--orange-light);color:var(--orange)">3</div><div class="content"><h4>التوسع للخليج + تطبيق Flutter</h4><p>3x الإيرادات + تثبيت المستخدمين على الموبايل. شهر 6-12.</p></div></div>
+  <div class="flow-step"><div class="num" style="background:rgba(106,27,77,.08);color:var(--plum)">4</div><div class="content"><h4>أكاديمية يسّرو + مجتمع الأزواج + استشارات متقدمة</h4><p>دخل مستدام من المحتوى + ولاء المستخدمين. سنة 1-2.</p></div></div>
+  <div class="flow-step"><div class="num" style="background:rgba(21,101,192,.08);color:var(--sky)">5</div><div class="content"><h4>AI Matching + B2B + يسّرو Pay</h4><p>القفزة الكبيرة — ميزات لا تُنسخ + دخل مؤسسي. سنة 2+.</p></div></div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 14: CTA -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">14 / 14</div>
+  <div class="quote">﴿ وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ ﴾</div>
+  <div class="quote-ref">سورة المائدة — آية 2</div>
+  <div style="margin-top:32px">
+    <h2>المنصة مبنية. الرؤية واضحة. الطريق مرسوم.</h2>
+    <p class="subtitle" style="text-align:center;max-width:540px;margin:16px auto 28px">من منصة تيسير زواج في مصر إلى منظومة أسرية تخدم 2 مليار مسلم. كل ما نحتاجه: شركاء يؤمنون بالرسالة.</p>
+  </div>
+  <div class="g3">
+    <div class="card" style="text-align:center"><h3>📧 البريد</h3><p>en.developer2@gmail.com</p></div>
+    <div class="card" style="text-align:center"><h3>🌐 الموقع</h3><p>yassiru.com</p></div>
+    <div class="card" style="text-align:center"><h3>📱 واتساب</h3><p>+20 120 061 6482</p></div>
+  </div>
+</div>
+
+<footer>
+  يسّرو — خطة التوسع والمحاور الجديدة | إعداد: إسلام — أبريل 2026<br>
+  <span style="font-family:'Amiri',serif;color:var(--gold);font-size:14px">اللهم بارك في هذا المشروع واجعله صدقة جارية لكل من ساهم فيه</span>
+</footer>
+
+</body>
+</html>

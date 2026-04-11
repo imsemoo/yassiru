@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — منظومة تيسير الزواج</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf9f6;--surface:#fff;--surface2:#f3efe8;--surface3:#ebe5d9;
+  --teal:#0d7377;--teal-light:#e0f2f1;--teal-dark:#095456;
+  --gold:#b8860b;--gold-light:#fdf5e6;
+  --coral:#c0392b;--coral-light:#fdeaea;
+  --plum:#6a1b4d;--plum-light:#f5e6ef;
+  --sky:#1565c0;--sky-light:#e3f2fd;
+  --t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#e0d8cc;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo','Tajawal',sans-serif;background:var(--bg);color:var(--t1);line-height:1.9}
+
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.ornament{text-align:center;padding:10px 0;font-size:20px;color:var(--gold);letter-spacing:10px;opacity:.4}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px;background:linear-gradient(180deg,var(--surface2) 0%,var(--bg) 100%)}
+.bismillah{font-family:'Amiri',serif;font-size:clamp(18px,3vw,26px);color:var(--gold);margin-bottom:28px;opacity:.7}
+.hero h1{font-size:clamp(42px,7vw,78px);font-weight:900;line-height:1.15;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero-hadith{font-family:'Amiri',serif;font-size:clamp(16px,2.2vw,22px);color:var(--gold);max-width:600px;margin:20px auto 6px;line-height:2}
+.hero-ref{font-size:13px;color:var(--t3);margin-bottom:32px}
+.hero-desc{font-size:clamp(14px,1.8vw,17px);color:var(--t2);max-width:620px;margin-bottom:40px;line-height:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;background:var(--teal-light);border:1px solid rgba(13,115,119,.2);color:var(--teal);font-size:14px;font-weight:700}
+
+.crisis-bar{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.crisis-stat{background:var(--coral-light);border:1px solid rgba(192,57,43,.15);border-radius:14px;padding:14px 20px;text-align:center;min-width:140px}
+.crisis-stat .num{font-size:28px;font-weight:900;color:var(--coral)}
+.crisis-stat .lbl{font-size:11px;color:var(--t3)}
+
+/* Section */
+.section{padding:70px 0 0}
+.stag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.section h2{font-size:clamp(22px,3.5vw,34px);font-weight:900;margin-bottom:8px}
+.sdesc{color:var(--t2);font-size:14px;margin-bottom:24px}
+
+/* Card */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;margin-bottom:18px;box-shadow:0 2px 16px rgba(0,0,0,.02)}
+.card h3{font-size:18px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card p,.card li{color:var(--t2);font-size:14px;line-height:2}
+
+/* Pillar Cards */
+.pillar{border-top:3px solid;padding-top:4px}
+.pillar-teal{border-color:var(--teal)}
+.pillar-gold{border-color:var(--gold)}
+.pillar-plum{border-color:var(--plum)}
+.pillar-sky{border-color:var(--sky)}
+.pillar-coral{border-color:var(--coral)}
+
+.pillar-num{font-size:48px;font-weight:900;opacity:.1;margin-bottom:-20px}
+
+/* Grid */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* Feature */
+.feat{padding:16px;border-radius:12px;background:rgba(255,255,255,.6);border:1px solid var(--border);font-size:13px;color:var(--t2);line-height:1.8;display:flex;align-items:flex-start;gap:10px}
+.feat .dot{min-width:7px;height:7px;border-radius:50%;margin-top:8px}
+.dot-teal{background:var(--teal)}.dot-gold{background:var(--gold)}.dot-plum{background:var(--plum)}.dot-sky{background:var(--sky)}
+
+/* Hadith Box */
+.hadith-box{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:22px;margin:14px 0;text-align:center}
+.hadith-box .txt{font-family:'Amiri',serif;font-size:17px;color:var(--t1);line-height:2.2;margin-bottom:6px}
+.hadith-box .ref{font-size:12px;color:var(--gold)}
+
+/* Flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}
+.flow-step{text-align:center;padding:16px 8px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+.flow-step .emoji{font-size:24px;margin-bottom:6px}
+.flow-step .num{font-size:10px;font-weight:800;color:var(--teal);letter-spacing:2px}
+.flow-step .label{font-size:11.5px;color:var(--t2);margin-top:4px;line-height:1.5}
+
+/* Compliance */
+.compliance{border-right:3px solid var(--teal);padding:16px 20px;background:var(--teal-light);border-radius:0 12px 12px 0;margin:12px 0}
+.compliance-title{font-size:14px;font-weight:700;color:var(--teal-dark);margin-bottom:6px}
+.compliance p{font-size:13px;color:var(--t2);line-height:1.8}
+
+/* Warning */
+.warning{border-right:3px solid var(--coral);padding:16px 20px;background:var(--coral-light);border-radius:0 12px 12px 0;margin:12px 0}
+.warning-title{font-size:14px;font-weight:700;color:var(--coral);margin-bottom:6px}
+.warning p{font-size:13px;color:var(--t2);line-height:1.8}
+
+/* Revenue */
+.rev-box{text-align:center;padding:28px;border-radius:18px;background:linear-gradient(135deg,rgba(13,115,119,.06),rgba(184,134,11,.06));border:1px solid rgba(13,115,119,.15);margin:16px 0}
+.rev-box .formula{font-size:13px;color:var(--t3);margin-bottom:6px}
+.rev-box .amount{font-size:40px;font-weight:900;color:var(--teal)}
+.rev-box .note{font-size:12px;color:var(--t3);margin-top:6px}
+
+/* Comparison */
+.comp-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:14px 0}
+.comp-table th{background:var(--surface2);padding:10px 12px;font-weight:700;text-align:right;border:1px solid var(--border)}
+.comp-table td{padding:8px 12px;border:1px solid var(--border);color:var(--t2)}
+.comp-table .yes{color:var(--teal);font-weight:700}
+.comp-table .no{color:var(--coral);font-weight:700}
+.comp-table .highlight{background:rgba(13,115,119,.03)}
+
+/* CTA */
+.cta-card{border-radius:22px;padding:44px 36px;text-align:center;background:var(--surface);border:1px solid var(--border);margin:60px 0 80px;box-shadow:0 4px 30px rgba(0,0,0,.04)}
+.cta-card h2{font-size:26px;font-weight:900;margin-bottom:14px}
+.cta-card p{color:var(--t2);font-size:14px;max-width:560px;margin:0 auto 28px;line-height:2}
+
+footer{text-align:center;padding:36px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--t3)}
+
+@media(max-width:768px){.g2,.g3,.flow{grid-template-columns:1fr}.card{padding:22px}}
+@media print{.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="bismillah">بسم الله الرحمن الرحيم</div>
+  <h1><em>يسّروا</em></h1>
+  <div class="hero-hadith">«يَسِّرُوا وَلَا تُعَسِّرُوا، وَبَشِّرُوا وَلَا تُنَفِّرُوا»</div>
+  <div class="hero-ref">متفق عليه — البخاري ومسلم</div>
+  <p class="hero-desc">ليست منصة تعارف. ليست موقع زواج. "يسّروا" هي أول منظومة متكاملة لإزالة عوائق الزواج — من التأهيل والتوفيق عبر شبكة موثوقة، إلى التمويل التعاوني والزفاف الجماعي، وحتى رعاية ما بعد الزواج.</p>
+  <div class="hero-badge">🌱 مشروع صدقة جارية + دخل مستدام</div>
+  <div class="crisis-bar">
+    <div class="crisis-stat"><div class="num">40%</div><div class="lbl">من شباب العرب لن يتزوجوا بسبب التكلفة</div></div>
+    <div class="crisis-stat"><div class="num">10 سنوات</div><div class="lbl">دخل الشاب = تكلفة زواج واحد</div></div>
+    <div class="crisis-stat"><div class="num">85%</div><div class="lbl">يقولون التكلفة هي العائق الأول</div></div>
+    <div class="crisis-stat"><div class="num">0</div><div class="lbl">منصات تحل المشكلة المالية</div></div>
+  </div>
+</section>
+
+<div class="ornament">✦ ✦ ✦</div>
+
+<div class="wrap">
+
+<!-- ═══ THE CORE INSIGHT ═══ -->
+<div class="section">
+  <div class="stag">الرؤية الجوهرية</div>
+  <h2>المشكلة ليست في إيجاد الشريك — المشكلة في تحمُّل تكاليف الزواج</h2>
+</div>
+
+<div class="card">
+  <h3><span class="ico">💡</span> لماذا "يسّروا" مختلفة عن كل الموجود</h3>
+  <p style="margin-bottom:16px">كل المنصات الحالية (ميثاق، مسيار، مودة، Muzmatch) تحل مشكلة واحدة فقط: <strong>إيجاد الشريك</strong>. لكن الواقع يقول إن 85% من الشباب يعرفون من يريدون الزواج منهم — المشكلة إنهم <strong>مش قادرين مادياً</strong>.</p>
+
+  <table class="comp-table">
+    <tr><th>الجانب</th><th>المنصات الحالية (ميثاق وغيرها)</th><th style="color:var(--teal);font-weight:800">يسّروا</th></tr>
+    <tr><td>الهدف الأساسي</td><td>إيجاد شريك مناسب</td><td class="highlight"><strong>إزالة كل عوائق الزواج</strong></td></tr>
+    <tr><td>حل المشكلة المالية</td><td class="no">✗ لا يوجد</td><td class="yes">✓ صندوق تعاوني + زفاف جماعي</td></tr>
+    <tr><td>التأهيل قبل الزواج</td><td>اختياري/منفصل</td><td class="yes">✓ إلزامي ومتكامل</td></tr>
+    <tr><td>التوفيق</td><td>تصفح ملفات (زي التسوق)</td><td class="yes">✓ توصية من معرّفين موثوقين</td></tr>
+    <tr><td>دور الأسرة</td><td>التواصل مع الولي فقط</td><td class="yes">✓ الأسرة شريك أساسي في كل خطوة</td></tr>
+    <tr><td>الزفاف والتكاليف</td><td class="no">✗ لا يوجد</td><td class="yes">✓ تنسيق أعراس جماعية (توفير 70%)</td></tr>
+    <tr><td>ما بعد الزواج</td><td class="no">✗ لا يوجد</td><td class="yes">✓ رعاية السنة الأولى</td></tr>
+  </table>
+</div>
+
+<!-- ═══ THE 5 PILLARS ═══ -->
+<div class="section">
+  <div class="stag">الأركان الخمسة</div>
+  <h2>منظومة "يسّروا" — من التأهيل إلى الاستقرار</h2>
+  <div class="sdesc">5 أركان متكاملة — كل ركن يحل مشكلة حقيقية — ولأول مرة كلهم في مكان واحد</div>
+</div>
+
+<!-- PILLAR 1: التأهيل -->
+<div class="card pillar pillar-teal">
+  <div class="pillar-num">01</div>
+  <h3>🎓 الركن الأول: التأهيل — "شهادة الجاهزية للزواج"</h3>
+  <p style="margin-bottom:14px">
+    <strong>الفكرة الجوهرية:</strong> قبل ما أي شخص يدخل منظومة التوفيق، لازم يحصل على "شهادة جاهزية للزواج" — كورس مكثف مُعتمد من علماء ومتخصصين. ده مش اختياري — ده شرط دخول. وده أول فلتر يضمن الجدية.
+  </p>
+
+  <div class="g2">
+    <div class="feat"><span class="dot dot-teal"></span><strong>المسار الشرعي:</strong> حقوق الزوجين، المعاشرة بالمعروف، آداب الخلاف، الطلاق كآخر حل — بإشراف علماء أهل السنة</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>المسار النفسي:</strong> مهارات التواصل، إدارة التوقعات، الذكاء العاطفي، التعامل مع الضغوط — بإشراف مستشارين أسريين</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>المسار المالي:</strong> إعداد ميزانية الأسرة، الادخار، إدارة الدخل، تجنب الديون — مهارات عملية</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>المسار العملي:</strong> المهام المنزلية الأساسية، الطبخ، التعامل مع الأهل، بناء البيت — واقعي ومباشر</div>
+  </div>
+
+  <div class="compliance">
+    <div class="compliance-title">⚖️ الضابط الشرعي والقانوني</div>
+    <p>المحتوى يُراجع من هيئة استشارية شرعية (3 علماء على الأقل). لا يتضمن أي محتوى يخالف الشريعة. الشهادة تُمنح بعد اجتياز اختبار بسيط يثبت استيعاب المادة. مدة الكورس: 10-15 ساعة (يمكن إكماله في أسبوعين).</p>
+  </div>
+</div>
+
+<!-- PILLAR 2: التوفيق -->
+<div class="card pillar pillar-gold">
+  <div class="pillar-num">02</div>
+  <h3>🤝 الركن الثاني: التوفيق عبر "المُعرِّف الموثوق"</h3>
+  <p style="margin-bottom:14px">
+    <strong>الفكرة الجوهرية:</strong> في القرية القديمة، الإمام والجيران كانوا يعرفون كل عائلة ويوصون بالتوفيق. "يسّروا" تُرقمن هذا النظام. بدل ما المستخدم يتصفح ملفات غرباء (زي التسوق)، "مُعرِّف موثوق" هو اللي يرشّح.
+  </p>
+
+  <p><strong>مين هو "المُعرِّف الموثوق"؟</strong></p>
+  <div class="g3" style="margin:12px 0">
+    <div class="feat"><span class="dot dot-gold"></span><strong>إمام المسجد</strong> — يعرف عائلات الحي ويشهد لأخلاقهم</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>معلم/أستاذ</strong> — يعرف طلابه ويشهد لجديتهم</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>قريب موثوق</strong> — عم/خال/كبير عائلة يعرف الطرفين</div>
+  </div>
+
+  <p><strong>كيف يعمل النظام:</strong></p>
+  <div class="flow">
+    <div class="flow-step"><div class="emoji">🔐</div><div class="num">الخطوة 1</div><div class="label">المُعرِّف يسجّل ويتحقق من هويته</div></div>
+    <div class="flow-step"><div class="emoji">📝</div><div class="num">الخطوة 2</div><div class="label">يسجّل أشخاصاً يعرفهم شخصياً ويشهد لهم</div></div>
+    <div class="flow-step"><div class="emoji">🔍</div><div class="num">الخطوة 3</div><div class="label">النظام يعرض توافقات محتملة بين المسجلين</div></div>
+    <div class="flow-step"><div class="emoji">👨‍👩‍👦</div><div class="num">الخطوة 4</div><div class="label">العائلات تتواصل عبر المُعرِّف (وسيط)</div></div>
+    <div class="flow-step"><div class="emoji">✅</div><div class="num">الخطوة 5</div><div class="label">لقاء رسمي بحضور الأهل</div></div>
+  </div>
+
+  <div class="compliance">
+    <div class="compliance-title">⚖️ الضابط الشرعي والقانوني</div>
+    <p><strong>لا يوجد أي تواصل مباشر بين الرجل والمرأة عبر المنصة نهائياً.</strong> كل التواصل يتم: من مُعرِّف إلى عائلة ← من عائلة إلى عائلة ← لقاء شرعي بحضور الولي. المنصة لا تعرض صوراً. لا يوجد "تصفح ملفات". كل شيء عبر الوسيط الموثوق. هذا يحمي من أي شبهة شرعية أو قانونية.</p>
+  </div>
+
+  <div class="warning">
+    <div class="warning-title">🛡️ الفرق الجوهري عن التعارف</div>
+    <p>يسّروا ليست منصة تعارف. لا يوجد: ملفات شخصية قابلة للتصفح، صور، رسائل خاصة، دردشة، أو أي شكل من أشكال التواصل المباشر. النظام يعمل حصرياً عبر وسطاء موثوقين وأولياء أمور. هذا النموذج أقرب لـ "الخاطبة الرقمية" منه لأي تطبيق زواج.</p>
+  </div>
+</div>
+
+<!-- PILLAR 3: التيسير المالي -->
+<div class="card pillar pillar-plum">
+  <div class="pillar-num">03</div>
+  <h3>💰 الركن الثالث: صندوق التيسير — "جمعية الزواج الرقمية"</h3>
+  <p style="margin-bottom:14px">
+    <strong>الفكرة الجوهرية — وهي الأكثر ابتكاراً:</strong> مفهوم "الجمعية" معروف في العالم العربي — مجموعة ناس بتوفر مبلغ شهري وكل شهر واحد بياخد الحصيلة. "يسّروا" تطبق نفس المفهوم رقمياً لتمويل الزواج. ده لم يتم رقمنته من قبل في سياق الزواج.
+  </p>
+
+  <p><strong>كيف يعمل صندوق التيسير:</strong></p>
+  <div class="g2" style="margin:12px 0">
+    <div class="feat"><span class="dot dot-plum"></span><strong>مجموعة من 10-20 شاب</strong> مقبلين على الزواج يُنشئون "حلقة تيسير" على المنصة</div>
+    <div class="feat"><span class="dot dot-plum"></span><strong>كل واحد يدفع مبلغ شهري ثابت</strong> (مثلاً 500 جنيه/ريال) في صندوق الحلقة</div>
+    <div class="feat"><span class="dot dot-plum"></span><strong>كل شهر/شهرين</strong> واحد من الحلقة يحصل على المبلغ الكامل لتمويل زواجه</div>
+    <div class="feat"><span class="dot dot-plum"></span><strong>الترتيب بالقرعة أو الأولوية</strong> (الأكثر حاجة أولاً) — المجموعة تقرر</div>
+  </div>
+
+  <div style="background:var(--plum-light);border:1px solid rgba(106,27,77,.15);border-radius:14px;padding:20px;margin:14px 0;text-align:center">
+    <p style="font-size:14px;font-weight:700;color:var(--plum);margin-bottom:8px">مثال عملي:</p>
+    <p style="font-size:13px;color:var(--t2)">
+      15 شاب × 1,000 جنيه/شهر = <strong style="color:var(--plum)">15,000 جنيه كل شهر</strong><br>
+      كل شهر شاب واحد يحصل على 15,000 جنيه ← بعد 15 شهر الكل اتجوّز<br>
+      <small>المبلغ ده ممكن يغطي جزء كبير من المهر أو الأثاث أو الإيجار</small>
+    </p>
+  </div>
+
+  <div class="compliance">
+    <div class="compliance-title">⚖️ الضابط الشرعي والقانوني</div>
+    <p><strong>شرعياً:</strong> الجمعية (القرض الحسن الدوري) جائزة شرعاً — هي قرض حسن من كل عضو للآخر بالتناوب، وليس فيها ربا لأنه لا زيادة. أفتى بجوازها جمهور العلماء المعاصرين.<br>
+    <strong>قانونياً:</strong> المنصة لا تحتفظ بالأموال — هي منظّم فقط. الأموال تنتقل مباشرة بين الأعضاء عبر بوابة دفع مرخصة (فوري/STC Pay/حوالة بنكية). المنصة تأخذ رسم تنظيم فقط (2-3%) وليست مؤسسة مالية.</p>
+  </div>
+</div>
+
+<!-- PILLAR 4: الزفاف الجماعي -->
+<div class="card pillar pillar-sky">
+  <div class="pillar-num">04</div>
+  <h3>💒 الركن الرابع: تنسيق الأعراس الجماعية — توفير 60-70%</h3>
+  <p style="margin-bottom:14px">
+    <strong>الفكرة:</strong> بدل ما كل عريس يحجز قاعة ومصور وبوفيه لوحده بتكلفة عالية، المنصة تنسق أعراس جماعية — 10-30 عريس يتزوجون في نفس الحفل. التكلفة تنقسم على الجميع. ده موجود كمبادرات محلية متفرقة — لكن لم يتم رقمنته كمنصة مستمرة.
+  </p>
+  <div class="g2" style="margin:12px 0">
+    <div class="feat"><span class="dot dot-sky"></span><strong>تفاوض جماعي:</strong> المنصة تتفاوض مع قاعات ومصورين وشركات تموين على أسعار جملة ← توفير 60-70%</div>
+    <div class="feat"><span class="dot dot-sky"></span><strong>حاسبة التكاليف:</strong> أداة شفافة تحسب تكلفة الزواج الحقيقية في مدينتك مع مقارنة (فردي vs جماعي)</div>
+    <div class="feat"><span class="dot dot-sky"></span><strong>جدول أعراس:</strong> تقويم شهري بالأعراس الجماعية القادمة في كل مدينة مع الحجز أونلاين</div>
+    <div class="feat"><span class="dot dot-sky"></span><strong>شراكات:</strong> اتفاقيات مع قاعات وفنادق ومصورين ومحلات أثاث — خصومات حصرية لمستخدمي يسّروا</div>
+  </div>
+</div>
+
+<!-- PILLAR 5: الرعاية -->
+<div class="card pillar pillar-coral">
+  <div class="pillar-num">05</div>
+  <h3>🛡️ الركن الخامس: رعاية السنة الأولى — لمنع الطلاق المبكر</h3>
+  <p style="margin-bottom:14px">
+    <strong>لماذا:</strong> 40% من حالات الطلاق تحدث في السنتين الأولى. السبب ليس عدم التوافق — السبب عدم المعرفة بإدارة الخلافات. "يسّروا" لا تنتهي مهمتها عند الزواج — بل تبدأ مرحلة جديدة.
+  </p>
+  <div class="g2" style="margin:12px 0">
+    <div class="feat"><span class="dot dot-teal"></span><strong>مستشار أسري:</strong> جلسة شهرية (أونلاين) مع مستشار أسري متخصص — مجاناً للسنة الأولى</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>مجتمع المتزوجين:</strong> أزواج أقدم يرشدون الأزواج الجدد (Mentorship) — خبرات حقيقية</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>محتوى مستمر:</strong> نصائح أسبوعية عملية عن السنة الأولى — مشاكل شائعة وحلولها</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>خط طوارئ:</strong> رقم واتساب للاستشارة العاجلة في حالات الخلاف الحاد — لمنع تصعيد يؤدي للطلاق</div>
+  </div>
+</div>
+
+<!-- ═══ LEGAL & SHARIAH ═══ -->
+<div class="section">
+  <div class="stag">الضوابط</div>
+  <h2>الحماية الشرعية والقانونية الكاملة</h2>
+  <div class="sdesc">هذا القسم هو الأهم — لأنك طلبت ضمان عدم وجود مشاكل</div>
+</div>
+
+<div class="card">
+  <h3><span class="ico">⚖️</span> الضوابط الشرعية — 10 قواعد حديدية</h3>
+  <div class="g2">
+    <div class="feat"><span class="dot dot-teal"></span><strong>1.</strong> لا تواصل مباشر بين رجل وامرأة أجنبية عبر المنصة — إطلاقاً</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>2.</strong> كل تواصل يمر عبر ولي الأمر أو المُعرِّف الموثوق حصرياً</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>3.</strong> لا صور شخصية تُعرض أو تُخزّن على المنصة</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>4.</strong> لا تصفح حر للملفات — التوصية تأتي من المُعرِّف فقط</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>5.</strong> الكورس التأهيلي يُراجع من هيئة شرعية قبل النشر</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>6.</strong> صندوق التيسير = قرض حسن دوري — لا ربا</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>7.</strong> المنصة لا تضمن أو تتعهد بأي نتيجة — هي وسيلة تيسير فقط</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>8.</strong> هيئة استشارية شرعية دائمة (3 علماء) تراقب كل المحتوى والخدمات</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>9.</strong> فصل كامل بين محتوى الرجال ومحتوى النساء في التأهيل</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>10.</strong> كل مُعرِّف يوقع ميثاق شرف — المسؤولية الأخلاقية والشرعية</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3><span class="ico">📋</span> الضوابط القانونية — لحماية المنصة والمستخدمين</h3>
+  <div class="g2">
+    <div class="feat"><span class="dot dot-gold"></span><strong>الترخيص:</strong> المنصة تُسجل كشركة تقنية تقدم خدمات تنظيمية — ليست مؤسسة مالية ولا وكالة زواج</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>الأموال:</strong> المنصة لا تحتفظ بأي أموال — بوابة الدفع تحوّل مباشرة بين الأعضاء</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>الخصوصية:</strong> GDPR compliant + تشفير البيانات + حذف الحساب فوري عند الطلب</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>التحقق:</strong> هوية وطنية مطلوبة لكل مُعرِّف + مستخدم — لمنع الاحتيال</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>الشروط:</strong> اتفاقية استخدام واضحة تنص على أن المنصة "وسيلة تيسير" فقط — لا مسؤولية عن نتائج التوفيق</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>الإبلاغ:</strong> نظام إبلاغ فوري عن أي سوء استخدام + إجراءات حظر صارمة</div>
+  </div>
+</div>
+
+<!-- ═══ REVENUE ═══ -->
+<div class="section">
+  <div class="stag">نموذج الدخل</div>
+  <h2>كيف يحقق المشروع دخلاً مستداماً</h2>
+  <div class="sdesc">صدقة جارية + مشروع مستدام — الاثنان لا يتعارضان</div>
+</div>
+
+<div class="card">
+  <h3><span class="ico">💚</span> 5 مصادر دخل — بدون تعارض مع الرسالة</h3>
+  <div class="g2" style="margin-bottom:14px">
+    <div class="feat"><span class="dot dot-teal"></span><strong>1. رسوم التأهيل:</strong> الكورس التأهيلي بـ $10-25 (رمزي) — يغطي تكلفة الإنتاج ويثبت الجدية. مجاني لغير المقتدرين</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>2. رسوم تنظيم الصندوق:</strong> 2-3% رسم تنظيمي على كل دورة صندوق — يغطي تكلفة المنصة والتأمين</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>3. عمولة الشراكات:</strong> 5-10% عمولة من القاعات والمصورين ومحلات الأثاث على كل حجز عبر المنصة</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>4. اشتراك المُعرِّفين المؤسسي:</strong> المساجد والمراكز الإسلامية تدفع اشتراك شهري ($20-50) لتسجيل أعداد أكبر</div>
+  </div>
+  <div class="feat" style="margin-bottom:14px"><span class="dot dot-gold"></span><strong>5. التبرعات والرعاية:</strong> صفحة تبرعات + رعاية من مؤسسات إسلامية وأوقاف — المشروع له بُعد خيري يسهّل جداً الحصول على دعم</div>
+
+  <div class="rev-box">
+    <div class="formula">بعد 6 أشهر: 500 مشترك تأهيل + 20 حلقة تيسير + 3 أعراس جماعية + شراكات =</div>
+    <div class="amount">$4,000-8,000/شهر</div>
+    <div class="note">ينمو مع كل مدينة جديدة — والنمو الاجتماعي يسبق النمو المالي</div>
+  </div>
+</div>
+
+<!-- ═══ WHAT MAKES THIS UNIQUE ═══ -->
+<div class="section">
+  <div class="stag">التميز</div>
+  <h2>لماذا لم تُبنَ هذه المنصة من قبل</h2>
+</div>
+
+<div class="card">
+  <h3><span class="ico">🌟</span> 7 ابتكارات لم تجتمع في مكان واحد من قبل</h3>
+  <div style="margin-bottom:14px">
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">1. رقمنة "الجمعية" لغرض الزواج:</strong> مفهوم الجمعية/القرض الحسن الدوري موجود في كل حي عربي — لكن لم يُطبّق رقمياً على الزواج تحديداً من قبل.</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">2. نظام "المُعرِّف الموثوق":</strong> رقمنة دور "الخاطبة" و"إمام الحي" في شبكة موثوقة مُتحقق منها — ده مفهوم جديد كلياً.</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">3. شهادة الجاهزية كشرط دخول:</strong> مفيش منصة زواج بتشترط تأهيل إلزامي — ده فلتر جودة غير مسبوق.</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">4. منصة أعراس جماعية:</strong> الأعراس الجماعية بتتنظم يدوي — لم تُحوّل لمنصة رقمية مستمرة من قبل.</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">5. دمج المالي + الاجتماعي + التعليمي:</strong> كل المنصات تعالج جانب واحد. يسّروا تعالج كل الجوانب في منظومة واحدة.</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--teal)">6. رعاية ما بعد الزواج:</strong> 99% من المنصات تنتهي عند الزواج. يسّروا تبدأ من هناك.</p>
+    <p><strong style="color:var(--teal)">7. صفر تواصل مباشر:</strong> لا توجد منصة زواج في العالم بدون تواصل مباشر — يسّروا الأولى. وده الحماية الشرعية الكاملة.</p>
+  </div>
+</div>
+
+<!-- ═══ IMPACT ═══ -->
+<div class="section">
+  <div class="stag">الأثر</div>
+  <h2>صدقة جارية بأبعاد لا تنتهي</h2>
+</div>
+
+<div class="hadith-box">
+  <div class="txt">«مَا بَنَى المُؤمِنُ بِنَاءً أَحَبَّ إِلَى اللهِ مِنَ التَّزْوِيجِ»</div>
+  <div class="ref">حسّنه الألباني — السلسلة الصحيحة</div>
+</div>
+
+<div class="card">
+  <div class="g2">
+    <div class="feat"><span class="dot dot-teal"></span><strong>كل زواج يتم عبر المنصة</strong> = أسرة جديدة = أطفال = أجيال — والأجر يجري عليك في كل ذلك</div>
+    <div class="feat"><span class="dot dot-teal"></span><strong>كل شاب تعلّم من كورس التأهيل</strong> = زواج أنجح = طلاق أقل = أطفال أسوياء</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>كل صندوق تيسير</strong> = شاب كان عاجز عن الزواج أصبح متزوجاً = حماية من الحرام</div>
+    <div class="feat"><span class="dot dot-gold"></span><strong>كل عرس جماعي</strong> = 20-30 أسرة جديدة بتكلفة أقل = تحدي ثقافة الإسراف</div>
+  </div>
+</div>
+
+<!-- ═══ FIRST STEPS ═══ -->
+<div class="section">
+  <div class="stag">البداية</div>
+  <h2>الخطوات العملية الأولى</h2>
+</div>
+
+<div class="cta-card">
+  <h2>ابدأ بالتأهيل — والباقي يأتي</h2>
+  <p>لا تحتاج تبني كل شيء دفعة واحدة. ابدأ بالركن الأول (كورس التأهيل) + لاندينج بيج تشرح الرؤية. لما الناس تشوف الجدية والجودة، الباقي هيتبني خطوة بخطوة.</p>
+  <div class="g3">
+    <div style="padding:20px;background:var(--teal-light);border-radius:14px;border:1px solid rgba(13,115,119,.15)">
+      <div style="font-size:24px;font-weight:900;color:var(--teal)">المرحلة 1</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.7">
+        <strong>أسبوع 1-6:</strong><br>
+        بناء موقع "يسّروا" + كورس التأهيل (فيديو/نصوص) + نظام التسجيل والشهادة + لاندينج بيج تشرح المنظومة
+      </div>
+    </div>
+    <div style="padding:20px;background:var(--gold-light);border-radius:14px;border:1px solid rgba(184,134,11,.15)">
+      <div style="font-size:24px;font-weight:900;color:var(--gold)">المرحلة 2</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.7">
+        <strong>أسبوع 7-12:</strong><br>
+        نظام المُعرِّف الموثوق + صندوق التيسير (MVP) + حاسبة تكاليف الزواج + إطلاق تجريبي في مدينة واحدة
+      </div>
+    </div>
+    <div style="padding:20px;background:var(--plum-light);border-radius:14px;border:1px solid rgba(106,27,77,.15)">
+      <div style="font-size:24px;font-weight:900;color:var(--plum)">المرحلة 3</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;line-height:1.7">
+        <strong>شهر 4-6:</strong><br>
+        تنسيق أول عرس جماعي + شراكات مع قاعات + نظام رعاية ما بعد الزواج + التوسع لمدن أخرى
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hadith-box" style="margin-bottom:40px">
+  <div class="txt">﴿ وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ وَالصَّالِحِينَ مِنْ عِبَادِكُمْ وَإِمَائِكُمْ ۚ إِن يَكُونُوا فُقَرَاءَ يُغْنِهِمُ اللَّهُ مِن فَضْلِهِ ﴾</div>
+  <div class="ref">سورة النور — آية 32</div>
+</div>
+
+</div>
+
+<footer>
+  إعداد خاص لـ إسلام — أبريل 2026<br>
+  <span style="font-family:'Amiri',serif;font-size:14px;color:var(--gold);margin-top:6px;display:inline-block">اللهم يسّر لشباب المسلمين أمر زواجهم واجعل هذا المشروع صدقة جارية لا تنقطع</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّروا — دليل التصميم والواجهات</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f7f4;--surface:#fff;--surface2:#f0ebe3;--teal:#0d7377;--teal-light:#e0f2f1;--gold:#b8860b;--gold-light:#fdf5e6;--coral:#c0392b;--plum:#6a1b4d;--sky:#1565c0;--t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#ddd5c8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);line-height:1.85}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+.section{padding:50px 0 0}
+.stag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.section h2{font-size:clamp(20px,3vw,30px);font-weight:900;margin-bottom:6px}
+.sdesc{color:var(--t2);font-size:13px;margin-bottom:20px}
+
+/* Wireframe Container */
+.wf{background:#fff;border:2px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:24px;box-shadow:0 2px 16px rgba(0,0,0,.03)}
+.wf-title{background:var(--surface2);padding:10px 16px;font-size:13px;font-weight:700;color:var(--teal);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.wf-title .page-name{font-family:monospace;font-size:11px;color:var(--t3)}
+.wf-body{padding:20px}
+
+/* Wireframe Elements */
+.wf-nav{background:#f5f2ed;border:1px solid var(--border);border-radius:10px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:12px}
+.wf-nav .logo{font-weight:800;color:var(--teal)}
+.wf-nav .links{display:flex;gap:12px;font-size:11px;color:var(--t3)}
+
+.wf-hero{text-align:center;padding:28px 20px;margin-bottom:14px;border-radius:12px;background:linear-gradient(180deg,#f0ebe3,#fff)}
+.wf-hero .h1{font-size:28px;font-weight:900;margin-bottom:6px}
+.wf-hero .h1 em{color:var(--teal);font-style:normal}
+.wf-hero .sub{font-size:12px;color:var(--t2);max-width:360px;margin:0 auto 12px;line-height:1.7}
+.wf-hero .ayah{font-family:'Amiri',serif;font-size:14px;color:var(--gold);margin-bottom:10px}
+
+.wf-btn{display:inline-block;padding:8px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer}
+.wf-btn-primary{background:var(--teal);color:#fff}
+.wf-btn-outline{border:1px solid var(--teal);color:var(--teal);background:transparent}
+.wf-btn-gold{background:var(--gold);color:#fff}
+
+.wf-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.wf-stat{text-align:center;padding:12px 6px;background:#f8f7f4;border:1px solid var(--border);border-radius:8px}
+.wf-stat .num{font-size:20px;font-weight:900;color:var(--coral)}
+.wf-stat .lbl{font-size:9px;color:var(--t3)}
+
+.wf-pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+.wf-pillar{text-align:center;padding:12px 6px;background:#f8f7f4;border:1px solid var(--border);border-radius:8px}
+.wf-pillar .emoji{font-size:20px}
+.wf-pillar .name{font-size:9px;font-weight:700;margin-top:4px}
+
+.wf-card{background:#f8f7f4;border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.wf-card h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.wf-card p{font-size:11px;color:var(--t3);line-height:1.6}
+
+.wf-form{margin:8px 0}
+.wf-input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--t3);background:#f8f7f4;margin-bottom:6px}
+.wf-select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--t3);background:#f8f7f4;margin-bottom:6px}
+
+.wf-grid{display:grid;gap:8px}
+.wf-grid-2{grid-template-columns:1fr 1fr}
+.wf-grid-3{grid-template-columns:1fr 1fr 1fr}
+
+.wf-search-big{text-align:center;padding:16px;background:var(--teal-light);border:2px solid var(--teal);border-radius:12px;margin-bottom:14px;font-size:13px;color:var(--teal)}
+
+.wf-result{padding:16px;border-radius:10px;margin-bottom:10px;border:1px solid}
+.wf-result-sahih{background:#e8f5ee;border-color:rgba(27,122,74,.2)}
+.wf-result-warn{background:#fff8e1;border-color:rgba(230,126,34,.2)}
+.wf-result-danger{background:#fdeaea;border-color:rgba(192,57,43,.2)}
+
+.wf-progress{width:100%;height:8px;background:var(--border);border-radius:4px;margin:8px 0}
+.wf-progress-fill{height:100%;background:var(--teal);border-radius:4px}
+
+.wf-timeline{position:relative;padding-right:20px;margin:10px 0}
+.wf-timeline::before{content:'';position:absolute;right:6px;top:0;bottom:0;width:2px;background:var(--border)}
+.wf-tl-item{position:relative;margin-bottom:10px;font-size:11px;color:var(--t2)}
+.wf-tl-item::before{content:'';position:absolute;right:-20px;top:5px;width:8px;height:8px;border-radius:50%;border:2px solid var(--teal);background:#fff}
+.wf-tl-item.done::before{background:var(--teal)}
+.wf-tl-item.current::before{background:var(--gold);border-color:var(--gold)}
+
+.wf-table{width:100%;border-collapse:collapse;font-size:11px;margin:8px 0}
+.wf-table th{background:var(--surface2);padding:6px 8px;text-align:right;font-weight:700;border:1px solid var(--border)}
+.wf-table td{padding:6px 8px;border:1px solid var(--border);color:var(--t2)}
+
+.wf-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700}
+.wf-badge-green{background:var(--teal-light);color:var(--teal)}
+.wf-badge-gold{background:var(--gold-light);color:var(--gold)}
+.wf-badge-red{background:#fdeaea;color:var(--coral)}
+
+.wf-footer{background:#f5f2ed;border-top:1px solid var(--border);padding:12px 16px;font-size:10px;color:var(--t3);text-align:center;display:flex;justify-content:space-between}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Design System Section */
+.color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:12px 0}
+.color-swatch{height:60px;border-radius:10px;display:flex;align-items:flex-end;padding:6px 8px;font-size:10px;font-weight:700;color:#fff}
+
+.font-sample{margin:12px 0;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.font-sample .label{font-size:11px;color:var(--t3);margin-bottom:4px}
+
+.component-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.component-box h4{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--teal)}
+
+footer{text-align:center;padding:30px;font-size:11px;color:var(--t3);border-top:1px solid var(--border);margin-top:40px}
+
+@media(max-width:768px){.wf-stats,.wf-pillars{grid-template-columns:1fr 1fr}.g2,.wf-grid-2,.wf-grid-3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- ═══ DESIGN SYSTEM ═══ -->
+<div class="section">
+  <div class="stag">دليل التصميم</div>
+  <h2>Design System — الألوان والخطوط والمكونات</h2>
+</div>
+
+<div class="component-box">
+  <h4>🎨 الألوان الرسمية</h4>
+  <div class="color-grid">
+    <div class="color-swatch" style="background:#0d7377">Teal<br>#0d7377</div>
+    <div class="color-swatch" style="background:#b8860b">Gold<br>#b8860b</div>
+    <div class="color-swatch" style="background:#1b7a4a">Green<br>#1b7a4a</div>
+    <div class="color-swatch" style="background:#c0392b">Coral<br>#c0392b</div>
+    <div class="color-swatch" style="background:#6a1b4d">Plum<br>#6a1b4d</div>
+    <div class="color-swatch" style="background:#1565c0">Sky<br>#1565c0</div>
+  </div>
+  <div class="color-grid">
+    <div class="color-swatch" style="background:#faf9f6;color:var(--t3);border:1px solid var(--border)">BG<br>#faf9f6</div>
+    <div class="color-swatch" style="background:#f3efe8;color:var(--t3);border:1px solid var(--border)">Surface2<br>#f3efe8</div>
+    <div class="color-swatch" style="background:#e0d8cc;color:var(--t2)">Border<br>#e0d8cc</div>
+    <div class="color-swatch" style="background:#1a1a2a">Dark<br>#1a1a2a</div>
+    <div class="color-swatch" style="background:#4a4a5e">Text2<br>#4a4a5e</div>
+    <div class="color-swatch" style="background:#8888a0">Text3<br>#8888a0</div>
+  </div>
+</div>
+
+<div class="component-box">
+  <h4>✍️ الخطوط</h4>
+  <div class="font-sample">
+    <div class="label">العناوين — Cairo Bold/Black</div>
+    <div style="font-size:28px;font-weight:900">يسّروا — تيسير الزواج</div>
+  </div>
+  <div class="font-sample">
+    <div class="label">النصوص — Cairo Regular</div>
+    <div style="font-size:15px">منظومة متكاملة لإزالة عوائق الزواج في العالم الإسلامي.</div>
+  </div>
+  <div class="font-sample">
+    <div class="label">الآيات والأحاديث — Amiri</div>
+    <div style="font-family:'Amiri',serif;font-size:20px;color:var(--gold)">«يَسِّرُوا وَلَا تُعَسِّرُوا»</div>
+  </div>
+</div>
+
+<div class="component-box">
+  <h4>🔘 الأزرار</h4>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+    <span class="wf-btn wf-btn-primary">ابدأ رحلتك</span>
+    <span class="wf-btn wf-btn-outline">اعرف المزيد</span>
+    <span class="wf-btn wf-btn-gold">كن مُعرِّفاً</span>
+    <span class="wf-btn" style="background:var(--coral);color:#fff">إبلاغ</span>
+  </div>
+</div>
+
+<div class="component-box">
+  <h4>🏷️ الشارات</h4>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <span class="wf-badge wf-badge-green">✓ مُتحقق</span>
+    <span class="wf-badge wf-badge-green">✓ حاصل على الشهادة</span>
+    <span class="wf-badge wf-badge-gold">⏳ قيد المراجعة</span>
+    <span class="wf-badge wf-badge-red">✗ مرفوض</span>
+    <span class="wf-badge" style="background:#e3f2fd;color:#1565c0">إمام مسجد</span>
+    <span class="wf-badge" style="background:#f5e6ef;color:#6a1b4d">حلقة تيسير</span>
+  </div>
+</div>
+
+<!-- ═══ WIREFRAMES ═══ -->
+<div class="section">
+  <div class="stag">واجهات المستخدم</div>
+  <h2>Wireframes — كل صفحة في الموقع</h2>
+  <div class="sdesc">تخطيط بصري لكل شاشة — استخدمها كمرجع أثناء التصميم والبرمجة</div>
+</div>
+
+<!-- HOME PAGE -->
+<div class="wf">
+  <div class="wf-title">🏠 الصفحة الرئيسية <span class="page-name">HomePage.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav">
+      <div class="logo">🌱 يسّروا</div>
+      <div class="links">التأهيل | المُعرِّفون | صندوق التيسير | الأعراس | حاسبة التكاليف | تسجيل الدخول</div>
+    </div>
+    <div class="wf-hero">
+      <div class="ayah">«يَسِّرُوا وَلَا تُعَسِّرُوا»</div>
+      <div class="h1"><em>يسّروا</em></div>
+      <div class="sub">أول منظومة متكاملة لتيسير الزواج — تأهيل، توفيق موثوق، تمويل تعاوني، زفاف جماعي</div>
+      <span class="wf-btn wf-btn-primary">ابدأ رحلتك</span>
+      <span class="wf-btn wf-btn-outline" style="margin-right:8px">كن مُعرِّفاً موثوقاً</span>
+    </div>
+    <div class="wf-stats">
+      <div class="wf-stat"><div class="num">40%</div><div class="lbl">شباب عاجزون عن الزواج</div></div>
+      <div class="wf-stat"><div class="num">10x</div><div class="lbl">التكلفة = 10 سنوات دخل</div></div>
+      <div class="wf-stat"><div class="num">85%</div><div class="lbl">يقولون التكلفة هي العائق</div></div>
+      <div class="wf-stat"><div class="num">0</div><div class="lbl">منصات تحل المشكلة المالية</div></div>
+    </div>
+    <div class="wf-pillars">
+      <div class="wf-pillar"><div class="emoji">🎓</div><div class="name">التأهيل</div></div>
+      <div class="wf-pillar"><div class="emoji">🤝</div><div class="name">المُعرِّف</div></div>
+      <div class="wf-pillar"><div class="emoji">💰</div><div class="name">الصندوق</div></div>
+      <div class="wf-pillar"><div class="emoji">💒</div><div class="name">الزفاف</div></div>
+      <div class="wf-pillar"><div class="emoji">🛡️</div><div class="name">الرعاية</div></div>
+    </div>
+    <div class="wf-card">
+      <h4>🧮 حاسبة تكاليف الزواج</h4>
+      <div class="wf-grid wf-grid-3" style="margin-top:6px">
+        <div class="wf-select">[ اختر مدينتك ▾ ]</div>
+        <div class="wf-select">[ مستوى الزفاف ▾ ]</div>
+        <span class="wf-btn wf-btn-primary" style="text-align:center">احسب</span>
+      </div>
+      <div class="wf-grid wf-grid-2" style="margin-top:8px">
+        <div style="text-align:center;padding:12px;background:#fdeaea;border-radius:8px"><div style="font-size:9px;color:var(--coral)">التكلفة الفردية</div><div style="font-size:18px;font-weight:900;color:var(--coral)">150,000 ج.م</div></div>
+        <div style="text-align:center;padding:12px;background:var(--teal-light);border-radius:8px"><div style="font-size:9px;color:var(--teal)">مع يسّروا (جماعي)</div><div style="font-size:18px;font-weight:900;color:var(--teal)">45,000 ج.م</div><div style="font-size:9px;color:var(--teal)">توفير 70% ✓</div></div>
+      </div>
+    </div>
+    <div class="wf-footer"><span>🌱 يسّروا — تيسير الزواج</span><span>ادعم المشروع 💚</span><span>تواصل معنا</span></div>
+  </div>
+</div>
+
+<!-- COURSE LIST PAGE -->
+<div class="wf">
+  <div class="wf-title">🎓 كورسات التأهيل <span class="page-name">CourseListPage.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav"><div class="logo">🌱 يسّروا</div><div class="links">مرحباً أحمد | لوحة التحكم | خروج</div></div>
+    <h3 style="font-size:18px;margin-bottom:4px">شهادة الجاهزية للزواج</h3>
+    <p style="font-size:12px;color:var(--t3);margin-bottom:14px">أكمل المسارات الأربعة واحصل على شهادتك — الخطوة الأولى نحو تيسير زواجك</p>
+    <div class="wf-progress" style="margin-bottom:14px"><div class="wf-progress-fill" style="width:35%"></div></div>
+    <div style="font-size:11px;color:var(--t3);margin-bottom:14px">إجمالي التقدم: 35% — أكملت 5 من 14 درس</div>
+    <div class="wf-grid wf-grid-2">
+      <div class="wf-card" style="border-right:3px solid var(--teal)">
+        <h4>🕌 المسار الشرعي</h4>
+        <p>4 دروس | 3 ساعات</p>
+        <div class="wf-progress"><div class="wf-progress-fill" style="width:75%"></div></div>
+        <span class="wf-badge wf-badge-green">75% مكتمل</span>
+      </div>
+      <div class="wf-card" style="border-right:3px solid var(--gold)">
+        <h4>🧠 المسار النفسي</h4>
+        <p>4 دروس | 3 ساعات</p>
+        <div class="wf-progress"><div class="wf-progress-fill" style="width:50%"></div></div>
+        <span class="wf-badge wf-badge-gold">50% مكتمل</span>
+      </div>
+      <div class="wf-card" style="border-right:3px solid var(--plum)">
+        <h4>💰 المسار المالي</h4>
+        <p>3 دروس | 2.5 ساعة</p>
+        <div class="wf-progress"><div class="wf-progress-fill" style="width:0%"></div></div>
+        <span class="wf-badge" style="background:#f5f2ed;color:var(--t3)">لم يبدأ بعد</span>
+      </div>
+      <div class="wf-card" style="border-right:3px solid var(--sky)">
+        <h4>🏠 المسار العملي</h4>
+        <p>3 دروس | 2 ساعة</p>
+        <div class="wf-progress"><div class="wf-progress-fill" style="width:0%"></div></div>
+        <span class="wf-badge" style="background:#f5f2ed;color:var(--t3)">لم يبدأ بعد</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECOMMENDER DASHBOARD -->
+<div class="wf">
+  <div class="wf-title">🤝 لوحة المُعرِّف <span class="page-name">RecommenderDashboard.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav"><div class="logo">🌱 يسّروا</div><div class="links">الشيخ محمد (مُعرِّف) | خروج</div></div>
+    <div class="wf-grid wf-grid-3" style="margin-bottom:14px">
+      <div class="wf-stat" style="border-top:2px solid var(--teal)"><div class="num" style="color:var(--teal)">12</div><div class="lbl">مرشحون مسجلون</div></div>
+      <div class="wf-stat" style="border-top:2px solid var(--gold)"><div class="num" style="color:var(--gold)">5</div><div class="lbl">توصيات قيد التنفيذ</div></div>
+      <div class="wf-stat" style="border-top:2px solid #1b7a4a"><div class="num" style="color:#1b7a4a">3</div><div class="lbl">توفيقات ناجحة ✓</div></div>
+    </div>
+    <div class="wf-grid wf-grid-2">
+      <div>
+        <h4 style="font-size:14px;margin-bottom:8px">👥 المرشحون المسجلون</h4>
+        <div class="wf-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>أحمد م.</strong> — 27 سنة — مهندس<br><span style="font-size:10px;color:var(--t3)">ولي الأمر: والده | القاهرة</span></div>
+            <span class="wf-badge wf-badge-green">مؤهل ✓</span>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>فاطمة ع.</strong> — 24 سنة — طبيبة<br><span style="font-size:10px;color:var(--t3)">ولي الأمر: والدها | الجيزة</span></div>
+            <span class="wf-badge wf-badge-green">مؤهلة ✓</span>
+          </div>
+        </div>
+        <span class="wf-btn wf-btn-primary" style="width:100%;text-align:center;margin-top:6px">+ تسجيل مرشح جديد</span>
+      </div>
+      <div>
+        <h4 style="font-size:14px;margin-bottom:8px">💡 اقتراحات التوافق</h4>
+        <div class="wf-card" style="background:var(--teal-light);border-color:rgba(13,115,119,.2)">
+          <div style="text-align:center;font-size:12px">
+            <strong>أحمد م. (27)</strong> ← مُتوافق → <strong>فاطمة ع. (24)</strong><br>
+            <span style="font-size:10px;color:var(--teal)">التوافق: السن ✓ المدينة ✓ التعليم ✓ الالتزام ✓</span><br>
+            <span class="wf-btn wf-btn-primary" style="margin-top:6px;font-size:10px">إنشاء توصية</span>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div style="text-align:center;font-size:12px">
+            <strong>محمود ك. (29)</strong> ← مُتوافق → <strong>سارة أ. (25)</strong><br>
+            <span style="font-size:10px;color:var(--t3)">التوافق: السن ✓ التعليم ✓</span><br>
+            <span class="wf-btn wf-btn-outline" style="margin-top:6px;font-size:10px">عرض التفاصيل</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FUND CIRCLE DASHBOARD -->
+<div class="wf">
+  <div class="wf-title">💰 لوحة حلقة التيسير <span class="page-name">CircleDashboard.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav"><div class="logo">🌱 يسّروا</div><div class="links">أحمد | حلقاتي | خروج</div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div><h3 style="font-size:16px;margin-bottom:2px">حلقة "شباب المعادي"</h3><span style="font-size:11px;color:var(--t3)">15 عضو | 1,000 ج.م/شهر | الدورة 4 من 15</span></div>
+      <span class="wf-badge wf-badge-green">نشطة ✓</span>
+    </div>
+
+    <div class="wf-grid wf-grid-3" style="margin-bottom:14px">
+      <div class="wf-stat" style="border-top:2px solid var(--plum)"><div class="num" style="color:var(--plum)">15,000</div><div class="lbl">المبلغ الشهري (ج.م)</div></div>
+      <div class="wf-stat" style="border-top:2px solid var(--teal)"><div class="num" style="color:var(--teal)">3</div><div class="lbl">أعضاء استلموا</div></div>
+      <div class="wf-stat" style="border-top:2px solid var(--gold)"><div class="num" style="color:var(--gold)">12</div><div class="lbl">أعضاء متبقون</div></div>
+    </div>
+
+    <h4 style="font-size:13px;margin-bottom:8px">📅 جدول الدورات</h4>
+    <div class="wf-timeline">
+      <div class="wf-tl-item done"><strong>الدورة 1 (يناير):</strong> عمرو س. — <span class="wf-badge wf-badge-green">استلم ✓</span></div>
+      <div class="wf-tl-item done"><strong>الدورة 2 (فبراير):</strong> خالد م. — <span class="wf-badge wf-badge-green">استلم ✓</span></div>
+      <div class="wf-tl-item done"><strong>الدورة 3 (مارس):</strong> يوسف أ. — <span class="wf-badge wf-badge-green">استلم ✓</span></div>
+      <div class="wf-tl-item current"><strong>الدورة 4 (أبريل):</strong> أحمد ح. — <span class="wf-badge wf-badge-gold">الدورة الحالية</span></div>
+      <div class="wf-tl-item"><strong>الدورة 5 (مايو):</strong> محمد ر. — <span style="font-size:10px;color:var(--t3)">منتظر</span></div>
+    </div>
+
+    <h4 style="font-size:13px;margin:14px 0 8px">💳 حالة الدفع — الدورة 4</h4>
+    <table class="wf-table">
+      <tr><th>العضو</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th></tr>
+      <tr><td>عمرو س.</td><td>1,000 ج.م</td><td><span class="wf-badge wf-badge-green">دفع ✓</span></td><td>1 أبريل</td></tr>
+      <tr><td>خالد م.</td><td>1,000 ج.م</td><td><span class="wf-badge wf-badge-green">دفع ✓</span></td><td>2 أبريل</td></tr>
+      <tr><td>يوسف أ.</td><td>1,000 ج.م</td><td><span class="wf-badge wf-badge-gold">⏳ منتظر</span></td><td>—</td></tr>
+      <tr><td>محمد ر.</td><td>1,000 ج.م</td><td><span class="wf-badge wf-badge-red">⚠️ متأخر</span></td><td>—</td></tr>
+    </table>
+    <div style="text-align:center;margin-top:10px">
+      <span class="wf-btn wf-btn-primary">💳 ادفع مساهمتك الشهرية</span>
+    </div>
+  </div>
+</div>
+
+<!-- GROUP WEDDING PAGE -->
+<div class="wf">
+  <div class="wf-title">💒 الأعراس الجماعية <span class="page-name">GroupWeddingsPage.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav"><div class="logo">🌱 يسّروا</div><div class="links">الأعراس الجماعية | مقدمو الخدمات | حاسبة التكاليف</div></div>
+    <h3 style="font-size:16px;margin-bottom:4px">الأعراس الجماعية القادمة</h3>
+    <p style="font-size:11px;color:var(--t3);margin-bottom:12px">احجز مكانك في عرس جماعي — وفّر 60-70% من التكاليف</p>
+    <div class="wf-select" style="width:200px">[ فلتر حسب المدينة ▾ ]</div>
+    <div class="wf-grid wf-grid-2" style="margin-top:10px">
+      <div class="wf-card" style="border-top:3px solid var(--teal)">
+        <h4>🏛️ عرس جماعي — القاهرة</h4>
+        <p>📅 15 مايو 2026 | 📍 قاعة النيل الكبرى</p>
+        <p>👥 20 عريس | ✅ 14 مسجل — <strong style="color:var(--coral)">6 أماكن متبقية</strong></p>
+        <p>💰 التكلفة للعريس: <strong style="color:var(--teal)">8,000 ج.م</strong> <span style="text-decoration:line-through;color:var(--t3);font-size:10px">(بدل 25,000)</span></p>
+        <span class="wf-btn wf-btn-primary" style="width:100%;text-align:center;margin-top:8px">سجّل الآن</span>
+      </div>
+      <div class="wf-card" style="border-top:3px solid var(--gold)">
+        <h4>🏛️ عرس جماعي — الإسكندرية</h4>
+        <p>📅 22 يونيو 2026 | 📍 فندق البحر الأبيض</p>
+        <p>👥 15 عريس | ✅ 3 مسجل — <strong style="color:var(--teal)">12 مكان متبقي</strong></p>
+        <p>💰 التكلفة للعريس: <strong style="color:var(--teal)">6,500 ج.م</strong></p>
+        <span class="wf-btn wf-btn-outline" style="width:100%;text-align:center;margin-top:8px">عرض التفاصيل</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE PAGE -->
+<div class="wf">
+  <div class="wf-title">🎓 شهادة الجاهزية <span class="page-name">CertificatePage.vue</span></div>
+  <div class="wf-body">
+    <div style="text-align:center;padding:28px;background:var(--gold-light);border:2px solid rgba(184,134,11,.2);border-radius:14px">
+      <div style="font-size:11px;color:var(--gold);font-weight:700;letter-spacing:3px;margin-bottom:8px">شهادة الجاهزية للزواج</div>
+      <div style="font-family:'Amiri',serif;font-size:16px;color:var(--gold);margin-bottom:12px">بسم الله الرحمن الرحيم</div>
+      <div style="font-size:14px;margin-bottom:4px">تشهد منصة <strong style="color:var(--teal)">يسّروا</strong> بأن</div>
+      <div style="font-size:22px;font-weight:900;margin:8px 0">أحمد محمد حسن</div>
+      <div style="font-size:13px;color:var(--t2);margin-bottom:12px">قد أتم بنجاح المسارات التأهيلية الأربعة (الشرعي، النفسي، المالي، العملي)<br>وحصل على شهادة الجاهزية للزواج</div>
+      <div style="font-size:11px;color:var(--t3)">رقم الشهادة: YS-2026-04-001234 | التاريخ: 8 أبريل 2026</div>
+      <div style="margin-top:14px">
+        <span class="wf-btn wf-btn-gold">📥 تحميل PDF</span>
+        <span class="wf-btn wf-btn-outline" style="margin-right:8px">📤 مشاركة</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+<div class="wf">
+  <div class="wf-title">🛡️ لوحة الإدارة <span class="page-name">AdminDashboard.vue</span></div>
+  <div class="wf-body">
+    <div class="wf-nav"><div class="logo">🌱 يسّروا — الإدارة</div><div class="links">المستخدمين | المعرّفين | الحلقات | الأعراس | البلاغات</div></div>
+    <div class="wf-stats">
+      <div class="wf-stat"><div class="num" style="color:var(--teal)">1,250</div><div class="lbl">مستخدم مسجل</div></div>
+      <div class="wf-stat"><div class="num" style="color:var(--gold)">85</div><div class="lbl">مُعرِّف موثوق</div></div>
+      <div class="wf-stat"><div class="num" style="color:var(--plum)">22</div><div class="lbl">حلقة تيسير نشطة</div></div>
+      <div class="wf-stat"><div class="num" style="color:#1b7a4a">47</div><div class="lbl">زواج تم بنجاح ✓</div></div>
+    </div>
+    <div class="wf-grid wf-grid-2">
+      <div class="wf-card">
+        <h4>⏳ طلبات اعتماد معرّفين (7 جديد)</h4>
+        <div style="font-size:11px;color:var(--t2);margin-top:6px">
+          الشيخ أحمد — إمام مسجد النور — <span class="wf-btn wf-btn-primary" style="font-size:9px;padding:2px 8px">اعتماد</span><br>
+          أ. سارة — مدرسة — <span class="wf-btn wf-btn-primary" style="font-size:9px;padding:2px 8px">اعتماد</span>
+        </div>
+      </div>
+      <div class="wf-card">
+        <h4>🚨 بلاغات جديدة (3)</h4>
+        <div style="font-size:11px;color:var(--t2);margin-top:6px">
+          بلاغ #45 — سوء استخدام — <span class="wf-badge wf-badge-red">عاجل</span><br>
+          بلاغ #44 — بيانات خاطئة — <span class="wf-badge wf-badge-gold">قيد المراجعة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE VIEWS NOTE -->
+<div class="section">
+  <div class="stag">ملاحظات التصميم</div>
+  <h2>قواعد هامة للتنفيذ</h2>
+</div>
+
+<div class="g2">
+  <div class="component-box">
+    <h4>📱 الموبايل</h4>
+    <p style="font-size:12px;color:var(--t2);line-height:1.8">
+      • 70%+ من المستخدمين على الموبايل — Mobile First<br>
+      • Bootstrap Grid System يتكفل بالـ Responsive<br>
+      • Navbar يتحول لـ Hamburger Menu<br>
+      • الجداول تتحول لبطاقات على الشاشات الصغيرة<br>
+      • أزرار بحجم مناسب للإصبع (min-height: 44px)
+    </p>
+  </div>
+  <div class="component-box">
+    <h4>🎨 قواعد التصميم</h4>
+    <p style="font-size:12px;color:var(--t2);line-height:1.8">
+      • لا إسراف في الزخارف — تصميم نظيف ومحترم<br>
+      • خط Amiri حصرياً للآيات والأحاديث<br>
+      • خط Cairo لكل شيء آخر<br>
+      • ألوان دافئة (Warm Palette) — لا ألوان صارخة<br>
+      • Border-radius: 16px للبطاقات الكبيرة، 8px للأزرار<br>
+      • المسافات كبيرة — المحتوى يتنفس
+    </p>
+  </div>
+</div>
+
+<div class="component-box">
+  <h4>🗂️ Vue Router — كل المسارات</h4>
+  <div style="font-family:monospace;font-size:11px;color:var(--t2);line-height:2.2;direction:ltr;text-align:left">
+    / → HomePage<br>
+    /about → AboutPage<br>
+    /login → LoginPage<br>
+    /register → RegisterPage<br>
+    /register/recommender → RecommenderRegisterPage<br>
+    /courses → CourseListPage (🔒 auth)<br>
+    /courses/:id → CoursePage (🔒 auth)<br>
+    /courses/:id/lessons/:lessonId → LessonPage (🔒 auth)<br>
+    /courses/:id/quiz → QuizPage (🔒 auth)<br>
+    /certificate → CertificatePage (🔒 auth)<br>
+    /recommender → RecommenderDashboard (🔒 recommender)<br>
+    /recommender/add-candidate → AddCandidatePage (🔒 recommender)<br>
+    /recommender/recommendations → RecommendationsPage (🔒 recommender)<br>
+    /family-requests → FamilyRequestsPage (🔒 auth)<br>
+    /fund → FundOverviewPage<br>
+    /fund/create → CreateCirclePage (🔒 auth + certificate)<br>
+    /fund/circles/:id → CircleDashboard (🔒 member)<br>
+    /weddings → GroupWeddingsPage<br>
+    /weddings/:id → WeddingDetailPage<br>
+    /vendors → VendorsPage<br>
+    /calculator → CostCalculatorPage<br>
+    /aftercare → CounselingPage (🔒 auth + married)<br>
+    /community → CommunityPage (🔒 auth)<br>
+    /support → SupportPage<br>
+    /admin → AdminDashboard (🔒 admin)<br>
+    /admin/users → ManageUsers (🔒 admin)<br>
+    /admin/recommenders → ManageRecommenders (🔒 admin)<br>
+    /admin/circles → ManageCircles (🔒 admin)
+  </div>
+</div>
+
+</div>
+
+<footer>يسّروا — دليل التصميم والواجهات | إعداد لإسلام — أبريل 2026</footer>
+</body>
+</html>

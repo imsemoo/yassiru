@@ -1,0 +1,207 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCandidateRequest;
+use App\Http\Requests\StoreRecommendationRequest;
+use App\Http\Requests\StoreRecommenderRequest;
+use App\Models\Candidate;
+use App\Models\FamilyRequest;
+use App\Models\Recommendation;
+use App\Models\Recommender;
+use App\Services\CompatibilityService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class RecommenderController extends Controller
+{
+    public function __construct(
+        private CompatibilityService $compatibilityService,
+    ) {}
+
+    public function register(StoreRecommenderRequest $request): JsonResponse
+    {
+
+        if (Recommender::where('user_id', $request->user()->id)->exists()) {
+            return response()->json(['message' => 'أنت مسجل كمعرّف بالفعل'], 422);
+        }
+
+        $recommender = Recommender::create([
+            'user_id' => $request->user()->id,
+            'type' => $request->type,
+            'institution' => $request->institution,
+            'bio' => $request->bio,
+            'honor_pledge_signed' => true,
+        ]);
+
+        $request->user()->role = 'recommender';
+        $request->user()->save();
+        $request->user()->syncRoles(['recommender']);
+
+        return response()->json([
+            'message' => 'تم تسجيلك كمعرّف بنجاح. في انتظار اعتماد الإدارة',
+            'recommender' => $recommender,
+        ], 201);
+    }
+
+    public function dashboard(Request $request): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        $candidates = Candidate::where('recommender_id', $recommender->id)
+            ->with('city:id,name')
+            ->get();
+
+        $recommendations = Recommendation::where('recommender_id', $recommender->id)
+            ->with(['maleCandidate:id,name,age,occupation', 'femaleCandidate:id,name,age,occupation'])
+            ->latest()
+            ->take(10)
+            ->get();
+
+        return response()->json([
+            'recommender' => [
+                'id' => $recommender->id,
+                'type' => $recommender->type,
+                'is_approved' => $recommender->is_approved,
+                'candidates_count' => $recommender->candidates_count,
+                'successful_matches' => $recommender->successful_matches,
+            ],
+            'candidates' => $candidates,
+            'recommendations' => $recommendations,
+        ]);
+    }
+
+    public function addCandidate(StoreCandidateRequest $request): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        if (!$recommender->is_approved) {
+            return response()->json(['message' => 'حسابك كمعرّف لم يُعتمد بعد'], 403);
+        }
+
+        $candidate = Candidate::create([
+            'recommender_id' => $recommender->id,
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'age' => $request->age,
+            'education' => $request->education,
+            'occupation' => $request->occupation,
+            'city_id' => $request->city_id,
+            'marital_status' => $request->marital_status,
+            'religiosity_level' => $request->religiosity_level,
+            'guardian_name' => $request->guardian_name,
+            'guardian_phone' => $request->guardian_phone,
+            'guardian_relation' => $request->guardian_relation,
+            'preferences' => $request->preferences,
+            'recommender_notes' => $request->recommender_notes,
+        ]);
+
+        $recommender->increment('candidates_count');
+
+        return response()->json(['message' => 'تم إضافة المرشح بنجاح', 'candidate' => $candidate], 201);
+    }
+
+    public function suggestions(Request $request): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        $suggestions = $this->compatibilityService->generateSuggestions($recommender->id);
+
+        return response()->json($suggestions);
+    }
+
+    public function recommend(StoreRecommendationRequest $request): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        $male = Candidate::findOrFail($request->male_candidate_id);
+        $female = Candidate::findOrFail($request->female_candidate_id);
+
+        // Verify candidates belong to this recommender
+        if ($male->recommender_id !== $recommender->id || $female->recommender_id !== $recommender->id) {
+            return response()->json(['message' => 'هؤلاء المرشحون لا ينتمون لحسابك'], 403);
+        }
+
+        $recommendation = Recommendation::create([
+            'recommender_id' => $recommender->id,
+            'male_candidate_id' => $request->male_candidate_id,
+            'female_candidate_id' => $request->female_candidate_id,
+            'reason' => $request->reason,
+            'compatibility_score' => $this->compatibilityService->calculateScore($male, $female),
+        ]);
+
+        return response()->json(['message' => 'تم إنشاء التوصية بنجاح', 'recommendation' => $recommendation], 201);
+    }
+
+    public function familyRequests(Request $request): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        $requests = FamilyRequest::whereHas('recommendation', function ($q) use ($recommender) {
+            $q->where('recommender_id', $recommender->id);
+        })
+            ->with(['recommendation.maleCandidate:id,name', 'recommendation.femaleCandidate:id,name'])
+            ->latest()
+            ->paginate(20);
+
+        return response()->json($requests);
+    }
+
+    public function updateCandidate(Request $request, Candidate $candidate): JsonResponse
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+
+        if ($candidate->recommender_id !== $recommender->id) {
+            return response()->json(['message' => 'غير مصرح لك بتعديل هذا المرشح'], 403);
+        }
+
+        $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'age' => 'sometimes|integer|min:18|max:60',
+            'education' => 'nullable|string|max:255',
+            'occupation' => 'nullable|string|max:255',
+            'city_id' => 'sometimes|exists:cities,id',
+            'marital_status' => 'sometimes|in:single,divorced,widowed',
+            'religiosity_level' => 'sometimes|in:committed,moderate,learning',
+            'guardian_name' => 'sometimes|string|max:255',
+            'guardian_phone' => 'sometimes|string|max:255',
+            'guardian_relation' => 'sometimes|string|max:100',
+            'preferences' => 'nullable|array',
+            'recommender_notes' => 'nullable|string',
+            'status' => 'sometimes|in:active,matched,withdrawn',
+        ]);
+
+        $candidate->update($request->only([
+            'name', 'age', 'education', 'occupation', 'city_id',
+            'marital_status', 'religiosity_level', 'guardian_name',
+            'guardian_phone', 'guardian_relation', 'preferences',
+            'recommender_notes', 'status',
+        ]));
+
+        return response()->json(['message' => 'تم تحديث بيانات المرشح', 'candidate' => $candidate->fresh()]);
+    }
+
+    public function respondToFamilyRequest(Request $request, FamilyRequest $familyRequest): JsonResponse
+    {
+        // Verify the family request belongs to this recommender
+        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        if ($familyRequest->recommendation->recommender_id !== $recommender->id) {
+            return response()->json(['message' => 'غير مصرح بهذا الإجراء'], 403);
+        }
+
+        $request->validate([
+            'status' => 'required|in:accepted,rejected,meeting_scheduled',
+            'meeting_date' => 'nullable|date|after:today',
+            'notes' => 'nullable|string|max:1000',
+        ]);
+
+        $familyRequest->update([
+            'status' => $request->status,
+            'meeting_date' => $request->meeting_date,
+            'notes' => $request->notes,
+        ]);
+
+        return response()->json(['message' => 'تم تحديث الطلب بنجاح']);
+    }
+}

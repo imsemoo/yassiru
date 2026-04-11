@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>يسّرو — العرض التقديمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf9f6;--surface:#fff;--surface2:#f3efe8;--teal:#0d7377;--teal-light:#e0f2f1;--teal-dark:#095456;--gold:#b8860b;--gold-light:#fdf5e6;--coral:#c0392b;--plum:#6a1b4d;--sky:#1565c0;--green:#1b7a4a;--green-light:#e8f5e9;--t1:#1a1a2a;--t2:#4a4a5e;--t3:#8888a0;--border:#e0d8cc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);line-height:1.9}
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px 24px;max-width:960px;margin:0 auto;position:relative}
+.slide-num{position:absolute;top:24px;left:24px;font-size:12px;font-weight:800;color:var(--t3);letter-spacing:2px}
+.slide-divider{height:1px;background:var(--border);max-width:960px;margin:0 auto}
+h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.2;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--teal)}
+h2{font-size:clamp(24px,4vw,40px);font-weight:900;margin-bottom:12px}
+h3{font-size:20px;font-weight:800;margin-bottom:10px}
+.subtitle{font-size:17px;color:var(--t2);max-width:640px;line-height:2;margin-bottom:28px}
+.tag{font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px}
+.g5{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:12px}
+.stat-card{text-align:center;padding:28px 16px;border-radius:18px;background:var(--surface);border:1px solid var(--border)}
+.stat-card .num{font-size:36px;font-weight:900}
+.stat-card .label{font-size:12px;color:var(--t3);margin-top:4px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:16px}
+.card p{color:var(--t2);font-size:14px}
+.pillar-card{border-radius:18px;padding:28px;text-align:center;border:1px solid var(--border);background:var(--surface)}
+.pillar-card .emoji{font-size:36px;margin-bottom:12px}
+.pillar-card h4{font-size:16px;font-weight:800;margin-bottom:6px}
+.pillar-card p{font-size:12.5px;color:var(--t2);line-height:1.7}
+.quote{font-family:'Amiri',serif;font-size:clamp(16px,2.5vw,22px);color:var(--gold);text-align:center;padding:20px;line-height:2.2}
+.quote-ref{font-size:13px;color:var(--t3);text-align:center}
+.timeline-row{display:flex;gap:12px;margin:16px 0}
+.timeline-item{flex:1;padding:20px;border-radius:14px;background:var(--surface);border:1px solid var(--border);text-align:center}
+.timeline-item .phase{font-size:11px;font-weight:800;color:var(--teal);letter-spacing:2px;margin-bottom:6px}
+.timeline-item .title{font-size:14px;font-weight:700;margin-bottom:4px}
+.timeline-item .desc{font-size:11.5px;color:var(--t2);line-height:1.6}
+.rev-item{padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.rev-item .name{font-size:14px;color:var(--t2)}
+.rev-item .amount{font-size:16px;font-weight:800;color:var(--teal)}
+.rev-total{text-align:center;padding:24px;border-radius:16px;background:linear-gradient(135deg,rgba(13,115,119,.06),rgba(184,134,11,.06));border:1px solid rgba(13,115,119,.15)}
+.rev-total .num{font-size:36px;font-weight:900;color:var(--teal)}
+.rev-total .lbl{font-size:12px;color:var(--t3)}
+.badge{display:inline-block;padding:4px 14px;border-radius:8px;font-size:12px;font-weight:700}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-gold{background:var(--gold-light);color:var(--gold)}
+.badge-coral{background:#fdeaea;color:var(--coral)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin:20px 0}
+.vs-side{padding:24px;border-radius:16px;text-align:center}
+.vs-left{background:#fdeaea;border:1px solid rgba(192,57,43,.15)}
+.vs-right{background:var(--teal-light);border:1px solid rgba(13,115,119,.15)}
+.vs-center{font-size:24px;font-weight:900;color:var(--t3)}
+.shield{display:flex;gap:10px;padding:16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);margin-bottom:10px}
+.shield .ico{font-size:20px;min-width:28px}
+.shield .txt{font-size:13px;color:var(--t2);line-height:1.7}
+.done-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:var(--green-light);color:var(--green)}
+.tech-item{padding:14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);text-align:center}
+.tech-item .name{font-size:13px;font-weight:700;color:var(--t1)}
+.tech-item .desc{font-size:11px;color:var(--t3);margin-top:3px}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);font-size:12px;color:var(--t3)}
+@media(max-width:768px){.g2,.g3,.g4,.g5,.timeline-row,.vs{grid-template-columns:1fr;display:grid}.vs{gap:8px}.vs-center{text-align:center}}
+@media print{.slide{min-height:auto;page-break-after:always;padding:30px 20px}.slide-divider{display:none}}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">01 / 16</div>
+  <div style="font-family:'Amiri',serif;font-size:20px;color:var(--gold);opacity:.6;margin-bottom:24px">بسم الله الرحمن الرحيم</div>
+  <h1><em>يسّرو</em></h1>
+  <p style="font-size:20px;font-weight:700;color:var(--t2);margin-bottom:8px">أول منظومة متكاملة لتيسير الزواج في العالم الإسلامي</p>
+  <p style="font-size:14px;color:var(--t3);max-width:600px;margin:0 auto">ليست منصة تعارف — بل حل شامل لإزالة كل عوائق الزواج: التأهيل، التوفيق الموثوق، التمويل التعاوني، والزفاف الجماعي</p>
+  <div style="margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <span class="badge badge-green">المنصة مبنية وجاهزة للإطلاق</span>
+    <span class="badge badge-teal">صدقة جارية + دخل مستدام</span>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 2: The Crisis -->
+<div class="slide">
+  <div class="slide-num">02 / 16</div>
+  <div class="tag">المشكلة</div>
+  <h2>أزمة زواج تهدد بنية المجتمع الإسلامي</h2>
+  <p class="subtitle">الأرقام ليست مقلقة فحسب — بل كارثية. جيل كامل مهدد بالبقاء خارج مؤسسة الزواج.</p>
+  <div class="g4">
+    <div class="stat-card"><div class="num" style="color:var(--coral)">40%</div><div class="label">من الشباب العربي لن يستطيعوا الزواج بسبب العجز المالي</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--coral)">32+</div><div class="label">سنة — متوسط سن الزواج للرجال في العواصم العربية</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--coral)">85%</div><div class="label">من الجامعيين يقولون التكلفة هي العائق الرئيسي</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--coral)">10x</div><div class="label">تكلفة الزواج = دخل الشاب لـ 10 سنوات كاملة</div></div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 3: Root Cause -->
+<div class="slide">
+  <div class="slide-num">03 / 16</div>
+  <div class="tag">السبب الجذري</div>
+  <h2>المشكلة ليست إيجاد الشريك — المشكلة أكبر بكثير</h2>
+  <div class="vs">
+    <div class="vs-side vs-left">
+      <div style="font-size:14px;font-weight:700;color:var(--coral);margin-bottom:8px">ما تحله المنصات الحالية</div>
+      <div style="font-size:48px;margin-bottom:8px">15%</div>
+      <div style="font-size:15px;font-weight:700">إيجاد شريك مناسب فقط</div>
+      <div style="font-size:12px;color:var(--t3);margin-top:6px">ميثاق، مودة، Muzmatch<br>تصفح ملفات + تواصل مباشر</div>
+    </div>
+    <div class="vs-center">VS</div>
+    <div class="vs-side vs-right">
+      <div style="font-size:14px;font-weight:700;color:var(--teal);margin-bottom:8px">ما تحله يسّرو</div>
+      <div style="font-size:48px;margin-bottom:8px">100%</div>
+      <div style="font-size:15px;font-weight:700">إزالة كل عوائق الزواج</div>
+      <div style="font-size:12px;color:var(--t3);margin-top:6px">تأهيل + توفيق شرعي + تمويل حلال<br>+ زفاف جماعي + رعاية ما بعد الزواج</div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 4: The Solution - 5 Pillars -->
+<div class="slide">
+  <div class="slide-num">04 / 16</div>
+  <div class="tag">الحل</div>
+  <h2>يسّرو — 5 أركان تغطي رحلة الزواج كاملة</h2>
+  <p class="subtitle">كل ركيزة مبنية ومتكاملة — من التأهيل قبل الزواج إلى رعاية السنة الأولى.</p>
+  <div class="g3" style="margin-bottom:16px">
+    <div class="pillar-card" style="border-top:3px solid var(--teal)">
+      <div class="emoji">🎓</div>
+      <h4>1. التأهيل</h4>
+      <p>دورة إلزامية: 4 مسارات (شرعي + نفسي + مالي + عملي) — 14 درس + 4 اختبارات + شهادة جاهزية معتمدة.</p>
+      <div class="done-badge" style="margin-top:8px">مكتمل ومفعّل</div>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--gold)">
+      <div class="emoji">🤝</div>
+      <h4>2. التوفيق الموثوق</h4>
+      <p>أئمة ومعلمون معتمدون يديرون التوفيق — خوارزمية توافق ذكية — صفر تواصل مباشر بين الجنسين.</p>
+      <div class="done-badge" style="margin-top:8px">مكتمل ومفعّل</div>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--plum)">
+      <div class="emoji">💰</div>
+      <h4>3. صندوق التيسير</h4>
+      <p>جمعية رقمية بدون فوائد + عقود ذكية + ضامنين + صندوق ضمان + دفع عبر فوري.</p>
+      <div class="done-badge" style="margin-top:8px">مكتمل ومفعّل</div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="pillar-card" style="border-top:3px solid var(--sky)">
+      <div class="emoji">💒</div>
+      <h4>4. الزفاف الجماعي</h4>
+      <p>10-30 عريس بتوفير 60-70% — موردين معتمدين — حاسبة تكاليف تفاعلية — سياسة استرداد عادلة.</p>
+      <div class="done-badge" style="margin-top:8px">مكتمل ومفعّل</div>
+    </div>
+    <div class="pillar-card" style="border-top:3px solid var(--coral)">
+      <div class="emoji">🛡️</div>
+      <h4>5. رعاية ما بعد الزواج</h4>
+      <p>جلسات استشارية فردية وجماعية + حجز أونلاين + إدارة مواعيد كاملة.</p>
+      <div class="done-badge" style="margin-top:8px">مكتمل ومفعّل</div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 5: What's Built - Product Overview -->
+<div class="slide">
+  <div class="slide-num">05 / 16</div>
+  <div class="tag">المنتج — ما تم بناؤه فعلياً</div>
+  <h2>منصة كاملة جاهزة للإطلاق — ليست مجرد فكرة</h2>
+  <p class="subtitle">كل سطر كود مكتوب، كل صفحة مصممة، كل API يعمل. المنصة جاهزة لاستقبال أول مستخدم.</p>
+  <div class="g4">
+    <div class="stat-card"><div class="num" style="color:var(--teal)">37</div><div class="label">جدول في قاعدة البيانات</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">27</div><div class="label">نموذج بيانات متكامل</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">60+</div><div class="label">صفحة ومكوّن واجهة</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">90+</div><div class="label">واجهة برمجة (API Endpoint)</div></div>
+  </div>
+  <div class="g3" style="margin-top:16px">
+    <div class="card" style="text-align:center;padding:20px">
+      <div style="font-size:28px;margin-bottom:8px">🔐</div>
+      <h3 style="font-size:15px">نظام مصادقة كامل</h3>
+      <p style="font-size:12px">تسجيل + دخول + نسيت كلمة المرور + توثيق بالهوية + OTP هاتفي + 4 مستويات صلاحيات</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div style="font-size:28px;margin-bottom:8px">💳</div>
+      <h3 style="font-size:15px">بوابة دفع فوري</h3>
+      <p style="font-size:12px">دفع بالبطاقة + كود فوري + محفظة إلكترونية — مع webhook + تأكيد تلقائي + استرداد</p>
+    </div>
+    <div class="card" style="text-align:center;padding:20px">
+      <div style="font-size:28px;margin-bottom:8px">📊</div>
+      <h3 style="font-size:15px">لوحة تحكم إدارية</h3>
+      <p style="font-size:12px">إحصائيات شاملة + إدارة مستخدمين + اعتماد معرّفين + بلاغات + سجل مراجعة كامل</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 6: Tech Stack -->
+<div class="slide">
+  <div class="slide-num">06 / 16</div>
+  <div class="tag">البنية التقنية</div>
+  <h2>تقنيات حديثة — بنية قابلة للتوسع</h2>
+  <div class="g4" style="margin-bottom:16px">
+    <div class="tech-item"><div class="name">Laravel 11</div><div class="desc">Backend قوي وآمن</div></div>
+    <div class="tech-item"><div class="name">Vue.js 3</div><div class="desc">واجهة تفاعلية سريعة</div></div>
+    <div class="tech-item"><div class="name">MySQL 8</div><div class="desc">قاعدة بيانات موثوقة</div></div>
+    <div class="tech-item"><div class="name">Redis</div><div class="desc">تخزين مؤقت سريع</div></div>
+  </div>
+  <div class="g3">
+    <div class="card" style="padding:20px">
+      <h3 style="font-size:15px">الأمان</h3>
+      <p style="font-size:12px">تشفير كامل + حذف الهوية بعد التوثيق + Sanctum tokens + CSRF + SQL injection protection + نظام Trust Score</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <h3 style="font-size:15px">الأداء</h3>
+      <p style="font-size:12px">PWA + Service Worker + تخزين مؤقت + ضغط Gzip + Lazy loading + Queue workers للمهام الثقيلة</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <h3 style="font-size:15px">التوسع</h3>
+      <p style="font-size:12px">Docker + CI/CD + خطة توسع من سيرفر واحد ($7/شهر) حتى Kubernetes — بدون إعادة بناء</p>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;margin-top:12px;background:var(--teal-light);border-color:rgba(13,115,119,.2)">
+    <p style="font-weight:700;color:var(--teal-dark);font-size:14px;margin:0">
+      11 إشعار async + 4 Queue Jobs مجدولة + 12 Service class + Webhook processing + Event-driven architecture
+    </p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 7: Key Features Detail -->
+<div class="slide">
+  <div class="slide-num">07 / 16</div>
+  <div class="tag">الميزات الرئيسية — ما يراه المستخدم</div>
+  <h2>تجربة مستخدم مصممة للثقة والبساطة</h2>
+  <div class="g2">
+    <div class="card">
+      <h3>🎓 الدورة التأهيلية</h3>
+      <p>14 درس بالفيديو + مقالات تفاعلية — مشغل فيديو متقدم يدعم YouTube/Vimeo — تتبع تقدم تلقائي — اختبار 10 أسئلة لكل مسار (70% للنجاح) — شهادة PDF قابلة للتحميل والتحقق.</p>
+    </div>
+    <div class="card">
+      <h3>🤝 نظام التوفيق</h3>
+      <p>لوحة تحكم كاملة للمعرّف — إضافة مرشحين بنموذج شامل — خوارزمية توافق ذكية — نظام توصيات — طلبات عائلية — اعتماد من الإدارة.</p>
+    </div>
+    <div class="card">
+      <h3>💰 الصندوق التعاوني</h3>
+      <p>إنشاء حلقات + انضمام — عقد التزام رقمي إلزامي — نظام ضامنين + تأكيد OTP — جدول مدفوعات واضح — تذكيرات تلقائية — سلم تصعيد للمتخلفين (تحذير → تجميد → استبعاد).</p>
+    </div>
+    <div class="card">
+      <h3>💒 الأعراس + الحاسبة</h3>
+      <p>قائمة أعراس جماعية بالفلتر — تسجيل + دفع أونلاين عبر فوري — سياسة استرداد عادلة (100% → 50% → 0%) — حاسبة تكاليف تفاعلية حسب المدينة والمستوى.</p>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <h3>🛡️ الاستشارات</h3>
+      <p>حجز جلسات فردية وجماعية — مواعيد متاحة — إلغاء — تذكيرات تلقائية قبل الموعد — لوحة إدارة للمستشارين.</p>
+    </div>
+    <div class="card">
+      <h3>📱 تجربة موبايل</h3>
+      <p>تصميم Mobile-first — شريط تنقل سفلي — PWA (يعمل كتطبيق) — RTL عربي كامل — خطوط Cairo + Amiri — ألوان مريحة تبني الثقة.</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 8: Fund Deep Dive -->
+<div class="slide">
+  <div class="slide-num">08 / 16</div>
+  <div class="tag">الركيزة الأهم — الابتكار</div>
+  <h2>💰 صندوق التيسير — "جمعية الزواج الرقمية"</h2>
+  <p class="subtitle">أول رقمنة لمفهوم "الجمعية" في سياق تمويل الزواج — مع حماية كاملة.</p>
+  <div class="card" style="text-align:center;background:var(--gold-light);border-color:rgba(184,134,11,.2)">
+    <h3 style="color:var(--gold)">المثال العملي</h3>
+    <p style="font-size:18px;font-weight:800;margin:8px 0">15 شاب × 1,000 جنيه/شهر = <span style="color:var(--teal)">15,000 جنيه كل شهر</span></p>
+    <p>كل شهر شاب واحد يحصل على المبلغ الكامل لتمويل زواجه</p>
+    <p style="font-size:12px;color:var(--t3);margin-top:8px">قرض حسن دوري — جائز شرعاً — لا ربا فيه</p>
+  </div>
+  <div class="g3" style="margin-top:12px">
+    <div class="card"><h3 style="font-size:15px">🔒 حماية مالية</h3><p style="font-size:12px">عقد التزام رقمي + ضامن لكل عضو + صندوق ضمان احتياطي (5%) يغطي أي تخلف + نظام تصعيد تلقائي.</p></div>
+    <div class="card"><h3 style="font-size:15px">💳 دفع مؤمّن</h3><p style="font-size:12px">بوابة فوري (بطاقة/كود/محفظة) — webhook يؤكد الدفع تلقائياً — لا تدخل يدوي — كل قرش موثّق.</p></div>
+    <div class="card"><h3 style="font-size:15px">📊 شفافية كاملة</h3><p style="font-size:12px">لوحة تحكم تعرض: من دفع، من استلم، الجدول القادم — إشعارات فورية — سجل مراجعة.</p></div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 9: Shariah & Legal -->
+<div class="slide">
+  <div class="slide-num">09 / 16</div>
+  <div class="tag">الحماية</div>
+  <h2>الضوابط الشرعية والقانونية — مطبّقة في الكود</h2>
+  <div class="g2">
+    <div>
+      <div class="shield"><div class="ico">🚫</div><div class="txt"><strong>1.</strong> صفر تواصل مباشر — التوفيق عبر المعرّف فقط (مطبّق برمجياً)</div></div>
+      <div class="shield"><div class="ico">📷</div><div class="txt"><strong>2.</strong> لا صور — لا بروفايلات للتصفح — الخصوصية في التصميم</div></div>
+      <div class="shield"><div class="ico">🔐</div><div class="txt"><strong>3.</strong> توثيق الهوية إلزامي — تُحذف الصورة بعد التحقق تلقائياً</div></div>
+      <div class="shield"><div class="ico">💰</div><div class="txt"><strong>4.</strong> الصندوق = قرض حسن دوري — لا ربا — رسوم خدمة فقط (2-3%)</div></div>
+      <div class="shield"><div class="ico">📋</div><div class="txt"><strong>5.</strong> عقد التزام رقمي إلزامي بتوقيع إلكتروني + بصمة جهاز</div></div>
+    </div>
+    <div>
+      <div class="shield"><div class="ico">🛡️</div><div class="txt"><strong>6.</strong> نظام بلاغات فوري + حظر + سجل مراجعة (Audit Log) لكل عملية</div></div>
+      <div class="shield"><div class="ico">⚖️</div><div class="txt"><strong>7.</strong> سياسة استرداد عادلة (100% قبل 30 يوم — 50% قبل 15 — 0% بعدها)</div></div>
+      <div class="shield"><div class="ico">🔄</div><div class="txt"><strong>8.</strong> نظام Trust Score — يزيد بالالتزام ويقل بالتخلف</div></div>
+      <div class="shield"><div class="ico">📱</div><div class="txt"><strong>9.</strong> إشعارات تلقائية: تذكير + تحذير + تجميد + استبعاد</div></div>
+      <div class="shield"><div class="ico">🏢</div><div class="txt"><strong>10.</strong> المنصة وسيط تنظيمي فقط — ليست مؤسسة مالية</div></div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 10: Market -->
+<div class="slide">
+  <div class="slide-num">10 / 16</div>
+  <div class="tag">حجم السوق</div>
+  <h2>2 مليار مسلم — والمشكلة تزداد كل عام</h2>
+  <div class="g3">
+    <div class="stat-card"><div class="num" style="color:var(--teal)">2B</div><div class="label">مسلم في العالم</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">400M+</div><div class="label">عربي أونلاين</div></div>
+    <div class="stat-card"><div class="num" style="color:var(--teal)">60%+</div><div class="label">شباب تحت 30 في سن الزواج</div></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>خطة التوسع الجغرافي — البنية جاهزة</h3>
+    <div class="g3">
+      <div style="text-align:center;padding:12px;border-left:3px solid var(--teal);border-radius:8px">
+        <div style="font-size:13px;font-weight:700">المرحلة 1 — مصر</div>
+        <div style="font-size:12px;color:var(--t2)">105 مليون نسمة<br>بوابة دفع: فوري <span class="done-badge">جاهز</span></div>
+      </div>
+      <div style="text-align:center;padding:12px;border-left:3px solid var(--gold);border-radius:8px">
+        <div style="font-size:13px;font-weight:700">المرحلة 2 — الخليج</div>
+        <div style="font-size:12px;color:var(--t2)">أعلى تكلفة زواج + قدرة شرائية<br>بوابة دفع: Stripe (البنية جاهزة)</div>
+      </div>
+      <div style="text-align:center;padding:12px;border-left:3px solid var(--plum);border-radius:8px">
+        <div style="font-size:13px;font-weight:700">المرحلة 3 — عالمي</div>
+        <div style="font-size:12px;color:var(--t2)">تركيا + إندونيسيا + ماليزيا<br>+ المسلمون في أوروبا وأمريكا</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 11: Revenue -->
+<div class="slide">
+  <div class="slide-num">11 / 16</div>
+  <div class="tag">نموذج الدخل</div>
+  <h2>5 مصادر دخل مستدامة — بدون تعارض مع الرسالة</h2>
+  <div style="margin:20px 0">
+    <div class="rev-item"><div class="name">🎓 رسوم كورس التأهيل ($10-25 لكل مستخدم)</div><div class="amount">$2,500/شهر</div></div>
+    <div class="rev-item"><div class="name">💰 رسوم تنظيم الصندوق (2-3% رسوم خدمة)</div><div class="amount">$1,500/شهر</div></div>
+    <div class="rev-item"><div class="name">💒 عمولة شراكات الموردين (قاعات، أثاث، مصورين)</div><div class="amount">$2,000/شهر</div></div>
+    <div class="rev-item"><div class="name">🕌 اشتراكات المُعرِّفين المؤسسي</div><div class="amount">$1,000/شهر</div></div>
+    <div class="rev-item"><div class="name">💚 تبرعات ورعاية مؤسسات إسلامية</div><div class="amount">$1,000/شهر</div></div>
+  </div>
+  <div class="rev-total">
+    <div style="font-size:12px;color:var(--t3);margin-bottom:4px">إجمالي متوقع بعد 6 أشهر — مصر فقط</div>
+    <div class="num">$8,000/شهر</div>
+    <div class="lbl">ينمو مع كل مدينة ودولة جديدة — التكلفة الشهرية: $20-30 فقط</div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 12: Competitive Advantage -->
+<div class="slide">
+  <div class="slide-num">12 / 16</div>
+  <div class="tag">الميزة التنافسية</div>
+  <h2>لماذا يسّرو لا يمكن نسخها بسهولة؟</h2>
+  <div class="g2">
+    <div class="card">
+      <h3>🌐 6 مليون زيارة مجانية</h3>
+      <p>نملك 10+ مواقع إخبارية بأكثر من 6 مليون زيارة شهرية. يمكننا الوصول لملايين المسلمين فوراً <strong>بدون دولار واحد على الإعلانات</strong>. هذا أقوى Unfair Advantage ممكن.</p>
+    </div>
+    <div class="card">
+      <h3>🏗️ منظومة متكاملة</h3>
+      <p>5 أركان مترابطة في مكان واحد. المنافسون يحلون جزء واحد. بناء منظومة كاملة من الصفر يحتاج أشهر. <strong>نحن بنيناها بالفعل.</strong></p>
+    </div>
+    <div class="card">
+      <h3>🕌 الثقة الشرعية</h3>
+      <p>أول منصة تشترط تأهيلاً إلزامياً + صفر تواصل مباشر + توفيق عبر معرّفين. <strong>هذا فلتر جدية</strong> لا يوجد في أي منصة زواج أخرى.</p>
+    </div>
+    <div class="card">
+      <h3>💰 التمويل التعاوني</h3>
+      <p>أول رقمنة لـ "الجمعية" في سياق الزواج — مع عقود ذكية + ضمانات + بوابة دفع. <strong>ابتكار لم يُقدَّم من قبل.</strong></p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 13: Roadmap - Current Status -->
+<div class="slide">
+  <div class="slide-num">13 / 16</div>
+  <div class="tag">الوضع الحالي</div>
+  <h2>أين نحن الآن — وماذا بعد؟</h2>
+  <div class="timeline-row">
+    <div class="timeline-item" style="border-top:3px solid var(--green);background:var(--green-light)">
+      <div class="phase" style="color:var(--green)">مكتمل ✓</div>
+      <div class="title">بناء المنصة</div>
+      <div class="desc">كل الأركان الخمسة + بوابة الدفع + SEO + PWA + لوحة أدمن + اختبارات + Docker + CI/CD</div>
+    </div>
+    <div class="timeline-item" style="border-top:3px solid var(--gold)">
+      <div class="phase" style="color:var(--gold)">الشهر القادم</div>
+      <div class="title">الإطلاق التجريبي</div>
+      <div class="desc">محتوى الدورات + حساب فوري + نشر على Hetzner + 30-50 مستخدم + 10 معرّفين</div>
+    </div>
+    <div class="timeline-item" style="border-top:3px solid var(--teal)">
+      <div class="phase">3-6 أشهر</div>
+      <div class="title">النمو والتوسع</div>
+      <div class="desc">أول عرس جماعي + شراكات موردين + تطبيق Flutter + توسع لمدن أخرى في مصر</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;text-align:center">
+    <p style="font-weight:700;color:var(--teal);font-size:15px;margin:0">المنصة جاهزة 98% — المتبقي: إضافة المحتوى + فتح حساب فوري + النشر على السيرفر</p>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 14: Team -->
+<div class="slide">
+  <div class="slide-num">14 / 16</div>
+  <div class="tag">الفريق</div>
+  <h2>المؤسس والمطور</h2>
+  <div class="g2">
+    <div class="card">
+      <h3>إسلام — المؤسس والمطور الرئيسي</h3>
+      <p><strong>6+ سنوات خبرة</strong> في تطوير الويب و UI/UX. بنى <strong>120+ موقع</strong>. أنشأ وأدار <strong>10+ مواقع إخبارية</strong> بأكثر من 6 مليون زيارة شهرية. خبرة في منصات التبرعات والمشاريع الخيرية. <strong>بنى المنصة بالكامل</strong> — من التصميم للكود للنشر.</p>
+    </div>
+    <div class="card">
+      <h3>لماذا مطور واحد يكفي؟</h3>
+      <p>المنصة مبنية بتقنيات حديثة (Laravel + Vue.js) تسمح لمطور واحد ببناء منتج كامل. البنية مصممة للتوسع — Docker + CI/CD يسمحان بالنشر التلقائي. عند الحاجة لفريق، <strong>الكود منظم ومعياري</strong> وسهل التسليم.</p>
+    </div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 15: Impact -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">15 / 16</div>
+  <div class="quote">﴿ وَأَنكِحُوا الْأَيَامَىٰ مِنكُمْ وَالصَّالِحِينَ مِنْ عِبَادِكُمْ وَإِمَائِكُمْ ۚ إِن يَكُونُوا فُقَرَاءَ يُغْنِهِمُ اللَّهُ مِن فَضْلِهِ ﴾</div>
+  <div class="quote-ref">سورة النور — آية 32</div>
+  <div class="g3" style="margin-top:32px">
+    <div class="stat-card"><div style="font-size:28px;margin-bottom:4px">🏠</div><div class="label">كل زواج يتم = أسرة جديدة = أجيال قادمة — والأجر يجري</div></div>
+    <div class="stat-card"><div style="font-size:28px;margin-bottom:4px">🛡️</div><div class="label">كل شاب تيسّر زواجه = حماية من الحرام = صلاح المجتمع</div></div>
+    <div class="stat-card"><div style="font-size:28px;margin-bottom:4px">📚</div><div class="label">كل من تأهّل = زواج أنجح = طلاق أقل = أطفال أسوياء</div></div>
+  </div>
+</div>
+<div class="slide-divider"></div>
+
+<!-- SLIDE 16: CTA -->
+<div class="slide" style="text-align:center;align-items:center">
+  <div class="slide-num">16 / 16</div>
+  <div style="font-family:'Amiri',serif;font-size:22px;color:var(--gold);margin-bottom:20px;line-height:2">«يَسِّرُوا وَلَا تُعَسِّرُوا»</div>
+  <h2>المنظومة جاهزة — ننتظر شركاءك في الأجر</h2>
+  <p class="subtitle" style="text-align:center;max-width:540px;margin:16px auto 28px">المنصة مبنية بالكامل وجاهزة للإطلاق. كل يوم يمر بدون حل = آلاف الشباب يُحرمون من حقهم الشرعي. نبحث عن شركاء يؤمنون بالرسالة ويريدون تغيير حقيقي.</p>
+  <div class="g3">
+    <div class="card" style="text-align:center"><h3>📧 البريد</h3><p>en.developer2@gmail.com</p></div>
+    <div class="card" style="text-align:center"><h3>🌐 الموقع</h3><p>yassiru.com</p></div>
+    <div class="card" style="text-align:center"><h3>📱 واتساب</h3><p>+20 120 061 6482</p></div>
+  </div>
+</div>
+
+<footer>
+  يسّرو — العرض التقديمي | إعداد: إسلام — أبريل 2026<br>
+  <span style="font-family:'Amiri',serif;color:var(--gold);font-size:14px">اللهم يسّر لشباب المسلمين أمر زواجهم</span>
+</footer>
+
+</body>
+</html>

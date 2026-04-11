@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://yassiru.com/sitemap.xml

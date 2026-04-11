@@ -1,0 +1,310 @@
+// ========================================
+// يسّرو — Component Styles
+// ========================================
+
+// === Cards ===
+.ycard {
+  background: $bg-white;
+  border: 1px solid $border-light;
+  border-radius: $border-radius-xl;
+  padding: 1.5rem;
+  transition: $transition-base;
+  box-shadow: $shadow-sm;
+
+  &:hover:not(.ycard--static) {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+    border-color: $border-custom;
+  }
+
+  &--static {
+    &:hover { transform: none; box-shadow: $shadow-sm; }
+  }
+
+  &--primary {
+    border-color: rgba($primary, 0.2);
+    background: linear-gradient(135deg, $bg-white 0%, $primary-light 100%);
+  }
+
+  &--glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  &--hoverable { cursor: pointer; }
+}
+
+// === Buttons ===
+.btn-y {
+  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: $btn-border-radius;
+  transition: $transition-base;
+  box-shadow: 0 4px 12px rgba($primary, 0.25);
+
+  &:hover, &:focus {
+    background: linear-gradient(135deg, $primary-dark 0%, darken($primary-dark, 5%) 100%);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba($primary, 0.35);
+  }
+
+  &:active { transform: translateY(0); }
+
+  &:disabled {
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: $btn-border-radius;
+  transition: $transition-base;
+  box-shadow: 0 4px 12px rgba($secondary, 0.25);
+
+  &:hover, &:focus {
+    background: linear-gradient(135deg, $secondary-dark 0%, darken($secondary-dark, 5%) 100%);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba($secondary, 0.35);
+  }
+}
+
+.btn-outline-y {
+  color: $primary;
+  border: 2px solid $primary;
+  background: transparent;
+  font-weight: 700;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: $btn-border-radius;
+  transition: $transition-base;
+
+  &:hover {
+    background: $primary;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+}
+
+// === Badges ===
+.badge-verified {
+  background: rgba($success, 0.1);
+  color: $success;
+  border: 1px solid rgba($success, 0.2);
+  font-weight: 600;
+}
+.badge-pending {
+  background: $secondary-light;
+  color: $secondary;
+  border: 1px solid rgba($secondary, 0.2);
+  font-weight: 600;
+}
+.badge-rejected {
+  background: rgba($danger, 0.1);
+  color: $danger;
+  border: 1px solid rgba($danger, 0.2);
+  font-weight: 600;
+}
+
+// === Stats ===
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: $primary;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-size: 0.9rem;
+  color: $text-muted-custom;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+// === Section Spacing ===
+.section-padding {
+  padding: 5rem 0;
+  @media (max-width: 768px) { padding: 3rem 0; }
+}
+
+// === Section Headers ===
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 0.75rem;
+
+    @media (max-width: 768px) { font-size: 1.5rem; }
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    color: $text-secondary-custom;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) { font-size: 0.95rem; }
+  }
+}
+
+// === Pillar Cards ===
+.pillar-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  height: 100%;
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 auto 1rem;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: $text-secondary-custom;
+    margin-bottom: 0;
+    line-height: $lh-body-sm;
+  }
+}
+
+// === Progress Bar ===
+.progress-y {
+  height: 10px;
+  border-radius: 10px;
+  background: $border-light;
+
+  .progress-bar {
+    border-radius: 10px;
+    background: linear-gradient(90deg, $primary 0%, lighten($primary, 10%) 100%);
+  }
+}
+
+// === Form Enhancements ===
+.form-control, .form-select {
+  min-height: 48px;
+  border-color: $border-custom;
+  font-weight: 500;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.12);
+  }
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: $text-secondary-custom;
+  margin-bottom: 0.4rem;
+}
+
+// === Auth Card ===
+.auth-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: $border-radius-xl;
+  background: $bg-white;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border-light;
+
+  @media (max-width: 576px) {
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+
+  &__logo {
+    display: block;
+    margin: 0 auto 1.5rem;
+    max-height: 56px;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    text-align: center;
+    color: $text-muted-custom;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    color: $text-muted-custom;
+    font-size: 0.85rem;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $border-custom;
+    }
+  }
+}
+
+// === Scrollbar ===
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: $border-custom;
+  border-radius: 3px;
+  &:hover { background: $text-muted-custom; }
+}
+
+// === Selection ===
+::selection {
+  background: rgba($primary, 0.15);
+  color: $primary-dark;
+}

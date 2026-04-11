@@ -192,10 +192,11 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
         Route::put('/sessions/{session}/complete', [CounselingController::class, 'complete']);
     });
 
-    // Community
+    // Community — all authenticated users can READ, but only users/admins can POST
     Route::prefix('community')->group(function () {
         Route::get('/posts', [\App\Http\Controllers\Api\CommunityController::class, 'index']);
-        Route::post('/posts', [\App\Http\Controllers\Api\CommunityController::class, 'store']);
+        Route::post('/posts', [\App\Http\Controllers\Api\CommunityController::class, 'store'])
+            ->middleware('role:user|admin');
     });
 
     // Reports

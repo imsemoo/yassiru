@@ -22,25 +22,29 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Quick Links — role-aware -->
         <div class="col-6 col-lg-2">
           <h6 class="footer-title">المنصة</h6>
           <ul class="footer-links">
-            <li><router-link to="/courses"><PhBookOpen :size="16" /> التأهيل</router-link></li>
-            <li><router-link to="/fund"><PhHandCoins :size="16" /> الصندوق</router-link></li>
-            <li><router-link to="/weddings"><PhHeart :size="16" /> الأعراس</router-link></li>
-            <li><router-link to="/calculator"><PhCalculator :size="16" /> الحاسبة</router-link></li>
+            <li v-for="link in platformLinks" :key="link.to">
+              <router-link :to="link.to">
+                <component :is="link.icon" :size="16" />
+                {{ link.label }}
+              </router-link>
+            </li>
           </ul>
         </div>
 
-        <!-- Support -->
+        <!-- Account -->
         <div class="col-6 col-lg-2">
           <h6 class="footer-title">حسابك</h6>
           <ul class="footer-links">
-            <li><router-link to="/login"><PhSignIn :size="16" /> تسجيل الدخول</router-link></li>
-            <li><router-link to="/register"><PhUserPlus :size="16" /> إنشاء حساب</router-link></li>
-            <li><router-link to="/profile"><PhSquaresFour :size="16" /> ملفي</router-link></li>
-            <li><router-link to="/counseling"><PhChatsCircle :size="16" /> الاستشارات</router-link></li>
+            <li v-for="link in accountLinks" :key="link.to">
+              <router-link :to="link.to">
+                <component :is="link.icon" :size="16" />
+                {{ link.label }}
+              </router-link>
+            </li>
           </ul>
         </div>
 
@@ -77,9 +81,71 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 import {
   PhBookOpen, PhHandCoins, PhHeart, PhCalculator,
   PhShieldCheck, PhEnvelope, PhGlobe,
   PhSignIn, PhUserPlus, PhSquaresFour, PhChatsCircle,
+  PhUsers, PhUsersFour,
 } from '@phosphor-icons/vue'
+
+const auth = useAuthStore()
+
+const platformLinks = computed(() => {
+  // Admin: oversight links
+  if (auth.isAdmin) {
+    return [
+      { to: '/admin', label: 'الإدارة', icon: PhShieldCheck },
+      { to: '/admin/users', label: 'المستخدمون', icon: PhUsers },
+      { to: '/admin/recommenders', label: 'المعرّفون', icon: PhUsersFour },
+      { to: '/admin/weddings', label: 'الأعراس', icon: PhHeart },
+    ]
+  }
+
+  // Recommender
+  if (auth.isRecommender) {
+    return [
+      { to: '/recommender', label: 'لوحتي', icon: PhUsers },
+      { to: '/recommender/add-candidate', label: 'إضافة مرشح', icon: PhUserPlus },
+      { to: '/recommender/suggestions', label: 'الاقتراحات', icon: PhHeart },
+      { to: '/recommender/family-requests', label: 'طلبات العائلات', icon: PhChatsCircle },
+    ]
+  }
+
+  // Counselor
+  if (auth.isCounselor) {
+    return [
+      { to: '/counselor', label: 'جلساتي', icon: PhChatsCircle },
+    ]
+  }
+
+  // Regular user & guests
+  return [
+    { to: '/courses', label: 'التأهيل', icon: PhBookOpen },
+    { to: '/fund', label: 'الصندوق', icon: PhHandCoins },
+    { to: '/weddings', label: 'الأعراس', icon: PhHeart },
+    { to: '/calculator', label: 'الحاسبة', icon: PhCalculator },
+  ]
+})
+
+const accountLinks = computed(() => {
+  if (!auth.isAuthenticated) {
+    return [
+      { to: '/login', label: 'تسجيل الدخول', icon: PhSignIn },
+      { to: '/register', label: 'إنشاء حساب', icon: PhUserPlus },
+      { to: '/calculator', label: 'الحاسبة', icon: PhCalculator },
+      { to: '/about', label: 'عن المنصة', icon: PhShieldCheck },
+    ]
+  }
+
+  // Authenticated — show profile and role-specific entries
+  const links = [{ to: '/profile', label: 'ملفي', icon: PhSquaresFour }]
+
+  if (auth.isUser) {
+    links.push({ to: '/counseling', label: 'الاستشارات', icon: PhChatsCircle })
+  }
+
+  return links
+})
 </script>

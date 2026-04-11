@@ -154,16 +154,19 @@ const routes = [
   // RECOMMENDER ROUTES (imams/teachers matching candidates)
   // =============================================================
   {
+    // Registration page — only regular users can apply.
+    // Must be defined BEFORE /recommender to take matching priority
+    // (not strictly necessary in Vue Router 4, but clearer).
+    path: '/recommender/register',
+    name: 'recommenderRegister',
+    component: () => import('@/views/recommender/RecommenderRegisterPage.vue'),
+    meta: { requiresAuth: true, roles: [USER] },
+  },
+  {
     path: '/recommender',
     name: 'recommender',
     component: () => import('@/views/recommender/RecommenderDashboard.vue'),
     meta: { requiresAuth: true, roles: [RECOMMENDER, ADMIN] },
-  },
-  {
-    path: '/recommender/register',
-    name: 'recommenderRegister',
-    component: () => import('@/views/recommender/RecommenderDashboard.vue'),
-    meta: { requiresAuth: true }, // any user can apply to become recommender
   },
   {
     path: '/recommender/add-candidate',

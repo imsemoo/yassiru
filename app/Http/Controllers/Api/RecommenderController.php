@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\StoreRecommendationRequest;
 use App\Http\Requests\StoreRecommenderRequest;
+use App\Http\Resources\UserResource;
 use App\Models\Candidate;
+use App\Models\CircleMember;
 use App\Models\FamilyRequest;
 use App\Models\Recommendation;
 use App\Models\Recommender;
+use App\Models\WeddingRegistration;
 use App\Services\CompatibilityService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,32 +25,80 @@ class RecommenderController extends Controller
 
     public function register(StoreRecommenderRequest $request): JsonResponse
     {
+        $user = $request->user();
 
-        if (Recommender::where('user_id', $request->user()->id)->exists()) {
+        if (Recommender::where('user_id', $user->id)->exists()) {
             return response()->json(['message' => 'أنت مسجل كمعرّف بالفعل'], 422);
         }
 
+        // Block role change if user has active obligations as a regular user
+        $activeCircles = CircleMember::where('user_id', $user->id)
+            ->whereIn('status', ['active', 'pending'])
+            ->whereHas('circle', fn ($q) => $q->whereIn('status', ['forming', 'active']))
+            ->count();
+
+        $pendingWeddings = WeddingRegistration::where('user_id', $user->id)
+            ->whereIn('payment_status', ['pending', 'partial'])
+            ->count();
+
+        if ($activeCircles > 0 || $pendingWeddings > 0) {
+            return response()->json([
+                'message' => 'لا يمكنك التسجيل كمعرّف لوجود التزامات نشطة. يرجى إكمال أو إلغاء:'
+                    . ($activeCircles > 0 ? " {$activeCircles} حلقة صندوق" : '')
+                    . ($pendingWeddings > 0 ? " {$pendingWeddings} تسجيل عرس" : ''),
+            ], 422);
+        }
+
         $recommender = Recommender::create([
-            'user_id' => $request->user()->id,
+            'user_id' => $user->id,
             'type' => $request->type,
             'institution' => $request->institution,
             'bio' => $request->bio,
             'honor_pledge_signed' => true,
         ]);
 
-        $request->user()->role = 'recommender';
-        $request->user()->save();
-        $request->user()->syncRoles(['recommender']);
+        $user->role = 'recommender';
+        $user->save();
+        $user->syncRoles(['recommender']);
+
+        // Revoke old tokens and issue a fresh one so the frontend gets updated role
+        $user->tokens()->delete();
+        $token = $user->createToken('auth-token')->plainTextToken;
 
         return response()->json([
             'message' => 'تم تسجيلك كمعرّف بنجاح. في انتظار اعتماد الإدارة',
+            'user' => new UserResource($user->fresh()->load('city')),
+            'token' => $token,
             'recommender' => $recommender,
         ], 201);
     }
 
     public function dashboard(Request $request): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $user = $request->user();
+        $recommender = Recommender::where('user_id', $user->id)->first();
+
+        // Admins can access dashboard without being a recommender — show empty shell
+        if (!$recommender) {
+            if ($user->role === 'admin') {
+                return response()->json([
+                    'recommender' => [
+                        'id' => null,
+                        'type' => 'admin_oversight',
+                        'is_approved' => true,
+                        'candidates_count' => Candidate::count(),
+                        'successful_matches' => 0,
+                    ],
+                    'candidates' => Candidate::with('city:id,name')->latest()->take(20)->get(),
+                    'recommendations' => Recommendation::with([
+                        'maleCandidate:id,name,age,occupation',
+                        'femaleCandidate:id,name,age,occupation',
+                    ])->latest()->take(10)->get(),
+                ]);
+            }
+
+            return response()->json(['message' => 'لم يتم العثور على سجل معرّف'], 404);
+        }
 
         $candidates = Candidate::where('recommender_id', $recommender->id)
             ->with('city:id,name')

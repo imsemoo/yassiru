@@ -6,70 +6,6 @@
         <p class="loading-state__text">جاري تحميل لوحة المعرّف...</p>
       </div>
 
-      <!-- Registration Form -->
-      <div v-else-if="!data && !isRecommender" class="row justify-content-center">
-        <div class="col-lg-7">
-          <div class="page-header">
-            <div>
-              <h1 class="page-header__title">
-                <span class="page-header__title__icon" style="--header-bg: rgba(21,101,192,0.1); --header-color: #1565c0">
-                  <PhHandshake :size="24" weight="duotone" />
-                </span>
-                التسجيل كمعرّف
-              </h1>
-              <p class="page-header__subtitle">المعرّف هو شخص موثوق يقوم بترشيح طرفي الزواج والتوفيق بينهم</p>
-            </div>
-          </div>
-
-          <div class="dash-card">
-            <div class="dash-card__body">
-              <div v-if="error" class="dash-alert dash-alert--danger">
-                <PhWarningCircle :size="20" weight="fill" class="dash-alert__icon" />
-                <div class="dash-alert__content">{{ typeof error === 'string' ? error : 'تحقق من البيانات' }}</div>
-              </div>
-
-              <form class="dash-form" @submit.prevent="registerRecommender">
-                <div class="dash-form__group">
-                  <label class="dash-form__label">
-                    <PhUserCircle :size="14" />
-                    نوع المعرّف
-                  </label>
-                  <select v-model="form.type" class="dash-form__select" required>
-                    <option value="">اختر النوع</option>
-                    <option value="imam">إمام مسجد</option>
-                    <option value="teacher">معلم / أستاذ</option>
-                    <option value="relative">قريب / من العائلة</option>
-                    <option value="community_leader">وجيه مجتمعي</option>
-                  </select>
-                </div>
-
-                <div class="dash-form__group">
-                  <label class="dash-form__label">
-                    <PhBuildings :size="14" />
-                    المؤسسة (اختياري)
-                  </label>
-                  <input v-model="form.institution" type="text" class="dash-form__input" placeholder="مثال: مسجد الرحمة">
-                </div>
-
-                <div class="dash-form__group">
-                  <label class="dash-form__label">
-                    <PhNotePencil :size="14" />
-                    نبذة تعريفية (اختياري)
-                  </label>
-                  <textarea v-model="form.bio" class="dash-form__textarea" placeholder="عرّف عن نفسك وخبرتك في التوفيق"></textarea>
-                </div>
-
-                <button type="submit" class="btn-action btn-action--primary" :disabled="registering">
-                  <span v-if="registering" class="spinner-border spinner-border-sm"></span>
-                  <PhCheckCircle :size="18" weight="bold" v-else />
-                  تسجيل كمعرّف
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Dashboard -->
       <div v-else-if="data">
         <div class="page-header">
@@ -232,21 +168,19 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 import { useApi } from '@/composables/useApi'
+import { useAuthStore } from '@/stores/auth'
 import {
-  PhHandshake, PhWarningCircle, PhUserCircle, PhBuildings, PhNotePencil,
-  PhCheckCircle, PhClock, PhUsers, PhHeart, PhListChecks, PhShieldCheck,
+  PhHandshake, PhClock, PhUsers, PhHeart, PhListChecks, PhShieldCheck,
   PhUserPlus, PhMagnifyingGlass, PhUsersFour, PhCake, PhBriefcase, PhMapPin,
-  PhArrowsLeftRight,
+  PhArrowsLeftRight, PhUserCircle,
 } from '@phosphor-icons/vue'
 
+const router = useRouter()
 const auth = useAuthStore()
-const { get, post, loading, error } = useApi()
+const { get, loading } = useApi()
 const data = ref(null)
-const isRecommender = ref(auth.isRecommender)
-const registering = ref(false)
-const form = ref({ type: '', institution: '', bio: '' })
 
 function scoreClass(score) {
   if (score >= 85) return 'score--excellent'
@@ -254,28 +188,24 @@ function scoreClass(score) {
   return 'score--avg'
 }
 
-async function registerRecommender() {
-  registering.value = true
-  try {
-    await post('/api/recommender/register', form.value)
-    isRecommender.value = true
-    await auth.fetchUser()
-    await loadDashboard()
-  } catch { /* handled */ }
-  registering.value = false
-}
-
 async function loadDashboard() {
   try {
     data.value = await get('/api/recommender/dashboard')
-  } catch { /* handled */ }
+  } catch {
+    // 404 means user is authenticated but not yet a recommender
+    if (!auth.isRecommender && !auth.isAdmin) {
+      router.replace('/recommender/register')
+    }
+  }
 }
 
-onMounted(async () => {
-  if (auth.isRecommender || auth.user?.role === 'recommender') {
-    isRecommender.value = true
-    await loadDashboard()
+onMounted(() => {
+  // Route non-recommenders (who aren't admins) to the registration page
+  if (!auth.isRecommender && !auth.isAdmin) {
+    router.replace('/recommender/register')
+    return
   }
+  loadDashboard()
 })
 </script>
 

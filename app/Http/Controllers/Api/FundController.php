@@ -37,11 +37,15 @@ class FundController extends Controller
 
     public function store(StoreCircleRequest $request): JsonResponse
     {
-        if (!$request->user()->has_certificate) {
+        $user = $request->user();
+
+        // Admins can create circles without a certificate (for oversight/seeding).
+        // Regular users must have completed the qualification course.
+        if ($user->role !== 'admin' && !$user->has_certificate) {
             return response()->json(['message' => 'يجب الحصول على شهادة التأهيل أولاً'], 403);
         }
 
-        $circle = $this->fundService->createCircle($request->validated(), $request->user()->id);
+        $circle = $this->fundService->createCircle($request->validated(), $user->id);
 
         return response()->json(['message' => 'تم إنشاء الحلقة بنجاح', 'circle' => $circle->load('city')], 201);
     }

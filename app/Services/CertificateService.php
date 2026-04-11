@@ -101,6 +101,11 @@ class CertificateService
 
     public function getUserCertificate(User $user): ?array
     {
+        // Only regular users can have certificates
+        if ($user->role !== 'user') {
+            return null;
+        }
+
         $certificate = Certificate::where('user_id', $user->id)->first();
 
         if (!$certificate) {

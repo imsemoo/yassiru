@@ -113,6 +113,30 @@
           </div>
         </div>
 
+        <!-- Non-user role cannot register -->
+        <div v-else-if="!auth.isUser" class="dash-alert dash-alert--warning">
+          <PhWarningCircle :size="20" weight="fill" class="dash-alert__icon" />
+          <div class="dash-alert__content">
+            <div class="dash-alert__title">هذه الصفحة للمستخدمين الباحثين عن زواج</div>
+            كـ{{ roleLabel }}، ليس لديك الصلاحية للتسجيل في الأعراس الجماعية.
+          </div>
+        </div>
+
+        <!-- User without certificate -->
+        <div v-else-if="!auth.hasCertificate" class="dash-alert dash-alert--warning">
+          <PhWarningCircle :size="20" weight="fill" class="dash-alert__icon" />
+          <div class="dash-alert__content">
+            <div class="dash-alert__title">تحتاج إلى شهادة التأهيل أولاً</div>
+            يجب إكمال الدورة التأهيلية واجتياز اختباراتها قبل التسجيل في الأعراس.
+            <div class="mt-2">
+              <router-link to="/courses" class="btn-action btn-action--primary btn-action--sm">
+                <PhSignIn :size="14" />
+                ابدأ الدورة
+              </router-link>
+            </div>
+          </div>
+        </div>
+
         <div v-else-if="registered" class="dash-alert dash-alert--success">
           <PhCheckCircle :size="20" weight="fill" class="dash-alert__icon" />
           <div class="dash-alert__content">
@@ -170,7 +194,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useApi } from '@/composables/useApi'
 import { useAuthStore } from '@/stores/auth'
@@ -190,6 +214,12 @@ const notes = ref('')
 const registering = ref(false)
 const actionMessage = ref('')
 const messageType = ref('success')
+
+const roleLabel = computed(() => ({
+  admin: 'مدير',
+  recommender: 'معرّف',
+  counselor: 'مستشار',
+})[auth.user?.role] || 'مستخدم')
 
 watch(wedding, (w) => {
   if (w) {

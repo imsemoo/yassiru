@@ -150,6 +150,14 @@ const routes = [
     meta: { requiresAuth: true, roles: [USER] },
   },
 
+  // Community (all authenticated users can view, user/admin can post)
+  {
+    path: '/community',
+    name: 'community',
+    component: () => import('@/views/community/CommunityPage.vue'),
+    meta: { requiresAuth: true },
+  },
+
   // =============================================================
   // RECOMMENDER ROUTES (imams/teachers matching candidates)
   // =============================================================

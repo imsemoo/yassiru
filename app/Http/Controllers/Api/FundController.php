@@ -112,7 +112,7 @@ class FundController extends Controller
     {
         $contract = DigitalContract::where('circle_id', $circle->id)
             ->where('user_id', $request->user()->id)
-            ->firstOrFail();
+            ->first() ?? abort(403, 'لست عضواً في هذه الحلقة أو لا يوجد عقد');
 
         return response()->json($contract);
     }
@@ -121,7 +121,7 @@ class FundController extends Controller
     {
         $contract = DigitalContract::where('circle_id', $circle->id)
             ->where('user_id', $request->user()->id)
-            ->firstOrFail();
+            ->first() ?? abort(403, 'لست عضواً في هذه الحلقة أو لا يوجد عقد');
 
         if ($contract->accepted) {
             return response()->json(['message' => 'تم توقيع العقد مسبقاً'], 422);
@@ -153,7 +153,7 @@ class FundController extends Controller
 
         $member = CircleMember::where('circle_id', $circle->id)
             ->where('user_id', $request->user()->id)
-            ->firstOrFail();
+            ->first() ?? abort(403, 'لست عضواً في هذه الحلقة أو لا يوجد عقد');
 
         if ($member->has_guarantor) {
             return response()->json(['message' => 'لديك ضامن مسجل بالفعل'], 422);
@@ -204,7 +204,7 @@ class FundController extends Controller
     {
         $member = CircleMember::where('circle_id', $circle->id)
             ->where('user_id', $request->user()->id)
-            ->firstOrFail();
+            ->first() ?? abort(403, 'لست عضواً في هذه الحلقة أو لا يوجد عقد');
 
         if ($member->guarantee_deposit > 0) {
             return response()->json(['message' => 'تم دفع رسوم الضمان مسبقاً'], 422);

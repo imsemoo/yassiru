@@ -125,9 +125,23 @@ class RecommenderController extends Controller
         ]);
     }
 
+    /**
+     * Resolve the current user's Recommender record or abort with 403.
+     */
+    private function resolveRecommender(Request $request): Recommender
+    {
+        $recommender = Recommender::where('user_id', $request->user()->id)->first();
+
+        if (!$recommender) {
+            abort(403, 'يجب التسجيل كمعرّف أولاً');
+        }
+
+        return $recommender;
+    }
+
     public function addCandidate(StoreCandidateRequest $request): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
 
         if (!$recommender->is_approved) {
             return response()->json(['message' => 'حسابك كمعرّف لم يُعتمد بعد'], 403);
@@ -157,7 +171,7 @@ class RecommenderController extends Controller
 
     public function suggestions(Request $request): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
 
         $suggestions = $this->compatibilityService->generateSuggestions($recommender->id);
 
@@ -166,7 +180,7 @@ class RecommenderController extends Controller
 
     public function recommend(StoreRecommendationRequest $request): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
 
         $male = Candidate::findOrFail($request->male_candidate_id);
         $female = Candidate::findOrFail($request->female_candidate_id);
@@ -189,7 +203,7 @@ class RecommenderController extends Controller
 
     public function familyRequests(Request $request): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
 
         $requests = FamilyRequest::whereHas('recommendation', function ($q) use ($recommender) {
             $q->where('recommender_id', $recommender->id);
@@ -203,7 +217,7 @@ class RecommenderController extends Controller
 
     public function updateCandidate(Request $request, Candidate $candidate): JsonResponse
     {
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
 
         if ($candidate->recommender_id !== $recommender->id) {
             return response()->json(['message' => 'غير مصرح لك بتعديل هذا المرشح'], 403);
@@ -238,7 +252,7 @@ class RecommenderController extends Controller
     public function respondToFamilyRequest(Request $request, FamilyRequest $familyRequest): JsonResponse
     {
         // Verify the family request belongs to this recommender
-        $recommender = Recommender::where('user_id', $request->user()->id)->firstOrFail();
+        $recommender = $this->resolveRecommender($request);
         if ($familyRequest->recommendation->recommender_id !== $recommender->id) {
             return response()->json(['message' => 'غير مصرح بهذا الإجراء'], 403);
         }

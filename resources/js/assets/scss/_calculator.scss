@@ -8,7 +8,7 @@
 .calc-page-hero {
   position: relative;
   padding: 5rem 0 4rem;
-  background: linear-gradient(160deg, #e8f5f5 0%, $bg-warm 50%, #faf3e0 100%);
+  background: $bg-warm;
   overflow: hidden;
 
   &::before {
@@ -45,24 +45,33 @@
   margin-bottom: 3rem;
 
   &__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: rgba($primary, 0.1);
-    color: $primary-dark;
-    border: 1px solid rgba($primary, 0.2);
-    border-radius: 100px;
-    font-family: $font-ruqaa;
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: $text-muted;
+  font-family: $font-text;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: $accent-teal;
+    flex-shrink: 0;
   }
+}
 
   &__title {
     font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 900;
+    font-weight: 600;
     line-height: $lh-display;
     letter-spacing: -0.02em;
     color: $text-dark;
@@ -87,14 +96,14 @@
   position: relative;
   z-index: 2;
   background: $bg-white;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 2.5rem;
   max-width: 900px;
   margin: 0 auto;
   box-shadow: 0 24px 60px rgba(13, 26, 42, 0.1);
   border: 1px solid $border-light;
 
-  @media (max-width: 768px) { padding: 1.5rem; border-radius: 20px; }
+  @media (max-width: 768px) { padding: 1.5rem; border-radius: 4px; }
 
   &__inputs {
     display: grid;
@@ -120,7 +129,7 @@
       width: 100%;
       padding: 1rem 1.25rem;
       border: 2px solid $border-custom;
-      border-radius: 14px;
+      border-radius: 3px;
       font-weight: 600;
       font-size: 1rem;
       color: $text-dark;
@@ -139,11 +148,11 @@
   }
 
   &__btn {
-    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    background: $primary;
     color: #fff;
     border: none;
     padding: 1rem 1.75rem;
-    border-radius: 14px;
+    border-radius: 3px;
     font-weight: 800;
     font-size: 1rem;
     height: 56px;
@@ -151,14 +160,14 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 6px 16px rgba($primary, 0.3);
+    box-shadow: 0 3px 16px -8px rgba($primary, 0.45);
     transition: all 0.25s;
     cursor: pointer;
     white-space: nowrap;
 
     &:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba($primary, 0.4);
+      box-shadow: 0 5px 24px -12px rgba($primary, 0.45);
     }
 
     &:disabled {
@@ -194,7 +203,7 @@
 
 .result-card {
   background: $bg-white;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 2rem 1.5rem;
   border: 1px solid $border-light;
   text-align: center;
@@ -220,7 +229,7 @@
   &__icon {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
+    border-radius: 4px;
     background: var(--card-bg);
     color: var(--card-color);
     display: flex;
@@ -240,7 +249,7 @@
 
   &__amount {
     font-size: 2.75rem;
-    font-weight: 900;
+    font-weight: 600;
     color: var(--card-color);
     line-height: $lh-numeric;
     letter-spacing: -0.02em;
@@ -256,8 +265,8 @@
 }
 
 .result-summary-bar {
-  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-  border-radius: 20px;
+  background: $primary;
+  border-radius: 4px;
   padding: 2rem;
   color: #fff;
   text-align: center;
@@ -285,7 +294,7 @@
 
   &__amount {
     font-size: 3rem;
-    font-weight: 900;
+    font-weight: 600;
     letter-spacing: -0.02em;
     line-height: $lh-numeric;
     margin-bottom: 0.25rem;
@@ -304,7 +313,7 @@
 // ============================================
 .breakdown-section {
   padding: 5rem 0;
-  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 3rem 0; }
 }
@@ -320,7 +329,7 @@
 .breakdown-row {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.3s;
 
@@ -352,7 +361,7 @@
     background: rgba($text-muted-custom, 0.1);
     color: $text-muted-custom;
     padding: 0.25rem 0.65rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.7rem;
     font-weight: 700;
   }
@@ -384,18 +393,18 @@
     &__bar {
       height: 24px;
       background: $bg-warm;
-      border-radius: 100px;
+      border-radius: 6px;
       overflow: hidden;
       position: relative;
 
       .fill {
         height: 100%;
-        border-radius: 100px;
+        border-radius: 6px;
         transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      &--bad .fill { background: linear-gradient(90deg, $danger 0%, lighten($danger, 8%) 100%); }
-      &--good .fill { background: linear-gradient(90deg, $success 0%, lighten($success, 5%) 100%); }
+      &--bad .fill { background: $danger; }
+      &--good .fill { background: $success; }
     }
 
     &__value {
@@ -446,7 +455,7 @@
 .level-card {
   background: $bg-white;
   border: 2px solid $border-light;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 2rem 1.5rem;
   text-align: center;
   cursor: pointer;
@@ -461,8 +470,8 @@
 
   &.is-selected {
     border-color: $primary;
-    background: linear-gradient(135deg, $bg-white 0%, $primary-light 100%);
-    box-shadow: 0 16px 36px rgba($primary, 0.15);
+    background: $bg-white;
+    box-shadow: 0 8px 36px -18px rgba($primary, 0.45);
   }
 
   &__badge {
@@ -473,7 +482,7 @@
     background: $secondary;
     color: #fff;
     padding: 0.25rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -483,7 +492,7 @@
   &__icon {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
+    border-radius: 4px;
     background: var(--lvl-bg);
     color: var(--lvl-color);
     display: flex;
@@ -519,7 +528,7 @@
 
     .yassiru {
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 600;
       color: $primary;
       letter-spacing: -0.01em;
     }
@@ -536,7 +545,7 @@
 // ============================================
 .savings-section {
   padding: 5rem 0;
-  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 3rem 0; }
 }
@@ -554,7 +563,7 @@
 .savings-method {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 2rem;
   transition: all 0.3s;
   text-decoration: none;
@@ -571,7 +580,7 @@
   &__icon {
     width: 60px;
     height: 60px;
-    border-radius: 16px;
+    border-radius: 4px;
     background: var(--method-bg);
     color: var(--method-color);
     display: flex;
@@ -582,10 +591,10 @@
 
   &__percentage {
     display: inline-block;
-    background: linear-gradient(135deg, var(--method-color) 0%, var(--method-dark) 100%);
+    background: var(--method-color);
     color: #fff;
     padding: 0.35rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 800;
     margin-bottom: 0.75rem;
@@ -652,7 +661,7 @@
   padding: 0.85rem 1.5rem;
   background: $bg-warm;
   border: 1px solid $border-light;
-  border-radius: 12px;
+  border-radius: 3px;
   color: $text-dark;
   font-weight: 700;
   font-size: 0.9rem;
@@ -703,7 +712,7 @@
 
   &__title {
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    font-weight: 900;
+    font-weight: 600;
     line-height: $lh-heading-lg;
     margin-bottom: 1rem;
     color: #fff;
@@ -719,20 +728,20 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    background: $primary;
     color: #fff;
     padding: 1.15rem 2.5rem;
-    border-radius: 16px;
+    border-radius: 4px;
     font-weight: 800;
     font-size: 1.05rem;
     text-decoration: none;
-    box-shadow: 0 12px 32px rgba($primary, 0.4);
+    box-shadow: 0 6px 32px -16px rgba($primary, 0.45);
     transition: all 0.25s;
 
     &:hover {
       color: #fff;
       transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba($primary, 0.55);
+      box-shadow: 0 8px 40px -20px rgba($primary, 0.45);
     }
   }
 }

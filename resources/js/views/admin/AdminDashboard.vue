@@ -183,9 +183,9 @@ onMounted(async () => {
   align-items: center;
   gap: 0.85rem;
   padding: 1rem 1.25rem;
-  background: #faf9f6;
-  border: 1.5px solid #e0d8cc;
-  border-radius: 12px;
+  background: #f8f5ee;
+  border: 1.5px solid #d8d1c4;
+  border-radius: 3px;
   text-decoration: none;
   color: inherit;
   transition: all 0.25s;
@@ -198,17 +198,17 @@ onMounted(async () => {
   .title {
     font-size: 0.95rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.15rem;
   }
 
   .desc {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
   }
 
   &:hover {
-    background: #fff;
+    background: #fdfbf6;
     border-color: var(--qa-color);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(13, 26, 42, 0.05);
@@ -232,7 +232,7 @@ onMounted(async () => {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #0d7377 0%, #095456 100%);
+    background: #0d7377;
     color: #fff;
     display: flex;
     align-items: center;

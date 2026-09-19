@@ -296,9 +296,9 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .profile-hero {
-  background: linear-gradient(135deg, rgba(13,115,119,0.08) 0%, rgba(184,134,11,0.05) 100%);
+  background: rgba(13,115,119,0.08);
   border: 1px solid rgba(13,115,119,0.15);
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
@@ -311,7 +311,7 @@ onMounted(async () => {
     width: 88px;
     height: 88px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #0d7377 0%, #095456 100%);
+    background: #0d7377;
     color: #fff;
     display: flex;
     align-items: center;
@@ -327,14 +327,14 @@ onMounted(async () => {
   &__name {
     font-size: 1.5rem;
     font-weight: 900;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.25rem;
     letter-spacing: -0.01em;
   }
 
   &__email {
     font-size: 0.85rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin-bottom: 0.75rem;
   }
 
@@ -358,11 +358,11 @@ onMounted(async () => {
   align-items: center;
   gap: 0.65rem;
   padding: 0.95rem 1rem;
-  background: #faf9f6;
-  border: 1.5px solid #e0d8cc;
-  border-radius: 12px;
+  background: #f8f5ee;
+  border: 1.5px solid #d8d1c4;
+  border-radius: 3px;
   text-decoration: none;
-  color: #1a1a2a;
+  color: #14201f;
   font-weight: 700;
   font-size: 0.85rem;
   transition: all 0.2s;

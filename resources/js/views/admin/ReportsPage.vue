@@ -165,9 +165,9 @@ onMounted(() => loadPage(1))
 }
 
 .report-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   overflow: hidden;
   transition: all 0.25s;
 
@@ -184,8 +184,8 @@ onMounted(() => loadPage(1))
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: #faf9f6;
-    border-bottom: 1px solid #f0ece4;
+    background: #f8f5ee;
+    border-bottom: 1px solid #e7e1d5;
   }
 
   &__body {
@@ -194,8 +194,8 @@ onMounted(() => loadPage(1))
 
   &__actions {
     padding: 1rem 1.5rem;
-    background: #faf9f6;
-    border-top: 1px solid #f0ece4;
+    background: #f8f5ee;
+    border-top: 1px solid #e7e1d5;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -208,17 +208,17 @@ onMounted(() => loadPage(1))
   align-items: center;
   gap: 0.4rem;
   font-size: 0.85rem;
-  color: #4a4a5e;
+  color: #3b4745;
   margin-bottom: 0.85rem;
 
-  svg { color: #8888a0; flex-shrink: 0; }
+  svg { color: #6f7b78; flex-shrink: 0; }
 }
 
 .report-card__reason {
   display: flex;
   gap: 0.5rem;
   padding: 0.85rem 1rem;
-  background: #faf9f6;
+  background: #f8f5ee;
   border-right: 3px solid #c0392b;
   border-radius: 8px;
 
@@ -227,7 +227,7 @@ onMounted(() => loadPage(1))
   p {
     margin: 0;
     font-size: 0.9rem;
-    color: #1a1a2a;
+    color: #14201f;
     line-height: 1.75;
   }
 }
@@ -239,7 +239,7 @@ onMounted(() => loadPage(1))
   border-right: 3px solid #0d7377;
   border-radius: 8px;
   font-size: 0.85rem;
-  color: #4a4a5e;
+  color: #3b4745;
   line-height: 1.6;
 
   strong {

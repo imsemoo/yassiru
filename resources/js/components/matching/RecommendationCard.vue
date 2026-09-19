@@ -46,7 +46,7 @@ const scoreClass = computed(() => {
 }
 .score-badge {
   padding: 4px 12px;
-  border-radius: 20px;
+  border-radius: 4px;
   font-weight: bold;
   font-size: 0.85rem;
 }

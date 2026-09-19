@@ -244,7 +244,7 @@ async function submit() {
 
 <style lang="scss" scoped>
 .preview-card {
-  background: linear-gradient(135deg, rgba(184,134,11,0.04) 0%, rgba(13,115,119,0.03) 100%);
+  background: rgba(184,134,11,0.04);
   border-color: rgba(184,134,11,0.2);
 }
 
@@ -262,20 +262,20 @@ async function submit() {
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1rem;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #f0ece4;
+  background: #fdfbf6;
+  border-radius: 3px;
+  border: 1px solid #e7e1d5;
 
   svg { color: #b8860b; flex-shrink: 0; }
 
-  .label { font-size: 0.7rem; color: #8888a0; font-weight: 600; }
-  .value { font-size: 0.95rem; font-weight: 800; color: #1a1a2a; }
+  .label { font-size: 0.7rem; color: #6f7b78; font-weight: 600; }
+  .value { font-size: 0.95rem; font-weight: 800; color: #14201f; }
 }
 
 .preview-payout {
-  background: linear-gradient(135deg, #b8860b 0%, #8a6508 100%);
+  background: #b8860b;
   color: #fff;
-  border-radius: 14px;
+  border-radius: 3px;
   padding: 1.5rem;
   text-align: center;
 

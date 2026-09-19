@@ -166,7 +166,7 @@ async function submit() {
 
 <style lang="scss" scoped>
 .info-card {
-  background: linear-gradient(135deg, #fff 0%, rgba(21, 101, 192, 0.03) 100%);
+  background: #fdfbf6;
 
   &__title {
     display: flex;
@@ -185,9 +185,9 @@ async function submit() {
     padding: 1rem;
     background: rgba(184, 134, 11, 0.08);
     border-right: 3px solid #b8860b;
-    border-radius: 10px;
+    border-radius: 3px;
     font-size: 0.85rem;
-    color: #4a4a5e;
+    color: #3b4745;
     line-height: 1.8;
 
     > svg {
@@ -212,7 +212,7 @@ async function submit() {
     padding-right: 1.5rem;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-    color: #4a4a5e;
+    color: #3b4745;
 
     &::before {
       content: '✓';

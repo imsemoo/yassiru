@@ -275,7 +275,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .wedding-desc {
   font-size: 0.95rem;
-  color: #4a4a5e;
+  color: #3b4745;
   line-height: 1.95;
   margin-bottom: 1.5rem;
 }
@@ -285,7 +285,7 @@ onMounted(async () => {
     display: flex;
     justify-content: space-between;
     font-size: 0.85rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin-bottom: 0.5rem;
 
     strong {
@@ -296,28 +296,28 @@ onMounted(async () => {
 
   &__bar {
     height: 12px;
-    background: #f0ece4;
-    border-radius: 100px;
+    background: #e7e1d5;
+    border-radius: 2px;
     overflow: hidden;
 
     .fill {
       height: 100%;
-      background: linear-gradient(90deg, #c0392b 0%, #b8860b 100%);
-      border-radius: 100px;
+      background: #c0392b;
+      border-radius: 2px;
       transition: width 0.6s;
     }
   }
 
   &__hint {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     text-align: center;
     margin-top: 0.5rem;
   }
 }
 
 .price-card {
-  background: linear-gradient(135deg, rgba(192,57,43,0.05) 0%, rgba(184,134,11,0.05) 100%);
+  background: rgba(192,57,43,0.05);
   border-color: rgba(192,57,43,0.2);
 }
 
@@ -331,7 +331,7 @@ onMounted(async () => {
 
 .price-card__label {
   font-size: 0.85rem;
-  color: #8888a0;
+  color: #6f7b78;
   font-weight: 700;
   margin-bottom: 0.4rem;
 }
@@ -345,7 +345,7 @@ onMounted(async () => {
 
 .price-card__original {
   font-size: 1.1rem;
-  color: #8888a0;
+  color: #6f7b78;
   text-decoration: line-through;
 }
 
@@ -361,7 +361,7 @@ onMounted(async () => {
 
 .price-card__currency {
   font-size: 0.9rem;
-  color: #8888a0;
+  color: #6f7b78;
   font-weight: 600;
 }
 
@@ -372,7 +372,7 @@ onMounted(async () => {
   background: #1b7a4a;
   color: #fff;
   padding: 0.65rem 1.15rem;
-  border-radius: 100px;
+  border-radius: 2px;
   font-weight: 800;
   font-size: 0.9rem;
   box-shadow: 0 6px 16px rgba(27,122,74,0.25);

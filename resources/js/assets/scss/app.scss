@@ -7,6 +7,7 @@
 
 // 2. Custom styles
 @import 'typography';
+@import 'paper';
 @import 'islamic-theme';
 @import 'components';
 @import 'animations';
@@ -22,7 +23,7 @@
 // Global
 // ========================================
 body {
-  font-family: 'Cairo', sans-serif;
+  font-family: $font-text;
   direction: rtl;
   text-align: right;
   min-height: 100vh;
@@ -35,63 +36,104 @@ body {
 img { max-width: 100%; }
 
 // ========================================
-// Navbar — Pro Header
+// Masthead
+// The active nav marker is a small pointed arch, taken from the brand mark.
+// Teal carries interaction; gold is reserved for brand value.
 // ========================================
 .yheader {
   position: sticky;
   top: 0;
   z-index: 1040;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba($border-custom, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: $surface-hero;
+  border-bottom: 1px solid $hairline;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 
   &.is-scrolled {
-    background: rgba(255, 255, 255, 0.97);
-    border-bottom-color: rgba($border-custom, 0.7);
-    box-shadow: 0 4px 24px rgba(13, 26, 42, 0.05);
+    border-bottom-color: $hairline-strong;
+    box-shadow: 0 8px 24px -16px rgba($ink, 0.4);
+
+    .yheader__utility { height: 0; opacity: 0; }
+    .yheader__inner   { height: 64px; }
+  }
+
+  // === Utility rail ===
+  &__utility {
+    height: 32px;
+    overflow: hidden;
+    background: $surface-sunk;
+    border-bottom: 1px solid $hairline;
+    color: $text-muted-sunk; // 0.62 measures 4.41:1 on this surface
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s;
+
+    @media (max-width: 767px) { display: none; }
+
+    &__inner {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    &__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .sq { background: $accent-gold; }
+    }
+
+    &__contact {
+      color: $text-muted-sunk;
+      text-decoration: none;
+      font-family: $font-mono;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      flex-shrink: 0;
+
+      &:hover { color: $accent-teal; }
+      &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 3px; }
+    }
   }
 
   &__inner {
-    height: 76px;
+    height: 74px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    @media (max-width: 991px) { height: 68px; }
+    @media (max-width: 991px) { height: 62px; }
   }
 
   // === Brand ===
   &__brand {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
     text-decoration: none;
     flex-shrink: 0;
-    transition: transform 0.2s;
-
-    &:hover { transform: scale(1.02); }
 
     img {
-      height: 64px;
+      height: 54px;
       width: auto;
       display: block;
 
-      @media (max-width: 991px) { height: 52px; }
+      @media (max-width: 991px) { height: 42px; }
     }
 
-    &__text {
-      display: none;
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: $primary;
-      letter-spacing: -0.01em;
-    }
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 4px; }
   }
 
-  // === Desktop Nav ===
+  // === Desktop nav ===
   &__nav {
     display: flex;
     align-items: center;
@@ -106,125 +148,144 @@ img { max-width: 100%; }
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.65rem 1rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: $text-secondary-custom;
+    padding: 0.7rem 0.95rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: $text-muted;
     text-decoration: none;
-    border-radius: 10px;
-    transition: all 0.2s;
     white-space: nowrap;
+    transition: color 0.2s ease;
 
-    &:hover {
-      color: $primary;
-      background: rgba($primary, 0.06);
+    // The marker is a miniature pointed arch, not a bar.
+    &::after {
+      content: '';
+      position: absolute;
+      inset-inline-start: 50%;
+      bottom: 0.15rem;
+      width: 16px;
+      height: 9px;
+      translate: -50% 0;
+      border: 1.5px solid $accent-teal;
+      border-bottom: 0;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      opacity: 0;
+      scale: 0.7;
+      transition: opacity 0.25s ease, scale 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
     }
 
-    &.router-link-exact-active {
-      color: $primary;
-      font-weight: 700;
+    &:hover {
+      color: $text-strong;
+      &::after { opacity: 0.4; scale: 1; }
+    }
 
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        right: 50%;
-        transform: translateX(50%);
-        width: 24px;
-        height: 3px;
-        background: linear-gradient(90deg, $primary 0%, $secondary 100%);
-        border-radius: 100px;
-      }
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: -4px; }
+
+    &.router-link-exact-active {
+      color: $text-strong;
+      font-weight: 500;
+      &::after { opacity: 1; scale: 1; }
     }
   }
 
-  // === Desktop Actions ===
+  // === Desktop actions ===
   &__actions {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.9rem;
     flex-shrink: 0;
 
     @media (max-width: 991px) { display: none; }
   }
 
   &__btn-login {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: $text-secondary-custom;
+    padding: 0.55rem 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $text-muted;
     background: transparent;
-    border: 1.5px solid $border-custom;
-    border-radius: 11px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    border-radius: 0;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: color 0.2s, border-color 0.2s;
 
     &:hover {
-      color: $primary;
-      border-color: $primary;
-      background: rgba($primary, 0.04);
+      color: $text-strong;
+      border-bottom-color: $accent-teal;
     }
+
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 3px; }
   }
 
+  // The one filled action in the masthead.
   &__btn-cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.65rem 1.4rem;
-    font-size: 0.92rem;
-    font-weight: 800;
+    gap: 0.5rem;
+    padding: 0.62rem 1.2rem;
+    font-family: $font-display;
+    font-size: 0.875rem;
+    font-weight: 600;
     color: #fff;
-    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-    border: none;
-    border-radius: 11px;
+    background: $accent-teal;
+    border: 0;
+    border-radius: 4px;
     text-decoration: none;
-    box-shadow: 0 6px 16px rgba($primary, 0.25);
-    transition: all 0.25s;
+    transition: background-color 0.2s, transform 0.15s, box-shadow 0.25s;
+
+    svg { transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 
     &:hover {
       color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba($primary, 0.35);
+      background: $primary-dark;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px -8px rgba($primary-dark, 0.6);
+
+      svg { transform: translateX(-3px); }
     }
+
+    &:active { transform: translateY(0) scale(0.99); }
+    &:focus-visible { outline: 2px solid $ink; outline-offset: 2px; }
   }
 
-  // === User Menu (logged in) ===
+  // === User menu (logged in) ===
   &__user {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.4rem 0.75rem 0.4rem 0.4rem;
-    background: $bg-warm;
-    border: 1.5px solid $border-custom;
-    border-radius: 100px;
+    padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+    background: transparent;
+    border: 1px solid $hairline-strong;
+    border-radius: 4px;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: border-color 0.2s, background-color 0.2s;
 
     &:hover {
-      background: $bg-white;
-      border-color: $primary;
+      background: $surface-raised;
+      border-color: $accent-teal;
     }
 
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 2px; }
+
     &__avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+      background: $accent-teal;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 0.85rem;
+      font-weight: 700;
+      font-size: 0.8rem;
       flex-shrink: 0;
     }
 
     &__name {
       font-size: 0.85rem;
-      font-weight: 700;
-      color: $text-dark;
-      max-width: 100px;
+      font-weight: 400;
+      color: $text-strong;
+      max-width: 110px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -232,12 +293,12 @@ img { max-width: 100%; }
   }
 
   &__btn-logout {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 4px;
     background: transparent;
-    border: 1.5px solid $border-custom;
-    color: $text-muted-custom;
+    border: 1px solid $hairline-strong;
+    color: $text-muted;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,13 +306,14 @@ img { max-width: 100%; }
     transition: all 0.2s;
 
     &:hover {
-      background: rgba($danger, 0.08);
       border-color: $danger;
       color: $danger;
     }
+
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 2px; }
   }
 
-  // === Mobile Toggle ===
+  // === Mobile toggle ===
   &__mobile-actions {
     display: none;
     align-items: center;
@@ -261,12 +323,12 @@ img { max-width: 100%; }
   }
 
   &__hamburger {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: $bg-warm;
-    border: 1.5px solid $border-custom;
-    color: $text-dark;
+    width: 42px;
+    height: 42px;
+    border-radius: 4px;
+    background: transparent;
+    border: 1px solid $hairline-strong;
+    color: $text-strong;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,10 +336,32 @@ img { max-width: 100%; }
     transition: all 0.2s;
 
     &:hover {
-      background: $primary-light;
-      border-color: $primary;
-      color: $primary;
+      background: $surface-raised;
+      border-color: $accent-teal;
     }
+
+    &:active { transform: scale(0.97); }
+    &:focus-visible { outline: 2px solid $accent-teal; outline-offset: 2px; }
+  }
+}
+
+// Skip link — keyboard users land here first.
+.skip-link {
+  position: absolute;
+  inset-inline-start: -9999px;
+  top: 0;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: $ink;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:focus {
+    inset-inline-start: 1rem;
+    top: 1rem;
+    color: #fff;
   }
 }
 
@@ -285,8 +369,8 @@ img { max-width: 100%; }
 .ydrawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(13, 26, 42, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba($ink, 0.45);
+  backdrop-filter: blur(3px);
   z-index: 1050;
   opacity: 0;
   pointer-events: none;
@@ -308,12 +392,13 @@ img { max-width: 100%; }
   max-width: 360px;
   height: 100vh;
   height: 100dvh;
-  background: $bg-white;
+  background: $paper;
+  border-inline-start: 1px solid $rule;
   z-index: 1051;
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -10px 0 40px rgba(13, 26, 42, 0.15);
+  box-shadow: -10px 0 40px rgba($ink, 0.14);
 
   &.is-open { right: 0; }
 
@@ -324,8 +409,8 @@ img { max-width: 100%; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid $border-light;
-    background: $bg-warm;
+    border-bottom: 1px solid $rule-soft;
+    background: transparent;
 
     &__brand {
       display: flex;
@@ -340,10 +425,10 @@ img { max-width: 100%; }
   &__close {
     width: 40px;
     height: 40px;
-    border-radius: 12px;
-    background: $bg-white;
-    border: 1.5px solid $border-custom;
-    color: $text-dark;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid $rule;
+    color: $ink;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -360,17 +445,17 @@ img { max-width: 100%; }
   // User card (logged in)
   &__user-card {
     padding: 1.25rem 1.5rem;
-    background: linear-gradient(135deg, $primary-light 0%, rgba($secondary-light, 0.5) 100%);
-    border-bottom: 1px solid $border-light;
+    background: $paper-hi;
+    border-block: 1px solid $rule-soft;
     display: flex;
     align-items: center;
     gap: 0.85rem;
 
     &__avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      background: $ink;
       color: #fff;
       display: flex;
       align-items: center;
@@ -412,23 +497,25 @@ img { max-width: 100%; }
   }
 
   &__link {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.85rem;
     padding: 0.85rem 1rem;
-    border-radius: 12px;
-    color: $text-dark;
+    border-radius: 6px;
+    color: $ink-soft;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 0.95rem;
     transition: all 0.2s;
 
     &__icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: $bg-warm;
-      color: $text-secondary-custom;
+      width: 36px;
+      height: 36px;
+      border-radius: 5px;
+      background: $paper-hi;
+      border: 1px solid $rule-soft;
+      color: $ink-soft;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -437,22 +524,33 @@ img { max-width: 100%; }
     }
 
     &:hover {
-      background: $bg-warm;
-      color: $primary;
+      background: $paper-hi;
+      color: $ink;
 
       .ydrawer__link__icon {
-        background: $primary-light;
-        color: $primary;
+        border-color: $rule;
+        color: $ink;
       }
     }
 
+    // Active state is a marker rule, not a filled pill.
     &.router-link-exact-active {
-      background: $primary-light;
-      color: $primary;
-      font-weight: 800;
+      background: transparent;
+      color: $ink;
+      font-weight: 600;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block: 0.5rem;
+        width: 2px;
+        background: $primary;
+      }
 
       .ydrawer__link__icon {
         background: $primary;
+        border-color: $primary;
         color: #fff;
       }
     }
@@ -460,14 +558,14 @@ img { max-width: 100%; }
 
   &__divider {
     height: 1px;
-    background: $border-light;
+    background: $rule-soft;
     margin: 0.75rem 1rem;
   }
 
   &__footer {
     padding: 1.25rem 1.5rem;
-    border-top: 1px solid $border-light;
-    background: $bg-warm;
+    border-top: 1px solid $rule-soft;
+    background: transparent;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
@@ -478,9 +576,9 @@ img { max-width: 100%; }
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.95rem 1.25rem;
-    border-radius: 12px;
-    font-weight: 700;
+    padding: 0.9rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.25s;
@@ -489,32 +587,34 @@ img { max-width: 100%; }
     font-family: inherit;
 
     &--primary {
-      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+      background: $primary;
       color: #fff;
-      box-shadow: 0 6px 16px rgba($primary, 0.25);
+      box-shadow: 0 2px 2px -4px rgba($primary, 0.45);
 
       &:hover {
         color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba($primary, 0.35);
+        background: $primary-dark;
+        transform: translateY(-1px);
       }
+
+      &:active { transform: translateY(0) scale(0.99); }
     }
 
     &--outline {
-      background: $bg-white;
-      color: $text-dark;
-      border: 1.5px solid $border-custom;
+      background: transparent;
+      color: $ink;
+      border: 1px solid $rule;
 
       &:hover {
-        border-color: $primary;
-        color: $primary;
+        border-color: $ink;
+        background: $paper-hi;
       }
     }
 
     &--danger {
-      background: $bg-white;
+      background: transparent;
       color: $danger;
-      border: 1.5px solid rgba($danger, 0.25);
+      border: 1px solid rgba($danger, 0.3);
 
       &:hover {
         background: rgba($danger, 0.05);
@@ -654,7 +754,7 @@ body.drawer-open {
 // ========================================
 .hero-section {
   position: relative;
-  background: linear-gradient(160deg, $primary-light 0%, $bg-white 40%, $secondary-light 100%);
+  background: $bg-warm;
   padding: 5rem 0 4rem;
   min-height: 85vh;
   display: flex;
@@ -701,7 +801,7 @@ body.drawer-open {
 // CTA Section
 // ========================================
 .cta-section {
-  background: linear-gradient(135deg, $primary 0%, $primary-dark 50%, darken($primary-dark, 5%) 100%);
+  background: $primary;
   color: #fff;
   position: relative;
   overflow: hidden;

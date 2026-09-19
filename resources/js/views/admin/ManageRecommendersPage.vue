@@ -182,9 +182,9 @@ onMounted(async () => {
 }
 
 .rec-admin-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   overflow: hidden;
   transition: all 0.25s;
 
@@ -199,8 +199,8 @@ onMounted(async () => {
     align-items: center;
     gap: 0.75rem;
     padding: 1.25rem 1.5rem;
-    background: #faf9f6;
-    border-bottom: 1px solid #f0ece4;
+    background: #f8f5ee;
+    border-bottom: 1px solid #e7e1d5;
   }
 
   &__body {
@@ -209,8 +209,8 @@ onMounted(async () => {
 
   &__actions {
     padding: 1rem 1.5rem;
-    border-top: 1px solid #f0ece4;
-    background: #faf9f6;
+    border-top: 1px solid #e7e1d5;
+    background: #f8f5ee;
     display: flex;
     gap: 0.5rem;
   }
@@ -225,7 +225,7 @@ onMounted(async () => {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #1565c0 0%, #0d4a8f 100%);
+    background: #1565c0;
     color: #fff;
     display: flex;
     align-items: center;
@@ -247,23 +247,23 @@ onMounted(async () => {
   align-items: center;
   gap: 0.5rem;
   padding: 0.65rem 0.85rem;
-  background: #faf9f6;
-  border-radius: 10px;
+  background: #f8f5ee;
+  border-radius: 3px;
 
   svg { color: #1565c0; flex-shrink: 0; }
 
-  .label { font-size: 0.7rem; color: #8888a0; font-weight: 600; }
-  .value { font-size: 0.85rem; font-weight: 800; color: #1a1a2a; }
+  .label { font-size: 0.7rem; color: #6f7b78; font-weight: 600; }
+  .value { font-size: 0.85rem; font-weight: 800; color: #14201f; }
 }
 
 .rec-bio {
   margin-top: 1rem;
   padding: 0.85rem 1rem;
-  background: #faf9f6;
+  background: #f8f5ee;
   border-right: 3px solid #1565c0;
   border-radius: 8px;
   font-size: 0.85rem;
-  color: #4a4a5e;
+  color: #3b4745;
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;

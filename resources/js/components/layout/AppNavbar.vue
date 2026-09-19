@@ -1,5 +1,20 @@
 <template>
+  <a class="skip-link" href="#main">تخطَّ إلى المحتوى</a>
+
   <header class="yheader" :class="{ 'is-scrolled': isScrolled }">
+    <!-- Utility band — positioning line + direct contact -->
+    <div class="yheader__utility">
+      <div class="container">
+        <div class="yheader__utility__inner">
+          <span class="yheader__utility__tag">
+            <i class="sq"></i>
+            منصة تيسير الزواج الأولى في العالم الإسلامي
+          </span>
+          <a class="yheader__utility__contact" href="mailto:islam@yassiru.com">islam@yassiru.com</a>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
       <div class="yheader__inner">
         <!-- Brand -->
@@ -36,8 +51,8 @@
               تسجيل الدخول
             </router-link>
             <router-link to="/register" class="yheader__btn-cta">
-              <PhRocketLaunch :size="16" weight="bold" />
               ابدأ مجاناً
+              <PhArrowLeft :size="15" weight="bold" />
             </router-link>
           </template>
         </div>
@@ -117,7 +132,7 @@
         </template>
         <template v-else>
           <router-link to="/register" class="ydrawer__btn ydrawer__btn--primary" @click="closeDrawer">
-            <PhRocketLaunch :size="18" weight="bold" />
+            <PhArrowLeft :size="18" weight="bold" />
             ابدأ مجاناً
           </router-link>
           <router-link to="/login" class="ydrawer__btn ydrawer__btn--outline" @click="closeDrawer">
@@ -136,7 +151,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useRouter, useRoute } from 'vue-router'
 import NotificationBell from './NotificationBell.vue'
 import {
-  PhList, PhX, PhUserCircle, PhSignOut, PhSignIn, PhRocketLaunch,
+  PhList, PhX, PhUserCircle, PhSignOut, PhSignIn, PhArrowLeft,
   PhHouse, PhBookOpen, PhHandCoins, PhHeart, PhCalculator,
   PhChats, PhUsers, PhShieldCheck,
 } from '@phosphor-icons/vue'

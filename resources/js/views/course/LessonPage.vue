@@ -170,7 +170,7 @@ async function completeLesson() {
 
 <style lang="scss" scoped>
 .lesson-header-card {
-  background: linear-gradient(135deg, #fff 0%, #faf9f6 100%);
+  background: #fdfbf6;
   border-color: rgba(13,115,119,0.2);
 }
 
@@ -182,7 +182,7 @@ async function completeLesson() {
   &__icon {
     width: 64px;
     height: 64px;
-    border-radius: 16px;
+    border-radius: 4px;
     background: rgba(13,115,119,0.1);
     color: #0d7377;
     display: flex;
@@ -195,7 +195,7 @@ async function completeLesson() {
 
   &__breadcrumb {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     font-weight: 600;
     margin-bottom: 0.25rem;
     display: inline-flex;
@@ -206,7 +206,7 @@ async function completeLesson() {
   &__title {
     font-size: 1.4rem;
     font-weight: 900;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.5rem;
     letter-spacing: -0.01em;
 
@@ -218,7 +218,7 @@ async function completeLesson() {
     align-items: center;
     gap: 0.85rem;
     font-size: 0.8rem;
-    color: #8888a0;
+    color: #6f7b78;
     flex-wrap: wrap;
 
     span:not(.status-badge) {
@@ -241,7 +241,7 @@ async function completeLesson() {
   :deep(h2),
   :deep(h3) {
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
   }
@@ -268,7 +268,7 @@ async function completeLesson() {
     background: rgba(184, 134, 11, 0.06);
     border-right: 4px solid #b8860b;
     padding: 1rem 1.25rem;
-    border-radius: 12px;
+    border-radius: 3px;
     margin: 1.5rem 0;
 
     h4 {
@@ -279,7 +279,7 @@ async function completeLesson() {
     }
 
     p {
-      color: #4a4a5e;
+      color: #3b4745;
       font-size: 0.95rem;
       margin: 0;
     }
@@ -287,7 +287,7 @@ async function completeLesson() {
 
   :deep(em) {
     font-style: italic;
-    color: #4a4a5e;
+    color: #3b4745;
     font-family: 'Amiri', serif;
   }
 
@@ -295,25 +295,25 @@ async function completeLesson() {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    border-radius: 12px;
+    border-radius: 3px;
     overflow: hidden;
-    border: 1px solid #e0d8cc;
+    border: 1px solid #d8d1c4;
     font-size: 0.9rem;
   }
 
   :deep(th) {
-    background: #f3efe8;
+    background: #efeade;
     padding: 0.75rem 1rem;
     text-align: right;
     font-weight: 800;
-    color: #1a1a2a;
-    border-bottom: 1px solid #e0d8cc;
+    color: #14201f;
+    border-bottom: 1px solid #d8d1c4;
   }
 
   :deep(td) {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #f0ece4;
-    color: #4a4a5e;
+    border-bottom: 1px solid #e7e1d5;
+    color: #3b4745;
   }
 
   :deep(tr:last-child td) {
@@ -340,7 +340,7 @@ async function completeLesson() {
 }
 
 .complete-card {
-  background: linear-gradient(135deg, #fff 0%, rgba(13,115,119,0.04) 100%);
+  background: #fdfbf6;
 }
 
 .complete-prompt {
@@ -355,8 +355,8 @@ async function completeLesson() {
   &__text {
     flex: 1;
 
-    h3 { font-size: 1.1rem; font-weight: 800; color: #1a1a2a; margin: 0 0 0.25rem; }
-    p { font-size: 0.85rem; color: #8888a0; margin: 0; }
+    h3 { font-size: 1.1rem; font-weight: 800; color: #14201f; margin: 0 0 0.25rem; }
+    p { font-size: 0.85rem; color: #6f7b78; margin: 0; }
   }
 }
 
@@ -384,7 +384,7 @@ async function completeLesson() {
   }
 
   &__desc {
-    color: #8888a0;
+    color: #6f7b78;
     margin-bottom: 1.5rem;
   }
 }

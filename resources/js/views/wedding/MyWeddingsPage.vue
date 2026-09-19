@@ -173,9 +173,9 @@ onMounted(async () => {
 }
 
 .reg-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.25s;
 
@@ -195,13 +195,13 @@ onMounted(async () => {
   &__title {
     font-size: 1.05rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.25rem;
   }
 
   &__location {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
@@ -212,8 +212,8 @@ onMounted(async () => {
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
     padding: 1rem 0;
-    border-top: 1px solid #f0ece4;
-    border-bottom: 1px solid #f0ece4;
+    border-top: 1px solid #e7e1d5;
+    border-bottom: 1px solid #e7e1d5;
     margin-bottom: 1rem;
   }
 
@@ -224,13 +224,13 @@ onMounted(async () => {
 
     svg { color: #c0392b; flex-shrink: 0; }
 
-    .label { font-size: 0.7rem; color: #8888a0; font-weight: 600; }
-    .value { font-size: 0.85rem; font-weight: 800; color: #1a1a2a; }
+    .label { font-size: 0.7rem; color: #6f7b78; font-weight: 600; }
+    .value { font-size: 0.85rem; font-weight: 800; color: #14201f; }
   }
 
   &__payment {
-    background: #faf9f6;
-    border-radius: 12px;
+    background: #f8f5ee;
+    border-radius: 3px;
     padding: 0.85rem;
     margin-bottom: 1rem;
   }

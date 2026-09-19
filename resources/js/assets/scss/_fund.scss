@@ -9,7 +9,7 @@
   position: relative;
   padding: 7rem 0 5rem;
   overflow: hidden;
-  background: linear-gradient(160deg, #faf5e8 0%, $bg-warm 50%, #fff 100%);
+  background: $bg-warm;
 
   &::before {
     content: '';
@@ -43,22 +43,31 @@
 .fund-hero__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
-  background: rgba($secondary, 0.12);
-  color: $secondary-dark;
-  border: 1px solid rgba($secondary, 0.2);
-  border-radius: 100px;
-  font-family: $font-ruqaa;
-  font-size: 1.05rem;
-  font-weight: 700;
+  gap: 0.7rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: $text-muted;
+  font-family: $font-text;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   line-height: 1.5;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: $accent-teal;
+    flex-shrink: 0;
+  }
 }
 
 .fund-hero__title {
   font-size: clamp(2.25rem, 5vw, 4rem);
-  font-weight: 900;
+  font-weight: 600;
   line-height: $lh-display;
   letter-spacing: -0.01em;
   color: $text-dark;
@@ -67,7 +76,7 @@
   .amount {
     color: $secondary;
     font-size: 1.15em;
-    font-weight: 900;
+    font-weight: 600;
     display: inline-block;
     position: relative;
 
@@ -104,24 +113,24 @@
 }
 
 .fund-hero__cta-primary {
-  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  background: $secondary;
   color: #fff;
   border: none;
   font-weight: 700;
   font-size: 1.05rem;
   padding: 1rem 2rem;
-  border-radius: 14px;
+  border-radius: 3px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  box-shadow: 0 8px 24px rgba($secondary, 0.3);
+  box-shadow: 0 4px 24px -12px rgba($secondary, 0.45);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
 
   &:hover {
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba($secondary, 0.4);
+    box-shadow: 0 6px 32px -16px rgba($secondary, 0.45);
   }
 }
 
@@ -132,7 +141,7 @@
   font-weight: 700;
   font-size: 1.05rem;
   padding: 1rem 2rem;
-  border-radius: 14px;
+  border-radius: 3px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -197,7 +206,7 @@
   transform: translate(-50%, -50%);
   width: 45%;
   text-align: center;
-  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  background: $secondary;
   color: #fff;
   border-radius: 50%;
   aspect-ratio: 1;
@@ -205,12 +214,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 60px rgba($secondary, 0.35);
+  box-shadow: 0 10px 60px -30px rgba($secondary, 0.45);
   padding: 1rem;
 
   &__amount {
     font-size: 1.75rem;
-    font-weight: 900;
+    font-weight: 600;
     line-height: $lh-numeric;
     margin-bottom: 0.25rem;
 
@@ -241,11 +250,11 @@
   transition: all 0.4s;
 
   &.active {
-    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    background: $primary;
     color: #fff;
     border-color: $primary-dark;
     transform: scale(1.15);
-    box-shadow: 0 10px 24px rgba($primary, 0.4);
+    box-shadow: 0 5px 24px -12px rgba($primary, 0.45);
   }
 
   &.received {
@@ -269,7 +278,7 @@
   max-width: 1100px;
   margin: 3rem auto 0;
   overflow-x: auto;
-  border-radius: 20px;
+  border-radius: 4px;
   box-shadow: 0 12px 40px rgba(13, 26, 42, 0.06);
   border: 1px solid $border-light;
   background: $bg-white;
@@ -303,7 +312,7 @@
       padding: 1.25rem 1rem;
 
       &.col-yassiru {
-        background: linear-gradient(180deg, $secondary 0%, $secondary-dark 100%);
+        background: $secondary;
         color: #fff;
         font-size: 1rem;
         text-transform: none;
@@ -347,7 +356,7 @@
 // ============================================
 .fund-how-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 4rem 0; }
 }
@@ -366,7 +375,7 @@
 
 .fund-step {
   background: $bg-white;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 1.75rem 1.5rem;
   border: 1px solid $border-light;
   position: relative;
@@ -389,7 +398,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 1rem;
     margin-bottom: 1rem;
     transition: all 0.3s;
@@ -411,7 +420,7 @@
 
   &__example {
     background: $bg-warm;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 0.6rem 0.85rem;
     font-size: 0.78rem;
     color: $secondary-dark;
@@ -424,8 +433,8 @@
   max-width: 900px;
   margin: 3rem auto 0;
   padding: 2rem;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba($secondary, 0.08) 0%, rgba($primary, 0.06) 100%);
+  border-radius: 4px;
+  background: rgba($secondary, 0.08);
   border: 2px dashed rgba($secondary, 0.3);
   text-align: center;
 
@@ -453,7 +462,7 @@
 // ============================================
 .fund-calc-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #1a3a3c 0%, $primary-dark 50%, #094548 100%);
+  background: $dark-bg;
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -480,7 +489,7 @@
 
   h2 {
     font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 0.75rem;
     color: #fff;
   }
@@ -495,14 +504,14 @@
 
 .fund-calc__tool {
   background: #fff;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 2.5rem;
   max-width: 760px;
   margin: 0 auto;
   color: $text-dark;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
 
-  @media (max-width: 768px) { padding: 1.5rem; border-radius: 20px; }
+  @media (max-width: 768px) { padding: 1.5rem; border-radius: 4px; }
 }
 
 .fund-slider {
@@ -526,7 +535,7 @@
 
     .label-value {
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 600;
       color: $secondary-dark;
       letter-spacing: -0.02em;
     }
@@ -538,7 +547,7 @@
     width: 100%;
     height: 8px;
     background: $border-light;
-    border-radius: 100px;
+    border-radius: 6px;
     outline: none;
 
     &::-webkit-slider-thumb {
@@ -547,9 +556,9 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      background: $secondary;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba($secondary, 0.4);
+      box-shadow: 0 2px 12px -6px rgba($secondary, 0.45);
       border: 3px solid #fff;
       transition: transform 0.2s;
     }
@@ -560,9 +569,9 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      background: $secondary;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba($secondary, 0.4);
+      box-shadow: 0 2px 12px -6px rgba($secondary, 0.45);
       border: 3px solid #fff;
     }
   }
@@ -577,9 +586,9 @@
 }
 
 .fund-result {
-  background: linear-gradient(135deg, rgba($secondary, 0.08) 0%, rgba($primary, 0.05) 100%);
+  background: rgba($secondary, 0.08);
   border: 2px solid rgba($secondary, 0.2);
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 2rem;
   margin-top: 1.5rem;
   text-align: center;
@@ -595,7 +604,7 @@
 
   &__amount {
     font-size: 3rem;
-    font-weight: 900;
+    font-weight: 600;
     color: $secondary-dark;
     line-height: $lh-numeric;
     letter-spacing: -0.02em;
@@ -658,7 +667,7 @@
   align-items: center;
   background: $bg-warm;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.3s;
 
@@ -685,17 +694,17 @@
   &__number {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--layer-color) 0%, var(--layer-dark) 100%);
+    border-radius: 4px;
+    background: var(--layer-color);
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 1.5rem;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 
-    @media (max-width: 576px) { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 12px; }
+    @media (max-width: 576px) { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 3px; }
   }
 
   &__title {
@@ -717,7 +726,7 @@
   &__icon {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
+    border-radius: 4px;
     background: var(--layer-bg);
     color: var(--layer-color);
     display: flex;
@@ -731,7 +740,7 @@
 // ============================================
 .sharia-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, $bg-warm 0%, #fff 100%);
+  background: $bg-warm;
 
   @media (max-width: 768px) { padding: 4rem 0; }
 }
@@ -740,7 +749,7 @@
   max-width: 900px;
   margin: 3rem auto 0;
   background: #fff;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 3rem;
   border: 2px solid rgba($success, 0.2);
   box-shadow: 0 20px 60px rgba(13, 26, 42, 0.06);
@@ -753,13 +762,13 @@
     top: -16px;
     right: 50%;
     transform: translateX(50%);
-    background: linear-gradient(135deg, $success 0%, #14613b 100%);
+    background: $success;
     color: #fff;
     padding: 0.5rem 1.25rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 800;
-    box-shadow: 0 6px 16px rgba($success, 0.3);
+    box-shadow: 0 3px 16px -8px rgba($success, 0.45);
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -775,7 +784,7 @@
     margin: 1.5rem 0 2rem;
     padding: 1.5rem;
     background: rgba($success, 0.05);
-    border-radius: 14px;
+    border-radius: 3px;
     border-right: 4px solid $success;
 
     @media (max-width: 576px) { font-size: 1.1rem; }
@@ -833,7 +842,7 @@
 
 .story-card {
   background: $bg-warm;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 2rem;
   border: 1px solid $border-light;
   transition: all 0.3s;
@@ -850,10 +859,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+    background: $secondary;
     color: #fff;
     padding: 0.4rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.85rem;
     font-weight: 800;
     margin-bottom: 1rem;
@@ -877,7 +886,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+      background: $secondary;
       color: #fff;
       display: flex;
       align-items: center;
@@ -899,7 +908,7 @@
 // ============================================
 .fund-faq-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, #fff 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 4rem 0; }
 }
@@ -948,7 +957,7 @@
 
   &__title {
     font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 900;
+    font-weight: 600;
     line-height: $lh-heading-lg;
     margin-bottom: 1rem;
     color: #fff;
@@ -976,7 +985,7 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 2rem;
   text-align: center;
   text-decoration: none;
@@ -994,7 +1003,7 @@
   &__icon {
     width: 64px;
     height: 64px;
-    border-radius: 18px;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -119,18 +119,18 @@ onBeforeUnmount(() => {
 <style scoped>
 .video-player {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
   background: #000;
 }
 
 .video-player :deep(.plyr) {
   direction: ltr;
-  border-radius: 16px;
+  border-radius: 4px;
 }
 
 .video-player :deep(.plyr--video) {
-  border-radius: 16px;
+  border-radius: 4px;
 }
 
 .video-player :deep(.plyr__control--overlaid) {

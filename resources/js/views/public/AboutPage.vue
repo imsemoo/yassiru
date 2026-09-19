@@ -136,24 +136,29 @@ const pillars = [
 <style lang="scss" scoped>
 .about-hero {
   padding: 5rem 0 3rem;
-  background: linear-gradient(180deg, rgba(13,115,119,0.04) 0%, #faf9f6 100%);
+  background: rgba(13,115,119,0.04);
   text-align: center;
 
-  &__eyebrow {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.8rem; font-weight: 700; color: #0d7377;
-    background: rgba(13,115,119,0.08); padding: 0.4rem 1rem; border-radius: 100px;
-    margin-bottom: 1.5rem;
+    &__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.8125rem; font-weight: 400; color: #6f7b78;
+    background: none; padding: 0; border-radius: 0;
+    letter-spacing: 0.02em; margin-bottom: 1.25rem;
+
+    &::before {
+      content: ''; width: 6px; height: 6px;
+      background: #0d7377; flex-shrink: 0;
+    }
   }
 
   &__title {
-    font-size: 2.5rem; font-weight: 900; color: #1a1a2a; line-height: 1.3;
+    font-size: 2.5rem; font-weight: 600; color: #14201f; line-height: 1.3;
     .accent { color: #0d7377; }
     @media (max-width: 768px) { font-size: 1.75rem; }
   }
 
   &__desc {
-    font-size: 1.1rem; color: #4a4a5e; max-width: 640px; margin: 1.5rem auto 0; line-height: 1.8;
+    font-size: 1.1rem; color: #3b4745; max-width: 640px; margin: 1.5rem auto 0; line-height: 1.8;
   }
 }
 
@@ -164,11 +169,11 @@ const pillars = [
   &--cta { padding: 5rem 0; }
 
   &__title {
-    font-size: 1.75rem; font-weight: 900; color: #1a1a2a; text-align: center; margin-bottom: 0.75rem;
+    font-size: 1.75rem; font-weight: 600; color: #14201f; text-align: center; margin-bottom: 0.75rem;
   }
 
   &__subtitle {
-    text-align: center; color: #8888a0; margin-bottom: 2.5rem; font-size: 0.95rem;
+    text-align: center; color: #6f7b78; margin-bottom: 2.5rem; font-size: 0.95rem;
   }
 }
 
@@ -177,7 +182,7 @@ const pillars = [
 }
 
 .about-card {
-  background: #fff; border-radius: 16px; padding: 2rem; border: 1px solid #e0d8cc;
+  background: #fdfbf6; border-radius: 4px; padding: 2rem; border: 1px solid #d8d1c4;
   transition: transform 0.2s, box-shadow 0.2s;
 
   &:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
@@ -186,8 +191,8 @@ const pillars = [
   &--problem &__icon { color: #c0392b; }
 
   &__icon { margin-bottom: 1rem; }
-  h3 { font-size: 1.1rem; font-weight: 800; color: #1a1a2a; margin-bottom: 0.5rem; }
-  p { font-size: 0.9rem; color: #4a4a5e; line-height: 1.7; margin: 0; }
+  h3 { font-size: 1.1rem; font-weight: 800; color: #14201f; margin-bottom: 0.5rem; }
+  p { font-size: 0.9rem; color: #3b4745; line-height: 1.7; margin: 0; }
 }
 
 .pillars-list {
@@ -196,23 +201,23 @@ const pillars = [
 
 .pillar-item {
   display: flex; align-items: flex-start; gap: 1.25rem;
-  background: #fff; padding: 1.5rem; border-radius: 16px; border: 1px solid #e0d8cc;
+  background: #fdfbf6; padding: 1.5rem; border-radius: 4px; border: 1px solid #d8d1c4;
 
   &__number {
-    width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+    width: 48px; height: 48px; border-radius: 3px; flex-shrink: 0;
     background: rgba(13,115,119,0.1); color: #0d7377;
-    font-size: 1.25rem; font-weight: 900;
+    font-size: 1.25rem; font-weight: 600;
     display: flex; align-items: center; justify-content: center;
   }
 
   &__content {
-    h3 { font-size: 1.05rem; font-weight: 800; color: #1a1a2a; margin: 0 0 0.35rem; }
-    p { font-size: 0.88rem; color: #4a4a5e; line-height: 1.7; margin: 0; }
+    h3 { font-size: 1.05rem; font-weight: 800; color: #14201f; margin: 0 0 0.35rem; }
+    p { font-size: 0.88rem; color: #3b4745; line-height: 1.7; margin: 0; }
   }
 }
 
 .about-verse {
-  padding: 4rem 0; background: #1a1a2a;
+  padding: 4rem 0; background: #14201f;
 }
 
 .verse-block {
@@ -225,7 +230,7 @@ const pillars = [
   }
 
   &__cite {
-    font-style: normal; font-size: 0.85rem; color: #8888a0;
+    font-style: normal; font-size: 0.85rem; color: #6f7b78;
   }
 }
 </style>

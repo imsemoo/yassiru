@@ -220,11 +220,11 @@ onMounted(() => {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #f0ece4;
+  border-bottom: 1px solid #e7e1d5;
   transition: background 0.15s;
 
   &:last-child { border-bottom: none; }
-  &:hover { background: #faf9f6; }
+  &:hover { background: #f8f5ee; }
 
   &__avatar {
     width: 48px;
@@ -238,19 +238,19 @@ onMounted(() => {
     font-size: 1.1rem;
     flex-shrink: 0;
 
-    &.male { background: linear-gradient(135deg, #1565c0 0%, #0d4a8f 100%); }
-    &.female { background: linear-gradient(135deg, #b8860b 0%, #8a6508 100%); }
+    &.male { background: #1565c0; }
+    &.female { background: #b8860b; }
   }
 
   &__content { flex: 1; min-width: 0; }
   &__name {
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.25rem;
   }
   &__meta {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     display: flex;
     gap: 0.85rem;
     flex-wrap: wrap;
@@ -269,7 +269,7 @@ onMounted(() => {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #f0ece4;
+  border-bottom: 1px solid #e7e1d5;
 
   &:last-child { border-bottom: none; }
 
@@ -278,10 +278,10 @@ onMounted(() => {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.85rem;
-    color: #4a4a5e;
+    color: #3b4745;
     flex-wrap: wrap;
 
-    .name { font-weight: 700; color: #1a1a2a; }
+    .name { font-weight: 700; color: #14201f; }
     svg { color: #0d7377; }
   }
 
@@ -289,7 +289,7 @@ onMounted(() => {
     font-weight: 900;
     font-size: 0.95rem;
     padding: 0.3rem 0.75rem;
-    border-radius: 100px;
+    border-radius: 2px;
     flex-shrink: 0;
 
     &.score--excellent { background: rgba(27,122,74,0.1); color: #1b7a4a; }

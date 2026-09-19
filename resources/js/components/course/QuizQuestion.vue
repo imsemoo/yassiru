@@ -44,7 +44,7 @@ defineEmits(['update:modelValue'])
 
 <style scoped>
 .quiz-option {
-  border: 2px solid var(--border-color, #e0d8cc);
+  border: 2px solid var(--border-color, #d8d1c4);
   transition: all 0.2s;
   cursor: pointer;
 }

@@ -2,95 +2,106 @@
   <!-- ============================================ -->
   <!-- 1. HERO — Single Focus, Strong CTA          -->
   <!-- ============================================ -->
-  <section class="home-hero">
-    <div class="container home-hero__content">
-      <div class="row align-items-center g-5">
-        <!-- Left: Headline + CTA -->
-        <div class="col-lg-7">
-          <div class="home-hero__eyebrow anim">
-            <span class="pulse-dot"></span>
-            أول منظومة تيسير زواج في العالم الإسلامي
-          </div>
+  <section class="hero">
+    <div class="hero__field" aria-hidden="true"></div>
+    <div class="hero__arcade" aria-hidden="true"></div>
 
-          <h1 class="home-hero__title anim anim-delay-1">
-            زواجك بـ<span class="highlight">نصف التكلفة</span>.<br>
+    <div class="container hero__inner">
+      <div class="hero__grid">
+        <!-- Lead -->
+        <div class="hero__lead">
+          <p class="hero__origin anim">
+            <span class="hero__origin__text">يسِّروا ولا تُعسِّروا</span>
+            <span class="hero__origin__rule" aria-hidden="true"></span>
+            <span class="hero__origin__src">ومن الحديث جاء الاسم</span>
+          </p>
+
+          <h1 class="hero__title anim anim-delay-1">
+            زواجك بـ<span class="hero__title__accent">نصف التكلفة</span>.<br>
             بدون فوائد. بدون ديون.
           </h1>
 
-          <p class="home-hero__subtitle anim anim-delay-2">
+          <p class="hero__lede anim anim-delay-2">
             يسّرو تجمع الدورة التأهيلية، التوفيق عبر معرّفين موثوقين،
             الصندوق التعاوني، والأعراس الجماعية —
             في رحلة واحدة تنقلك من القرار للزواج.
           </p>
 
-          <div class="home-hero__cta-group anim anim-delay-3">
-            <a href="#calculator" class="home-hero__cta-primary" @click.prevent="scrollTo('calculator')">
-              <PhCalculator :size="22" weight="bold" />
-              احسب توفيرك في 30 ثانية
+          <div class="hero__actions anim anim-delay-3">
+            <a href="#calculator" class="hero__cta" @click.prevent="scrollTo('calculator')">
+              احسب توفيرك
+              <PhArrowLeft :size="18" weight="bold" />
             </a>
-            <a href="#how" class="home-hero__cta-secondary" @click.prevent="scrollTo('how')">
+            <a href="#how" class="hero__link" @click.prevent="scrollTo('how')">
               شوف إزاي يشتغل
-              <PhCaretDown :size="16" weight="bold" />
+              <PhArrowDown :size="15" weight="bold" />
             </a>
           </div>
 
-          <div class="home-hero__trust-bar anim anim-delay-4">
-            <div class="home-hero__trust-bar__item">
-              <PhShieldCheck :size="18" weight="fill" class="text-success" />
-              معتمد شرعياً
-            </div>
-            <div class="home-hero__trust-bar__item">
-              <PhLockKey :size="18" weight="fill" class="text-primary" />
-              خصوصية كاملة
-            </div>
-            <div class="home-hero__trust-bar__item">
-              <PhCheckCircle :size="18" weight="fill" style="color: #b8860b" />
-              مجاني 100%
-            </div>
-          </div>
+          <ul class="hero__marks anim anim-delay-4">
+            <li><i class="sq" aria-hidden="true"></i>معتمد شرعياً</li>
+            <li><i class="sq" aria-hidden="true"></i>خصوصية كاملة</li>
+            <li><i class="sq sq--gold" aria-hidden="true"></i>مجاني 100%</li>
+          </ul>
         </div>
 
-        <!-- Right: Visual Comparison -->
-        <div class="col-lg-5">
-          <div class="home-hero__visual anim anim-delay-3">
-            <div class="compare-card">
-              <div class="compare-card__badge">
-                <PhSparkle :size="14" weight="fill" class="ms-1" />
-                مثال: زواج في القاهرة
+        <!-- The arch gauge: the whole arch is the full cost, the fill is what
+             you pay, and the arched void above it is what you keep. -->
+        <aside class="hero__aside anim anim-delay-2">
+          <figure
+            class="arch"
+            role="img"
+            aria-label="مقياس على شكل قوس: تكلفة زواج كاملة 200,000 جنيه، تدفع منها 62,000 مع يسّرو، فتوفّر 138,000 جنيه."
+          >
+            <svg class="arch__svg" viewBox="0 0 300 500" aria-hidden="true" focusable="false">
+              <defs>
+                <clipPath id="archClip">
+                  <path d="M 45 460 L 45 270 A 210 210 0 0 1 150 88 A 210 210 0 0 1 255 270 L 255 460 Z" />
+                </clipPath>
+              </defs>
+
+              <g clip-path="url(#archClip)">
+                <rect class="arch__fill" x="0" y="345" width="300" height="115" />
+                <line class="arch__waterline" x1="0" y1="345" x2="300" y2="345" />
+              </g>
+
+              <!-- Keystone: the four-point star from the brand mark -->
+              <path
+                class="arch__star"
+                d="M 150 72 Q 152.8 85.2 166 88 Q 152.8 90.8 150 104 Q 147.2 90.8 134 88 Q 147.2 85.2 150 72 Z"
+              />
+
+              <path
+                class="arch__outline"
+                d="M 45 460 L 45 270 A 210 210 0 0 1 150 88 A 210 210 0 0 1 255 270 L 255 460 Z"
+              />
+
+              <g class="arch__tick">
+                <line x1="14" y1="88" x2="45" y2="88" />
+                <line x1="30" y1="181" x2="45" y2="181" />
+                <line x1="30" y1="274" x2="45" y2="274" />
+                <line x1="30" y1="367" x2="45" y2="367" />
+                <line x1="14" y1="460" x2="45" y2="460" />
+              </g>
+
+              <text class="arch__scaletxt" x="14" y="79">200,000</text>
+              <text class="arch__scaletxt" x="14" y="478">0</text>
+            </svg>
+
+            <div class="arch__plate">
+              <div class="arch__saving">
+                <p class="arch__saving__label">توفيرك</p>
+                <p class="arch__saving__value">{{ fmtNum(savingCount) }} <span>ج.م</span></p>
+                <p class="arch__saving__note">نحو 70% من إجمالي التكلفة</p>
               </div>
 
-              <div class="compare-card__header">
-                <h6>المقارنة بالأرقام</h6>
-              </div>
-
-              <div class="compare-card__row compare-card__row--bad">
-                <div class="compare-card__row__label">
-                  <PhTrendUp :size="20" weight="fill" />
-                  بدون يسّرو
-                </div>
-                <div class="compare-card__row__amount compare-card__row__amount--bad">
-                  200,000
-                </div>
-              </div>
-
-              <div class="compare-card__row compare-card__row--good">
-                <div class="compare-card__row__label">
-                  <PhTrendDown :size="20" weight="fill" />
-                  مع يسّرو
-                </div>
-                <div class="compare-card__row__amount compare-card__row__amount--good">
-                  62,000
-                </div>
-              </div>
-
-              <div class="compare-card__savings">
-                <div class="text-muted small mb-1">توفيرك</div>
-                <div class="savings-amount">138,000 ج.م</div>
-                <div class="text-muted small mt-1">~ 70% من التكلفة</div>
+              <div class="arch__paid">
+                <p class="arch__paid__value">{{ fmtNum(paidCount) }}</p>
+                <p class="arch__paid__label">اللي بتدفعه فعلاً</p>
               </div>
             </div>
-          </div>
-        </div>
+          </figure>
+        </aside>
       </div>
     </div>
   </section>
@@ -101,9 +112,7 @@
   <section class="problem-section">
     <div class="container">
       <div class="text-center mb-3">
-        <span class="section-eyebrow" style="color: var(--bs-danger); background: rgba(192,57,43,0.08);">
-          المشكلة الحقيقية
-        </span>
+        <span class="section-eyebrow section-eyebrow--alert">المشكلة الحقيقية</span>
       </div>
 
       <h2 class="problem-headline">
@@ -120,7 +129,7 @@
       <div class="problem-grid">
         <div class="problem-stat" v-for="(stat, i) in problemStats" :key="stat.label">
           <div class="problem-stat__icon">
-            <component :is="stat.icon" :size="28" weight="duotone" />
+            <component :is="stat.icon" :size="22" weight="regular" />
           </div>
           <div class="problem-stat__number">{{ stat.value }}</div>
           <div class="problem-stat__label">{{ stat.label }}</div>
@@ -150,16 +159,10 @@
           :key="pillar.title"
           :to="pillar.route"
           class="ecosystem-pillar"
-          :style="{
-            '--pillar-color': pillar.color,
-            '--pillar-bg': pillar.bg,
-          }"
-
-
         >
           <div class="ecosystem-pillar__number">{{ i + 1 }}</div>
           <div class="ecosystem-pillar__icon">
-            <component :is="pillar.icon" :size="32" weight="duotone" :style="{ color: pillar.color }" />
+            <component :is="pillar.icon" :size="26" weight="regular" />
           </div>
           <h3 class="ecosystem-pillar__title">{{ pillar.title }}</h3>
           <p class="ecosystem-pillar__desc">{{ pillar.desc }}</p>
@@ -190,12 +193,6 @@
           v-for="(step, i) in steps"
           :key="step.title"
           class="step-card"
-          :style="{
-            '--step-color': step.color,
-            '--step-bg': step.bg,
-          }"
-
-
         >
           <div class="step-card__circle">{{ i + 1 }}</div>
           <h4 class="step-card__title">{{ step.title }}</h4>
@@ -270,9 +267,9 @@
           </div>
 
           <div class="calc-tool__cta">
-            <router-link to="/register" class="home-hero__cta-primary">
-              <PhRocketLaunch :size="20" weight="bold" />
+            <router-link to="/register" class="hero__cta">
               ابدأ رحلتك مجاناً
+              <PhArrowLeft :size="18" weight="bold" />
             </router-link>
           </div>
         </div>
@@ -304,16 +301,9 @@
           v-for="(t, i) in trustPillars"
           :key="t.title"
           class="trust-card"
-          :style="{
-            '--trust-color': t.color,
-            '--trust-bg-1': t.bg1,
-            '--trust-bg-2': t.bg2,
-          }"
-
-
         >
           <div class="trust-card__icon">
-            <component :is="t.icon" :size="28" weight="duotone" />
+            <component :is="t.icon" :size="24" weight="regular" />
           </div>
           <h4 class="trust-card__title">{{ t.title }}</h4>
           <p class="trust-card__desc">{{ t.desc }}</p>
@@ -408,6 +398,13 @@
   <section class="final-cta">
     <div class="container">
       <div class="final-cta__inner">
+        <svg class="final-cta__star" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M 16 2 Q 17.4 13.6 30 16 Q 17.4 18.4 16 30 Q 14.6 18.4 2 16 Q 14.6 13.6 16 2 Z"
+          />
+        </svg>
+
         <h2 class="final-cta__title">
           خطوة واحدة تفصلك عن<br>
           حياة جديدة ميسّرة
@@ -418,8 +415,8 @@
         </p>
 
         <router-link to="/register" class="final-cta__btn">
-          <PhRocketLaunch :size="22" weight="bold" />
           أنشئ حسابك مجاناً
+          <PhArrowLeft :size="18" weight="bold" />
         </router-link>
 
         <div class="final-cta__reassure">
@@ -437,10 +434,9 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useSeo } from '@/composables/useSeo'
 import {
-  PhCalculator, PhCaretDown, PhShieldCheck, PhLockKey, PhCheckCircle,
-  PhSparkle, PhTrendUp, PhTrendDown, PhRocketLaunch,
+  PhCaretDown, PhCheckCircle,
   PhBookOpen, PhHandshake, PhHandCoins, PhHeart, PhHeartbeat,
-  PhClock, PhMapPin, PhSliders, PhArrowLeft, PhArrowFatUp,
+  PhClock, PhMapPin, PhSliders, PhArrowLeft, PhArrowDown, PhArrowFatUp,
   PhScales, PhUserCheck, PhEyeSlash, PhGift,
   PhQuotes, PhCurrencyCircleDollar, PhHourglassMedium, PhUsersFour, PhWarningCircle,
 } from '@phosphor-icons/vue'
@@ -588,8 +584,11 @@ const openFaq = ref(0)
 
 // === FUNCTIONS ===
 
+// One numeral system across the page. The mono face carries no
+// Arabic-Indic digits, so those break both the tabular alignment and the
+// instrument reading the design depends on.
 function formatNumber(num) {
-  return new Intl.NumberFormat('ar-EG').format(num)
+  return new Intl.NumberFormat('en-US').format(num)
 }
 
 function scrollTo(id) {
@@ -612,6 +611,35 @@ async function calculateCost() {
   } catch { /* silent */ }
 }
 
+// === Arch gauge counters ===
+// The numbers settle as the fill rises, so the shape and the figure agree.
+const savingCount = ref(0)
+const paidCount = ref(0)
+
+const fmtNum = (n) => Math.round(n).toLocaleString('en-US')
+
+function countUp(target, to, duration, delay) {
+  const start = performance.now() + delay
+  const step = (now) => {
+    const t = Math.min(Math.max((now - start) / duration, 0), 1)
+    // easeOutQuart — fast settle, no bounce
+    target.value = to * (1 - Math.pow(1 - t, 4))
+    if (t < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+}
+
+onMounted(() => {
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (still) {
+    savingCount.value = 138000
+    paidCount.value = 62000
+    return
+  }
+  countUp(paidCount, 62000, 1200, 950)
+  countUp(savingCount, 138000, 1400, 1150)
+})
+
 onMounted(async () => {
   try {
     const [citiesRes, statsRes] = await Promise.all([
@@ -620,10 +648,10 @@ onMounted(async () => {
     ])
     cities.value = citiesRes.data
     liveStats.value = [
-      { value: statsRes.data.users.toLocaleString('ar-EG'), label: 'مستخدم مسجّل' },
-      { value: statsRes.data.certified.toLocaleString('ar-EG'), label: 'شهادة تأهيلية' },
-      { value: statsRes.data.circles.toLocaleString('ar-EG'), label: 'حلقة صندوق نشطة' },
-      { value: statsRes.data.marriages.toLocaleString('ar-EG'), label: 'زواج تمّ تيسيره' },
+      { value: statsRes.data.users.toLocaleString('en-US'), label: 'مستخدم مسجّل' },
+      { value: statsRes.data.certified.toLocaleString('en-US'), label: 'شهادة تأهيلية' },
+      { value: statsRes.data.circles.toLocaleString('en-US'), label: 'حلقة صندوق نشطة' },
+      { value: statsRes.data.marriages.toLocaleString('en-US'), label: 'زواج تمّ تيسيره' },
     ]
   } catch { /* silent */ }
 })

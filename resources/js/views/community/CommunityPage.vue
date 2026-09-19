@@ -134,9 +134,9 @@ onMounted(() => loadPosts())
 .posts-list { display: flex; flex-direction: column; gap: 1rem; }
 
 .post-card {
-  background: #fff;
-  border: 1px solid #e0d8cc;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #d8d1c4;
+  border-radius: 4px;
   padding: 1.25rem;
 
   &__header {
@@ -153,22 +153,22 @@ onMounted(() => loadPosts())
     font-weight: 900; font-size: 1rem; flex-shrink: 0;
   }
 
-  &__author { font-weight: 800; font-size: 0.9rem; color: #1a1a2a; }
-  &__date { font-size: 0.75rem; color: #8888a0; }
+  &__author { font-weight: 800; font-size: 0.9rem; color: #14201f; }
+  &__date { font-size: 0.75rem; color: #6f7b78; }
 
   &__title {
-    font-size: 1.05rem; font-weight: 800; color: #1a1a2a;
+    font-size: 1.05rem; font-weight: 800; color: #14201f;
     margin: 0 0 0.5rem;
   }
 
   &__content {
-    font-size: 0.9rem; color: #4a4a5e; line-height: 1.8; margin: 0;
+    font-size: 0.9rem; color: #3b4745; line-height: 1.8; margin: 0;
   }
 }
 
 .badge-cat {
   margin-right: auto;
-  padding: 0.25rem 0.75rem; border-radius: 100px;
+  padding: 0.25rem 0.75rem; border-radius: 2px;
   font-size: 0.7rem; font-weight: 700;
   background: rgba(184,134,11,0.08); color: #b8860b;
 }
@@ -178,5 +178,5 @@ onMounted(() => loadPosts())
   gap: 1rem; margin-top: 1.5rem;
 }
 
-.pagination-info { font-size: 0.85rem; color: #8888a0; font-weight: 600; }
+.pagination-info { font-size: 0.85rem; color: #6f7b78; font-weight: 600; }
 </style>

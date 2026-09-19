@@ -1,0 +1,156 @@
+// ========================================
+// يسّرو — Paper / Technical primitives
+// Warm paper surfaces, hairline geometry,
+// corner brackets, mono metadata.
+// ========================================
+
+// === Surface tokens ===
+:root {
+  --ink:             #{$ink};
+  --ink-soft:        #{$ink-soft};
+  --surface-hero:    #{$surface-hero};
+  --surface-raised:  #{$surface-raised};
+  --surface-sunk:    #{$surface-sunk};
+  --hairline:        #{$hairline};
+  --text-strong:     #{$text-strong};
+  --text-muted:      #{$text-muted};
+  --accent-teal:     #{$accent-teal};
+  --accent-gold:     #{$accent-gold};
+  --accent-gold-ink: #{$accent-gold-ink};
+}
+
+// === Mono metadata ===
+// Latin/numeral only — Arabic labels use the display face with tracking.
+.mono {
+  font-family: $font-mono;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: 0.04em;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+// === Hairline rules ===
+.rule-h {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
+
+// === Diagonal paper texture ===
+// Low-contrast 45° hatch. Sits under content, never over it.
+@mixin paper-hatch($alpha: 0.028, $gap: 7px) {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba($ink, $alpha) 0,
+    rgba($ink, $alpha) 1px,
+    transparent 1px,
+    transparent $gap
+  );
+}
+
+// === Grain ===
+// Fixed SVG noise. pointer-events none, never animated.
+@mixin paper-grain($opacity: 0.035) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='#{$opacity}'/%3E%3C/svg%3E");
+}
+
+// === Corner brackets ===
+// Four L-shaped ticks on the corners of a panel. Logical properties
+// throughout so the geometry mirrors correctly in RTL.
+@mixin bracket-corners($size: 12px, $weight: 1px, $color: $rule, $inset: -1px) {
+  .bracket {
+    position: absolute;
+    width: $size;
+    height: $size;
+    pointer-events: none;
+
+    &--ts {
+      inset-block-start: $inset;
+      inset-inline-start: $inset;
+      border-block-start: $weight solid $color;
+      border-inline-start: $weight solid $color;
+    }
+    &--te {
+      inset-block-start: $inset;
+      inset-inline-end: $inset;
+      border-block-start: $weight solid $color;
+      border-inline-end: $weight solid $color;
+    }
+    &--bs {
+      inset-block-end: $inset;
+      inset-inline-start: $inset;
+      border-block-end: $weight solid $color;
+      border-inline-start: $weight solid $color;
+    }
+    &--be {
+      inset-block-end: $inset;
+      inset-inline-end: $inset;
+      border-block-end: $weight solid $color;
+      border-inline-end: $weight solid $color;
+    }
+  }
+}
+
+// === Index marker ===
+// Replaces the pill eyebrow: mono number, hairline, label.
+.idx {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $ink-soft;
+  letter-spacing: 0.02em;
+
+  &__no {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $primary;
+    letter-spacing: 0.08em;
+  }
+
+  &__rule {
+    width: 28px;
+    height: 1px;
+    background: $rule;
+    flex-shrink: 0;
+  }
+}
+
+// === Square signal dot ===
+// A square, not a pulsing circle.
+.sq {
+  width: 6px;
+  height: 6px;
+  background: $primary;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+// === Motion guard ===
+@media (prefers-reduced-motion: reduce) {
+  .anim {
+    opacity: 1;
+    animation: none !important;
+  }
+}
+
+// === Bidi ===
+// Phone numbers, emails and URLs are LTR content sitting in an RTL page.
+// Without this the leading "+" of a phone number jumps to the end.
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
+.ltr-field {
+  direction: ltr;
+  text-align: end; // still hugs the reading edge of the RTL form
+}
+
+// Latin numerals inside Arabic copy keep their own run.
+.num-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

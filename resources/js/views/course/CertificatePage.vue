@@ -181,9 +181,9 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .certificate-display {
-  background: linear-gradient(135deg, #fff 0%, #faf9f6 100%);
+  background: #fdfbf6;
   border: 4px double #b8860b;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 3.5rem 2rem;
   text-align: center;
   position: relative;
@@ -198,7 +198,7 @@ onMounted(async () => {
     left: 0;
     right: 0;
     height: 8px;
-    background: linear-gradient(90deg, #0d7377 0%, #b8860b 100%);
+    background: #0d7377;
   }
 
   &__corner {
@@ -223,17 +223,21 @@ onMounted(async () => {
     margin-bottom: 1rem;
   }
 
-  &__eyebrow {
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: #b8860b;
-    letter-spacing: 3px;
-    margin-bottom: 0.5rem;
+    &__eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.8125rem; font-weight: 400; color: #6f7b78;
+    background: none; padding: 0; border-radius: 0;
+    letter-spacing: 0.02em; margin-bottom: 1.25rem;
+
+    &::before {
+      content: ''; width: 6px; height: 6px;
+      background: #0d7377; flex-shrink: 0;
+    }
   }
 
   &__title {
     font-size: 1.6rem;
-    font-weight: 900;
+    font-weight: 600;
     color: #0d7377;
     margin: 0 0 0.5rem;
     letter-spacing: -0.01em;
@@ -241,7 +245,7 @@ onMounted(async () => {
 
   &__org {
     font-size: 0.85rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin-bottom: 1.5rem;
   }
 
@@ -249,7 +253,7 @@ onMounted(async () => {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(184,134,11,0.1) 0%, rgba(13,115,119,0.05) 100%);
+    background: rgba(184,134,11,0.1);
     border: 2px solid rgba(184,134,11,0.3);
     display: inline-flex;
     align-items: center;
@@ -260,14 +264,14 @@ onMounted(async () => {
 
   &__pre {
     font-size: 0.9rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin-bottom: 0.5rem;
   }
 
   &__name {
     font-family: 'Amiri', serif;
     font-size: 2.25rem;
-    font-weight: 900;
+    font-weight: 600;
     color: #0d7377;
     margin: 0 0 0.75rem;
     letter-spacing: -0.01em;
@@ -276,7 +280,7 @@ onMounted(async () => {
   }
 
   &__post {
-    color: #4a4a5e;
+    color: #3b4745;
     line-height: 1.75;
     margin-bottom: 2rem;
     font-size: 0.95rem;
@@ -302,7 +306,7 @@ onMounted(async () => {
 
   &__verify {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin: 0;
     display: inline-flex;
     align-items: center;
@@ -314,7 +318,7 @@ onMounted(async () => {
 
 .track-score {
   background: var(--tr-bg);
-  border-radius: 12px;
+  border-radius: 3px;
   padding: 0.85rem 0.5rem;
   text-align: center;
 
@@ -332,15 +336,15 @@ onMounted(async () => {
 
   &__value {
     font-size: 1.05rem;
-    font-weight: 900;
-    color: #1a1a2a;
+    font-weight: 600;
+    color: #14201f;
   }
 }
 
 .cert-detail {
-  background: #faf9f6;
-  border: 1px solid #f0ece4;
-  border-radius: 10px;
+  background: #f8f5ee;
+  border: 1px solid #e7e1d5;
+  border-radius: 3px;
   padding: 0.85rem 1rem;
   text-align: right;
 
@@ -349,7 +353,7 @@ onMounted(async () => {
     align-items: center;
     gap: 0.3rem;
     font-size: 0.7rem;
-    color: #8888a0;
+    color: #6f7b78;
     font-weight: 700;
     margin-bottom: 0.3rem;
   }
@@ -363,7 +367,7 @@ onMounted(async () => {
 }
 
 @media print {
-  .dashboard-page { background: #fff; padding: 0; }
+  .dashboard-page { background: #fdfbf6; padding: 0; }
   .page-header,
   .page-header__back { display: none !important; }
   .certificate-display { box-shadow: none; }

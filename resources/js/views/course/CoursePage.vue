@@ -246,7 +246,7 @@ watch(course, (c) => {
   align-items: center;
   gap: 1rem;
   padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid #f0ece4;
+  border-bottom: 1px solid #e7e1d5;
   text-decoration: none;
   color: inherit;
   transition: all 0.15s;
@@ -254,7 +254,7 @@ watch(course, (c) => {
   &:last-child { border-bottom: none; }
 
   &:hover {
-    background: #faf9f6;
+    background: #f8f5ee;
     .lesson-row__arrow { transform: translateX(-3px); color: #0d7377; }
   }
 
@@ -262,13 +262,13 @@ watch(course, (c) => {
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #faf9f6;
-    border: 2px solid #e0d8cc;
+    background: #f8f5ee;
+    border: 2px solid #d8d1c4;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    color: #8888a0;
+    color: #6f7b78;
     flex-shrink: 0;
     transition: all 0.2s;
   }
@@ -282,14 +282,14 @@ watch(course, (c) => {
   &__content { flex: 1; min-width: 0; }
   &__title {
     font-weight: 700;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.25rem;
   }
   &__meta {
     display: flex;
     gap: 0.85rem;
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
 
     span {
       display: inline-flex;
@@ -299,14 +299,14 @@ watch(course, (c) => {
   }
 
   &__arrow {
-    color: #8888a0;
+    color: #6f7b78;
     transition: all 0.2s;
   }
 }
 
 .quiz-card {
   &.is-passed {
-    background: linear-gradient(135deg, #fff 0%, rgba(27,122,74,0.04) 100%);
+    background: #fdfbf6;
     border-color: rgba(27,122,74,0.3);
   }
 }
@@ -319,7 +319,7 @@ watch(course, (c) => {
   &__icon {
     width: 56px;
     height: 56px;
-    border-radius: 14px;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -339,13 +339,13 @@ watch(course, (c) => {
   &__title {
     font-size: 1.15rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.2rem;
   }
 
   &__desc {
     font-size: 0.85rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin: 0;
   }
 }
@@ -357,15 +357,15 @@ watch(course, (c) => {
   gap: 0.75rem;
   flex-wrap: wrap;
   padding: 1rem 1.25rem;
-  background: #faf9f6;
-  border-radius: 12px;
+  background: #f8f5ee;
+  border-radius: 3px;
 
   &__info {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     font-size: 0.85rem;
-    color: #4a4a5e;
+    color: #3b4745;
     font-weight: 600;
   }
 }
@@ -400,7 +400,7 @@ watch(course, (c) => {
 
     .label {
       font-size: 0.75rem;
-      color: #8888a0;
+      color: #6f7b78;
       font-weight: 600;
       margin-top: 0.25rem;
     }
@@ -418,21 +418,21 @@ watch(course, (c) => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1rem;
-  background: #faf9f6;
-  border-radius: 12px;
+  background: #f8f5ee;
+  border-radius: 3px;
 
-  svg { color: #8888a0; flex-shrink: 0; }
+  svg { color: #6f7b78; flex-shrink: 0; }
 
   .label {
     font-size: 0.7rem;
-    color: #8888a0;
+    color: #6f7b78;
     font-weight: 600;
   }
 
   .value {
     font-size: 0.9rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
   }
 }
 </style>

@@ -23,7 +23,7 @@
 
   &--primary {
     border-color: rgba($primary, 0.2);
-    background: linear-gradient(135deg, $bg-white 0%, $primary-light 100%);
+    background: $bg-white;
   }
 
   &--glass {
@@ -37,7 +37,7 @@
 
 // === Buttons ===
 .btn-y {
-  background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+  background: $primary;
   color: #fff;
   border: none;
   font-weight: 700;
@@ -49,13 +49,13 @@
   padding: 0.75rem 2rem;
   border-radius: $btn-border-radius;
   transition: $transition-base;
-  box-shadow: 0 4px 12px rgba($primary, 0.25);
+  box-shadow: 0 2px 12px -6px rgba($primary, 0.45);
 
   &:hover, &:focus {
-    background: linear-gradient(135deg, $primary-dark 0%, darken($primary-dark, 5%) 100%);
+    background: $primary-dark;
     color: #fff;
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba($primary, 0.35);
+    box-shadow: 0 3px 20px -10px rgba($primary, 0.45);
   }
 
   &:active { transform: translateY(0); }
@@ -68,7 +68,7 @@
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  background: $secondary;
   color: #fff;
   border: none;
   font-weight: 700;
@@ -80,13 +80,13 @@
   padding: 0.75rem 2rem;
   border-radius: $btn-border-radius;
   transition: $transition-base;
-  box-shadow: 0 4px 12px rgba($secondary, 0.25);
+  box-shadow: 0 2px 12px -6px rgba($secondary, 0.45);
 
   &:hover, &:focus {
-    background: linear-gradient(135deg, $secondary-dark 0%, darken($secondary-dark, 5%) 100%);
+    background: $secondary-dark;
     color: #fff;
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba($secondary, 0.35);
+    box-shadow: 0 3px 20px -10px rgba($secondary, 0.45);
   }
 }
 
@@ -185,7 +185,7 @@
   &__icon {
     width: 64px;
     height: 64px;
-    border-radius: 1rem;
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,12 +210,12 @@
 // === Progress Bar ===
 .progress-y {
   height: 10px;
-  border-radius: 10px;
+  border-radius: 3px;
   background: $border-light;
 
   .progress-bar {
-    border-radius: 10px;
-    background: linear-gradient(90deg, $primary 0%, lighten($primary, 10%) 100%);
+    border-radius: 3px;
+    background: $primary;
   }
 }
 

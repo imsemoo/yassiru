@@ -169,16 +169,16 @@ onBeforeUnmount(() => {
   &--pending &__icon { color: #b8860b; }
   &--failed &__icon { color: #c0392b; }
 
-  h2 { font-size: 1.4rem; font-weight: 900; color: #1a1a2a; margin-bottom: 0.5rem; }
-  p { color: #4a4a5e; margin-bottom: 0.5rem; }
-  &__ref { font-size: 0.85rem; color: #8888a0; }
+  h2 { font-size: 1.4rem; font-weight: 900; color: #14201f; margin-bottom: 0.5rem; }
+  p { color: #3b4745; margin-bottom: 0.5rem; }
+  &__ref { font-size: 0.85rem; color: #6f7b78; }
   &__ref code { color: #0d7377; font-weight: 700; }
 }
 
 .fawry-ref-box {
   background: rgba(184,134,11,0.06);
   border: 2px dashed #b8860b;
-  border-radius: 16px;
+  border-radius: 4px;
   padding: 1.5rem;
   margin: 1.5rem 0;
 
@@ -187,11 +187,11 @@ onBeforeUnmount(() => {
     display: block;
     font-size: 2rem;
     font-weight: 900;
-    color: #1a1a2a;
+    color: #14201f;
     letter-spacing: 4px;
     margin-bottom: 0.75rem;
   }
-  &__hint { font-size: 0.8rem; color: #8888a0; line-height: 1.6; margin: 0; }
+  &__hint { font-size: 0.8rem; color: #6f7b78; line-height: 1.6; margin: 0; }
 }
 
 .polling-indicator {
@@ -199,7 +199,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: #8888a0;
+  color: #6f7b78;
   margin-top: 1rem;
 }
 </style>

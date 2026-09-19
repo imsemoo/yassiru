@@ -146,21 +146,21 @@ onMounted(async () => {
 }
 
 .request-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   overflow: hidden;
   transition: all 0.25s;
 
   &:hover {
-    border-color: #e0d8cc;
+    border-color: #d8d1c4;
     box-shadow: 0 12px 32px rgba(13, 26, 42, 0.06);
   }
 
   &__header {
     padding: 1.25rem 1.5rem;
-    background: #faf9f6;
-    border-bottom: 1px solid #f0ece4;
+    background: #f8f5ee;
+    border-bottom: 1px solid #e7e1d5;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -174,7 +174,7 @@ onMounted(async () => {
     gap: 0.5rem;
     font-size: 0.95rem;
 
-    .name { font-weight: 800; color: #1a1a2a; }
+    .name { font-weight: 800; color: #14201f; }
   }
 
   &__body { padding: 1.25rem 1.5rem; }
@@ -189,19 +189,19 @@ onMounted(async () => {
       align-items: center;
       gap: 0.5rem;
       font-size: 0.85rem;
-      color: #4a4a5e;
-      svg { color: #8888a0; flex-shrink: 0; }
+      color: #3b4745;
+      svg { color: #6f7b78; flex-shrink: 0; }
     }
   }
 
   &__notes {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
-    background: #faf9f6;
+    background: #f8f5ee;
     border-right: 3px solid #b8860b;
     border-radius: 8px;
     font-size: 0.85rem;
-    color: #4a4a5e;
+    color: #3b4745;
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
@@ -211,8 +211,8 @@ onMounted(async () => {
 
   &__actions {
     padding: 1rem 1.5rem;
-    border-top: 1px solid #f0ece4;
-    background: #faf9f6;
+    border-top: 1px solid #e7e1d5;
+    background: #f8f5ee;
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;

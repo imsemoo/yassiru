@@ -67,7 +67,6 @@
             {{ submitting ? 'جاري الإرسال...' : 'إرسال رابط الاستعادة' }}
           </button>
 
-          <div class="auth-form__divider">أو</div>
 
           <p class="auth-form__footer">
             تذكّرت كلمة المرور؟
@@ -94,9 +93,7 @@
 
         <div class="auth-brand__benefits">
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhPaperPlaneTilt :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">01</div>
             <div class="auth-brand__benefit__text">
               <div class="title">رابط فوري</div>
               <div class="desc">سيصلك رابط إعادة التعيين خلال دقيقة</div>
@@ -104,9 +101,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhClock :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">02</div>
             <div class="auth-brand__benefit__text">
               <div class="title">صالح لمدة 60 دقيقة</div>
               <div class="desc">الرابط آمن وينتهي بعد ساعة لحماية حسابك</div>
@@ -114,9 +109,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhShieldCheck :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">03</div>
             <div class="auth-brand__benefit__text">
               <div class="title">آمن 100%</div>
               <div class="desc">عملية الاستعادة مشفّرة وموثّقة</div>
@@ -132,8 +125,7 @@
 import { ref } from 'vue'
 import { useApi } from '@/composables/useApi'
 import {
-  PhArrowRight, PhEnvelope, PhEnvelopeOpen, PhInfo, PhSignIn,
-  PhWarningCircle, PhPaperPlaneTilt, PhClock, PhShieldCheck,
+  PhArrowRight, PhEnvelope, PhEnvelopeOpen, PhInfo, PhSignIn, PhWarningCircle, PhPaperPlaneTilt,
 } from '@phosphor-icons/vue'
 
 const { post } = useApi()
@@ -182,7 +174,7 @@ async function submit() {
   }
 
   &__text {
-    color: #4a4a5e;
+    color: #3b4745;
     line-height: 1.95;
     margin-bottom: 1rem;
   }
@@ -194,7 +186,7 @@ async function submit() {
     background: rgba(184,134,11,0.08);
     color: #b8860b;
     padding: 0.65rem 1rem;
-    border-radius: 100px;
+    border-radius: 2px;
     font-size: 0.8rem;
     font-weight: 600;
   }

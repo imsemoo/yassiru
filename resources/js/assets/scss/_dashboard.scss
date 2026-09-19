@@ -53,7 +53,7 @@
     &__icon {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
+      border-radius: 3px;
       background: var(--header-bg, #{$primary-light});
       color: var(--header-color, #{$primary});
       display: flex;
@@ -85,7 +85,7 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.65rem 1.25rem;
-  border-radius: 11px;
+  border-radius: 3px;
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -96,26 +96,26 @@
   white-space: nowrap;
 
   &--primary {
-    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    background: $primary;
     color: #fff;
-    box-shadow: 0 4px 12px rgba($primary, 0.25);
+    box-shadow: 0 2px 12px -6px rgba($primary, 0.45);
 
     &:hover:not(:disabled) {
       color: #fff;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba($primary, 0.35);
+      box-shadow: 0 4px 20px -10px rgba($primary, 0.45);
     }
   }
 
   &--gold {
-    background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+    background: $secondary;
     color: #fff;
-    box-shadow: 0 4px 12px rgba($secondary, 0.25);
+    box-shadow: 0 2px 12px -6px rgba($secondary, 0.45);
 
     &:hover:not(:disabled) {
       color: #fff;
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba($secondary, 0.35);
+      box-shadow: 0 4px 20px -10px rgba($secondary, 0.45);
     }
   }
 
@@ -146,7 +146,15 @@
     font-size: 0.8rem;
   }
 
+  // Used by the About page CTA, which had no size to render at.
+  &--lg {
+    padding: 0.95rem 1.8rem;
+    font-size: 1rem;
+  }
+
   &:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  &:focus-visible { outline: 2px solid $primary; outline-offset: 2px; }
 }
 
 // === Stats Grid ===
@@ -163,7 +171,7 @@
 .stat-tile {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 16px;
+  border-radius: 4px;
   padding: 1.5rem;
   display: flex;
   align-items: center;
@@ -191,7 +199,7 @@
   &__icon {
     width: 52px;
     height: 52px;
-    border-radius: 14px;
+    border-radius: 3px;
     background: var(--tile-bg, #{$primary-light});
     color: var(--tile-color, #{$primary});
     display: flex;
@@ -234,7 +242,7 @@
 .dash-card {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 1.5rem;
 
@@ -310,7 +318,7 @@
   &__textarea {
     padding: 0.85rem 1rem;
     border: 1.5px solid $border-custom;
-    border-radius: 11px;
+    border-radius: 3px;
     font-size: 0.95rem;
     font-weight: 500;
     color: $text-dark;
@@ -412,7 +420,7 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.3rem 0.75rem;
-  border-radius: 100px;
+  border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 700;
   white-space: nowrap;
@@ -474,7 +482,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-radius: 12px;
+  border-radius: 3px;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 
@@ -544,7 +552,7 @@
 .filter-bar {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 14px;
+  border-radius: 3px;
   padding: 1rem;
   margin-bottom: 1.5rem;
   display: grid;
@@ -561,7 +569,7 @@
       width: 100%;
       padding: 0.7rem 1rem 0.7rem 2.5rem;
       border: 1.5px solid $border-custom;
-      border-radius: 11px;
+      border-radius: 3px;
       font-size: 0.9rem;
       font-weight: 500;
       background: $bg-warm;
@@ -593,7 +601,7 @@
     select {
       padding: 0.7rem 1rem;
       border: 1.5px solid $border-custom;
-      border-radius: 11px;
+      border-radius: 3px;
       font-size: 0.9rem;
       font-weight: 600;
       background: $bg-warm;

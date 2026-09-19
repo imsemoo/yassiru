@@ -264,22 +264,22 @@ watch(filter, () => loadSessions(1))
   align-items: center;
   gap: 1rem;
   padding: 1.25rem;
-  background: #fff;
-  border: 1px solid #e0d8cc;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #d8d1c4;
+  border-radius: 4px;
 
   &__icon {
     width: 52px;
     height: 52px;
-    border-radius: 12px;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
 
-  &__value { font-size: 1.8rem; font-weight: 900; color: #1a1a2a; line-height: 1; }
-  &__label { font-size: 0.8rem; color: #8888a0; margin-top: 4px; }
+  &__value { font-size: 1.8rem; font-weight: 900; color: #14201f; line-height: 1; }
+  &__label { font-size: 0.8rem; color: #6f7b78; margin-top: 4px; }
 
   &--success &__icon { background: rgba(27,122,74,0.1); color: #1b7a4a; }
   &--info &__icon { background: rgba(21,101,192,0.1); color: #1565c0; }
@@ -295,12 +295,12 @@ watch(filter, () => loadSessions(1))
 
 .filter-tab {
   padding: 0.6rem 1.25rem;
-  border: 1px solid #e0d8cc;
-  background: #fff;
-  border-radius: 100px;
+  border: 1px solid #d8d1c4;
+  background: #fdfbf6;
+  border-radius: 2px;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #4a4a5e;
+  color: #3b4745;
   cursor: pointer;
   transition: all 0.2s;
 
@@ -320,9 +320,9 @@ watch(filter, () => loadSessions(1))
 }
 
 .session-card {
-  background: #fff;
-  border: 1px solid #e0d8cc;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #d8d1c4;
+  border-radius: 4px;
   padding: 1.25rem;
 
   &__header {
@@ -350,11 +350,11 @@ watch(filter, () => loadSessions(1))
     font-size: 1.1rem;
   }
 
-  &__name { font-size: 1rem; font-weight: 800; color: #1a1a2a; margin: 0; }
+  &__name { font-size: 1rem; font-weight: 800; color: #14201f; margin: 0; }
 
   &__phone {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     margin: 2px 0 0;
     display: inline-flex;
     align-items: center;
@@ -365,15 +365,15 @@ watch(filter, () => loadSessions(1))
     display: flex;
     gap: 1.25rem;
     padding: 0.75rem;
-    background: #faf9f6;
-    border-radius: 10px;
+    background: #f8f5ee;
+    border-radius: 3px;
     margin-bottom: 0.75rem;
     flex-wrap: wrap;
   }
 
   &__meta-item {
     font-size: 0.8rem;
-    color: #4a4a5e;
+    color: #3b4745;
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -381,7 +381,7 @@ watch(filter, () => loadSessions(1))
 
   &__notes {
     font-size: 0.85rem;
-    color: #4a4a5e;
+    color: #3b4745;
     padding: 0.75rem;
     background: rgba(184,134,11,0.06);
     border-right: 3px solid #b8860b;
@@ -407,7 +407,7 @@ watch(filter, () => loadSessions(1))
 
 .pagination-info {
   font-size: 0.85rem;
-  color: #8888a0;
+  color: #6f7b78;
   font-weight: 600;
 }
 </style>

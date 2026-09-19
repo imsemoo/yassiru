@@ -294,16 +294,16 @@ onMounted(async () => {
 
 .full-badge {
   background: rgba(136, 136, 160, 0.08);
-  color: #8888a0;
+  color: #6f7b78;
   border-color: rgba(136, 136, 160, 0.3);
   cursor: default;
   pointer-events: none;
 }
 
 .circle-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 18px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.25s;
   display: flex;
@@ -326,29 +326,29 @@ onMounted(async () => {
   &__title {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.25rem;
   }
 
   &__city {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
   }
 
   &__amount {
-    background: linear-gradient(135deg, rgba(184,134,11,0.08) 0%, rgba(13,115,119,0.05) 100%);
+    background: rgba(184,134,11,0.08);
     border: 1px dashed rgba(184,134,11,0.25);
-    border-radius: 12px;
+    border-radius: 3px;
     padding: 1rem;
     text-align: center;
     margin-bottom: 1rem;
 
     &-label {
       font-size: 0.75rem;
-      color: #8888a0;
+      color: #6f7b78;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -364,7 +364,7 @@ onMounted(async () => {
 
       span {
         font-size: 0.85rem;
-        color: #8888a0;
+        color: #6f7b78;
         font-weight: 600;
         margin-right: 0.25rem;
       }
@@ -376,7 +376,7 @@ onMounted(async () => {
     justify-content: space-between;
     gap: 0.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #f0ece4;
+    border-bottom: 1px solid #e7e1d5;
     margin-bottom: 1rem;
   }
 
@@ -386,15 +386,15 @@ onMounted(async () => {
     gap: 0.4rem;
     font-size: 0.75rem;
 
-    svg { color: #8888a0; flex-shrink: 0; }
+    svg { color: #6f7b78; flex-shrink: 0; }
 
     .label {
-      color: #8888a0;
+      color: #6f7b78;
       font-weight: 600;
       font-size: 0.65rem;
     }
     .value {
-      color: #1a1a2a;
+      color: #14201f;
       font-weight: 700;
     }
   }
@@ -406,22 +406,22 @@ onMounted(async () => {
       display: flex;
       justify-content: space-between;
       font-size: 0.78rem;
-      color: #8888a0;
+      color: #6f7b78;
       margin-bottom: 0.4rem;
 
-      strong { color: #1a1a2a; }
+      strong { color: #14201f; }
     }
 
     &-bar {
       height: 6px;
-      background: #f0ece4;
-      border-radius: 100px;
+      background: #e7e1d5;
+      border-radius: 2px;
       overflow: hidden;
 
       .fill {
         height: 100%;
-        background: linear-gradient(90deg, #0d7377 0%, #b8860b 100%);
-        border-radius: 100px;
+        background: #0d7377;
+        border-radius: 2px;
         transition: width 0.6s;
       }
     }

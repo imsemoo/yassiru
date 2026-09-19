@@ -381,16 +381,16 @@ onMounted(async () => {
     align-items: center;
     gap: 0.65rem;
     padding: 0.85rem 1rem;
-    background: #faf9f6;
-    border: 1.5px solid #e0d8cc;
-    border-radius: 11px;
+    background: #f8f5ee;
+    border: 1.5px solid #d8d1c4;
+    border-radius: 3px;
     cursor: pointer;
     transition: all 0.2s;
     text-align: right;
     font-family: inherit;
 
-    .title { font-size: 0.9rem; font-weight: 800; color: #1a1a2a; }
-    .desc { font-size: 0.7rem; color: #8888a0; }
+    .title { font-size: 0.9rem; font-weight: 800; color: #14201f; }
+    .desc { font-size: 0.7rem; color: #6f7b78; }
 
     &:hover { border-color: #0d7377; }
 
@@ -412,19 +412,19 @@ onMounted(async () => {
 
 .slot-btn {
   padding: 0.65rem 0.5rem;
-  background: #faf9f6;
-  border: 1.5px solid #e0d8cc;
-  border-radius: 10px;
+  background: #f8f5ee;
+  border: 1.5px solid #d8d1c4;
+  border-radius: 3px;
   font-weight: 700;
   font-size: 0.85rem;
-  color: #1a1a2a;
+  color: #14201f;
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
 
   &:hover:not(.is-disabled) { border-color: #0d7377; color: #0d7377; }
   &.is-selected {
-    background: linear-gradient(135deg, #0d7377 0%, #095456 100%);
+    background: #0d7377;
     color: #fff;
     border-color: #095456;
   }
@@ -445,19 +445,19 @@ onMounted(async () => {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid #f0ece4;
+  border-bottom: 1px solid #e7e1d5;
   transition: background 0.15s;
 
-  &:hover { background: #faf9f6; }
+  &:hover { background: #f8f5ee; }
   &:last-child { border-bottom: none; }
 
   &__date {
     flex-shrink: 0;
     width: 56px;
     text-align: center;
-    background: #faf9f6;
-    border: 1px solid #e0d8cc;
-    border-radius: 12px;
+    background: #f8f5ee;
+    border: 1px solid #d8d1c4;
+    border-radius: 3px;
     padding: 0.5rem;
 
     .day {
@@ -468,7 +468,7 @@ onMounted(async () => {
     }
     .month {
       font-size: 0.7rem;
-      color: #8888a0;
+      color: #6f7b78;
       font-weight: 700;
       margin-top: 0.15rem;
     }
@@ -477,7 +477,7 @@ onMounted(async () => {
   &__content { flex: 1; min-width: 0; }
   &__title {
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.3rem;
     display: flex;
     align-items: center;
@@ -485,13 +485,13 @@ onMounted(async () => {
   }
   &__meta {
     font-size: 0.8rem;
-    color: #8888a0;
+    color: #6f7b78;
     display: flex;
     gap: 0.75rem;
   }
   &__notes {
     font-size: 0.8rem;
-    color: #4a4a5e;
+    color: #3b4745;
     margin: 0.4rem 0 0;
     line-height: 1.6;
   }

@@ -198,9 +198,9 @@ async function submitQuiz() {
 
 <style lang="scss" scoped>
 .quiz-progress-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 14px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 3px;
   padding: 1rem 1.25rem;
   margin-bottom: 1.25rem;
 
@@ -217,12 +217,12 @@ async function submitQuiz() {
     color: #0d7377;
     background: rgba(13,115,119,0.08);
     padding: 0.35rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 2px;
   }
 
   &__answered {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     font-weight: 700;
     display: inline-flex;
     align-items: center;
@@ -233,14 +233,14 @@ async function submitQuiz() {
 
   &__bar {
     height: 8px;
-    background: #f0ece4;
-    border-radius: 100px;
+    background: #e7e1d5;
+    border-radius: 2px;
     overflow: hidden;
 
     .fill {
       height: 100%;
-      background: linear-gradient(90deg, #0d7377 0%, #b8860b 100%);
-      border-radius: 100px;
+      background: #0d7377;
+      border-radius: 2px;
       transition: width 0.4s;
     }
   }
@@ -249,7 +249,7 @@ async function submitQuiz() {
 .quiz-question {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #1a1a2a;
+  color: #14201f;
   line-height: 1.75;
   margin: 0 0 1.5rem;
 
@@ -270,9 +270,9 @@ async function submitQuiz() {
   align-items: center;
   gap: 0.85rem;
   padding: 1rem 1.25rem;
-  background: #faf9f6;
-  border: 2px solid #e0d8cc;
-  border-radius: 14px;
+  background: #f8f5ee;
+  border: 2px solid #d8d1c4;
+  border-radius: 3px;
   cursor: pointer;
   transition: all 0.2s;
   text-align: right;
@@ -281,20 +281,20 @@ async function submitQuiz() {
 
   &:hover:not(.is-selected) {
     border-color: #0d7377;
-    background: #fff;
+    background: #fdfbf6;
   }
 
   &__letter {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #fff;
-    border: 2px solid #e0d8cc;
+    background: #fdfbf6;
+    border: 2px solid #d8d1c4;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    color: #4a4a5e;
+    color: #3b4745;
     flex-shrink: 0;
     transition: all 0.2s;
   }
@@ -302,7 +302,7 @@ async function submitQuiz() {
   &__text {
     flex: 1;
     font-size: 0.95rem;
-    color: #1a1a2a;
+    color: #14201f;
     font-weight: 600;
   }
 
@@ -312,7 +312,7 @@ async function submitQuiz() {
   }
 
   &.is-selected {
-    background: linear-gradient(135deg, #0d7377 0%, #095456 100%);
+    background: #0d7377;
     border-color: #095456;
     box-shadow: 0 8px 24px rgba(13,115,119,0.25);
 
@@ -344,7 +344,7 @@ async function submitQuiz() {
   height: 11px;
   border-radius: 50%;
   border: none;
-  background: #e0d8cc;
+  background: #d8d1c4;
   cursor: pointer;
   padding: 0;
   transition: all 0.2s;
@@ -367,23 +367,23 @@ async function submitQuiz() {
 }
 
 .result-card {
-  background: #fff;
-  border-radius: 24px;
+  background: #fdfbf6;
+  border-radius: 6px;
   padding: 3rem 2rem;
   text-align: center;
   max-width: 520px;
   width: 100%;
-  border: 1px solid #f0ece4;
+  border: 1px solid #e7e1d5;
   box-shadow: 0 20px 60px rgba(13, 26, 42, 0.06);
 
   &.is-passed {
     border-color: rgba(27,122,74,0.3);
-    background: linear-gradient(135deg, #fff 0%, rgba(27,122,74,0.04) 100%);
+    background: #fdfbf6;
   }
 
   &.is-failed {
     border-color: rgba(192,57,43,0.3);
-    background: linear-gradient(135deg, #fff 0%, rgba(192,57,43,0.04) 100%);
+    background: #fdfbf6;
   }
 
   &__icon {
@@ -417,7 +417,7 @@ async function submitQuiz() {
 
   &__score {
     font-weight: 900;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.75rem;
     line-height: 1;
 
@@ -428,12 +428,12 @@ async function submitQuiz() {
 
     .total {
       font-size: 1.5rem;
-      color: #8888a0;
+      color: #6f7b78;
     }
   }
 
   &__msg {
-    color: #4a4a5e;
+    color: #3b4745;
     margin-bottom: 1.5rem;
   }
 }
@@ -442,9 +442,9 @@ async function submitQuiz() {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: linear-gradient(135deg, rgba(184,134,11,0.08) 0%, rgba(13,115,119,0.05) 100%);
+  background: rgba(184,134,11,0.08);
   border: 2px dashed rgba(184,134,11,0.3);
-  border-radius: 14px;
+  border-radius: 3px;
   padding: 1.25rem;
   text-align: right;
   margin-bottom: 1.5rem;
@@ -453,7 +453,7 @@ async function submitQuiz() {
 
   strong {
     display: block;
-    color: #1a1a2a;
+    color: #14201f;
     margin-bottom: 0.4rem;
     font-size: 0.95rem;
   }
@@ -468,7 +468,7 @@ async function submitQuiz() {
 
 .result-info {
   font-size: 0.85rem;
-  color: #8888a0;
+  color: #6f7b78;
   margin-bottom: 1.5rem;
   display: inline-flex;
   align-items: center;

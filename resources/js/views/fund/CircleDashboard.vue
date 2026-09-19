@@ -274,15 +274,15 @@ onMounted(async () => {
     align-items: center;
     gap: 0.85rem;
     padding: 1rem;
-    background: #faf9f6;
-    border: 1px solid #f0ece4;
-    border-radius: 12px;
+    background: #f8f5ee;
+    border: 1px solid #e7e1d5;
+    border-radius: 3px;
 
     svg { color: #b8860b; flex-shrink: 0; }
 
     .label {
       font-size: 0.78rem;
-      color: #8888a0;
+      color: #6f7b78;
       font-weight: 600;
       margin-bottom: 0.2rem;
     }
@@ -290,7 +290,7 @@ onMounted(async () => {
     .value {
       font-size: 1.05rem;
       font-weight: 800;
-      color: #1a1a2a;
+      color: #14201f;
     }
   }
 }
@@ -305,23 +305,23 @@ onMounted(async () => {
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid #f0ece4;
+  border-bottom: 1px solid #e7e1d5;
   transition: background 0.15s;
 
   &:last-child { border-bottom: none; }
-  &:hover { background: #faf9f6; }
+  &:hover { background: #f8f5ee; }
 
   &__circle {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #faf9f6;
-    border: 2px solid #e0d8cc;
+    background: #f8f5ee;
+    border: 2px solid #d8d1c4;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    color: #8888a0;
+    color: #6f7b78;
     flex-shrink: 0;
     transition: all 0.2s;
   }
@@ -347,11 +347,11 @@ onMounted(async () => {
   &__content { flex: 1; }
   &__name {
     font-weight: 700;
-    color: #1a1a2a;
+    color: #14201f;
   }
   &__round {
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
   }
 
   &.is-current &__name { color: #0d7377; font-weight: 800; }

@@ -135,9 +135,7 @@
 
         <div class="auth-brand__benefits">
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhCheck :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">01</div>
             <div class="auth-brand__benefit__text">
               <div class="title">8 أحرف على الأقل</div>
               <div class="desc">كلما زادت الأحرف، زاد الأمان</div>
@@ -145,9 +143,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhCheck :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">02</div>
             <div class="auth-brand__benefit__text">
               <div class="title">امزج الحروف والأرقام</div>
               <div class="desc">حروف كبيرة وصغيرة + أرقام = أقوى</div>
@@ -155,9 +151,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhCheck :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">03</div>
             <div class="auth-brand__benefit__text">
               <div class="title">تجنّب المعلومات الشخصية</div>
               <div class="desc">لا تستخدم اسمك أو تاريخ ميلادك</div>
@@ -237,7 +231,7 @@ async function submit() {
   }
 
   &__text {
-    color: #4a4a5e;
+    color: #3b4745;
     line-height: 1.95;
     margin-bottom: 1rem;
   }

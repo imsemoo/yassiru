@@ -233,9 +233,9 @@ onMounted(async () => {
 }
 
 .wedding-admin-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 16px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   overflow: hidden;
   transition: all 0.25s;
 
@@ -250,14 +250,14 @@ onMounted(async () => {
     align-items: flex-start;
     gap: 0.75rem;
     padding: 1.25rem 1.5rem;
-    background: #faf9f6;
-    border-bottom: 1px solid #f0ece4;
+    background: #f8f5ee;
+    border-bottom: 1px solid #e7e1d5;
   }
 
   &__title {
     font-size: 1.05rem;
     font-weight: 800;
-    color: #1a1a2a;
+    color: #14201f;
     margin: 0 0 0.4rem;
   }
 
@@ -265,7 +265,7 @@ onMounted(async () => {
     display: flex;
     gap: 0.85rem;
     font-size: 0.78rem;
-    color: #8888a0;
+    color: #6f7b78;
     flex-wrap: wrap;
 
     span {
@@ -292,20 +292,20 @@ onMounted(async () => {
 
   svg { color: #c0392b; flex-shrink: 0; }
 
-  .label { font-size: 0.65rem; color: #8888a0; font-weight: 600; }
-  .value { font-size: 0.85rem; font-weight: 800; color: #1a1a2a; }
+  .label { font-size: 0.65rem; color: #6f7b78; font-weight: 600; }
+  .value { font-size: 0.85rem; font-weight: 800; color: #14201f; }
 }
 
 .capacity-bar {
   height: 6px;
-  background: #f0ece4;
-  border-radius: 100px;
+  background: #e7e1d5;
+  border-radius: 2px;
   overflow: hidden;
 
   .fill {
     height: 100%;
-    background: linear-gradient(90deg, #c0392b 0%, #b8860b 100%);
-    border-radius: 100px;
+    background: #c0392b;
+    border-radius: 2px;
   }
 }
 
@@ -322,8 +322,8 @@ onMounted(async () => {
   padding: 1rem;
 
   &__inner {
-    background: #fff;
-    border-radius: 20px;
+    background: #fdfbf6;
+    border-radius: 4px;
     max-width: 720px;
     width: 100%;
     max-height: 90vh;
@@ -335,7 +335,7 @@ onMounted(async () => {
 
   &__header {
     padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid #f0ece4;
+    border-bottom: 1px solid #e7e1d5;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -346,8 +346,8 @@ onMounted(async () => {
   &__body { padding: 1.5rem; overflow-y: auto; }
   &__footer {
     padding: 1.25rem 1.5rem;
-    border-top: 1px solid #f0ece4;
-    background: #faf9f6;
+    border-top: 1px solid #e7e1d5;
+    background: #f8f5ee;
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
@@ -355,17 +355,17 @@ onMounted(async () => {
 }
 
 .btn-close-x {
-  background: #faf9f6;
-  border: 1.5px solid #e0d8cc;
+  background: #f8f5ee;
+  border: 1.5px solid #d8d1c4;
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #4a4a5e;
+  color: #3b4745;
 
-  &:hover { background: #f0ece4; color: #c0392b; }
+  &:hover { background: #e7e1d5; color: #c0392b; }
 }
 </style>

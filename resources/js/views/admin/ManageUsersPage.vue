@@ -172,7 +172,7 @@ onMounted(() => loadUsers())
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #0d7377 0%, #095456 100%);
+    background: #0d7377;
     color: #fff;
     display: flex;
     align-items: center;

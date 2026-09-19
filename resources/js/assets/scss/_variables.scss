@@ -18,39 +18,71 @@ $danger: #c0392b;
 $warning: #e67e22;
 $info: #1565c0;
 
+// === Interface roles (light) ===
+// Primitives above name values; these name jobs. Components reference
+// these only. One hue, one meaning: teal is interactive, gold is brand
+// value and ornament, ink is text and geometry.
+$ink:             #14201f;
+$ink-soft:        #3b4745;
+
+$surface-hero:    #f8f5ee; // brightest step — the page opens here
+$surface-raised:  #fdfbf6; // panels lifted off the hero
+$surface-sunk:    #efeade; // the step the next section lands on
+$hairline:        rgba(20, 32, 31, 0.10);
+$hairline-strong: rgba(20, 32, 31, 0.20);
+
+$text-strong:     #14201f;
+$text-muted:      rgba(20, 32, 31, 0.62);
+$text-muted-sunk: rgba(20, 32, 31, 0.72); // muted text on $surface-sunk
+
+$accent-teal:     #0d7377; // interactive
+$accent-gold:     #b8860b; // brand value — fills and large text only
+$accent-gold-ink: #8a6508; // the same role at body-text sizes
+
+$paper:      #f7f4ed;
+$paper-hi:   #fdfbf6;
+$rule:       #d6cec0;
+$rule-soft:  #e7e1d5;
+
 // === Backgrounds ===
-$bg-warm: #faf9f6;
-$bg-surface: #f3efe8;
-$bg-white: #ffffff;
-$border-custom: #e0d8cc;
-$border-light: #f0ece4;
-$dark-bg: #1a1a2a;
-$dark-bg-light: #252538;
+// These are the names the rest of the app already uses. They now point at
+// the role surfaces above, so every page inherits the system at once.
+$bg-warm: $surface-hero;
+$bg-surface: $surface-sunk;
+$bg-white: $surface-raised;
+$border-custom: #d8d1c4;
+$border-light: #e7e1d5;
+// Warm ink, so the footer belongs to the same system as the rest of the page.
+$dark-bg: #16211f;
+$dark-bg-light: #1f2c2a;
 
 // === Text Colors ===
-$text-dark: #1a1a2a;
-$text-secondary-custom: #4a4a5e;
-$text-muted-custom: #8888a0;
-$text-on-dark: rgba(255, 255, 255, 0.85);
+// The old values were cool navy and a purple-leaning grey, which fought
+// the warm surfaces everywhere they met.
+$text-dark: $text-strong;
+$text-secondary-custom: #3b4745;
+$text-muted-custom: #6f7b78;
+$text-on-dark: rgba(242, 239, 231, 0.82);
 
 // === Bootstrap Overrides ===
-$font-family-sans-serif: 'Cairo', sans-serif;
+$font-family-sans-serif: 'Readex Pro', 'Segoe UI', sans-serif;
 $body-bg: $bg-warm;
 $body-color: $text-dark;
 
-$border-radius: 0.75rem;
-$border-radius-lg: 1rem;
-$border-radius-sm: 0.5rem;
-$border-radius-xl: 1.25rem;
+// Tight, technical radii — containers stay softer than what sits inside.
+$border-radius: 0.3rem;
+$border-radius-lg: 0.4rem;
+$border-radius-sm: 0.2rem;
+$border-radius-xl: 0.5rem;
 
-$card-border-radius: 1rem;
+$card-border-radius: 0.3rem;
 
-$btn-border-radius: 0.75rem;
-$btn-border-radius-lg: 0.75rem;
-$btn-border-radius-sm: 0.5rem;
-$btn-font-weight: 700;
+$btn-border-radius: 0.25rem;
+$btn-border-radius-lg: 0.25rem;
+$btn-border-radius-sm: 0.2rem;
+$btn-font-weight: 600;
 
-$input-border-radius: 0.75rem;
+$input-border-radius: 0.2rem;
 $input-border-color: $border-custom;
 $input-focus-border-color: $primary;
 $input-focus-box-shadow: 0 0 0 3px rgba($primary, 0.15);
@@ -62,10 +94,11 @@ $enable-rtl: true;
 $enable-negative-margins: true;
 
 // === Shadows ===
-$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
-$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
-$shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.12);
+// Tinted with the surface hue rather than neutral black.
+$shadow-sm: 0 1px 2px rgba(20, 32, 31, 0.05);
+$shadow-md: 0 6px 16px -10px rgba(20, 32, 31, 0.35);
+$shadow-lg: 0 12px 28px -18px rgba(20, 32, 31, 0.45);
+$shadow-xl: 0 20px 44px -26px rgba(20, 32, 31, 0.5);
 
 // === Transitions ===
 $transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

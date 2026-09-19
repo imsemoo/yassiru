@@ -40,7 +40,7 @@
     <!-- Fonts: Preconnect + Load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
     @vite(['resources/js/app.js'])
 
@@ -81,7 +81,7 @@
     <div id="app"></div>
 
     <noscript>
-        <div style="text-align: center; padding: 2rem; font-family: Cairo, sans-serif; direction: rtl;">
+        <div style="text-align: center; padding: 2rem; font-family: 'Readex Pro', sans-serif; direction: rtl;">
             <h1>يسّرو — منصة تيسير الزواج</h1>
             <p>يرجى تفعيل JavaScript لاستخدام المنصة.</p>
         </div>

@@ -216,7 +216,6 @@
             بالتسجيل، أنت توافق على شروط الاستخدام وسياسة الخصوصية الخاصة بمنصة يسّرو
           </p>
 
-          <div class="auth-form__divider">أو</div>
 
           <p class="auth-form__footer">
             لديك حساب بالفعل؟
@@ -244,9 +243,7 @@
 
         <div class="auth-brand__benefits">
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhCheckCircle :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">01</div>
             <div class="auth-brand__benefit__text">
               <div class="title">التسجيل مجاني تماماً</div>
               <div class="desc">لا رسوم خفية، لا التزامات</div>
@@ -254,9 +251,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhBookOpen :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">02</div>
             <div class="auth-brand__benefit__text">
               <div class="title">دورة تأهيلية مجانية</div>
               <div class="desc">15 ساعة تعلّم منظّم بشهادة معتمدة</div>
@@ -264,9 +259,7 @@
           </div>
 
           <div class="auth-brand__benefit">
-            <div class="auth-brand__benefit__icon">
-              <PhShieldCheck :size="20" weight="duotone" />
-            </div>
+            <div class="auth-brand__benefit__icon">03</div>
             <div class="auth-brand__benefit__text">
               <div class="title">خصوصيتك مقدّسة</div>
               <div class="desc">صفر تواصل مباشر، تشفير كامل للبيانات</div>
@@ -298,9 +291,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import {
-  PhUser, PhEnvelope, PhPhone, PhGenderIntersex, PhMapPin,
-  PhLock, PhLockKey, PhUserPlus, PhWarningCircle, PhEye, PhEyeSlash,
-  PhArrowRight, PhCheckCircle, PhBookOpen, PhShieldCheck,
+  PhUser, PhEnvelope, PhPhone, PhGenderIntersex, PhMapPin, PhLock, PhLockKey, PhUserPlus, PhWarningCircle, PhEye, PhEyeSlash, PhArrowRight,
 } from '@phosphor-icons/vue'
 
 const auth = useAuthStore()

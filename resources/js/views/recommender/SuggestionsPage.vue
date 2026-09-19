@@ -189,15 +189,15 @@ onMounted(async () => {
 }
 
 .suggestion-card {
-  background: #fff;
-  border: 1px solid #f0ece4;
-  border-radius: 18px;
+  background: #fdfbf6;
+  border: 1px solid #e7e1d5;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.25s;
 
   &:hover {
     transform: translateY(-3px);
-    border-color: #e0d8cc;
+    border-color: #d8d1c4;
     box-shadow: 0 16px 36px rgba(13, 26, 42, 0.06);
   }
 
@@ -211,7 +211,7 @@ onMounted(async () => {
   &__rank {
     font-size: 0.85rem;
     font-weight: 800;
-    color: #8888a0;
+    color: #6f7b78;
   }
 
   &__score {
@@ -219,7 +219,7 @@ onMounted(async () => {
     align-items: center;
     gap: 0.3rem;
     padding: 0.4rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 2px;
     font-weight: 800;
     font-size: 0.85rem;
 
@@ -241,14 +241,14 @@ onMounted(async () => {
 
     .name {
       font-weight: 800;
-      color: #1a1a2a;
+      color: #14201f;
       font-size: 0.95rem;
       margin-top: 0.5rem;
       margin-bottom: 0.2rem;
     }
     .meta {
       font-size: 0.75rem;
-      color: #8888a0;
+      color: #6f7b78;
     }
   }
 
@@ -264,8 +264,8 @@ onMounted(async () => {
     font-size: 1.4rem;
     margin: 0 auto;
 
-    &.male { background: linear-gradient(135deg, #1565c0 0%, #0d4a8f 100%); }
-    &.female { background: linear-gradient(135deg, #b8860b 0%, #8a6508 100%); }
+    &.male { background: #1565c0; }
+    &.female { background: #b8860b; }
   }
 
   &__divider {
@@ -277,7 +277,7 @@ onMounted(async () => {
     .line {
       width: 1px;
       height: 16px;
-      background: #e0d8cc;
+      background: #d8d1c4;
     }
 
     .icon {
@@ -290,7 +290,7 @@ onMounted(async () => {
     flex-wrap: wrap;
     gap: 0.4rem;
     padding: 1rem 0;
-    border-top: 1px dashed #f0ece4;
+    border-top: 1px dashed #e7e1d5;
     margin-bottom: 1rem;
   }
 }
@@ -302,7 +302,7 @@ onMounted(async () => {
   padding: 0.3rem 0.7rem;
   background: rgba(27,122,74,0.08);
   color: #1b7a4a;
-  border-radius: 100px;
+  border-radius: 2px;
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -320,8 +320,8 @@ onMounted(async () => {
   padding: 1rem;
 
   &__inner {
-    background: #fff;
-    border-radius: 20px;
+    background: #fdfbf6;
+    border-radius: 4px;
     max-width: 520px;
     width: 100%;
     max-height: 90vh;
@@ -333,7 +333,7 @@ onMounted(async () => {
 
   &__header {
     padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid #f0ece4;
+    border-bottom: 1px solid #e7e1d5;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -344,27 +344,27 @@ onMounted(async () => {
   &__body { padding: 1.5rem; overflow-y: auto; }
   &__footer {
     padding: 1.25rem 1.5rem;
-    border-top: 1px solid #f0ece4;
+    border-top: 1px solid #e7e1d5;
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
-    background: #faf9f6;
+    background: #f8f5ee;
   }
 }
 
 .btn-close-x {
-  background: #faf9f6;
-  border: 1.5px solid #e0d8cc;
+  background: #f8f5ee;
+  border: 1.5px solid #d8d1c4;
   width: 36px;
   height: 36px;
-  border-radius: 10px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #4a4a5e;
+  color: #3b4745;
 
-  &:hover { background: #f0ece4; color: #c0392b; }
+  &:hover { background: #e7e1d5; color: #c0392b; }
 }
 
 .modal-pair {
@@ -373,8 +373,8 @@ onMounted(async () => {
   justify-content: center;
   gap: 1.5rem;
   padding: 1.5rem;
-  background: #faf9f6;
-  border-radius: 14px;
+  background: #f8f5ee;
+  border-radius: 3px;
   margin-bottom: 1.25rem;
 
   .person {

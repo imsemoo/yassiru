@@ -4,9 +4,17 @@
 // ========================================
 
 // === Font Families ===
-$font-cairo: 'Cairo', 'Segoe UI', sans-serif;
-$font-amiri: 'Amiri', 'Times New Roman', serif;
-$font-ruqaa: 'Aref Ruqaa', 'Amiri', serif; // Decorative — secondary use only
+// Display: Alexandria — geometric, editorial, carries authority at large sizes.
+// Text:    Readex Pro — humanist and open; comfortable for long Arabic copy.
+// Mono:    JetBrains Mono — Latin numerals and technical metadata only.
+$font-display: 'Alexandria', 'Segoe UI', sans-serif;
+$font-text:    'Readex Pro', 'Segoe UI', sans-serif;
+$font-mono:    'JetBrains Mono', ui-monospace, monospace;
+$font-amiri:   'Amiri', 'Times New Roman', serif;
+
+// Back-compat aliases — older sections still reference these.
+$font-cairo: $font-text;
+$font-ruqaa: $font-amiri;
 
 // === Line-Heights (Arabic-optimized) ===
 // Arabic needs MORE line-height than Latin due to diacritics + descenders
@@ -36,6 +44,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
   line-height: $lh-heading;
   margin-top: 0;
 }
@@ -62,7 +71,10 @@ button, .btn, .badge, label {
 // ========================================
 // Utility Classes
 // ========================================
-.font-cairo  { font-family: $font-cairo !important; }
+.font-display { font-family: $font-display !important; }
+.font-text    { font-family: $font-text !important; }
+.font-mono    { font-family: $font-mono !important; }
+.font-cairo  { font-family: $font-text !important; }
 .font-amiri  { font-family: $font-amiri !important; }
 .font-ruqaa  { font-family: $font-ruqaa !important; }
 

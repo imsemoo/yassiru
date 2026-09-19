@@ -9,7 +9,7 @@
   position: relative;
   padding: 7rem 0 5rem;
   overflow: hidden;
-  background: linear-gradient(160deg, #fdecea 0%, $bg-warm 50%, #faf3e0 100%);
+  background: $bg-warm;
 
   &::before {
     content: '';
@@ -43,22 +43,31 @@
 .weddings-hero__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
-  background: rgba($danger, 0.1);
-  color: darken($danger, 8%);
-  border: 1px solid rgba($danger, 0.18);
-  border-radius: 100px;
-  font-family: $font-ruqaa;
-  font-size: 1.05rem;
-  font-weight: 700;
+  gap: 0.7rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: $text-muted;
+  font-family: $font-text;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   line-height: 1.5;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: $accent-teal;
+    flex-shrink: 0;
+  }
 }
 
 .weddings-hero__title {
   font-size: clamp(2.25rem, 5vw, 4rem);
-  font-weight: 900;
+  font-weight: 600;
   line-height: $lh-display;
   letter-spacing: -0.02em;
   color: $text-dark;
@@ -102,24 +111,24 @@
 }
 
 .weddings-hero__cta-primary {
-  background: linear-gradient(135deg, $danger 0%, darken($danger, 8%) 100%);
+  background: $danger;
   color: #fff;
   border: none;
   font-weight: 700;
   font-size: 1.05rem;
   padding: 1rem 2rem;
-  border-radius: 14px;
+  border-radius: 3px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  box-shadow: 0 8px 24px rgba($danger, 0.3);
+  box-shadow: 0 4px 24px -12px rgba($danger, 0.45);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
 
   &:hover {
     color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba($danger, 0.4);
+    box-shadow: 0 6px 32px -16px rgba($danger, 0.45);
   }
 }
 
@@ -130,7 +139,7 @@
   font-weight: 700;
   font-size: 1.05rem;
   padding: 1rem 2rem;
-  border-radius: 14px;
+  border-radius: 3px;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -155,7 +164,7 @@
 
 .savings-card {
   background: $bg-white;
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 2rem;
   box-shadow: 0 20px 60px rgba(13, 26, 42, 0.1);
   border: 1px solid $border-light;
@@ -166,13 +175,13 @@
     top: -16px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+    background: $secondary;
     color: #fff;
     padding: 0.5rem 1.25rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 800;
-    box-shadow: 0 6px 16px rgba($secondary, 0.3);
+    box-shadow: 0 3px 16px -8px rgba($secondary, 0.45);
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
@@ -194,7 +203,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.25rem;
-    border-radius: 14px;
+    border-radius: 3px;
     margin-bottom: 0.75rem;
 
     &--bad {
@@ -218,7 +227,7 @@
 
     &__amount {
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 600;
       letter-spacing: -0.02em;
 
       &--bad { color: $danger; text-decoration: line-through; opacity: 0.8; }
@@ -229,8 +238,8 @@
   &__savings {
     text-align: center;
     padding: 1.25rem;
-    background: linear-gradient(135deg, rgba($secondary, 0.1) 0%, rgba($danger, 0.06) 100%);
-    border-radius: 14px;
+    background: rgba($secondary, 0.1);
+    border-radius: 3px;
     margin-top: 0.5rem;
 
     .label {
@@ -242,7 +251,7 @@
 
     .amount {
       font-size: 2rem;
-      font-weight: 900;
+      font-weight: 600;
       color: $secondary-dark;
       letter-spacing: -0.02em;
     }
@@ -262,8 +271,8 @@
 .concept-visual {
   max-width: 1000px;
   margin: 3rem auto 0;
-  background: linear-gradient(135deg, $bg-warm 0%, #fff 100%);
-  border-radius: 24px;
+  background: $bg-white;
+  border-radius: 6px;
   padding: 3rem 2rem;
   border: 2px dashed rgba($danger, 0.2);
   position: relative;
@@ -300,7 +309,7 @@
   &__icon {
     width: 80px;
     height: 80px;
-    border-radius: 22px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -308,12 +317,12 @@
   }
 
   &--bad &__icon {
-    background: linear-gradient(135deg, rgba($danger, 0.15) 0%, rgba($danger, 0.05) 100%);
+    background: rgba($danger, 0.15);
     color: $danger;
   }
 
   &--good &__icon {
-    background: linear-gradient(135deg, rgba($success, 0.15) 0%, rgba($success, 0.05) 100%);
+    background: rgba($success, 0.15);
     color: $success;
   }
 
@@ -336,12 +345,12 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+  background: $secondary;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba($secondary, 0.3);
+  box-shadow: 0 4px 20px -10px rgba($secondary, 0.45);
 }
 
 .concept-features {
@@ -375,7 +384,7 @@
 // ============================================
 .weddings-list-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 4rem 0; }
 }
@@ -385,7 +394,7 @@
   margin: 3rem auto 2.5rem;
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
@@ -410,7 +419,7 @@
       width: 100%;
       padding: 0.75rem 1rem;
       border: 1px solid $border-custom;
-      border-radius: 12px;
+      border-radius: 3px;
       font-weight: 600;
       font-size: 0.95rem;
       color: $text-dark;
@@ -431,7 +440,7 @@
     background: rgba($danger, 0.08);
     color: darken($danger, 5%);
     padding: 0.75rem 1.25rem;
-    border-radius: 12px;
+    border-radius: 3px;
     font-weight: 800;
     font-size: 0.9rem;
     text-align: center;
@@ -452,7 +461,7 @@
 .wedding-card-pro {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 20px;
+  border-radius: 4px;
   overflow: hidden;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -466,7 +475,7 @@
   }
 
   &__header {
-    background: linear-gradient(135deg, rgba($danger, 0.08) 0%, rgba($secondary, 0.06) 100%);
+    background: rgba($danger, 0.08);
     padding: 1.5rem;
     border-bottom: 1px solid $border-light;
     position: relative;
@@ -477,7 +486,7 @@
     top: 1rem;
     left: 1rem;
     padding: 0.35rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 800;
     display: inline-flex;
@@ -541,7 +550,7 @@
   &__info-item {
     background: $bg-warm;
     padding: 0.75rem;
-    border-radius: 10px;
+    border-radius: 3px;
 
     .label {
       font-size: 0.7rem;
@@ -577,13 +586,13 @@
     .bar {
       height: 8px;
       background: $border-light;
-      border-radius: 100px;
+      border-radius: 6px;
       overflow: hidden;
 
       .fill {
         height: 100%;
-        background: linear-gradient(90deg, $danger 0%, $secondary 100%);
-        border-radius: 100px;
+        background: $danger;
+        border-radius: 6px;
         transition: width 0.6s;
       }
     }
@@ -609,7 +618,7 @@
 
     .final {
       font-size: 1.5rem;
-      font-weight: 900;
+      font-weight: 600;
       color: $danger;
       letter-spacing: -0.01em;
       line-height: $lh-numeric;
@@ -622,10 +631,10 @@
   }
 
   &__cta {
-    background: linear-gradient(135deg, $danger 0%, darken($danger, 8%) 100%);
+    background: $danger;
     color: #fff;
     padding: 0.7rem 1.25rem;
-    border-radius: 12px;
+    border-radius: 3px;
     font-weight: 700;
     font-size: 0.9rem;
     text-decoration: none;
@@ -633,12 +642,12 @@
     align-items: center;
     gap: 0.4rem;
     transition: all 0.25s;
-    box-shadow: 0 4px 12px rgba($danger, 0.25);
+    box-shadow: 0 2px 12px -6px rgba($danger, 0.45);
 
     &:hover {
       color: #fff;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba($danger, 0.35);
+      box-shadow: 0 4px 20px -10px rgba($danger, 0.45);
     }
   }
 }
@@ -676,7 +685,7 @@
 .included-card {
   background: $bg-warm;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 1.75rem 1.25rem;
   text-align: center;
   transition: all 0.3s;
@@ -691,8 +700,8 @@
   &__icon {
     width: 56px;
     height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--inc-bg-1) 0%, var(--inc-bg-2) 100%);
+    border-radius: 4px;
+    background: var(--inc-bg-1);
     color: var(--inc-color);
     display: flex;
     align-items: center;
@@ -720,7 +729,7 @@
 // ============================================
 .vendors-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, $bg-white 0%, $bg-warm 100%);
+  background: $bg-white;
 
   @media (max-width: 768px) { padding: 4rem 0; }
 }
@@ -739,7 +748,7 @@
 .vendor-card {
   background: $bg-white;
   border: 1px solid $border-light;
-  border-radius: 18px;
+  border-radius: 4px;
   padding: 1.5rem;
   transition: all 0.3s;
   position: relative;
@@ -754,10 +763,10 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+    background: $secondary;
     color: #fff;
     padding: 0.4rem 0.85rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 800;
   }
@@ -767,7 +776,7 @@
     background: rgba($primary, 0.08);
     color: $primary;
     padding: 0.3rem 0.75rem;
-    border-radius: 100px;
+    border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -842,7 +851,7 @@
 
   &__title {
     font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 900;
+    font-weight: 600;
     line-height: $lh-heading-lg;
     margin-bottom: 1rem;
     color: #fff;
@@ -858,20 +867,20 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: linear-gradient(135deg, $danger 0%, darken($danger, 8%) 100%);
+    background: $danger;
     color: #fff;
     padding: 1.15rem 2.5rem;
-    border-radius: 16px;
+    border-radius: 4px;
     font-weight: 800;
     font-size: 1.05rem;
     text-decoration: none;
-    box-shadow: 0 12px 32px rgba($danger, 0.4);
+    box-shadow: 0 6px 32px -16px rgba($danger, 0.45);
     transition: all 0.25s;
 
     &:hover {
       color: #fff;
       transform: translateY(-2px);
-      box-shadow: 0 16px 40px rgba($danger, 0.55);
+      box-shadow: 0 8px 40px -20px rgba($danger, 0.45);
     }
   }
 }
